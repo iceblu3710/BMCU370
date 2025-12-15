@@ -1,6 +1,6 @@
 #pragma once
 
-#include "main.h"
+#include <Arduino.h>
 
 #include "ch32v20x_flash.h"
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "main.h"
+#include <Arduino.h>
 
 class AS5600_soft_IIC_many
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "main.h"
+#include <Arduino.h>
 #define Debug_log_on
 #define Debug_log_baudrate 115200
 
