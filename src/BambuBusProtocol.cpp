@@ -207,3 +207,23 @@ void BambuBusProtocol::BuildLongPacket(long_packge_data *data, uint8_t *out_buff
     out_length = data->data_length + 15;
     BuildPacketWithCRC(out_buffer, out_length);
 }
+
+UnifiedCommandType BambuBusProtocol::GetUnifiedType(BambuBus_package_type type) {
+    switch (type) {
+        case BambuBus_package_type::filament_motion_short: return UnifiedCommandType::FilamentMotionShort;
+        case BambuBus_package_type::filament_motion_long: return UnifiedCommandType::FilamentMotionLong;
+        case BambuBus_package_type::online_detect: return UnifiedCommandType::OnlineDetect;
+        case BambuBus_package_type::REQx6: return UnifiedCommandType::REQx6;
+        case BambuBus_package_type::NFC_detect: return UnifiedCommandType::NFCDetect;
+        case BambuBus_package_type::set_filament_info: return UnifiedCommandType::SetFilamentInfo;
+        case BambuBus_package_type::heartbeat: return UnifiedCommandType::Heartbeat;
+        case BambuBus_package_type::MC_online: return UnifiedCommandType::MCOnline;
+        case BambuBus_package_type::read_filament_info: return UnifiedCommandType::ReadFilamentInfo;
+        case BambuBus_package_type::set_filament_info_type2: return UnifiedCommandType::SetFilamentInfoType2;
+        case BambuBus_package_type::version: return UnifiedCommandType::Version;
+        case BambuBus_package_type::serial_number: return UnifiedCommandType::SerialNumber;
+        case BambuBus_package_type::ERROR: return UnifiedCommandType::Error;
+        default: return UnifiedCommandType::None;
+    }
+}
+

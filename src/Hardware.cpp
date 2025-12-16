@@ -42,9 +42,18 @@ DMA_InitTypeDef Bambubus_DMA_InitStructure;
 namespace Hardware {
 
     void Init() {
+        Watchdog_Disable(); // Disable WWDG first!
         System_Init();
-        Watchdog_Disable();
-        // Other inits called explicitly by main or sub-systems
+        LED_Init();    // Init LEDs 
+        UART_Init();   // Init UART/DMA
+        ADC_Init();    
+        PWM_Init();
+        
+        // Debug Flash: Red -> Blue -> Green
+        LED_SetColor(4, 0, 50, 0, 0); LED_Show(); DelayMS(200);
+        LED_SetColor(4, 0, 0, 0, 50); LED_Show(); DelayMS(200);
+        LED_SetColor(4, 0, 0, 50, 0); LED_Show(); DelayMS(200);
+        LED_SetColor(4, 0, 0, 0, 0);  LED_Show();
     }
 
     void Watchdog_Disable() {
@@ -58,21 +67,11 @@ namespace Hardware {
     }
 
     void DelayUS(uint32_t time) {
-        const uint64_t _delay_any_div_time = (uint64_t)(8000000.0 / time);
-        SysTick->SR &= ~(1 << 0);
-        SysTick->CMP = SystemCoreClock / _delay_any_div_time;
-        SysTick->CTLR |= (1 << 5) | (1 << 4) | (1 << 0);
-        while (!(SysTick->SR & 1));
-        SysTick->CTLR &= ~(1 << 0);
+        delayMicroseconds(time);
     }
 
     void DelayMS(uint32_t time) {
-         const uint64_t _delay_any_div_time = (uint64_t)(80000.0 / time);
-        SysTick->SR &= ~(1 << 0);
-        SysTick->CMP = SystemCoreClock / _delay_any_div_time;
-        SysTick->CTLR |= (1 << 5) | (1 << 4) | (1 << 0);
-        while (!(SysTick->SR & 1));
-        SysTick->CTLR &= ~(1 << 0);
+        delay(time);
     }
 
     uint64_t GetTime() {
@@ -226,7 +225,7 @@ namespace Hardware {
             ADC_DMACmd(ADC1, ENABLE);
             ADC_SoftwareStartConvCmd(ADC1, ENABLE);
         }
-        DelayMS(2); // Wait for buffer fill (approx, original was ADC_filter_n which is 256? wait ADC_filter_n in main was 256. 256ms? no. original code: delay(ADC_filter_n); delay is usually ms in Arduino. 256ms. Okay.)
+        DelayMS(256); // Wait for buffer fill (ADC_filter_n = 256)
     }
 
     float* ADC_GetValues() {
@@ -261,6 +260,10 @@ namespace Hardware {
         RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
         RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
         RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+
+        // Remap Pins for Motor Control
+        GPIO_PinRemapConfig(GPIO_FullRemap_TIM2, ENABLE);    // TIM2 CH1/CH2 -> PA15/PB3
+        GPIO_PinRemapConfig(GPIO_PartialRemap_TIM3, ENABLE); // TIM3 CH1/CH2 -> PB4/PB5
 
         TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
         TIM_OCInitTypeDef TIM_OCInitStructure;

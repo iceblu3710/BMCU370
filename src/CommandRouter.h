@@ -1,9 +1,6 @@
 #pragma once
 
-#include "BambuBusProtocol.h"
-
-// Forward declaration of ControlLogic functions or class
-// For now, we assume global functions or a static class from ControlLogic.h
+#include "CommandTypes.h"
 
 namespace CommandRouter {
     void Init();
@@ -11,6 +8,9 @@ namespace CommandRouter {
     // Main loop function to poll and process
     void Run();
     
-    // Helper to send packets (using Hardware TX)
+    // Core routing function
+    void Route(UnifiedCommandType type, uint8_t* buffer, uint16_t length);
+
+    // Helper to send packets (This might need abstraction later, but keeping for now)
     void SendPacket(uint8_t *data, uint16_t length);
 }

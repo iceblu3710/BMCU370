@@ -2,6 +2,8 @@
 
 #include <stdint.h>
 #include <string.h>
+#include "CommandTypes.h"
+
 
 enum class AMS_filament_stu
 {
@@ -82,6 +84,8 @@ public:
 
     // Helpers
     static bool CheckCRC16(uint8_t *data, int length);
+    static UnifiedCommandType GetUnifiedType(BambuBus_package_type type);
+
 
 private:
    static  uint8_t rx_buf[1000];
