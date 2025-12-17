@@ -2,30 +2,30 @@
 #include "BambuBusProtocol.h"
 #include "Hardware.h" 
 #include "ControlLogic.h"
+#include <string.h> // For memcpy
 
 namespace CommandRouter {
 
     static uint64_t last_packet_time = 0;
+    
+    // Double Buffering for Main Loop Process
+    static uint8_t process_buffer[1000];
+    static volatile uint16_t process_len = 0;
+    static volatile bool process_ready = false;
 
     void Init() {
         BambuBusProtocol::Init();
         // Hardware UART callback now bridges to Route via BambuBusProtocol identification
         Hardware::UART_SetRxCallback([](uint8_t byte) {
             if (BambuBusProtocol::ParseByte(byte)) {
+                // ISR Context: Copy to process buffer immediately to free up Protocol logic
                 uint8_t* buffer = BambuBusProtocol::GetRxBuffer();
                 uint16_t length = BambuBusProtocol::GetRxLength();
                 
-                // Decode to unified type immediately
-                BambuBus_package_type bb_type = BambuBusProtocol::IdentifyPacket(buffer, length);
-                UnifiedCommandType unified_type = BambuBusProtocol::GetUnifiedType(bb_type);
-                
-                // Route it
-                if (unified_type != UnifiedCommandType::None) {
-                     last_packet_time = Hardware::GetTime();
-                     Route(unified_type, buffer, length);
-                } else if (bb_type == BambuBus_package_type::ERROR) {
-                     // Could map error to UnifiedCommandType::Error if we want explicit handling
-                     Route(UnifiedCommandType::Error, buffer, length);
+                if (length < 1000) {
+                    memcpy(process_buffer, buffer, length);
+                    process_len = length;
+                    process_ready = true;
                 }
             }
         });
@@ -113,10 +113,31 @@ namespace CommandRouter {
     }
 
 
-
-
     void Run() {
-        // Check for timeout
+        // 1. Process Pending Packets (Main Loop Context)
+        if (process_ready) {
+            // Atomic check/clear not strictly necessary for bool on this architecture if single consumer/producer flow guarded by logic,
+            // but we reset first to safely capture next one? Or allow overwrite?
+            // Original code blindly overwrites. We will process then clear.
+            
+            Hardware::DelayMS(1); // Match legacy timing (allow turnaround or processing gap)
+
+            // Decode to unified type
+            BambuBus_package_type bb_type = BambuBusProtocol::IdentifyPacket(process_buffer, process_len);
+            UnifiedCommandType unified_type = BambuBusProtocol::GetUnifiedType(bb_type);
+            
+            // Route it
+            if (unified_type != UnifiedCommandType::None) {
+                 last_packet_time = Hardware::GetTime();
+                 Route(unified_type, process_buffer, process_len);
+            } else if (bb_type == BambuBus_package_type::ERROR) {
+                 Route(UnifiedCommandType::Error, process_buffer, process_len);
+            }
+            
+            process_ready = false;
+        }
+
+        // 2. Check for timeout
         uint64_t now = Hardware::GetTime();
         if (now - last_packet_time > 3000) { // 3 seconds timeout
             ControlLogic::UpdateConnectivity(false);
@@ -126,8 +147,5 @@ namespace CommandRouter {
     // Allow ControlLogic to send
     void SendPacket(uint8_t *data, uint16_t length) {
         Hardware::UART_Send(data, length);
-        last_packet_time = Hardware::GetTime(); // Reset timeout on send (keepalive)? 
-        // Actually, we should reset on RECEIVE.
-        // But let's look at Route.
     }
 }

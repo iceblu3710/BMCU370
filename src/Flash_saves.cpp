@@ -36,7 +36,8 @@ bool Flash_saves(void *buf, uint32_t length, uint32_t address)
     uint32_t end_address = address + length;
     uint32_t erase_counter = 0;
     uint32_t address_i = 0;
-    uint32_t page_num = length / FLASH_PAGE_SIZE;
+    uint32_t page_num = (length + FLASH_PAGE_SIZE - 1) / FLASH_PAGE_SIZE;
+    if (page_num == 0) page_num = 1; // Safety
     uint16_t *data_ptr = (uint16_t *)buf;
 
     __disable_irq(); // 禁用中断
@@ -46,6 +47,7 @@ bool Flash_saves(void *buf, uint32_t length, uint32_t address)
 
     for (erase_counter = 0; (erase_counter < page_num) && (FLASHStatus == FLASH_COMPLETE); erase_counter++)
     {
+        IWDG->CTLR = 0xAAAA; // Reload IWDG
         FLASHStatus = FLASH_ErasePage(address + (FLASH_PAGE_SIZE * erase_counter)); // Erase 4KB
 
         if (FLASHStatus != FLASH_COMPLETE)
