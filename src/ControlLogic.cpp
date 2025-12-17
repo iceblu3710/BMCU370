@@ -220,19 +220,19 @@ namespace ControlLogic {
             }
         }
         
-        float GetXByPressure(float pressure_voltage, float control_voltage, float time_E, pressure_control_enum control_type) {
+        float GetXByPressure(float pressure_voltage, float control_voltage, float time_E, pressure_control_enum control_type, float sign) {
             float x=0;
             switch (control_type) {
                 case pressure_control_enum::all:
-                    x = dir * PID_pressure.Calculate(MC_PULL_stu_raw[CHx] - control_voltage, time_E);
+                    x = sign * PID_pressure.Calculate(MC_PULL_stu_raw[CHx] - control_voltage, time_E);
                     break;
                 case pressure_control_enum::less_pressure:
                     if (pressure_voltage < control_voltage)
-                        x = dir * PID_pressure.Calculate(MC_PULL_stu_raw[CHx] - control_voltage, time_E);
+                        x = sign * PID_pressure.Calculate(MC_PULL_stu_raw[CHx] - control_voltage, time_E);
                     break;
                 case pressure_control_enum::over_pressure:
                     if (pressure_voltage > control_voltage)
-                        x = dir * PID_pressure.Calculate(MC_PULL_stu_raw[CHx] - control_voltage, time_E);
+                        x = sign * PID_pressure.Calculate(MC_PULL_stu_raw[CHx] - control_voltage, time_E);
                     break;
             }
             if (x > 0) {
@@ -261,6 +261,16 @@ namespace ControlLogic {
             
             // ... Full logic replication ...
             if (motion == filament_motion_enum::pressure_ctrl_idle) { // Idle
+                // Determine PID Sign
+                bool pid_invert = false;
+                switch(CHx) {
+                    case 0: pid_invert = MOTOR_PID_INVERT_CH1; break;
+                    case 1: pid_invert = MOTOR_PID_INVERT_CH2; break;
+                    case 2: pid_invert = MOTOR_PID_INVERT_CH3; break;
+                    case 3: pid_invert = MOTOR_PID_INVERT_CH4; break;
+                }
+                float pid_sign = dir * (pid_invert ? -1.0f : 1.0f);
+
                 if (MC_ONLINE_key_stu[CHx] == 0) {
                     Assist_send_filament[CHx] = true;
                     // countdownStart[CHx] = 0;
@@ -273,18 +283,28 @@ namespace ControlLogic {
                     }
                 } else {
                     if (MC_ONLINE_key_stu[CHx] != 0 && MC_PULL_stu[CHx] != 0) {
-                        x = dir * PID_pressure.Calculate(MC_PULL_stu_raw[CHx] - 1.65, time_E);
+                        x = pid_sign * PID_pressure.Calculate(MC_PULL_stu_raw[CHx] - 1.65, time_E);
                     } else {
                         x = 0; PID_pressure.Clear();
                     }
                 }
             } else if (MC_ONLINE_key_stu[CHx] != 0) {
+                 // Determine PID Sign (Recalc or reuse?)
+                bool pid_invert = false;
+                switch(CHx) {
+                    case 0: pid_invert = MOTOR_PID_INVERT_CH1; break;
+                    case 1: pid_invert = MOTOR_PID_INVERT_CH2; break;
+                    case 2: pid_invert = MOTOR_PID_INVERT_CH3; break;
+                    case 3: pid_invert = MOTOR_PID_INVERT_CH4; break;
+                }
+                float pid_sign = dir * (pid_invert ? -1.0f : 1.0f);
+
                  if (motion == filament_motion_enum::pressure_ctrl_in_use) {
                      if (pull_state_old) {
                          if (MC_PULL_stu_raw[CHx] < 1.55) pull_state_old = false;
                      } else {
-                         if (MC_PULL_stu_raw[CHx] < 1.65) x = GetXByPressure(MC_PULL_stu_raw[CHx], 1.65, time_E, pressure_control_enum::less_pressure);
-                         else if (MC_PULL_stu_raw[CHx] > 1.7) x = GetXByPressure(MC_PULL_stu_raw[CHx], 1.7, time_E, pressure_control_enum::over_pressure);
+                         if (MC_PULL_stu_raw[CHx] < 1.65) x = GetXByPressure(MC_PULL_stu_raw[CHx], 1.65, time_E, pressure_control_enum::less_pressure, pid_sign);
+                         else if (MC_PULL_stu_raw[CHx] > 1.7) x = GetXByPressure(MC_PULL_stu_raw[CHx], 1.7, time_E, pressure_control_enum::over_pressure, pid_sign);
                      }
                  } else {
                      if (motion == filament_motion_enum::stop) {

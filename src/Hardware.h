@@ -17,6 +17,12 @@
 #define MOTOR_SPEED_SLOW_SEND 3
 #define MOTOR_SPEED_PULL 50
 
+// PID Inversion Configuration
+#define MOTOR_PID_INVERT_CH1 true
+#define MOTOR_PID_INVERT_CH2 true
+#define MOTOR_PID_INVERT_CH3 true
+#define MOTOR_PID_INVERT_CH4 false
+
 // Hardware Abstraction Layer
 
 namespace Hardware {
