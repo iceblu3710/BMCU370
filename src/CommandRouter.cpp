@@ -1,27 +1,81 @@
 #include "CommandRouter.h"
 #include "BambuBusProtocol.h"
+#ifdef STANDARD_SERIAL
+#include "SerialCLI.h"
+#endif
 #include "Hardware.h" 
+#include <stdio.h> 
 #include "ControlLogic.h"
-#include <string.h> // For memcpy
+#include <string.h> 
 
 namespace CommandRouter {
 
     static uint64_t last_packet_time = 0;
-    
-    // Double Buffering for Main Loop Process
     static uint8_t process_buffer[1000];
     static volatile uint16_t process_len = 0;
     static volatile bool process_ready = false;
 
+    // --- Routing Table Definition ---
+    typedef void (*PacketHandler)(uint8_t* buffer, uint16_t length);
+
+    struct RouteEntry {
+        UnifiedCommandType type;
+        PacketHandler handler;
+        const char* name;
+    };
+
+    // Table of Routes
+    static const RouteEntry routeTable[] = {
+        { UnifiedCommandType::FilamentMotionShort, ControlLogic::ProcessMotionShort, "MotionShort" },
+        { UnifiedCommandType::FilamentMotionLong,  ControlLogic::ProcessMotionLong,  "MotionLong"  },
+        { UnifiedCommandType::OnlineDetect,        ControlLogic::ProcessOnlineDetect,"OnlineDetect"},
+        { UnifiedCommandType::REQx6,               ControlLogic::ProcessREQx6,       "REQx6"       },
+        { UnifiedCommandType::SetFilamentInfo,     ControlLogic::ProcessSetFilamentInfo, "SetFilament" },
+        { UnifiedCommandType::Heartbeat,           ControlLogic::ProcessHeartbeat,   "Heartbeat"   },
+        // Mapped Long Packets (Handler calls helper that parses long packet)
+        // CommandRouter::Route logic for these was effectively parsing long packet then calling ControlLogic::ProcessLongPacket
+        // We can make a helper in CommandRouter or ControlLogic. 
+        // Let's use a generic handler or specific wrapper if needed.
+        // For now, mapping to a specialized handler or generic one.
+     };
+
+    static const int routeTableSize = sizeof(routeTable) / sizeof(RouteEntry);
+
+    // --- Long Packet Handlers Wrapper ---
+    // Since ControlLogic::ProcessLongPacket expects parsed struct, we need a wrapper if we route raw buffer.
+    void HandleLongPacket(uint8_t* buffer, uint16_t length) {
+         long_packge_data data;
+         BambuBusProtocol::ParseLongPacket(buffer, length, &data);
+         ControlLogic::ProcessLongPacket(data);
+    }
+
     void Init() {
+#ifndef STANDARD_SERIAL
         BambuBusProtocol::Init();
-        // Hardware UART callback now bridges to Route via BambuBusProtocol identification
+#endif
+        
+#ifdef STANDARD_SERIAL
+        Hardware::UART_SetRxCallback([](uint8_t byte) {
+             if (SerialCLI::Accumulate(byte)) {
+                 // Line is ready in SerialCLI internal buffer
+                 char* line = SerialCLI::GetInitBuffer();
+                 int len = SerialCLI::GetLength();
+                 if (len < 1000) {
+                     memcpy(process_buffer, line, len);
+                     process_buffer[len] = 0; // Null terminate locally
+                     process_len = len; 
+                     process_ready = true;
+                     // Reset CLI for next line
+                     SerialCLI::Reset();
+                 }
+             }
+        });
+        SerialCLI::Init();
+#else
         Hardware::UART_SetRxCallback([](uint8_t byte) {
             if (BambuBusProtocol::ParseByte(byte)) {
-                // ISR Context: Copy to process buffer immediately to free up Protocol logic
                 uint8_t* buffer = BambuBusProtocol::GetRxBuffer();
                 uint16_t length = BambuBusProtocol::GetRxLength();
-                
                 if (length < 1000) {
                     memcpy(process_buffer, buffer, length);
                     process_len = length;
@@ -29,123 +83,101 @@ namespace CommandRouter {
                 }
             }
         });
+#endif
     }
 
     void Route(UnifiedCommandType type, uint8_t* buffer, uint16_t length) {
-        
-        // Connectivity Logic (Generic)
+        // Generic Connectivity Update
         if (type != UnifiedCommandType::None && type != UnifiedCommandType::Error) {
              ControlLogic::UpdateConnectivity(true);
         } else if (type == UnifiedCommandType::Error) {
              ControlLogic::UpdateConnectivity(false);
-             return; // Stop processing
+             return; 
         }
 
-        switch (type) {
-            case UnifiedCommandType::FilamentMotionShort:
-                ControlLogic::ProcessMotionShort(buffer, length);
+        // Table Lookup
+        bool found = false;
+        for(int i=0; i<routeTableSize; i++) {
+            if (routeTable[i].type == type) {
+                routeTable[i].handler(buffer, length);
+                found = true;
                 break;
-                
-            case UnifiedCommandType::FilamentMotionLong:
-                 ControlLogic::ProcessMotionLong(buffer, length);
-                 break;
-
-            case UnifiedCommandType::OnlineDetect:
-                 ControlLogic::ProcessOnlineDetect(buffer, length);
-                 break;
-
-            case UnifiedCommandType::REQx6:
-                 ControlLogic::ProcessREQx6(buffer, length);
-                 break;
-
-            case UnifiedCommandType::SetFilamentInfo:
-                 ControlLogic::ProcessSetFilamentInfo(buffer, length);
-                 break;
-                 
-            case UnifiedCommandType::Heartbeat:
-                 ControlLogic::ProcessHeartbeat(buffer, length);
-                 break;
-            
-            // Long packets need parsing logic.
-            //Ideally, the parsing of long packet data should happen in the Protocol layer or an adapter,
-            // passing a struct to Route. But for now to keep ControlLogic untouched, we pass the buffer
-            // and let ControlLogic (or a small helper here) parse it if necessary.
-            // However, ControlLogic::ProcessLongPacket expects 'long_packge_data'.
-            // So we MUST parse it here or in the caller.
-            // But this function is generic 'Route(type, buffer, len)'.
-            // Specific types might need specific handling.
-            
-            case UnifiedCommandType::MCOnline:
-            case UnifiedCommandType::ReadFilamentInfo:
-            case UnifiedCommandType::SetFilamentInfoType2:
-            case UnifiedCommandType::Version:
-            case UnifiedCommandType::SerialNumber:
-                 {
-                     // This part is still protocol specific because it relies on "BambuBusProtocol::ParseLongPacket"
-                     // To make it truly agnostic, the 'buffer' passed in should ideally be already parsed or standard.
-                     // But since we are only refactoring the Router, we can keep the parsing here for now,
-                     // acknowledging that "IdentifyPacket" was done by the caller (BambuBus specific).
-                     // Ideally, the caller should have passed a generic data object.
-                     // For this step, we'll keep the dependency on BambuBusProtocol::ParseLongPacket 
-                     // OR we can move ParseLongPacket to be a utility that uses the raw buffer.
-                     
-                     // We know it's a BambuBus Long Packet if we are here.
-                     // But if a Serial interface calls this with a textual command, it won't be a long packet.
-                     // So this logic implies the buffer is in BambuBus format.
-                     // This is acceptable for the "BambuBus" flow.
-                     // A new "Serial" flow would use different CommandTypes or standardized data structs.
-                     // Since we reused UnifiedCommandType for these specific BambuPacket types,
-                     // it's fair to assume the payload matches that type.
-                     
-                     long_packge_data data;
-                     // We need to know it's a BambuBus packet to parse as one.
-                     // Since we are standardizing, maybe we should have "RouteBambuBusPacket(...)" vs "RouteSerial(...)"?
-                     // Or just check if it parses.
-                     
-                     BambuBusProtocol::ParseLongPacket(buffer, length, &data);
-                     ControlLogic::ProcessLongPacket(data);
-                 }
-                 break; // Correction: 'break' was inside block in thought, putting it out.
-                 
-            default:
-                break;
+            }
+        }
+        
+        if (!found) {
+            // Handle special Long Packet types that map to same logic?
+            // UnifiedCommandType for Long Packets: MCOnline, ReadFilamentInfo, etc.
+            // These all need parsing via ParseLongPacket.
+            // We can add them to table pointing to HandleLongPacket wrapper.
+            switch(type) {
+                case UnifiedCommandType::MCOnline:
+                case UnifiedCommandType::ReadFilamentInfo:
+                case UnifiedCommandType::SetFilamentInfoType2:
+                case UnifiedCommandType::Version:
+                case UnifiedCommandType::SerialNumber:
+                case UnifiedCommandType::FilamentMotionLong: // Also a long packet
+                    HandleLongPacket(buffer, length);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
-
     void Run() {
-        // 1. Process Pending Packets (Main Loop Context)
         if (process_ready) {
-            // Atomic check/clear not strictly necessary for bool on this architecture if single consumer/producer flow guarded by logic,
-            // but we reset first to safely capture next one? Or allow overwrite?
-            // Original code blindly overwrites. We will process then clear.
-            
-            Hardware::DelayMS(1); // Match legacy timing (allow turnaround or processing gap)
-
-            // Decode to unified type
+            process_ready = false; // Clear flag early to allow ISR to set it again for NEXT packet if needed
+#ifdef STANDARD_SERIAL
+            // CLI Mode: Process Text Line
+            SerialCLI::Parse((char*)process_buffer);
+#else
+            // Bus Mode: Process Binary Packet
+            Hardware::DelayMS(1); 
             BambuBus_package_type bb_type = BambuBusProtocol::IdentifyPacket(process_buffer, process_len);
             UnifiedCommandType unified_type = BambuBusProtocol::GetUnifiedType(bb_type);
             
-            // Route it
             if (unified_type != UnifiedCommandType::None) {
                  last_packet_time = Hardware::GetTime();
                  Route(unified_type, process_buffer, process_len);
             } else if (bb_type == BambuBus_package_type::ERROR) {
                  Route(UnifiedCommandType::Error, process_buffer, process_len);
             }
-            
-            process_ready = false;
+#endif
         }
 
-        // 2. Check for timeout
         uint64_t now = Hardware::GetTime();
-        if (now - last_packet_time > 3000) { // 3 seconds timeout
+        if (now - last_packet_time > 3000) { 
             ControlLogic::UpdateConnectivity(false);
         }
     }
     
-    // Allow ControlLogic to send
+    // Helper to send packet (Abstraction for Hardware)
     void SendPacket(uint8_t *data, uint16_t length) {
+#ifdef STANDARD_SERIAL
+        // In StandardSerial, we might want to print Debug Hex IF configured, 
+        // OR we might want to convert the binary response to a human readable response?
+        // But ControlLogic generated a binary packet response.
+        // For SerialCLI, we probably want to intercept this and print text.
+        // But since we are refactoring, `SerialCLI` should handle responses itself?
+        // However, `ControlLogic` calls `CommandRouter::SendPacket`.
+        // So we interpret it here.
+        
+        // TODO: Decode packet and print text?
+        // Reuse DecodeAndPrintPacket logic from previous version or simplify?
+        // For now, let's just print a "TxPacket" debug line so we see what logic sent.
+        
+        const char* prefix = "[TX] ";
+        Hardware::UART_Send((const uint8_t*)prefix, 5);
+        for(uint16_t i=0; i<length; i++) {
+             char tmp[4];
+             sprintf(tmp, "%02X ", data[i]);
+             Hardware::UART_Send((const uint8_t*)tmp, strlen(tmp));
+        }
+        Hardware::UART_Send((const uint8_t*)"\r\n", 2);
+
+#else
         Hardware::UART_Send(data, length);
+#endif
     }
 }

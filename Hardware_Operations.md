@@ -77,7 +77,7 @@ The backend `ControlLogic` translates these abstract commands into physical acti
     - **Action**: NFC tag detection (if hardware supported).
     - **Hardware Effect**:
       - If I2C/SPI NFC reader exists, it would be polled.
-      - Currently, mostly a placeholder or triggers a state change `AMS_filament_stu::NFC_waiting`.
+      - Currently, mostly a placeholder or triggers a state change `AMS_filament_status::NFC_waiting`.
 
 14. **`UnifiedCommandType::Error`**
 

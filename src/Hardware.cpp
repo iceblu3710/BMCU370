@@ -108,10 +108,16 @@ namespace Hardware {
         GPIO_Init(GPIOA, &GPIO_InitStructure);
         GPIOA->BCR = GPIO_Pin_12;
 
+#ifdef STANDARD_SERIAL
+        USART_InitStructure.USART_BaudRate = 115200;
+        USART_InitStructure.USART_Parity = USART_Parity_No;
+        USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+#else
         USART_InitStructure.USART_BaudRate = 1250000;
-        USART_InitStructure.USART_WordLength = USART_WordLength_9b;
-        USART_InitStructure.USART_StopBits = USART_StopBits_1;
         USART_InitStructure.USART_Parity = USART_Parity_Even;
+        USART_InitStructure.USART_WordLength = USART_WordLength_9b;
+#endif
+        USART_InitStructure.USART_StopBits = USART_StopBits_1;
         USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
         USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
 
@@ -156,7 +162,30 @@ namespace Hardware {
         }
     }
 
+    void UART_SendByte(uint8_t data) {
+         while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET); // Wait for Empty
+         USART_SendData(USART1, data);
+    }
+
     void UART_Send(const uint8_t *data, uint16_t length) {
+#ifdef STANDARD_SERIAL
+        // Blocking mode for CLI interactivity (safe with ISR echo)
+        for (uint16_t i = 0; i < length; i++) {
+             UART_SendByte(data[i]);
+        }
+#else
+        // DMA mode for High Speed Bus (BambuBus)
+        
+        // Check if DMA is currently enabled (transfer active)
+        if (DMA1_Channel4->CFGR & 0x01) {
+             // Wait for data transfer to complete
+             while (DMA_GetCurrDataCounter(DMA1_Channel4) != 0);
+             // Ensure Transmission Complete flag is set (buffer clear)
+             while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);
+             // Create a small gap or ensure Disable is clean
+             DMA_Cmd(DMA1_Channel4, DISABLE);
+        }
+
         DMA_DeInit(DMA1_Channel4);
         Bambubus_DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)data;
         Bambubus_DMA_InitStructure.DMA_BufferSize = length;
@@ -164,6 +193,7 @@ namespace Hardware {
         DMA_Cmd(DMA1_Channel4, ENABLE);
         GPIOA->BSHR = GPIO_Pin_12;
         USART_DMACmd(USART1, USART_DMAReq_Tx, ENABLE);
+#endif
     }
 
     // --- ADC ---

@@ -23,6 +23,17 @@
 #define MOTOR_PID_INVERT_CH3 true
 #define MOTOR_PID_INVERT_CH4 false
 
+// Device Info
+#ifndef DEVICE_MODEL
+#define DEVICE_MODEL "BMCU-370c v2.2 Board"
+#endif
+#ifndef DEVICE_VERSION
+#define DEVICE_VERSION "v0-20"
+#endif
+#ifndef DEVICE_SERIAL
+#define DEVICE_SERIAL "SN123456"
+#endif
+
 // Hardware Abstraction Layer
 
 namespace Hardware {
@@ -33,11 +44,12 @@ namespace Hardware {
     void DelayUS(uint32_t us);
     void DelayMS(uint32_t ms);
     uint64_t GetTime(); // Returns time in ms or similar, based on time64.h
-
+    
     // UART
     void UART_Init();
     void UART_SetRxCallback(void (*callback)(uint8_t));
     void UART_Send(const uint8_t *data, uint16_t length);
+    void UART_SendByte(uint8_t data);
 
     // ADC
     void ADC_Init();
