@@ -5,7 +5,7 @@
 #include "CommandTypes.h"
 
 
-enum class AMS_filament_stu
+enum class AMS_filament_status
 {
     offline,
     online,

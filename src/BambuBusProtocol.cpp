@@ -193,7 +193,7 @@ void BambuBusProtocol::BuildPacketWithCRC(uint8_t *data, uint16_t &data_length)
 void BambuBusProtocol::BuildLongPacket(long_packge_data *data, uint8_t *out_buffer, uint16_t &out_length)
 {
     out_buffer[0] = 0x3D;
-    out_buffer[1] = 0x00;
+    out_buffer[1] = 0x05;
     data->package_length = data->data_length + 15; // 13 header + 2 crc16 ? 
     // Header is: 3D 00 (2) + struct(11) = 13?
     // struct is 11 bytes: num(2)+len(2)+crc8(1)+target(2)+source(2)+type(2) = 11.

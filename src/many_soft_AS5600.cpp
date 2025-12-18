@@ -30,7 +30,7 @@
 #define AS5600_raw_angle 0x0C
 #define AS5600_angle 0x0E
 
-// statu reg
+// status reg
 #define AS5600_status 0x0B
 #define AS5600_agc 0x1A
 #define AS5600_magnitude 0x1B
