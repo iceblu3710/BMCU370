@@ -108,8 +108,8 @@ namespace Hardware {
         GPIO_Init(GPIOA, &GPIO_InitStructure);
         GPIOA->BCR = GPIO_Pin_12;
 
-#ifdef STANDARD_SERIAL
-        USART_InitStructure.USART_BaudRate = 115200;
+#if defined(STANDARD_SERIAL) || defined(KLIPPER_SERIAL)
+        USART_InitStructure.USART_BaudRate = 250000;
         USART_InitStructure.USART_Parity = USART_Parity_No;
         USART_InitStructure.USART_WordLength = USART_WordLength_8b;
 #else
@@ -150,12 +150,23 @@ namespace Hardware {
     extern "C" void USART1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
     void USART1_IRQHandler(void)
     {
-        if (USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
+        volatile uint32_t sr = USART1->STATR; // Read Status Register
+        volatile uint32_t dr;
+        
+        // Check for Read Data Register Not Empty (RXNE) OR Overrun Error (ORE)
+        // Note: Reading SR then DR clears ORE, NE, FE, PE
+        if ((sr & USART_FLAG_RXNE) || (sr & USART_FLAG_ORE)) 
         {
-            uint8_t data = USART_ReceiveData(USART1);
-            if(uart_rx_callback) uart_rx_callback(data);
+            dr = USART1->DATAR; // Read Data Register to clear flags
+            // Only convert to byte and callback if it was a valid RXNE
+            // (ORE might set RXNE too, or just ORE)
+            if (sr & USART_FLAG_RXNE) {
+                if(uart_rx_callback) uart_rx_callback((uint8_t)dr);
+            }
         }
-        if (USART_GetITStatus(USART1, USART_IT_TC) != RESET)
+
+        // Check for Transmission Complete (TC)
+        if (sr & USART_FLAG_TC)
         {
             USART_ClearITPendingBit(USART1, USART_IT_TC);
             GPIOA->BCR = GPIO_Pin_12; // Disable DE
@@ -163,25 +174,41 @@ namespace Hardware {
     }
 
     void UART_SendByte(uint8_t data) {
-         while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET); // Wait for Empty
-         USART_SendData(USART1, data);
+         uint32_t timeout = 10000;
+         while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET && timeout--) {
+             DelayUS(1);
+         }
+         if (timeout > 0) USART_SendData(USART1, data);
     }
 
     void UART_Send(const uint8_t *data, uint16_t length) {
-#ifdef STANDARD_SERIAL
+#if defined(STANDARD_SERIAL) || defined(KLIPPER_SERIAL)
         // Blocking mode for CLI interactivity (safe with ISR echo)
+        GPIOA->BSHR = GPIO_Pin_12; // Set High (TX) for RS485
         for (uint16_t i = 0; i < length; i++) {
              UART_SendByte(data[i]);
         }
+        // ISR handles DE pin Disable on TC interrupt.
+        // We just need to ensure we don't disable it prematurely here.
+        // Since UART_SendByte blocks until TXE, the last byte is in the shift register when we exit.
+        // We can safely return and let the ISR handle the rest.
+
+        
 #else
         // DMA mode for High Speed Bus (BambuBus)
         
         // Check if DMA is currently enabled (transfer active)
         if (DMA1_Channel4->CFGR & 0x01) {
              // Wait for data transfer to complete
-             while (DMA_GetCurrDataCounter(DMA1_Channel4) != 0);
+             uint32_t timeout = 10000;
+             while (DMA_GetCurrDataCounter(DMA1_Channel4) != 0 && timeout--) {
+                 DelayUS(1);
+             }
              // Ensure Transmission Complete flag is set (buffer clear)
-             while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);
+             timeout = 10000;
+             while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET && timeout--) {
+                 DelayUS(1);
+             }
              // Create a small gap or ensure Disable is clean
              DMA_Cmd(DMA1_Channel4, DISABLE);
         }

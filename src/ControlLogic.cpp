@@ -75,6 +75,20 @@ const char* UnitState::GetModel() { return unit_model; }
 const char* UnitState::GetVersion() { return unit_version; }
 const char* UnitState::GetSerialNumber() { return unit_serial; }
 
+// --- FilamentInfo Implementation ---
+void FilamentInfo::SetID(const char* new_id) {
+    for(int i=0; i<8; i++) {
+        if(new_id && *new_id) ID[i] = *new_id++;
+        else ID[i] = 0;
+    }
+}
+void FilamentInfo::SetName(const char* new_name) {
+    for(int i=0; i<20; i++) {
+        if(new_name && *new_name) name[i] = *new_name++;
+        else name[i] = 0;
+    }
+}
+
 // --- Data Structures (from Motion_control.cpp) ---
 
 #define Motion_control_save_flash_addr ((uint32_t)0x0800E000)
@@ -109,7 +123,8 @@ namespace ControlLogic {
         slow_send,
         pressure_ctrl_idle,
         pressure_ctrl_in_use, 
-        pressure_ctrl_on_use
+        pressure_ctrl_on_use,
+        velocity_control // Added for Klipper
     };
 
     #define AS5600_PI 3.1415926535897932384626433832795
@@ -228,6 +243,9 @@ namespace ControlLogic {
         MOTOR_PID PID_pressure = MOTOR_PID(1500, 0, 0); 
         float pwm_zero = 500;
         float dir = 0; 
+        float target_velocity = 0; // Klipper Override
+        float target_distance = 0; // Klipper Override
+        float accumulated_distance = 0; // Klipper Override
         
         MotorChannel(int ch) : CHx(ch) {}
 
@@ -235,6 +253,7 @@ namespace ControlLogic {
             if (motion != m) {
                 motion = m;
                 PID_speed.Clear();
+                accumulated_distance = 0; // Reset on mode change
             }
         }
         
@@ -262,8 +281,24 @@ namespace ControlLogic {
         }
 
         void Run(float time_E) {
+            // Track distance for all movement types if needed, but critical for Klipper Move
+            // speed_as5600 is in mm/s? AS5600_Update says: speedx = dist_E / time_E. dist_E is mm.
+            // So speed_as5600 is mm/s.
+            
+            float dist_step = fabs(speed_as5600[CHx] * time_E);
             if (is_backing_out) {
-                last_total_distance[CHx] += fabs(speed_as5600[CHx] * time_E); 
+                last_total_distance[CHx] += dist_step; 
+            }
+            if (motion == filament_motion_enum::velocity_control && target_distance > 0) {
+                 accumulated_distance += dist_step;
+                 if (accumulated_distance >= target_distance) {
+                      SetMotion(filament_motion_enum::stop);
+                      // TODO: Send async completion event? Or just stop.
+                      // Klipper polls or waits?
+                      // The spec says MOVE returns when done? Or "TELEMETRY".
+                      // If open-loop, success is assumed.
+                      // But effectively we are closed-loop on distance now.
+                 }
             }
             
             float speed_set = 0;
@@ -295,7 +330,7 @@ namespace ControlLogic {
                         x = 0; PID_pressure.Clear();
                     }
                 }
-            } else if (MC_ONLINE_key_stu[CHx] != 0) {
+            } else if (MC_ONLINE_key_stu[CHx] != 0 || motion == filament_motion_enum::velocity_control) { // Allow vel control without sensor
                 bool pid_invert = false;
                 switch(CHx) {
                     case 0: pid_invert = MOTOR_PID_INVERT_CH1; break;
@@ -323,6 +358,7 @@ namespace ControlLogic {
                      }
                      if (motion == filament_motion_enum::slow_send) speed_set = MOTOR_SPEED_SLOW_SEND;
                      if (motion == filament_motion_enum::pull) speed_set = -MOTOR_SPEED_PULL;
+                     if (motion == filament_motion_enum::velocity_control) speed_set = target_velocity; // Use Override
                      
                      x = dir * PID_speed.Calculate(now_speed - speed_set, time_E);
                  }
@@ -424,6 +460,53 @@ namespace ControlLogic {
             }
         }
     }
+    
+    // --- Klipper Primitive Implementations ---
+    
+    void MoveAxis(int axis, float dist_mm, float speed) {
+        if(axis < 0 || axis >= 4) return;
+        
+        // Use Velocity Control
+        motors[axis].target_velocity = speed;
+        motors[axis].target_distance = fabs(dist_mm); // Ensure positive
+        motors[axis].SetMotion(filament_motion_enum::velocity_control);
+    }
+    
+    void StopAll() {
+        for(int i=0; i<4; i++) {
+             motors[i].SetMotion(filament_motion_enum::stop);
+             filament_now_position[i] = filament_idle;
+        }
+    }
+    
+    void SetAutoFeed(int lane, bool enable) {
+        if(lane < 0 || lane >= 4) return;
+        
+        if (enable) {
+             motors[lane].SetMotion(filament_motion_enum::pressure_ctrl_in_use);
+             // We may need to ensure filament_now_position isn't overwriting this?
+             // Actually, motor_motion_switch checks motor[i].motion, so we should be good if we add check there.
+        } else {
+             motors[lane].SetMotion(filament_motion_enum::stop);
+             filament_now_position[lane] = filament_idle;
+        }
+    }
+    
+    uint16_t GetSensorState() {
+         // [0:3] = Filament Present (MC_ONLINE_key_stu)
+         // [4:7] = Buffer/Online?
+         uint16_t state = 0;
+         for(int i=0; i<4; i++) {
+             if(MC_ONLINE_key_stu[i] != 0) state |= (1 << i);
+         }
+         return state;
+    }
+
+    int GetLaneMotion(int lane) {
+        if(lane < 0 || lane >= 4) return 0;
+        return (int)motors[lane].motion;
+    }
+
 
     void AS5600_Update(float time_E) {
         MC_AS5600.updata_angle();
@@ -589,6 +672,10 @@ namespace ControlLogic {
 
         for (int i = 0; i < 4; i++)
         {
+            // Klipper Override: Do not interfere if we are in velocity control mode OR explicit auto-feed
+            if (motors[i].motion == filament_motion_enum::velocity_control) continue;
+            if (motors[i].motion == filament_motion_enum::pressure_ctrl_in_use) continue;
+
             if (i != num)
             {
                 filament_now_position[i] = filament_idle;
@@ -966,10 +1053,28 @@ namespace ControlLogic {
         // ...
     }
     
-    void SetFilamentInfoAction(int id, const FilamentInfo& info) {
+    void SetFilamentInfoAction(int id, const FilamentInfo& info, float meters) {
         if (id < 0 || id >= 4) return;
-        // Copy to data_save
-        // data_save.filament[id] ...
+        
+        FilamentState &target = data_save.filament[id];
+        
+        // Copy Basic Fields
+        memcpy(target.ID, info.ID, sizeof(target.ID));
+        memcpy(target.name, info.name, sizeof(target.name));
+        target.color_R = info.color_R;
+        target.color_G = info.color_G;
+        target.color_B = info.color_B;
+        target.color_A = info.color_A;
+        target.temperature_min = info.temperature_min;
+        target.temperature_max = info.temperature_max;
+        
+        if (meters >= 0) {
+             target.meters = meters;
+        }
+
+        // Ensure strings are null terminated just in case
+        target.ID[7] = 0;
+        target.name[19] = 0;
         
         SetNeedToSave();
     }

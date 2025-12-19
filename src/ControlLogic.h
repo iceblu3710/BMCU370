@@ -22,7 +22,7 @@ namespace ControlLogic {
     void ProcessMotionLongLogic(uint8_t* payload, uint16_t length);
     
     // Corresponds to SetFilamentInfo (0x08 / 0x218)
-    void SetFilamentInfoAction(int id, const FilamentInfo& info);
+    void SetFilamentInfoAction(int id, const FilamentInfo& info, float meters = -1.0f);
     
     // --- Protocol Wrappers (Parse buffers and call Logic) ---
     void ProcessMotionShort(uint8_t* buffer, uint16_t length);
@@ -41,6 +41,19 @@ namespace ControlLogic {
     
     // State Accessors
     uint16_t GetDeviceType();
+    
+    // --- Primitives for Klipper ---
+    // Axis: 0-3 for motors, -1 handled elsewhere or mapped
+    void MoveAxis(int axis, float dist_mm, float speed);
+    void StopAll(); 
+    // Return packed sensor state: [0:3] = filament, [4:7] = buffer/online
+    uint16_t GetSensorState();  
+    int GetLaneMotion(int lane);
+    
+    // Enable/Disable auto-feed (pressure control) for a lane
+    
+    // Enable/Disable auto-feed (pressure control) for a lane
+    void SetAutoFeed(int lane, bool enable);
 
     // --- Persistence ---
     void SaveSettings();

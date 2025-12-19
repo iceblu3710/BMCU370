@@ -3,6 +3,9 @@
 #ifdef STANDARD_SERIAL
 #include "SerialCLI.h"
 #endif
+#ifdef KLIPPER_SERIAL
+#include "KlipperCLI.h"
+#endif
 #include "Hardware.h" 
 #include <stdio.h> 
 #include "ControlLogic.h"
@@ -11,7 +14,6 @@
 namespace CommandRouter {
 
     static uint64_t last_packet_time = 0;
-    static uint8_t process_buffer[1000];
     static volatile uint16_t process_len = 0;
     static volatile bool process_ready = false;
 
@@ -71,6 +73,11 @@ namespace CommandRouter {
              }
         });
         SerialCLI::Init();
+#elif defined(KLIPPER_SERIAL)
+        Hardware::UART_SetRxCallback([](uint8_t byte) {
+            KlipperCLI::FeedByte(byte);
+        });
+        KlipperCLI::Init();
 #else
         Hardware::UART_SetRxCallback([](uint8_t byte) {
             if (BambuBusProtocol::ParseByte(byte)) {
@@ -126,11 +133,17 @@ namespace CommandRouter {
     }
 
     void Run() {
+#if defined(KLIPPER_SERIAL)
+        KlipperCLI::Run();
+#endif
+
         if (process_ready) {
             process_ready = false; // Clear flag early to allow ISR to set it again for NEXT packet if needed
 #ifdef STANDARD_SERIAL
             // CLI Mode: Process Text Line
             SerialCLI::Parse((char*)process_buffer);
+#elif defined(KLIPPER_SERIAL)
+            KlipperCLI::Run();
 #else
             // Bus Mode: Process Binary Packet
             Hardware::DelayMS(1); 
