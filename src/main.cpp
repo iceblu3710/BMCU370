@@ -5,14 +5,19 @@
 
 void setup()
 {
-    // Initialize Hardware (Clocks, GPIO, UART, Timer, ADC, LED)
-    Hardware::Init();
+    // Initialize Base Hardware (GPIO, ADC, LED, Timers) - No UART yet
+    Hardware::InitBase();
     
-    // Initialize Business Logic (Settings, State, Motors)
+    // Initialize Business Logic (Loads settings)
     ControlLogic::Init();
     
-    // Initialize Communications (Protocol, Callbacks)
-    CommandRouter::Init();
+    // Check for Boot Mode Switch (Pressure Sensors)
+    ControlLogic::BootMode mode = ControlLogic::InitBootCheck();
+    bool isKlipper = (mode == ControlLogic::BootMode::Klipper);
+    
+    // Initialize Communications with specific mode
+    Hardware::InitUART(isKlipper);
+    CommandRouter::Init(isKlipper);
     
     // Initial LED State
     Hardware::LED_SetBrightness(35); // Default brightness

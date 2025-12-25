@@ -3,9 +3,7 @@
 #ifdef STANDARD_SERIAL
 #include "SerialCLI.h"
 #endif
-#ifdef KLIPPER_SERIAL
 #include "KlipperCLI.h"
-#endif
 #include "Hardware.h" 
 #include <stdio.h> 
 #include "ControlLogic.h"
@@ -14,6 +12,7 @@
 namespace CommandRouter {
 
     static uint64_t last_packet_time = 0;
+    static uint8_t process_buffer[1024];
     static volatile uint16_t process_len = 0;
     static volatile bool process_ready = false;
 
@@ -51,46 +50,49 @@ namespace CommandRouter {
          ControlLogic::ProcessLongPacket(data);
     }
 
-    void Init() {
+    void Init(bool isKlipper) {
+        // Always Init BambuBus as it might be switched to? 
+        // Or if not standard serial
 #ifndef STANDARD_SERIAL
         BambuBusProtocol::Init();
 #endif
         
-#ifdef STANDARD_SERIAL
-        Hardware::UART_SetRxCallback([](uint8_t byte) {
-             if (SerialCLI::Accumulate(byte)) {
-                 // Line is ready in SerialCLI internal buffer
-                 char* line = SerialCLI::GetInitBuffer();
-                 int len = SerialCLI::GetLength();
-                 if (len < 1000) {
-                     memcpy(process_buffer, line, len);
-                     process_buffer[len] = 0; // Null terminate locally
-                     process_len = len; 
-                     process_ready = true;
-                     // Reset CLI for next line
-                     SerialCLI::Reset();
-                 }
-             }
-        });
-        SerialCLI::Init();
-#elif defined(KLIPPER_SERIAL)
-        Hardware::UART_SetRxCallback([](uint8_t byte) {
-            KlipperCLI::FeedByte(byte);
-        });
-        KlipperCLI::Init();
-#else
-        Hardware::UART_SetRxCallback([](uint8_t byte) {
-            if (BambuBusProtocol::ParseByte(byte)) {
-                uint8_t* buffer = BambuBusProtocol::GetRxBuffer();
-                uint16_t length = BambuBusProtocol::GetRxLength();
-                if (length < 1000) {
-                    memcpy(process_buffer, buffer, length);
-                    process_len = length;
-                    process_ready = true;
+        if (isKlipper) {
+            #ifdef STANDARD_SERIAL
+                Hardware::UART_SetRxCallback([](uint8_t byte) {
+                     if (SerialCLI::Accumulate(byte)) {
+                         char* line = SerialCLI::GetInitBuffer();
+                         int len = SerialCLI::GetLength();
+                         if (len < 1000) {
+                             memcpy(process_buffer, line, len);
+                             process_buffer[len] = 0; 
+                             process_len = len; 
+                             process_ready = true;
+                             SerialCLI::Reset();
+                         }
+                     }
+                });
+                SerialCLI::Init();
+            #else
+                Hardware::UART_SetRxCallback([](uint8_t byte) {
+                    KlipperCLI::FeedByte(byte);
+                });
+                KlipperCLI::Init();
+            #endif
+        } else {
+            // Bus Mode
+            Hardware::UART_SetRxCallback([](uint8_t byte) {
+                if (BambuBusProtocol::ParseByte(byte)) {
+                    uint8_t* buffer = BambuBusProtocol::GetRxBuffer();
+                    uint16_t length = BambuBusProtocol::GetRxLength();
+                    if (length < 1000) {
+                        memcpy(process_buffer, buffer, length);
+                        process_len = length;
+                        process_ready = true;
+                    }
                 }
-            }
-        });
-#endif
+            });
+        }
     }
 
     void Route(UnifiedCommandType type, uint8_t* buffer, uint16_t length) {
@@ -133,30 +135,43 @@ namespace CommandRouter {
     }
 
     void Run() {
-#if defined(KLIPPER_SERIAL)
-        KlipperCLI::Run();
-#endif
+        if (ControlLogic::GetBootMode() == ControlLogic::BootMode::Klipper) {
+            #ifdef STANDARD_SERIAL
+                // Polling if needed?
+            #else
+                KlipperCLI::Run();
+            #endif
+        }
 
         if (process_ready) {
-            process_ready = false; // Clear flag early to allow ISR to set it again for NEXT packet if needed
-#ifdef STANDARD_SERIAL
-            // CLI Mode: Process Text Line
-            SerialCLI::Parse((char*)process_buffer);
-#elif defined(KLIPPER_SERIAL)
-            KlipperCLI::Run();
-#else
-            // Bus Mode: Process Binary Packet
-            Hardware::DelayMS(1); 
-            BambuBus_package_type bb_type = BambuBusProtocol::IdentifyPacket(process_buffer, process_len);
-            UnifiedCommandType unified_type = BambuBusProtocol::GetUnifiedType(bb_type);
+            process_ready = false; 
             
-            if (unified_type != UnifiedCommandType::None) {
-                 last_packet_time = Hardware::GetTime();
-                 Route(unified_type, process_buffer, process_len);
-            } else if (bb_type == BambuBus_package_type::ERROR) {
-                 Route(UnifiedCommandType::Error, process_buffer, process_len);
+            if (ControlLogic::GetBootMode() == ControlLogic::BootMode::Klipper) {
+                #ifdef STANDARD_SERIAL
+                    SerialCLI::Parse((char*)process_buffer);
+                #else
+                    KlipperCLI::Run(); // KlipperCLI processes its own buffer usually, but verify?
+                    // Actually KlipperCLI::Run handles feeding from buffer if using FeedByte?
+                    // The callback calls FeedByte. 
+                    // process_ready logic is for PACKET extraction.
+                    // For KlipperCLI, process_ready is not used if we feed directly in callback?
+                    // The Init callback calls FeedByte directly.
+                    // So process_ready is NOT set for KlipperCLI.
+                    // But for SerialCLI it IS set.
+                #endif
+            } else {
+                // Bus Mode
+                Hardware::DelayMS(1); 
+                BambuBus_package_type bb_type = BambuBusProtocol::IdentifyPacket(process_buffer, process_len);
+                UnifiedCommandType unified_type = BambuBusProtocol::GetUnifiedType(bb_type);
+                
+                if (unified_type != UnifiedCommandType::None) {
+                     last_packet_time = Hardware::GetTime();
+                     Route(unified_type, process_buffer, process_len);
+                } else if (bb_type == BambuBus_package_type::ERROR) {
+                     Route(UnifiedCommandType::Error, process_buffer, process_len);
+                }
             }
-#endif
         }
 
         uint64_t now = Hardware::GetTime();

@@ -41,11 +41,11 @@ DMA_InitTypeDef Bambubus_DMA_InitStructure;
 
 namespace Hardware {
 
-    void Init() {
+    void InitBase() {
         Watchdog_Disable(); // Disable WWDG first!
         System_Init();
         LED_Init();    // Init LEDs 
-        UART_Init();   // Init UART/DMA
+        // UART_Init moved to explicit call
         ADC_Init();    
         PWM_Init();
         
@@ -85,7 +85,7 @@ namespace Hardware {
         uart_rx_callback = callback;
     }
 
-    void UART_Init() {
+    void InitUART(bool isKlipper) {
         GPIO_InitTypeDef GPIO_InitStructure = {0};
         USART_InitTypeDef USART_InitStructure = {0};
         NVIC_InitTypeDef NVIC_InitStructure = {0};
@@ -108,15 +108,17 @@ namespace Hardware {
         GPIO_Init(GPIOA, &GPIO_InitStructure);
         GPIOA->BCR = GPIO_Pin_12;
 
-#if defined(STANDARD_SERIAL) || defined(KLIPPER_SERIAL)
-        USART_InitStructure.USART_BaudRate = 250000;
-        USART_InitStructure.USART_Parity = USART_Parity_No;
-        USART_InitStructure.USART_WordLength = USART_WordLength_8b;
-#else
-        USART_InitStructure.USART_BaudRate = 1250000;
-        USART_InitStructure.USART_Parity = USART_Parity_Even;
-        USART_InitStructure.USART_WordLength = USART_WordLength_9b;
-#endif
+        if (isKlipper) {
+            // Standard/Klipper Mode
+            USART_InitStructure.USART_BaudRate = 250000;
+            USART_InitStructure.USART_Parity = USART_Parity_No;
+            USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+        } else {
+            // BambuBus Mode
+            USART_InitStructure.USART_BaudRate = 1250000;
+            USART_InitStructure.USART_Parity = USART_Parity_Even;
+            USART_InitStructure.USART_WordLength = USART_WordLength_9b;
+        }
         USART_InitStructure.USART_StopBits = USART_StopBits_1;
         USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
         USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;

@@ -18,6 +18,7 @@ struct alignas(4) flash_save_struct
     FilamentState filament[4]; // Updated to use UnitState definition
     int BambuBus_now_filament_num = 0;
     uint8_t filament_use_flag = 0x00;
+    uint32_t boot_mode = 0; // 0: BambuBus, 1: Klipper
     uint32_t version = Bambubus_version;
     uint32_t check = 0x40614061;
 };
@@ -606,7 +607,14 @@ namespace ControlLogic {
         if (now - last_led_update > 1000) {
              static bool toggle = false;
              toggle = !toggle;
-             if (toggle) Hardware::LED_SetColor(4, 0, 10, 10, 10); 
+             // Heartbeat color: Green for BambuBus, White for Klipper
+             if (toggle) {
+                 if (data_save.boot_mode == (uint32_t)BootMode::Klipper) {
+                     Hardware::LED_SetColor(4, 0, 10, 10, 10); // White
+                 } else {
+                     Hardware::LED_SetColor(4, 0, 0, 10, 0); // Green
+                 }
+             }
              else Hardware::LED_SetColor(4, 0, 0, 0, 0); 
              last_led_update = now;
         }
@@ -625,6 +633,8 @@ namespace ControlLogic {
         } else {
             // Default constants
             data_save.filament[0].color_R = 0xFF; 
+            data_save.boot_mode = (uint32_t)BootMode::BambuBus; // Default to BambuBus
+            SetNeedToSave(); // Valid version but mismatch or invalid, save new defaults
         }
         
         Motion_control_save_struct *mc_ptr = (Motion_control_save_struct *)(Motion_control_save_flash_addr);
@@ -656,6 +666,36 @@ namespace ControlLogic {
             
             last_total_distance[i] = data_save.filament[i].meters;
         }
+    }
+    
+    BootMode InitBootCheck() {
+        // Read Sensors (Already inited in Hardware::Init)
+        MC_PULL_ONLINE_read(); 
+        
+        bool all_pressed = true;
+        for(int i=0; i<4; i++) {
+             // User requested < 1.3V for mode switch.
+             if (MC_PULL_stu_raw[i] > 1.3f) { 
+                 all_pressed = false; 
+                 break; 
+             }
+        }
+        
+        if (all_pressed) {
+            // Toggle Mode
+            if (data_save.boot_mode == (uint32_t)BootMode::BambuBus) {
+                data_save.boot_mode = (uint32_t)BootMode::Klipper;
+            } else {
+                data_save.boot_mode = (uint32_t)BootMode::BambuBus;
+            }
+            SetNeedToSave();
+        }
+        
+        return (BootMode)data_save.boot_mode;
+    }
+    
+    BootMode GetBootMode() {
+        return (BootMode)data_save.boot_mode;
     }
     
     void UpdateConnectivity(bool online) {

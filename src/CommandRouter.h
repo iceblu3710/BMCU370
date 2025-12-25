@@ -3,7 +3,7 @@
 #include "CommandTypes.h"
 
 namespace CommandRouter {
-    void Init();
+    void Init(bool isKlipper);
     
     // Main loop function to poll and process
     void Run();

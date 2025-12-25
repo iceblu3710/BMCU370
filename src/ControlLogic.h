@@ -6,7 +6,13 @@
 
 namespace ControlLogic {
 
+    enum class BootMode : uint32_t {
+        BambuBus = 0,
+        Klipper = 1
+    };
+
     void Init();
+    BootMode InitBootCheck(); 
     void Run();
     
     // Connectivity
@@ -41,6 +47,7 @@ namespace ControlLogic {
     
     // State Accessors
     uint16_t GetDeviceType();
+    BootMode GetBootMode();
     
     // --- Primitives for Klipper ---
     // Axis: 0-3 for motors, -1 handled elsewhere or mapped

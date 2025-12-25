@@ -247,8 +247,8 @@ namespace KlipperCLI {
          int p_dec = f.pressure % 1000;
          
          offset += snprintf(output + offset, sizeof(output) - offset,
-             "{\"id\":%d,\"cmd\":\"GET_FILAMENT_INFO\",\"ok\":true,\"info\":{\"lane\":%d,\"id_str\":\"%s\",\"name\":\"%s\",\"temp_min\":%d,\"temp_max\":%d,\"meters\":%d.%02d,\"color\":[%d,%d,%d,%d]}}\r\n",
-             id, lane, safe_id, safe_name, f.temperature_min, f.temperature_max, m_int, m_dec, r,g,b,a 
+             "{\"id\":%d,\"cmd\":\"GET_FILAMENT_INFO\",\"ok\":true,\"info\":{\"lane\":%d,\"id_str\":\"%s\",\"name\":\"%s\",\"temp_min\":%d,\"temp_max\":%d,\"meters\":%d.%02d,\"pressure\":%d.%03d,\"color\":[%d,%d,%d,%d]}}\r\n",
+             id, lane, safe_id, safe_name, f.temperature_min, f.temperature_max, m_int, m_dec, p_int, p_dec, r,g,b,a 
          );
          
          Hardware::UART_Send((const uint8_t*)output, offset);
