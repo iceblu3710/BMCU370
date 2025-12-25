@@ -182,16 +182,22 @@ namespace Hardware {
     }
 
     void UART_Send(const uint8_t *data, uint16_t length) {
-#if defined(STANDARD_SERIAL) || defined(KLIPPER_SERIAL)
+#if defined(STANDARD_SERIAL)
         // Blocking mode for CLI interactivity (safe with ISR echo)
+        
+        // Disable TC interrupt to prevent ISR from disabling DE prematurely
+        USART_ITConfig(USART1, USART_IT_TC, DISABLE);
+        
         GPIOA->BSHR = GPIO_Pin_12; // Set High (TX) for RS485
         for (uint16_t i = 0; i < length; i++) {
              UART_SendByte(data[i]);
         }
+        
+        // Re-enable TC interrupt so ISR can disable DE when the *last byte* is actually done
+        USART_ITConfig(USART1, USART_IT_TC, ENABLE);
+        
         // ISR handles DE pin Disable on TC interrupt.
-        // We just need to ensure we don't disable it prematurely here.
-        // Since UART_SendByte blocks until TXE, the last byte is in the shift register when we exit.
-        // We can safely return and let the ISR handle the rest.
+
 
         
 #else
@@ -200,12 +206,12 @@ namespace Hardware {
         // Check if DMA is currently enabled (transfer active)
         if (DMA1_Channel4->CFGR & 0x01) {
              // Wait for data transfer to complete
-             uint32_t timeout = 10000;
+             uint32_t timeout = 100000;
              while (DMA_GetCurrDataCounter(DMA1_Channel4) != 0 && timeout--) {
                  DelayUS(1);
              }
              // Ensure Transmission Complete flag is set (buffer clear)
-             timeout = 10000;
+             timeout = 100000;
              while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET && timeout--) {
                  DelayUS(1);
              }

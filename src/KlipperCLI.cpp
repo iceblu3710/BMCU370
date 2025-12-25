@@ -23,11 +23,14 @@ namespace KlipperCLI {
     void SendResponse(JsonDocument& d) {
         // Serialize to buffer
         static char output[1200]; // Increased buffer slightly
-        size_t len = serializeJson(d, output, sizeof(output));
+        size_t len = serializeJson(d, output, sizeof(output) - 2);
+        
+        // Append Newline
+        output[len++] = '\r';
+        output[len++] = '\n';
         
         // Send via Hardware UART
         Hardware::UART_Send((const uint8_t*)output, len);
-        Hardware::UART_Send((const uint8_t*)"\r\n", 2);
     }
     
     void SendError(int id, const char* code, const char* msg) {
@@ -125,11 +128,10 @@ namespace KlipperCLI {
          }
          
          // Footer
-         offset += snprintf(output + offset, sizeof(output) - offset, "]}");
+         offset += snprintf(output + offset, sizeof(output) - offset, "]}\r\n");
          
          // Send
          Hardware::UART_Send((const uint8_t*)output, offset);
-         Hardware::UART_Send((const uint8_t*)"\r\n", 2);
     }
     
     void HandleGetSensors(int id, JsonObject args) {
@@ -245,12 +247,11 @@ namespace KlipperCLI {
          int p_dec = f.pressure % 1000;
          
          offset += snprintf(output + offset, sizeof(output) - offset,
-             "{\"id\":%d,\"cmd\":\"GET_FILAMENT_INFO\",\"ok\":true,\"info\":{\"lane\":%d,\"id_str\":\"%s\",\"name\":\"%s\",\"temp_min\":%d,\"temp_max\":%d,\"meters\":%d.%02d,\"color\":[%d,%d,%d,%d]}}",
+             "{\"id\":%d,\"cmd\":\"GET_FILAMENT_INFO\",\"ok\":true,\"info\":{\"lane\":%d,\"id_str\":\"%s\",\"name\":\"%s\",\"temp_min\":%d,\"temp_max\":%d,\"meters\":%d.%02d,\"color\":[%d,%d,%d,%d]}}\r\n",
              id, lane, safe_id, safe_name, f.temperature_min, f.temperature_max, m_int, m_dec, r,g,b,a 
          );
          
          Hardware::UART_Send((const uint8_t*)output, offset);
-         Hardware::UART_Send((const uint8_t*)"\r\n", 2);
     }
 
     void HandleSetFilamentInfo(int id, JsonObject args) {
