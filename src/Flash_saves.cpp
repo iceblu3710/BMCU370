@@ -36,6 +36,18 @@ u32 buf[Fsize];
  * @return  none
  */
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Save a buffer to Flash Memory.
+ * 
+ * Erases the required number of pages starting at `address` and programs the data.
+ * Reloads IWDG during the process to prevent watchdog reset.
+ * 
+ * @param buf Pointer to the source data.
+ * @param length Length of data in bytes.
+ * @param address Destination Flash address (Page Aligned recommended).
+ * @return true Success.
+ * @return false Fail.
+ */
 bool Flash_saves(void *buf, uint32_t length, uint32_t address)
 {
     uint32_t end_address = address + length;

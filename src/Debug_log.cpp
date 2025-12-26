@@ -6,6 +6,13 @@ uint32_t stack[1000];
 // mbed::Timer USB_debug_timer;
 DMA_InitTypeDef Debug_log_DMA_InitStructure;
 
+/**
+ * @brief Initialize the Debug Serial Port (USART3).
+ * 
+ * Configures USART3 on PB10 (TX) and PB11 (RX) at 921600 baud.
+ * Sets up DMA1 Channel 2 for non-blocking TX.
+ * Enable RX interrupt for basic echoing.
+ */
 void Debug_log_init()
 {
 
@@ -67,6 +74,11 @@ void Debug_log_time()
 {
 }
 
+/**
+ * @brief Write a string to the Debug Port.
+ * 
+ * @param data Null-terminated string.
+ */
 void Debug_log_write(const void *data)
 {
 
@@ -74,6 +86,14 @@ void Debug_log_write(const void *data)
     Debug_log_write_num((const char *)data, i);
 }
 
+/**
+ * @brief Write a buffer to the Debug Port using DMA.
+ * 
+ * Configures and enables DMA transfer for high-speed logging.
+ * 
+ * @param data Pointer to data buffer.
+ * @param num Length of data.
+ */
 void Debug_log_write_num(const void *data, int num)
 {
     DMA_DeInit(DMA1_Channel2);

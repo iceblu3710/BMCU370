@@ -1,0 +1,18 @@
+<map id="BambuBusProtocol::ParseLongPacket" name="BambuBusProtocol::ParseLongPacket">
+<area shape="rect" id="Node000001" title="Extract data from a &quot;Long Packet&quot; (0x05 type)." alt="" coords="1172,35,1376,77"/>
+<area shape="rect" id="Node000002" href="$namespace_command_router.html#a1d2e53549b25a63274ad073b375e5f21" title="wrapper to handle Long Packets by parsing and dispatching." alt="" coords="927,5,1124,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1154,42,1125,41,1125,36,1159,42"/>
+<area shape="rect" id="Node000008" href="$class_bambu_bus_protocol.html#a81deddd553eeb25fa96580079d7c9bd0" title="Identify the type of BambuBus packet." alt="" coords="695,64,879,107"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1159,63,880,82,879,77,1154,63"/>
+<area shape="rect" id="Node000003" href="$namespace_command_router.html#a329f0a7e2f53debf5c7cb5f47579151b" title="Route an incoming command to its specific handler." alt="" coords="705,13,868,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="909,27,869,29,869,24,914,27"/>
+<area shape="rect" id="Node000004" href="$namespace_command_router.html#a96ff3718682e9322a64815a3d41d001b" title="Main execution loop for the Router." alt="" coords="494,43,647,69"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="693,39,647,48,647,43,687,40"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Arduino Main Loop." alt="" coords="401,43,446,69"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="476,56,447,59,447,53,481,56"/>
+<area shape="rect" id="Node000006" href="$class_adafruit___neo_pixel.html#a4bcda7a15591065570d3598cbf970be7" title="将RAM中的像素数据传输到NeoPixels。" alt="" coords="188,43,353,69"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="383,56,354,59,353,53,388,56"/>
+<area shape="rect" id="Node000007" href="$class_adafruit___neo_pixel.html#a61b1bd003a291520a367ab1712d6265c" title="释放Adafruit_NeoPixel对象，将数据引脚恢复为输入模式。" alt="" coords="5,35,140,77"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="170,57,140,59,139,53,175,55"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="676,71,647,69,647,64,682,71"/>
+</map>

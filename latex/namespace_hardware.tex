@@ -1,0 +1,1187 @@
+\doxysection{Hardware Namespace Reference}
+\hypertarget{namespace_hardware}{}\label{namespace_hardware}\index{Hardware@{Hardware}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespace_hardware_a25837768e4f1568435bc6d889be37ba5}{Init\+Base}} ()
+\begin{DoxyCompactList}\small\item\em Initialize minimal \doxylink{namespace_hardware}{Hardware} Base. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_a90a0cffa2efcfb8d76bc12f9734ca623}{Watchdog\+\_\+\+Disable}} ()
+\begin{DoxyCompactList}\small\item\em Disable the Window Watchdog. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_a8ab0dbadec2826235277f8152a80155d}{System\+\_\+\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Configure System Clocks and Pin Remapping. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_a0ada30189b8e1d1dbec145140849b778}{Delay\+US}} (uint32\+\_\+t time)
+\begin{DoxyCompactList}\small\item\em Microsecond Delay. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_ad269fd29299dd87118b408e4551f4d2d}{Delay\+MS}} (uint32\+\_\+t time)
+\begin{DoxyCompactList}\small\item\em Millisecond Delay. \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{namespace_hardware_a8ea28b07408691bc126683a81aa220f3}{Get\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Get System Time in Milliseconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_a8eaf73ad39643f6bb1bbe74d9b5e8b86}{UART\+\_\+\+Set\+Rx\+Callback}} (void(\texorpdfstring{$\ast$}{*}callback)(uint8\+\_\+t))
+\begin{DoxyCompactList}\small\item\em Register a callback for UART1 RX. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_a29ba54eb55c1b296fa35c18043ce9cb5}{Init\+UART}} (bool is\+Klipper)
+\begin{DoxyCompactList}\small\item\em Initialize UART1 for Bus/\+Serial communication. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_afeb16bfe3e187a44a3c51c9738a933df}{USART1\+\_\+\+IRQHandler}} (void)
+\begin{DoxyCompactList}\small\item\em UART1 Interrupt Service Routine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_aaaf02ef3df5811e2ba28dd009eadfaae}{UART\+\_\+\+Send\+Byte}} (uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Send a single byte blocking. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_ad3ec7cad074d6d73508844a06a7bea50}{UART\+\_\+\+Send}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Send a buffer via UART1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_a72bd28689a22ff9e3db6b911c020ecbb}{ADC\+\_\+\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the Analog-\/to-\/\+Digital Converter. \end{DoxyCompactList}\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespace_hardware_aa54da804a3d4c6d89ba5d7a2931fc463}{ADC\+\_\+\+Get\+Values}} ()
+\begin{DoxyCompactList}\small\item\em Get filtered ADC voltage values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_a0745af097a6d21fc3fb1f1ebd9e141ff}{PWM\+\_\+\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize PWM Timers for Motor Control. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_af8a83d19b30aeb46530bd36c63b3fab7}{PWM\+\_\+\+Set}} (uint8\+\_\+t channel, int PWM)
+\begin{DoxyCompactList}\small\item\em Set PWM duty cycle for a Motor Channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_a87dd189117be2ce6e98135f024fd972c}{LED\+\_\+\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize Neo\+Pixel LEDs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4}{LED\+\_\+\+Set\+Color}} (uint8\+\_\+t channel, int led\+\_\+idx, uint8\+\_\+t r, uint8\+\_\+t g, uint8\+\_\+t b)
+\begin{DoxyCompactList}\small\item\em Set Color of a specific LED. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_a365d946e0cf0fe8cfc8dbcb25cfbdad9}{LED\+\_\+\+Show}} ()
+\begin{DoxyCompactList}\small\item\em Update LED \doxylink{namespace_hardware}{Hardware}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_hardware_aca1ef8aa807fb9291ad5d727697f427a}{LED\+\_\+\+Set\+Brightness}} (uint8\+\_\+t brightness)
+\begin{DoxyCompactList}\small\item\em Set Global Brightness for LEDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespace_hardware_a5d7ac173bff318607226970e0e864b1e}{uart\+\_\+rx\+\_\+callback}} )(uint8\+\_\+t) = nullptr
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespace_hardware_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespace_hardware_aa54da804a3d4c6d89ba5d7a2931fc463}\index{Hardware@{Hardware}!ADC\_GetValues@{ADC\_GetValues}}
+\index{ADC\_GetValues@{ADC\_GetValues}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{ADC\_GetValues()}{ADC\_GetValues()}}
+{\footnotesize\ttfamily \label{namespace_hardware_aa54da804a3d4c6d89ba5d7a2931fc463} 
+float \texorpdfstring{$\ast$}{*} Hardware\+::\+ADC\+\_\+\+Get\+Values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get filtered ADC voltage values. 
+
+Calculates the average of the DMA buffer for each channel, converts to Voltage, and returns the array.
+
+\begin{DoxyReturn}{Returns}
+float\texorpdfstring{$\ast$}{*} Pointer to array of 8 float voltages (0.\+0 -\/ 3.\+3V). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00387}{387}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 8;\ i++)\ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ data\_sum\ =\ 0;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{_hardware_8cpp_a7f0a3595a7279d996b9755c1d0a869c3}{ADC\_filter\_n}};\ j++)\ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ val\ =\ \mbox{\hyperlink{_hardware_8cpp_a1f55c9492f5c46c9dccc9ef82fa29fa4}{ADC\_data}}[j][i];}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sum\ =\ val\ +\ \mbox{\hyperlink{_hardware_8cpp_aa783e3422e532b9e461a5f4587f92af3}{ADC\_Calibrattion\_Val}};}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ <\ 0\ ||\ val\ ==\ 0)\ ;}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sum\ >\ 4095\ ||\ val\ ==\ 4095)\ data\_sum\ +=\ 4095;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ data\_sum\ +=\ sum;}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ data\_sum\ >>=\ \mbox{\hyperlink{_hardware_8cpp_a0f3218e1a4efff25733c15e62edc8b95}{ADC\_filter\_n\_pow}};}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_a5c39ff64ad392377dca1128f55eadd51}{ADC\_V}}[i]\ =\ ((float)data\_sum)\ /\ 4096\ *\ 3.3;}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_hardware_8cpp_a5c39ff64ad392377dca1128f55eadd51}{ADC\_V}};}
+\DoxyCodeLine{00401\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00028}{ADC\+\_\+\+Calibrattion\+\_\+\+Val}}, \mbox{\hyperlink{_hardware_8cpp_source_l00036}{ADC\+\_\+data}}, \mbox{\hyperlink{_hardware_8cpp_source_l00035}{ADC\+\_\+filter\+\_\+n}}, \mbox{\hyperlink{_hardware_8cpp_source_l00029}{ADC\+\_\+filter\+\_\+n\+\_\+pow}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00037}{ADC\+\_\+V}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00240}{Control\+Logic\+::\+MC\+\_\+\+PULL\+\_\+\+ONLINE\+\_\+read()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_aa54da804a3d4c6d89ba5d7a2931fc463_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a72bd28689a22ff9e3db6b911c020ecbb}\index{Hardware@{Hardware}!ADC\_Init@{ADC\_Init}}
+\index{ADC\_Init@{ADC\_Init}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{ADC\_Init()}{ADC\_Init()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a72bd28689a22ff9e3db6b911c020ecbb} 
+void Hardware\+::\+ADC\+\_\+\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the Analog-\/to-\/\+Digital Converter. 
+
+Configures GPIO (PA0-\/\+PA7), DMA1 Channel 1 (Circular Buffer), and ADC1. Runs calibration and starts continuous conversion via DMA. 
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00317}{317}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GPIO}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ RCC\_APB2PeriphClockCmd(RCC\_APB2Periph\_GPIOA,\ ENABLE);}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_InitTypeDef\ GPIO\_InitStructure;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Mode\ =\ GPIO\_Mode\_AIN;}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Speed\ =\ GPIO\_Speed\_50MHz;}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Pin\ =\ GPIO\_Pin\_0\ |\ GPIO\_Pin\_1\ |\ GPIO\_Pin\_2\ |\ GPIO\_Pin\_3\ |\ GPIO\_Pin\_4\ |\ GPIO\_Pin\_5\ |\ GPIO\_Pin\_6\ |\ GPIO\_Pin\_7;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_Init(GPIOA,\ \&GPIO\_InitStructure);}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DMA}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitTypeDef\ DMA\_InitStructure;}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ RCC\_AHBPeriphClockCmd(RCC\_AHBPeriph\_DMA1,\ ENABLE);}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_DeInit(DMA1\_Channel1);}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_PeripheralBaseAddr\ =\ (uint32\_t)\&ADC1-\/>RDATAR;}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_MemoryBaseAddr\ =\ (uint32\_t)\mbox{\hyperlink{_hardware_8cpp_a1f55c9492f5c46c9dccc9ef82fa29fa4}{ADC\_data}};}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_DIR\ =\ DMA\_DIR\_PeripheralSRC;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_BufferSize\ =\ \mbox{\hyperlink{_hardware_8cpp_a7f0a3595a7279d996b9755c1d0a869c3}{ADC\_filter\_n}}\ *\ 8;}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_PeripheralInc\ =\ DMA\_PeripheralInc\_Disable;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_MemoryInc\ =\ DMA\_MemoryInc\_Enable;}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_PeripheralDataSize\ =\ DMA\_PeripheralDataSize\_HalfWord;}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_MemoryDataSize\ =\ DMA\_MemoryDataSize\_HalfWord;}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_Mode\ =\ DMA\_Mode\_Circular;}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_Priority\ =\ DMA\_Priority\_VeryHigh;}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_InitStructure.DMA\_M2M\ =\ DMA\_M2M\_Disable;}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_Init(DMA1\_Channel1,\ \&DMA\_InitStructure);}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_Cmd(DMA1\_Channel1,\ ENABLE);}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ADC}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_DeInit(ADC1);}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ RCC\_ADCCLKConfig(RCC\_PCLK2\_Div8);}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ RCC\_APB2PeriphClockCmd(RCC\_APB2Periph\_ADC1,\ ENABLE);}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_InitTypeDef\ ADC\_InitStructure;}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_InitStructure.ADC\_Mode\ =\ ADC\_Mode\_Independent;}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_InitStructure.ADC\_ScanConvMode\ =\ ENABLE;}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_InitStructure.ADC\_ContinuousConvMode\ =\ ENABLE;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_InitStructure.ADC\_ExternalTrigConv\ =\ ADC\_ExternalTrigConv\_None;}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_InitStructure.ADC\_DataAlign\ =\ ADC\_DataAlign\_Right;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_InitStructure.ADC\_NbrOfChannel\ =\ 8;}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a72bd28689a22ff9e3db6b911c020ecbb}{ADC\_Init}}(ADC1,\ \&ADC\_InitStructure);}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_Cmd(ADC1,\ ENABLE);}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_BufferCmd(ADC1,\ DISABLE);}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_ResetCalibration(ADC1);}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (ADC\_GetResetCalibrationStatus(ADC1));}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_StartCalibration(ADC1);}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (ADC\_GetCalibrationStatus(ADC1));}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_aa783e3422e532b9e461a5f4587f92af3}{ADC\_Calibrattion\_Val}}\ =\ Get\_CalibrationValue(ADC1);}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 8;\ i++)}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_RegularChannelConfig(ADC1,\ i,\ i\ +\ 1,\ ADC\_SampleTime\_239Cycles5);}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_DMACmd(ADC1,\ ENABLE);}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ ADC\_SoftwareStartConvCmd(ADC1,\ ENABLE);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_ad269fd29299dd87118b408e4551f4d2d}{DelayMS}}(256);\ \textcolor{comment}{//\ Wait\ for\ buffer\ fill\ (ADC\_filter\_n\ =\ 256)}}
+\DoxyCodeLine{00376\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00028}{ADC\+\_\+\+Calibrattion\+\_\+\+Val}}, \mbox{\hyperlink{_hardware_8cpp_source_l00036}{ADC\+\_\+data}}, \mbox{\hyperlink{_hardware_8cpp_source_l00035}{ADC\+\_\+filter\+\_\+n}}, \mbox{\hyperlink{_hardware_8cpp_source_l00317}{ADC\+\_\+\+Init()}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00105}{Delay\+MS()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_hardware_8cpp_source_l00317}{ADC\+\_\+\+Init()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00870}{Control\+Logic\+::\+Init()}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00052}{Init\+Base()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{namespace_hardware_a72bd28689a22ff9e3db6b911c020ecbb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a72bd28689a22ff9e3db6b911c020ecbb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_ad269fd29299dd87118b408e4551f4d2d}\index{Hardware@{Hardware}!DelayMS@{DelayMS}}
+\index{DelayMS@{DelayMS}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{DelayMS()}{DelayMS()}}
+{\footnotesize\ttfamily \label{namespace_hardware_ad269fd29299dd87118b408e4551f4d2d} 
+void Hardware\+::\+Delay\+MS (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{time}{}\end{DoxyParamCaption})}
+
+
+
+Millisecond Delay. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & Milliseconds to wait. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00105}{105}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ delay(time);}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_hardware_8cpp_source_l00317}{ADC\+\_\+\+Init()}}, \mbox{\hyperlink{_hardware_8cpp_source_l00052}{Init\+Base()}}, and \mbox{\hyperlink{_command_router_8cpp_source_l00180}{Command\+Router\+::\+Run()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_ad269fd29299dd87118b408e4551f4d2d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a0ada30189b8e1d1dbec145140849b778}\index{Hardware@{Hardware}!DelayUS@{DelayUS}}
+\index{DelayUS@{DelayUS}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{DelayUS()}{DelayUS()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a0ada30189b8e1d1dbec145140849b778} 
+void Hardware\+::\+Delay\+US (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{time}{}\end{DoxyParamCaption})}
+
+
+
+Microsecond Delay. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & Microseconds to wait. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ delayMicroseconds(time);}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_hardware_8cpp_source_l00261}{UART\+\_\+\+Send()}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00243}{UART\+\_\+\+Send\+Byte()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a0ada30189b8e1d1dbec145140849b778_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a8ea28b07408691bc126683a81aa220f3}\index{Hardware@{Hardware}!GetTime@{GetTime}}
+\index{GetTime@{GetTime}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{GetTime()}{GetTime()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a8ea28b07408691bc126683a81aa220f3} 
+uint64\+\_\+t Hardware\+::\+Get\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get System Time in Milliseconds. 
+
+\begin{DoxyReturn}{Returns}
+uint64\+\_\+t Time since boot (approx) in ms. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00115}{115}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{time64_8cpp_a146d483f58902ba0184ce16f728edfb0}{get\_time64}}();}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{time64_8cpp_source_l00018}{get\+\_\+time64()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00227}{Control\+Logic\+::get\+\_\+time64()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00090}{Klipper\+CLI\+::\+Handle\+Ping()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00962}{Control\+Logic\+::motor\+\_\+motion\+\_\+switch()}}, \mbox{\hyperlink{_command_router_8cpp_source_l00180}{Command\+Router\+::\+Run()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00792}{Control\+Logic\+::\+Run()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00733}{Control\+Logic\+::\+Set\+Need\+To\+Save()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00948}{Control\+Logic\+::\+Update\+Connectivity()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{namespace_hardware_a8ea28b07408691bc126683a81aa220f3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a8ea28b07408691bc126683a81aa220f3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a25837768e4f1568435bc6d889be37ba5}\index{Hardware@{Hardware}!InitBase@{InitBase}}
+\index{InitBase@{InitBase}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{InitBase()}{InitBase()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a25837768e4f1568435bc6d889be37ba5} 
+void Hardware\+::\+Init\+Base (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize minimal \doxylink{namespace_hardware}{Hardware} Base. 
+
+Disables Watchdog, Configures Clock/\+AFIO, Inits LEDs, ADC, PWM. Performs a boot LED sequence. 
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00052}{52}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a90a0cffa2efcfb8d76bc12f9734ca623}{Watchdog\_Disable}}();\ \textcolor{comment}{//\ Disable\ WWDG\ first!}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a8ab0dbadec2826235277f8152a80155d}{System\_Init}}();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a87dd189117be2ce6e98135f024fd972c}{LED\_Init}}();\ \ \ \ \textcolor{comment}{//\ Init\ LEDs\ }}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ UART\_Init\ moved\ to\ explicit\ call}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a72bd28689a22ff9e3db6b911c020ecbb}{ADC\_Init}}();\ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a0745af097a6d21fc3fb1f1ebd9e141ff}{PWM\_Init}}();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Debug\ Flash:\ Red\ -\/>\ Blue\ -\/>\ Green}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4}{LED\_SetColor}}(4,\ 0,\ 50,\ 0,\ 0);\ \mbox{\hyperlink{namespace_hardware_a365d946e0cf0fe8cfc8dbcb25cfbdad9}{LED\_Show}}();\ \mbox{\hyperlink{namespace_hardware_ad269fd29299dd87118b408e4551f4d2d}{DelayMS}}(200);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4}{LED\_SetColor}}(4,\ 0,\ 0,\ 0,\ 50);\ \mbox{\hyperlink{namespace_hardware_a365d946e0cf0fe8cfc8dbcb25cfbdad9}{LED\_Show}}();\ \mbox{\hyperlink{namespace_hardware_ad269fd29299dd87118b408e4551f4d2d}{DelayMS}}(200);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4}{LED\_SetColor}}(4,\ 0,\ 0,\ 50,\ 0);\ \mbox{\hyperlink{namespace_hardware_a365d946e0cf0fe8cfc8dbcb25cfbdad9}{LED\_Show}}();\ \mbox{\hyperlink{namespace_hardware_ad269fd29299dd87118b408e4551f4d2d}{DelayMS}}(200);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4}{LED\_SetColor}}(4,\ 0,\ 0,\ 0,\ 0);\ \ \mbox{\hyperlink{namespace_hardware_a365d946e0cf0fe8cfc8dbcb25cfbdad9}{LED\_Show}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00317}{ADC\+\_\+\+Init()}}, \mbox{\hyperlink{_hardware_8cpp_source_l00105}{Delay\+MS()}}, \mbox{\hyperlink{_hardware_8cpp_source_l00515}{LED\+\_\+\+Init()}}, \mbox{\hyperlink{_hardware_8cpp_source_l00530}{LED\+\_\+\+Set\+Color()}}, \mbox{\hyperlink{_hardware_8cpp_source_l00544}{LED\+\_\+\+Show()}}, \mbox{\hyperlink{_hardware_8cpp_source_l00411}{PWM\+\_\+\+Init()}}, \mbox{\hyperlink{_hardware_8cpp_source_l00084}{System\+\_\+\+Init()}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00073}{Watchdog\+\_\+\+Disable()}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00013}{setup()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a25837768e4f1568435bc6d889be37ba5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{namespace_hardware_a25837768e4f1568435bc6d889be37ba5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a29ba54eb55c1b296fa35c18043ce9cb5}\index{Hardware@{Hardware}!InitUART@{InitUART}}
+\index{InitUART@{InitUART}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{InitUART()}{InitUART()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a29ba54eb55c1b296fa35c18043ce9cb5} 
+void Hardware\+::\+Init\+UART (\begin{DoxyParamCaption}\item[{bool}]{is\+Klipper}{}\end{DoxyParamCaption})}
+
+
+
+Initialize UART1 for Bus/\+Serial communication. 
+
+Configures PA9(\+TX), PA10(\+RX), PA12(\+DE).
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Klipper} & True for 250k baud standard serial. False for 1.\+25M baud 9-\/bit bus. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00140}{140}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ GPIO\_InitTypeDef\ GPIO\_InitStructure\ =\ \{0\};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ USART\_InitTypeDef\ USART\_InitStructure\ =\ \{0\};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ NVIC\_InitTypeDef\ NVIC\_InitStructure\ =\ \{0\};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ RCC\_APB2PeriphClockCmd(RCC\_APB2Periph\_USART1,\ ENABLE);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ RCC\_APB2PeriphClockCmd(RCC\_APB2Periph\_GPIOA,\ ENABLE);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ RCC\_AHBPeriphClockCmd(RCC\_AHBPeriph\_DMA1,\ ENABLE);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ USART1\ TX-\/-\/>A.9\ \ \ RX-\/-\/>A.10\ */}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Pin\ =\ GPIO\_Pin\_9;\ \textcolor{comment}{//\ TX}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Speed\ =\ GPIO\_Speed\_50MHz;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Mode\ =\ GPIO\_Mode\_AF\_PP;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ GPIO\_Init(GPIOA,\ \&GPIO\_InitStructure);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Pin\ =\ GPIO\_Pin\_10;\ \textcolor{comment}{//\ RX}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Mode\ =\ GPIO\_Mode\_IPU;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ GPIO\_Init(GPIOA,\ \&GPIO\_InitStructure);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Pin\ =\ GPIO\_Pin\_12;\ \textcolor{comment}{//\ DE}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Speed\ =\ GPIO\_Speed\_50MHz;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Mode\ =\ GPIO\_Mode\_Out\_PP;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ GPIO\_Init(GPIOA,\ \&GPIO\_InitStructure);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ GPIOA-\/>BCR\ =\ GPIO\_Pin\_12;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isKlipper)\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Standard/Klipper\ Mode}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ USART\_InitStructure.USART\_BaudRate\ =\ 250000;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ USART\_InitStructure.USART\_Parity\ =\ USART\_Parity\_No;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ USART\_InitStructure.USART\_WordLength\ =\ USART\_WordLength\_8b;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ BambuBus\ Mode}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ USART\_InitStructure.USART\_BaudRate\ =\ 1250000;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ USART\_InitStructure.USART\_Parity\ =\ USART\_Parity\_Even;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ USART\_InitStructure.USART\_WordLength\ =\ USART\_WordLength\_9b;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ USART\_InitStructure.USART\_StopBits\ =\ USART\_StopBits\_1;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ USART\_InitStructure.USART\_HardwareFlowControl\ =\ USART\_HardwareFlowControl\_None;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ USART\_InitStructure.USART\_Mode\ =\ USART\_Mode\_Tx\ |\ USART\_Mode\_Rx;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ USART\_Init(USART1,\ \&USART\_InitStructure);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ USART\_ITConfig(USART1,\ USART\_IT\_RXNE,\ ENABLE);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ USART\_ITConfig(USART1,\ USART\_IT\_TC,\ ENABLE);}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ NVIC\_InitStructure.NVIC\_IRQChannel\ =\ USART1\_IRQn;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ NVIC\_InitStructure.NVIC\_IRQChannelPreemptionPriority\ =\ 0;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ NVIC\_InitStructure.NVIC\_IRQChannelSubPriority\ =\ 0;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ NVIC\_InitStructure.NVIC\_IRQChannelCmd\ =\ ENABLE;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ NVIC\_Init(\&NVIC\_InitStructure);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Configure\ DMA1\ channel\ 4\ for\ USART1\ TX}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_PeripheralBaseAddr\ =\ (uint32\_t)\&USART1-\/>DATAR;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_MemoryBaseAddr\ =\ (uint32\_t)0;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_DIR\ =\ DMA\_DIR\_PeripheralDST;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_Mode\ =\ DMA\_Mode\_Normal;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_PeripheralInc\ =\ DMA\_PeripheralInc\_Disable;}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_MemoryInc\ =\ DMA\_MemoryInc\_Enable;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_Priority\ =\ DMA\_Priority\_VeryHigh;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_M2M\ =\ DMA\_M2M\_Disable;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_MemoryDataSize\ =\ DMA\_MemoryDataSize\_Byte;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_PeripheralDataSize\ =\ DMA\_PeripheralDataSize\_Byte;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_BufferSize\ =\ 0;}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ USART\_Cmd(USART1,\ ENABLE);}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00040}{Bambubus\+\_\+\+DMA\+\_\+\+Init\+Structure}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00013}{setup()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{namespace_hardware_a29ba54eb55c1b296fa35c18043ce9cb5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a87dd189117be2ce6e98135f024fd972c}\index{Hardware@{Hardware}!LED\_Init@{LED\_Init}}
+\index{LED\_Init@{LED\_Init}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{LED\_Init()}{LED\_Init()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a87dd189117be2ce6e98135f024fd972c} 
+void Hardware\+::\+LED\+\_\+\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize Neo\+Pixel LEDs. 
+
+Starts the \doxylink{class_adafruit___neo_pixel}{Adafruit\+\_\+\+Neo\+Pixel} instances for mainboard and channels. 
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00515}{515}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_a766f13b53e03456789fd4fe8e009e157}{strip\_PD1}}.begin();}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<4;\ i++)\ \mbox{\hyperlink{_hardware_8cpp_affd50541a0d4a3f33b745b8cf818a968}{strip\_channel}}[i].begin();}
+\DoxyCodeLine{00518\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00019}{strip\+\_\+channel}}, and \mbox{\hyperlink{_hardware_8cpp_a766f13b53e03456789fd4fe8e009e157}{strip\+\_\+\+PD1()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_hardware_8cpp_source_l00052}{Init\+Base()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{namespace_hardware_a87dd189117be2ce6e98135f024fd972c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a87dd189117be2ce6e98135f024fd972c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_aca1ef8aa807fb9291ad5d727697f427a}\index{Hardware@{Hardware}!LED\_SetBrightness@{LED\_SetBrightness}}
+\index{LED\_SetBrightness@{LED\_SetBrightness}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{LED\_SetBrightness()}{LED\_SetBrightness()}}
+{\footnotesize\ttfamily \label{namespace_hardware_aca1ef8aa807fb9291ad5d727697f427a} 
+void Hardware\+::\+LED\+\_\+\+Set\+Brightness (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{brightness}{}\end{DoxyParamCaption})}
+
+
+
+Set Global Brightness for LEDs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em brightness} & Brightness (0-\/255, 0 uses defaults). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00555}{555}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ global\ brightness\ scaling,\ usually\ we\ set\ it\ once.}}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Original\ code\ had\ different\ brightness\ for\ PD1\ (35)\ and\ channels\ (15).}}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ this\ function\ is\ intended\ to\ set\ a\ global\ brightness\ level,\ it\ might\ need\ more\ logic}}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ or\ separate\ functions.\ For\ now\ let's\ reproduce\ original\ setup\ if\ brightness\ ==\ 0\ (init).}}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Allow\ custom\ brightness}}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_a766f13b53e03456789fd4fe8e009e157}{strip\_PD1}}.setBrightness(brightness\ >\ 0\ ?\ brightness\ :\ 35);}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<4;\ i++)\ \mbox{\hyperlink{_hardware_8cpp_affd50541a0d4a3f33b745b8cf818a968}{strip\_channel}}[i].setBrightness(brightness\ >\ 0\ ?\ brightness\ :\ 15);}
+\DoxyCodeLine{00565\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00019}{strip\+\_\+channel}}, and \mbox{\hyperlink{_hardware_8cpp_a766f13b53e03456789fd4fe8e009e157}{strip\+\_\+\+PD1()}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00013}{setup()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{namespace_hardware_aca1ef8aa807fb9291ad5d727697f427a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{namespace_hardware_aca1ef8aa807fb9291ad5d727697f427a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4}\index{Hardware@{Hardware}!LED\_SetColor@{LED\_SetColor}}
+\index{LED\_SetColor@{LED\_SetColor}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{LED\_SetColor()}{LED\_SetColor()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4} 
+void Hardware\+::\+LED\+\_\+\+Set\+Color (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{, }\item[{int}]{led\+\_\+idx}{, }\item[{uint8\+\_\+t}]{r}{, }\item[{uint8\+\_\+t}]{g}{, }\item[{uint8\+\_\+t}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Set Color of a specific LED. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel (0-\/3) or Mainboard (4). \\
+\hline
+{\em led\+\_\+idx} & Index of LED in the strip (0-\/1 typically). \\
+\hline
+{\em r} & Red (0-\/255). \\
+\hline
+{\em g} & Green (0-\/255). \\
+\hline
+{\em b} & Blue (0-\/255). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00530}{530}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (channel\ <\ 4)\ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_affd50541a0d4a3f33b745b8cf818a968}{strip\_channel}}[channel].setPixelColor(led\_idx,\ \mbox{\hyperlink{_hardware_8cpp_affd50541a0d4a3f33b745b8cf818a968}{strip\_channel}}[channel].Color(r,\ g,\ b));}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (channel\ ==\ 4)\ \{\ \textcolor{comment}{//\ Mainboard}}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_a766f13b53e03456789fd4fe8e009e157}{strip\_PD1}}.setPixelColor(led\_idx,\ \mbox{\hyperlink{_hardware_8cpp_a766f13b53e03456789fd4fe8e009e157}{strip\_PD1}}.Color(r,\ g,\ b));}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00536\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00019}{strip\+\_\+channel}}, and \mbox{\hyperlink{_hardware_8cpp_a766f13b53e03456789fd4fe8e009e157}{strip\+\_\+\+PD1()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_hardware_8cpp_source_l00052}{Init\+Base()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00962}{Control\+Logic\+::motor\+\_\+motion\+\_\+switch()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00751}{Control\+Logic\+::\+Prepare\+\_\+\+For\+\_\+filament\+\_\+\+Pull\+\_\+\+Back()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00792}{Control\+Logic\+::\+Run()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00501}{Control\+Logic\+::\+Motor\+Channel\+::\+Update\+LEDStatus()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a365d946e0cf0fe8cfc8dbcb25cfbdad9}\index{Hardware@{Hardware}!LED\_Show@{LED\_Show}}
+\index{LED\_Show@{LED\_Show}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{LED\_Show()}{LED\_Show()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a365d946e0cf0fe8cfc8dbcb25cfbdad9} 
+void Hardware\+::\+LED\+\_\+\+Show (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Update LED \doxylink{namespace_hardware}{Hardware}. 
+
+Pushes the memory buffer to the LED strips. 
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00544}{544}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_a766f13b53e03456789fd4fe8e009e157}{strip\_PD1}}.show();}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<4;\ i++)\ \mbox{\hyperlink{_hardware_8cpp_affd50541a0d4a3f33b745b8cf818a968}{strip\_channel}}[i].show();}
+\DoxyCodeLine{00547\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00019}{strip\+\_\+channel}}, and \mbox{\hyperlink{_hardware_8cpp_a766f13b53e03456789fd4fe8e009e157}{strip\+\_\+\+PD1()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_hardware_8cpp_source_l00052}{Init\+Base()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00792}{Control\+Logic\+::\+Run()}}, and \mbox{\hyperlink{main_8cpp_source_l00013}{setup()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{namespace_hardware_a365d946e0cf0fe8cfc8dbcb25cfbdad9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a365d946e0cf0fe8cfc8dbcb25cfbdad9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a0745af097a6d21fc3fb1f1ebd9e141ff}\index{Hardware@{Hardware}!PWM\_Init@{PWM\_Init}}
+\index{PWM\_Init@{PWM\_Init}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{PWM\_Init()}{PWM\_Init()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a0745af097a6d21fc3fb1f1ebd9e141ff} 
+void Hardware\+::\+PWM\+\_\+\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize PWM Timers for Motor Control. 
+
+Configures TIM2, TIM3, TIM4 channels for motor driver control pins. Remaps pins as necessary. 
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00411}{411}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ GPIO\_InitTypeDef\ GPIO\_InitStructure;}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ RCC\_APB2PeriphClockCmd(RCC\_APB2Periph\_GPIOA\ |\ RCC\_APB2Periph\_GPIOB,\ ENABLE);}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Pin\ =\ GPIO\_Pin\_3\ |\ GPIO\_Pin\_4\ |\ GPIO\_Pin\_5\ |}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_Pin\_6\ |\ GPIO\_Pin\_7\ |\ GPIO\_Pin\_8\ |\ GPIO\_Pin\_9;}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Mode\ =\ GPIO\_Mode\_AF\_PP;}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Speed\ =\ GPIO\_Speed\_50MHz;}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ GPIO\_Init(GPIOB,\ \&GPIO\_InitStructure);}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ GPIO\_InitStructure.GPIO\_Pin\ =\ GPIO\_Pin\_15;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ GPIO\_Init(GPIOA,\ \&GPIO\_InitStructure);}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ RCC\_APB2PeriphClockCmd(RCC\_APB2Periph\_AFIO,\ ENABLE);}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ RCC\_APB1PeriphClockCmd(RCC\_APB1Periph\_TIM2,\ ENABLE);}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ RCC\_APB1PeriphClockCmd(RCC\_APB1Periph\_TIM3,\ ENABLE);}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ RCC\_APB1PeriphClockCmd(RCC\_APB1Periph\_TIM4,\ ENABLE);}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remap\ Pins\ for\ Motor\ Control}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ GPIO\_PinRemapConfig(GPIO\_FullRemap\_TIM2,\ ENABLE);\ \ \ \ \textcolor{comment}{//\ TIM2\ CH1/CH2\ -\/>\ PA15/PB3}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ GPIO\_PinRemapConfig(GPIO\_PartialRemap\_TIM3,\ ENABLE);\ \textcolor{comment}{//\ TIM3\ CH1/CH2\ -\/>\ PB4/PB5}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ TIM\_TimeBaseInitTypeDef\ TIM\_TimeBaseStructure;}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ TIM\_OCInitTypeDef\ TIM\_OCInitStructure;}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ TIM\_TimeBaseStructure.TIM\_Period\ =\ 999;}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ TIM\_TimeBaseStructure.TIM\_Prescaler\ =\ 1;}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ TIM\_TimeBaseStructure.TIM\_ClockDivision\ =\ 0;}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ TIM\_TimeBaseStructure.TIM\_CounterMode\ =\ TIM\_CounterMode\_Up;}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ TIM\_TimeBaseInit(TIM2,\ \&TIM\_TimeBaseStructure);}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ TIM\_TimeBaseInit(TIM3,\ \&TIM\_TimeBaseStructure);}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ TIM\_TimeBaseInit(TIM4,\ \&TIM\_TimeBaseStructure);}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ TIM\_OCInitStructure.TIM\_OCMode\ =\ TIM\_OCMode\_PWM1;}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ TIM\_OCInitStructure.TIM\_OutputState\ =\ TIM\_OutputState\_Enable;}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ TIM\_OCInitStructure.TIM\_Pulse\ =\ 0;}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ TIM\_OCInitStructure.TIM\_OCPolarity\ =\ TIM\_OCPolarity\_High;}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ TIM\_OC1Init(TIM2,\ \&TIM\_OCInitStructure);}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ TIM\_OC2Init(TIM2,\ \&TIM\_OCInitStructure);}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ TIM\_OC1Init(TIM3,\ \&TIM\_OCInitStructure);}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ TIM\_OC2Init(TIM3,\ \&TIM\_OCInitStructure);}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ TIM\_OC3Init(TIM4,\ \&TIM\_OCInitStructure);\ \textcolor{comment}{//\ Note:\ Original\ looked\ like\ OC1/2\ for\ TIM4\ too?\ Let's\ check\ Motion\_control.cpp.}}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Motion\_control.cpp:\ case\ 1:\ TIM\_SetCompare1(TIM4,\ set1);\ ...\ case\ 0:\ TIM\_SetCompare3(TIM4,\ set1);\ TIM\_SetCompare4(TIM4,\ set2);}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ TIM4\ uses\ Ch1,\ Ch2,\ Ch3,\ Ch4.}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Re-\/checking\ Motion\_control.cpp\ lines\ 440+:}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Case\ 3:\ TIM2\ Ch1/Ch2\ (PA15\ /\ PB3?\ Remap\ dependent?)}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Case\ 2:\ TIM3\ Ch1/Ch2\ (PB4\ /\ PB5?)}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Case\ 1:\ TIM4\ Ch1/Ch2\ (PB6\ /\ PB7)}}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Case\ 0:\ TIM4\ Ch3/Ch4\ (PB8\ /\ PB9)}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ we\ need\ to\ init\ all\ those\ channels.}}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ TIM\_OC1Init(TIM4,\ \&TIM\_OCInitStructure);}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ TIM\_OC2Init(TIM4,\ \&TIM\_OCInitStructure);}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ TIM\_OC3Init(TIM4,\ \&TIM\_OCInitStructure);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ TIM\_OC4Init(TIM4,\ \&TIM\_OCInitStructure);}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ TIM\_Cmd(TIM2,\ ENABLE);}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ TIM\_Cmd(TIM3,\ ENABLE);}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ TIM\_Cmd(TIM4,\ ENABLE);}
+\DoxyCodeLine{00469\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00870}{Control\+Logic\+::\+Init()}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00052}{Init\+Base()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a0745af097a6d21fc3fb1f1ebd9e141ff_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_af8a83d19b30aeb46530bd36c63b3fab7}\index{Hardware@{Hardware}!PWM\_Set@{PWM\_Set}}
+\index{PWM\_Set@{PWM\_Set}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{PWM\_Set()}{PWM\_Set()}}
+{\footnotesize\ttfamily \label{namespace_hardware_af8a83d19b30aeb46530bd36c63b3fab7} 
+void Hardware\+::\+PWM\+\_\+\+Set (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{, }\item[{int}]{PWM}{}\end{DoxyParamCaption})}
+
+
+
+Set PWM duty cycle for a Motor Channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Motor Channel (0-\/3). \\
+\hline
+{\em PWM} & Value (-\/1000 to 1000). Positive for one direction, negative for other. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00478}{478}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ uint16\_t\ set1\ =\ 0,\ set2\ =\ 0;}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (PWM\ >\ 0)\ \{}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ set1\ =\ PWM;}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (PWM\ <\ 0)\ \{}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ set2\ =\ -\/PWM;}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ set1\ =\ 1000;}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ set2\ =\ 1000;}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (channel)\ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ TIM\_SetCompare1(TIM2,\ set1);}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ TIM\_SetCompare2(TIM2,\ set2);}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ TIM\_SetCompare1(TIM3,\ set1);}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ TIM\_SetCompare2(TIM3,\ set2);}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ TIM\_SetCompare1(TIM4,\ set1);}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ TIM\_SetCompare2(TIM4,\ set2);}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ TIM\_SetCompare3(TIM4,\ set1);}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ TIM\_SetCompare4(TIM4,\ set2);}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00506\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Control\+Logic\+::\+Motor\+Channel\+::\+Run()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_af8a83d19b30aeb46530bd36c63b3fab7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a8ab0dbadec2826235277f8152a80155d}\index{Hardware@{Hardware}!System\_Init@{System\_Init}}
+\index{System\_Init@{System\_Init}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{System\_Init()}{System\_Init()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a8ab0dbadec2826235277f8152a80155d} 
+void Hardware\+::\+System\+\_\+\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Configure System Clocks and Pin Remapping. 
+
+Enables AFIO and sets PD0/\+PD1 remapping for HSE/\+LSE reuse if needed. 
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00084}{84}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ RCC\_APB2PeriphClockCmd(RCC\_APB2Periph\_AFIO,\ ENABLE);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ GPIO\_PinRemapConfig(GPIO\_Remap\_PD01,\ ENABLE);}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_hardware_8cpp_source_l00052}{Init\+Base()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a8ab0dbadec2826235277f8152a80155d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_ad3ec7cad074d6d73508844a06a7bea50}\index{Hardware@{Hardware}!UART\_Send@{UART\_Send}}
+\index{UART\_Send@{UART\_Send}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{UART\_Send()}{UART\_Send()}}
+{\footnotesize\ttfamily \label{namespace_hardware_ad3ec7cad074d6d73508844a06a7bea50} 
+void Hardware\+::\+UART\+\_\+\+Send (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint16\+\_\+t}]{length}{}\end{DoxyParamCaption})}
+
+
+
+Send a buffer via UART1. 
+
+\begin{DoxyNote}{Note}
+If STANDARD\+\_\+\+SERIAL is defined, uses blocking send. If not (Bambu\+Bus mode), uses DMA for high speed transfer.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to data. \\
+\hline
+{\em length} & Length of data. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00261}{261}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#if\ defined(STANDARD\_SERIAL) }}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Blocking\ mode\ for\ CLI\ interactivity\ (safe\ with\ ISR\ echo)}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Disable\ TC\ interrupt\ to\ prevent\ ISR\ from\ disabling\ DE\ prematurely}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ USART\_ITConfig(USART1,\ USART\_IT\_TC,\ DISABLE);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ GPIOA-\/>BSHR\ =\ GPIO\_Pin\_12;\ \textcolor{comment}{//\ Set\ High\ (TX)\ for\ RS485}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ i\ =\ 0;\ i\ <\ length;\ i++)\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_aaaf02ef3df5811e2ba28dd009eadfaae}{UART\_SendByte}}(data[i]);}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Re-\/enable\ TC\ interrupt\ so\ ISR\ can\ disable\ DE\ when\ the\ *last\ byte*\ is\ actually\ done}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ USART\_ITConfig(USART1,\ USART\_IT\_TC,\ ENABLE);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ISR\ handles\ DE\ pin\ Disable\ on\ TC\ interrupt.}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#else }}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DMA\ mode\ for\ High\ Speed\ Bus\ (BambuBus)}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ DMA\ is\ currently\ enabled\ (transfer\ active)}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DMA1\_Channel4-\/>CFGR\ \&\ 0x01)\ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ data\ transfer\ to\ complete}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ timeout\ =\ 100000;}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (DMA\_GetCurrDataCounter(DMA1\_Channel4)\ !=\ 0\ \&\&\ timeout-\/-\/)\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a0ada30189b8e1d1dbec145140849b778}{DelayUS}}(1);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ Transmission\ Complete\ flag\ is\ set\ (buffer\ clear)}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ timeout\ =\ 100000;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (USART\_GetFlagStatus(USART1,\ USART\_FLAG\_TC)\ ==\ RESET\ \&\&\ timeout-\/-\/)\ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a0ada30189b8e1d1dbec145140849b778}{DelayUS}}(1);}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ small\ gap\ or\ ensure\ Disable\ is\ clean}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ DMA\_Cmd(DMA1\_Channel4,\ DISABLE);}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ DMA\_DeInit(DMA1\_Channel4);}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_MemoryBaseAddr\ =\ (uint32\_t)data;}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}}.DMA\_BufferSize\ =\ length;}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ DMA\_Init(DMA1\_Channel4,\ \&\mbox{\hyperlink{_hardware_8cpp_ad017efbf3c102f3760d9747d90fad0a1}{Bambubus\_DMA\_InitStructure}});}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ DMA\_Cmd(DMA1\_Channel4,\ ENABLE);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ GPIOA-\/>BSHR\ =\ GPIO\_Pin\_12;}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ USART\_DMACmd(USART1,\ USART\_DMAReq\_Tx,\ ENABLE);}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00307\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00040}{Bambubus\+\_\+\+DMA\+\_\+\+Init\+Structure}}, \mbox{\hyperlink{_hardware_8cpp_source_l00095}{Delay\+US()}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00243}{UART\+\_\+\+Send\+Byte()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Klipper\+CLI\+::\+Handle\+Status()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00439}{Klipper\+CLI\+::\+Init()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00962}{Control\+Logic\+::motor\+\_\+motion\+\_\+switch()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Klipper\+CLI\+::\+Process\+Packet()}}, \mbox{\hyperlink{_command_router_8cpp_source_l00234}{Command\+Router\+::\+Send\+Packet()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00035}{Klipper\+CLI\+::\+Send\+Response()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_ad3ec7cad074d6d73508844a06a7bea50_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_ad3ec7cad074d6d73508844a06a7bea50_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_aaaf02ef3df5811e2ba28dd009eadfaae}\index{Hardware@{Hardware}!UART\_SendByte@{UART\_SendByte}}
+\index{UART\_SendByte@{UART\_SendByte}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{UART\_SendByte()}{UART\_SendByte()}}
+{\footnotesize\ttfamily \label{namespace_hardware_aaaf02ef3df5811e2ba28dd009eadfaae} 
+void Hardware\+::\+UART\+\_\+\+Send\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Send a single byte blocking. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Byte to send. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00243}{243}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ uint32\_t\ timeout\ =\ 10000;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (USART\_GetFlagStatus(USART1,\ USART\_FLAG\_TXE)\ ==\ RESET\ \&\&\ timeout-\/-\/)\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a0ada30189b8e1d1dbec145140849b778}{DelayUS}}(1);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeout\ >\ 0)\ USART\_SendData(USART1,\ data);}
+\DoxyCodeLine{00249\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00095}{Delay\+US()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_hardware_8cpp_source_l00261}{UART\+\_\+\+Send()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_aaaf02ef3df5811e2ba28dd009eadfaae_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_aaaf02ef3df5811e2ba28dd009eadfaae_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_a8eaf73ad39643f6bb1bbe74d9b5e8b86}\index{Hardware@{Hardware}!UART\_SetRxCallback@{UART\_SetRxCallback}}
+\index{UART\_SetRxCallback@{UART\_SetRxCallback}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{UART\_SetRxCallback()}{UART\_SetRxCallback()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a8eaf73ad39643f6bb1bbe74d9b5e8b86} 
+void Hardware\+::\+UART\+\_\+\+Set\+Rx\+Callback (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(uint8\+\_\+t)}\end{DoxyParamCaption})}
+
+
+
+Register a callback for UART1 RX. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & Function pointer void(uint8\+\_\+t byte). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00128}{128}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a5d7ac173bff318607226970e0e864b1e}{uart\_rx\_callback}}\ =\ callback;}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00120}{uart\+\_\+rx\+\_\+callback}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00076}{Command\+Router\+::\+Init()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a8eaf73ad39643f6bb1bbe74d9b5e8b86_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_hardware_afeb16bfe3e187a44a3c51c9738a933df}\index{Hardware@{Hardware}!USART1\_IRQHandler@{USART1\_IRQHandler}}
+\index{USART1\_IRQHandler@{USART1\_IRQHandler}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{USART1\_IRQHandler()}{USART1\_IRQHandler()}}
+{\footnotesize\ttfamily \label{namespace_hardware_afeb16bfe3e187a44a3c51c9738a933df} 
+void Hardware\+::\+USART1\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+UART1 Interrupt Service Routine. 
+
+Handles RXNE (Receive Data) and TC (Transmission Complete) logic. Manages RS485 DE pin (PA12). 
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00212}{212}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00213\ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keyword}{volatile}\ uint32\_t\ sr\ =\ USART1-\/>STATR;\ \textcolor{comment}{//\ Read\ Status\ Register}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keyword}{volatile}\ uint32\_t\ dr;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ Read\ Data\ Register\ Not\ Empty\ (RXNE)\ OR\ Overrun\ Error\ (ORE)}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ Reading\ SR\ then\ DR\ clears\ ORE,\ NE,\ FE,\ PE}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((sr\ \&\ USART\_FLAG\_RXNE)\ ||\ (sr\ \&\ USART\_FLAG\_ORE))\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ dr\ =\ USART1-\/>DATAR;\ \textcolor{comment}{//\ Read\ Data\ Register\ to\ clear\ flags}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ convert\ to\ byte\ and\ callback\ if\ it\ was\ a\ valid\ RXNE}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (ORE\ might\ set\ RXNE\ too,\ or\ just\ ORE)}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sr\ \&\ USART\_FLAG\_RXNE)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespace_hardware_a5d7ac173bff318607226970e0e864b1e}{uart\_rx\_callback}})\ \mbox{\hyperlink{namespace_hardware_a5d7ac173bff318607226970e0e864b1e}{uart\_rx\_callback}}((uint8\_t)dr);}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ Transmission\ Complete\ (TC)}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sr\ \&\ USART\_FLAG\_TC)}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ USART\_ClearITPendingBit(USART1,\ USART\_IT\_TC);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ GPIOA-\/>BCR\ =\ GPIO\_Pin\_12;\ \textcolor{comment}{//\ Disable\ DE}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00120}{uart\+\_\+rx\+\_\+callback}}.
+
+\Hypertarget{namespace_hardware_a90a0cffa2efcfb8d76bc12f9734ca623}\index{Hardware@{Hardware}!Watchdog\_Disable@{Watchdog\_Disable}}
+\index{Watchdog\_Disable@{Watchdog\_Disable}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{Watchdog\_Disable()}{Watchdog\_Disable()}}
+{\footnotesize\ttfamily \label{namespace_hardware_a90a0cffa2efcfb8d76bc12f9734ca623} 
+void Hardware\+::\+Watchdog\+\_\+\+Disable (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Disable the Window Watchdog. 
+
+Essential for debugging or development where timing isn\textquotesingle{}t strict yet. 
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ WWDG\_DeInit();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ RCC\_APB1PeriphClockCmd(RCC\_APB1Periph\_WWDG,\ DISABLE);}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_hardware_8cpp_source_l00052}{Init\+Base()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_hardware_a90a0cffa2efcfb8d76bc12f9734ca623_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{namespace_hardware_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespace_hardware_a5d7ac173bff318607226970e0e864b1e}\index{Hardware@{Hardware}!uart\_rx\_callback@{uart\_rx\_callback}}
+\index{uart\_rx\_callback@{uart\_rx\_callback}!Hardware@{Hardware}}
+\doxysubsubsection{\texorpdfstring{uart\_rx\_callback}{uart\_rx\_callback}}
+{\footnotesize\ttfamily \label{namespace_hardware_a5d7ac173bff318607226970e0e864b1e} 
+void(\texorpdfstring{$\ast$}{*} Hardware\+::uart\+\_\+rx\+\_\+callback) (uint8\+\_\+t) (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{}{}\end{DoxyParamCaption}) = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_hardware_8cpp_source_l00120}{120}} of file \mbox{\hyperlink{_hardware_8cpp_source}{Hardware.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_hardware_8cpp_source_l00128}{UART\+\_\+\+Set\+Rx\+Callback()}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00212}{USART1\+\_\+\+IRQHandler()}}.
+

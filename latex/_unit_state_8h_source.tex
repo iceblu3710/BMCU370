@@ -1,0 +1,89 @@
+\doxysection{Unit\+State.\+h}
+\hypertarget{_unit_state_8h_source}{}\label{_unit_state_8h_source}\index{src/UnitState.h@{src/UnitState.h}}
+\mbox{\hyperlink{_unit_state_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bambu_bus_protocol_8h}{BambuBusProtocol.h}}"{}}\ \textcolor{comment}{//\ For\ AMS\_filament\_status/motion\ enums}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00006}00006\ \textcolor{preprocessor}{\#pragma\ pack(push,\ 1)}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00008}00008\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00009}00009\ \textcolor{comment}{*\ DEVELOPMENT\ STATE:\ FUNCTIONAL}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00010}00010\ \textcolor{comment}{*\ DO\ NOT\ MODIFY\ under\ any\ circumstances.}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00011}00011\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00012}\mbox{\hyperlink{struct_filament_info}{00012}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_filament_info_af189025196797c33b9508d350820373b}{FilamentInfo}}\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00013}\mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{00013}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}}[8];}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00014}\mbox{\hyperlink{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}{00014}}\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}{color\_R}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00015}\mbox{\hyperlink{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}{00015}}\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}{color\_G}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00016}\mbox{\hyperlink{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}{00016}}\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}{color\_B}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00017}\mbox{\hyperlink{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}{00017}}\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}{color\_A}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00018}\mbox{\hyperlink{struct_filament_info_a5868192ee8a9087a32bc1b242024aa72}{00018}}\ \ \ \ \ int16\_t\ \mbox{\hyperlink{struct_filament_info_a5868192ee8a9087a32bc1b242024aa72}{temperature\_min}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00019}\mbox{\hyperlink{struct_filament_info_a45dff2f7e9e7b3794d9ff6469f50113f}{00019}}\ \ \ \ \ int16\_t\ \mbox{\hyperlink{struct_filament_info_a45dff2f7e9e7b3794d9ff6469f50113f}{temperature\_max}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00020}\mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{00020}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}}[20];}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ Defaults\ constructor}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00023}\mbox{\hyperlink{struct_filament_info_af189025196797c33b9508d350820373b}{00023}}\ \ \ \ \ \mbox{\hyperlink{struct_filament_info_af189025196797c33b9508d350820373b}{FilamentInfo}}()\ :\ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00024}00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}{color\_R}}(0xFF),\ \mbox{\hyperlink{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}{color\_G}}(0xFF),\ \mbox{\hyperlink{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}{color\_B}}(0xFF),\ \mbox{\hyperlink{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}{color\_A}}(0xFF),}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_info_a5868192ee8a9087a32bc1b242024aa72}{temperature\_min}}(220),\ \mbox{\hyperlink{struct_filament_info_a45dff2f7e9e7b3794d9ff6469f50113f}{temperature\_max}}(240)}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00026}00026\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Manual\ string\ init}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ def\_id\ =\ \textcolor{stringliteral}{"{}GFG00"{}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<8;i++)\ \mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}}[i]\ =\ (i\ <\ 5)\ ?\ def\_id[i]\ :\ 0;}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00030}00030\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ def\_name\ =\ \textcolor{stringliteral}{"{}PETG"{}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<20;i++)\ \mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}}[i]\ =\ (i\ <\ 4)\ ?\ def\_name[i]\ :\ 0;}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00034}00034\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ Helper\ to\ set\ ID\ safely}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_filament_info_ac821cbe379c5f19ac753f91adef53851}{SetID}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_id);}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00037}00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_filament_info_a6bb1d50ec33de9366132999b3a84ff3c}{SetName}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ new\_name);}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00038}00038\ \};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00040}00040\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00041}00041\ \textcolor{comment}{*\ DEVELOPMENT\ STATE:\ FUNCTIONAL}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00042}00042\ \textcolor{comment}{*\ DO\ NOT\ MODIFY\ under\ any\ circumstances.}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00043}00043\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00044}\mbox{\hyperlink{struct_filament_state}{00044}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_filament_state_a23d6c8c970ba5b5004a50d484e666ff9}{FilamentState}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_filament_info_af189025196797c33b9508d350820373b}{FilamentInfo}}\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ Inherits\ ID,\ Color,\ Temp,\ Name\ from\ FilamentInfo}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00046}00046\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00047}\mbox{\hyperlink{struct_filament_state_aabba44628ec691809d7b13b94b8a507e}{00047}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_filament_state_aabba44628ec691809d7b13b94b8a507e}{meters}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00048}\mbox{\hyperlink{struct_filament_state_a3a223cbec99bcd0f6c113bbd073df9fe}{00048}}\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{struct_filament_state_a3a223cbec99bcd0f6c113bbd073df9fe}{meters\_virtual\_count}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00049}\mbox{\hyperlink{struct_filament_state_a18524f9eb8074bc706971d1d62974179}{00049}}\ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8h_a9148fdd6f33c42faedeb9cc1a5520646}{AMS\_filament\_status}}\ \mbox{\hyperlink{struct_filament_state_a18524f9eb8074bc706971d1d62974179}{status}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00050}\mbox{\hyperlink{struct_filament_state_a183761f2029f1dfed9c1a9f56426d030}{00050}}\ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8h_a83dede43fdaba7acdcee93b724737695}{AMS\_filament\_motion}}\ \mbox{\hyperlink{struct_filament_state_a183761f2029f1dfed9c1a9f56426d030}{motion\_set}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00051}\mbox{\hyperlink{struct_filament_state_a2210f4ad5b00137bf844f1289ee79226}{00051}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{struct_filament_state_a2210f4ad5b00137bf844f1289ee79226}{pressure}};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00052}00052\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00053}00053\ \ \ \ \ \textcolor{comment}{//\ C++11\ Member\ Init}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00054}\mbox{\hyperlink{struct_filament_state_a23d6c8c970ba5b5004a50d484e666ff9}{00054}}\ \ \ \ \ \mbox{\hyperlink{struct_filament_state_a23d6c8c970ba5b5004a50d484e666ff9}{FilamentState}}()\ :\ \mbox{\hyperlink{struct_filament_info_af189025196797c33b9508d350820373b}{FilamentInfo}}(),}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00055}00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_state_aabba44628ec691809d7b13b94b8a507e}{meters}}(0),\ \mbox{\hyperlink{struct_filament_state_a3a223cbec99bcd0f6c113bbd073df9fe}{meters\_virtual\_count}}(0),}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00056}00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_state_a18524f9eb8074bc706971d1d62974179}{status}}(\mbox{\hyperlink{_bambu_bus_protocol_8h_a9148fdd6f33c42faedeb9cc1a5520646}{AMS\_filament\_status}}::\mbox{\hyperlink{_bambu_bus_protocol_8h_a9148fdd6f33c42faedeb9cc1a5520646a7f46165474d11ee5836777d85df2cdab}{online}}),}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00057}00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_state_a183761f2029f1dfed9c1a9f56426d030}{motion\_set}}(\mbox{\hyperlink{_bambu_bus_protocol_8h_a83dede43fdaba7acdcee93b724737695}{AMS\_filament\_motion}}::\mbox{\hyperlink{_bambu_bus_protocol_8h_a83dede43fdaba7acdcee93b724737695aec2f993aec2c27fc750119ab17b16cdb}{idle}}),}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00058}00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_state_a2210f4ad5b00137bf844f1289ee79226}{pressure}}(0xFFFF)}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00059}00059\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ FilamentInfo\ ctor\ handles\ basic\ fields}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00062}00062\ \};}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00063}00063\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00065}00065\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00066}00066\ \textcolor{comment}{*\ DEVELOPMENT\ STATE:\ FUNCTIONAL}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00067}00067\ \textcolor{comment}{*\ DO\ NOT\ MODIFY\ under\ any\ circumstances.}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00068}00068\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00069}\mbox{\hyperlink{class_unit_state}{00069}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_unit_state}{UnitState}}\ \{}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00070}00070\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00071}00071\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_filament_state}{FilamentState}}\&\ \mbox{\hyperlink{class_unit_state_a221a5d98d4e870c593e5bd5ee6621c4c}{GetFilament}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00072}00072\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_unit_state_a4833e917e0069069c7f455a24e28a516}{GetCurrentFilamentIndex}}();}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00073}00073\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_unit_state_a07223951eecac60709753ce07290477d}{SetCurrentFilamentIndex}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00074}00074\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{class_unit_state_a176d20bfd0f57839308be6c9d12a469c}{GetFilamentUseFlag}}();}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00075}00075\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_unit_state_ad8b253bd7a666cebbab08f9b7c7499dc}{SetFilamentUseFlag}}(uint8\_t\ flag);}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00076}00076\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00077}00077\ \ \ \ \ \textcolor{comment}{//\ BambuBus\ Address\ (AMS\ Identifier,\ e.g.,\ 0x0700)}}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00078}00078\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_unit_state_aeb3390385af0b8e75d0f3f57da9e2180}{SetBusAddress}}(uint16\_t\ addr);}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00079}00079\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ \mbox{\hyperlink{class_unit_state_ae4b5deab89162bd550a473dae40b03b9}{GetBusAddress}}();}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00080}00080\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_unit_state_a4583c9e8d1e21c9be317ea3b3057721a}{GetModel}}();}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00081}00081\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_unit_state_a745286b33e7a2805f9045e22fc0a49ac}{GetVersion}}();}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00082}00082\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_unit_state_a6cf2df0acd0abc748967395a0323c909}{GetSerialNumber}}();}
+\DoxyCodeLine{\Hypertarget{_unit_state_8h_source_l00083}00083\ \};}
+
+\end{DoxyCode}

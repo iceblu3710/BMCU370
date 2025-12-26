@@ -1,0 +1,5 @@
+<map id="Adafruit_NeoPixel::gamma32" name="Adafruit_NeoPixel::gamma32">
+<area shape="rect" id="Node000001" title="A gamma&#45;correction function for 32&#45;bit packed RGB or WRGB colors. Makes color transitions appear more..." alt="" coords="188,5,322,48"/>
+<area shape="rect" id="Node000002" href="$class_adafruit___neo_pixel.html#a914f61b78e4d36a03c91372ceded2d46" title="用一个或多个色调循环填充NeoPixel灯带。 大家都非常喜欢彩虹漩涡，现在它可是经典了！" alt="" coords="5,5,140,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,27,140,29,140,24,175,26"/>
+</map>

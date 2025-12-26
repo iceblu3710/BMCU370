@@ -1,0 +1,140 @@
+\doxysection{src/\+Flash\+\_\+saves.h File Reference}
+\hypertarget{_flash__saves_8h}{}\label{_flash__saves_8h}\index{src/Flash\_saves.h@{src/Flash\_saves.h}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}ch32v20x\+\_\+flash.\+h"{}}\newline
+Include dependency graph for Flash\+\_\+saves.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{_flash__saves_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{_flash__saves_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_flash__saves_8h_a4cc14e2c99ae7f8e5a8e371d03c8532c}{FLASH\+\_\+\+PAGE\+\_\+\+SIZE}}~4096
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_flash__saves_8h_ae5951341b70b0da0d768d418bfcb76ce}{Flash\+\_\+saves}} (void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_flash__saves_8cpp_a9364481806e5ccb7d6cb2113b1b7a2d5}{buf}}, uint32\+\_\+t length, uint32\+\_\+t address)
+\begin{DoxyCompactList}\small\item\em Save a buffer to Flash Memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_flash__saves_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_flash__saves_8h_a4cc14e2c99ae7f8e5a8e371d03c8532c}\index{Flash\_saves.h@{Flash\_saves.h}!FLASH\_PAGE\_SIZE@{FLASH\_PAGE\_SIZE}}
+\index{FLASH\_PAGE\_SIZE@{FLASH\_PAGE\_SIZE}!Flash\_saves.h@{Flash\_saves.h}}
+\doxysubsubsection{\texorpdfstring{FLASH\_PAGE\_SIZE}{FLASH\_PAGE\_SIZE}}
+{\footnotesize\ttfamily \label{_flash__saves_8h_a4cc14e2c99ae7f8e5a8e371d03c8532c} 
+\#define FLASH\+\_\+\+PAGE\+\_\+\+SIZE~4096}
+
+
+
+Definition at line \mbox{\hyperlink{_flash__saves_8h_source_l00007}{7}} of file \mbox{\hyperlink{_flash__saves_8h_source}{Flash\+\_\+saves.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{_flash__saves_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_flash__saves_8h_ae5951341b70b0da0d768d418bfcb76ce}\index{Flash\_saves.h@{Flash\_saves.h}!Flash\_saves@{Flash\_saves}}
+\index{Flash\_saves@{Flash\_saves}!Flash\_saves.h@{Flash\_saves.h}}
+\doxysubsubsection{\texorpdfstring{Flash\_saves()}{Flash\_saves()}}
+{\footnotesize\ttfamily \label{_flash__saves_8h_ae5951341b70b0da0d768d418bfcb76ce} 
+bool Flash\+\_\+saves (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint32\+\_\+t}]{length}{, }\item[{uint32\+\_\+t}]{address}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Save a buffer to Flash Memory. 
+
+Erases the required number of pages starting at {\ttfamily address} and programs the data. Reloads IWDG during the process to prevent watchdog reset.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Pointer to the source data. \\
+\hline
+{\em length} & Length of data in bytes. \\
+\hline
+{\em address} & Destination Flash address (Page Aligned recommended). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true Success. 
+
+false Fail. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_flash__saves_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{_flash__saves_8cpp_source}{Flash\+\_\+saves.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ uint32\_t\ end\_address\ =\ address\ +\ length;}
+\DoxyCodeLine{00054\ \ \ \ \ uint32\_t\ erase\_counter\ =\ 0;}
+\DoxyCodeLine{00055\ \ \ \ \ uint32\_t\ address\_i\ =\ 0;}
+\DoxyCodeLine{00056\ \ \ \ \ uint32\_t\ page\_num\ =\ (length\ +\ \mbox{\hyperlink{_flash__saves_8cpp_a4cc14e2c99ae7f8e5a8e371d03c8532c}{FLASH\_PAGE\_SIZE}}\ -\/\ 1)\ /\ \mbox{\hyperlink{_flash__saves_8cpp_a4cc14e2c99ae7f8e5a8e371d03c8532c}{FLASH\_PAGE\_SIZE}};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (page\_num\ ==\ 0)\ page\_num\ =\ 1;\ \textcolor{comment}{//\ Safety}}
+\DoxyCodeLine{00058\ \ \ \ \ uint16\_t\ *data\_ptr\ =\ (uint16\_t\ *)\mbox{\hyperlink{_flash__saves_8cpp_a9364481806e5ccb7d6cb2113b1b7a2d5}{buf}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \_\_disable\_irq();\ \textcolor{comment}{//\ 禁用中断}}
+\DoxyCodeLine{00061\ \ \ \ \ FLASH\_Unlock();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ FLASH\_ClearFlag(FLASH\_FLAG\_BSY\ |\ FLASH\_FLAG\_EOP\ |\ FLASH\_FLAG\_WRPRTERR);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{for}\ (erase\_counter\ =\ 0;\ (erase\_counter\ <\ page\_num)\ \&\&\ (\mbox{\hyperlink{_flash__saves_8cpp_afe85d42720512872050ce14f37857da1}{FLASHStatus}}\ ==\ FLASH\_COMPLETE);\ erase\_counter++)}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ IWDG-\/>CTLR\ =\ 0xAAAA;\ \textcolor{comment}{//\ Reload\ IWDG}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_flash__saves_8cpp_afe85d42720512872050ce14f37857da1}{FLASHStatus}}\ =\ FLASH\_ErasePage(address\ +\ (\mbox{\hyperlink{_flash__saves_8cpp_a4cc14e2c99ae7f8e5a8e371d03c8532c}{FLASH\_PAGE\_SIZE}}\ *\ erase\_counter));\ \textcolor{comment}{//\ Erase\ 4KB}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_flash__saves_8cpp_afe85d42720512872050ce14f37857da1}{FLASHStatus}}\ !=\ FLASH\_COMPLETE)}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ FLASH\_Lock();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \_\_enable\_irq();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ address\_i\ =\ address;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{while}\ ((address\_i\ <\ end\_address)\ \&\&\ (\mbox{\hyperlink{_flash__saves_8cpp_afe85d42720512872050ce14f37857da1}{FLASHStatus}}\ ==\ FLASH\_COMPLETE))}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ IWDG-\/>CTLR\ =\ 0xAAAA;\ \textcolor{comment}{//\ Reload\ IWDG\ during\ long\ writes}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_flash__saves_8cpp_afe85d42720512872050ce14f37857da1}{FLASHStatus}}\ =\ FLASH\_ProgramHalfWord(address\_i,\ *data\_ptr);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ address\_i\ =\ address\_i\ +\ 2;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ data\_ptr++;}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ FLASH\_Lock();}
+\DoxyCodeLine{00088\ \ \ \ \ \_\_enable\_irq();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{_flash__saves_8cpp_afe85d42720512872050ce14f37857da1}{FLASHStatus}}\ ==\ FLASH\_COMPLETE);}
+\DoxyCodeLine{00091\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_flash__saves_8cpp_source_l00029}{buf}}, \mbox{\hyperlink{_flash__saves_8cpp_source_l00015}{FLASH\+\_\+\+PAGE\+\_\+\+SIZE}}, and \mbox{\hyperlink{_flash__saves_8cpp_source_l00023}{FLASHStatus}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00722}{Control\+Logic\+::\+Save\+Settings()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_flash__saves_8h_ae5951341b70b0da0d768d418bfcb76ce_icgraph}
+\end{center}
+\end{figure}

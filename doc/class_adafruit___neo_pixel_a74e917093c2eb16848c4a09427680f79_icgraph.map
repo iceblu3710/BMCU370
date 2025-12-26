@@ -1,0 +1,8 @@
+<map id="Adafruit_NeoPixel::updateLength" name="Adafruit_NeoPixel::updateLength">
+<area shape="rect" id="Node000001" title="更改已声明的Adafruit_NeoPixel灯带对象的长度。旧数据会被释放，新数据会被清空。 引脚号和像素格式不变。" alt="" coords="370,5,504,48"/>
+<area shape="rect" id="Node000002" href="$class_adafruit___neo_pixel.html#aac61dab69181d4554be8cdde40e4bce6" title="当长度、引脚和像素类型在编译时已知时的NeoPixel构造函数" alt="" coords="5,5,140,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="352,24,322,25,188,25,140,27,140,21,188,20,322,20,357,23"/>
+<area shape="rect" id="Node000003" href="$class_adafruit___neo_pixel.html#a07b6949674125159484e9e02ef025f7d" title="更改之前声明的像素格式 Adafruit_NeoPixel灯带对象。如果格式从一个变为另一个 将RGB变体转换为RGBW变体（或将RGBW转换为RGB），旧的 数据将被释放，新数据将被清空。否则， 旧数..." alt="" coords="188,35,322,77"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="357,40,323,48,322,43,352,40"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="169,43,140,40,140,35,175,42"/>
+</map>

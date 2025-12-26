@@ -53,32 +53,68 @@ static char unit_serial[32] = DEVICE_SERIAL;
 
 // --- UnitState Implementation ---
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Get the configuration specific to a filament index.
+ * 
+ * @param index 0-3 for specific lane. Bounded to 0-3.
+ * @return FilamentState& Reference to the state object.
+ */
 FilamentState& UnitState::GetFilament(int index) {
     if(index < 0 || index >= 4) return data_save.filament[0]; // Boundary safety
     return data_save.filament[index];
 }
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Get the currently active filament index.
+ * 
+ * @return int Index (0-3) or 0xFF if none/unknown.
+ */
 int UnitState::GetCurrentFilamentIndex() {
     return data_save.BambuBus_now_filament_num;
 }
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Set the currently active filament index.
+ * 
+ * @param index Index (0-3) or 0xFF.
+ */
 void UnitState::SetCurrentFilamentIndex(int index) {
     data_save.BambuBus_now_filament_num = index;
 }
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Get the Filament Use Status Flag.
+ * 
+ * @return uint8_t Flags indicating usage state (e.g. 0x02 busy, 0x04 in use).
+ */
 uint8_t UnitState::GetFilamentUseFlag() {
     return data_save.filament_use_flag;
 }
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Set the Filament Use Status Flag.
+ * 
+ * @param flag New flag status.
+ */
 void UnitState::SetFilamentUseFlag(uint8_t flag) {
     data_save.filament_use_flag = flag;
 }
 
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Set the Bus Address used by this device (AMS vs AMS Lite).
+ * 
+ * @param addr The address/type identifier.
+ */
 void UnitState::SetBusAddress(uint16_t addr) {
     device_type_addr = addr;
 }
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Get the Bus Address.
+ * 
+ * @return uint16_t The configured address.
+ */
 uint16_t UnitState::GetBusAddress() {
     return device_type_addr;
 }
@@ -92,6 +128,11 @@ const char* UnitState::GetSerialNumber() { return unit_serial; }
 
 // --- FilamentInfo Implementation ---
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Set the RFID/ID of the filament.
+ * 
+ * @param new_id Pointer to 8-byte ID string. Safely copies up to 8 chars.
+ */
 void FilamentInfo::SetID(const char* new_id) {
     for(int i=0; i<8; i++) {
         if(new_id && *new_id) ID[i] = *new_id++;
@@ -99,6 +140,11 @@ void FilamentInfo::SetID(const char* new_id) {
     }
 }
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Set the Name of the filament.
+ * 
+ * @param new_name Pointer to name string. Copies up to 20 chars.
+ */
 void FilamentInfo::SetName(const char* new_name) {
     for(int i=0; i<20; i++) {
         if(new_name && *new_name) name[i] = *new_name++;
@@ -184,6 +230,13 @@ namespace ControlLogic {
 
     void motor_motion_switch(); // Forward declaration
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Read Analog Sensors and Update State.
+     * 
+     * Reads ADC values for Filament sensors and Voltage monitors. 
+     * Updates `MC_PULL_stu` (pressure state) and `MC_ONLINE_key_stu` (filament presence).
+     * Also updates internal UnitState flags based on these readings.
+     */
     void MC_PULL_ONLINE_read() {
         float *data = Hardware::ADC_GetValues(); 
         if (!data) return;
@@ -233,10 +286,23 @@ namespace ControlLogic {
     public:
         MOTOR_PID(float P_set, float I_set, float D_set) { Init(P_set, I_set, D_set); }
         /* DEVELOPMENT STATE: FUNCTIONAL */
+        /**
+         * @brief Initialize PID coefficients.
+         */
         void Init(float P_set, float I_set, float D_set) { P = P_set; I = I_set; D = D_set; I_save = 0; E_last = 0; }
         /* DEVELOPMENT STATE: FUNCTIONAL */
+        /**
+         * @brief Clear integral accumulator and last error.
+         */
         void Clear() { I_save = 0; E_last = 0; }
         /* DEVELOPMENT STATE: FUNCTIONAL */
+        /**
+         * @brief Calculate PID output.
+         * 
+         * @param E Current Error.
+         * @param time_E Time elapsed since last calculation in seconds.
+         * @return float Control output (clamped to limits).
+         */
         float Calculate(float E, float time_E) {
             I_save += I * E * time_E;
             if (I_save > pid_range) I_save = pid_range;
@@ -271,6 +337,13 @@ namespace ControlLogic {
         MotorChannel(int ch) : CHx(ch) {}
 
         /* DEVELOPMENT STATE: FUNCTIONAL */
+        /**
+         * @brief Set the motion mode for this channel.
+         * 
+         * Resets PID and counters if mode changes.
+         * 
+         * @param m New Motion Enum.
+         */
         void SetMotion(filament_motion_enum m) {
             if (motion != m) {
                 motion = m;
@@ -280,6 +353,16 @@ namespace ControlLogic {
         }
         
         /* DEVELOPMENT STATE: FUNCTIONAL */
+        /**
+         * @brief Calculate motor output based on Pressure Control logic.
+         * 
+         * @param pressure_voltage Current pressure ADC voltage.
+         * @param control_voltage Target/Limit voltage.
+         * @param time_E Time step.
+         * @param control_type Mode: All (PID always), Less (Only if < limit), Over (Only if > limit).
+         * @param sign Direction sign.
+         * @return float Motor PWM contribution.
+         */
         float GetXByPressure(float pressure_voltage, float control_voltage, float time_E, pressure_control_enum control_type, float sign) {
             float x=0;
             switch (control_type) {
@@ -304,6 +387,14 @@ namespace ControlLogic {
         }
 
         /* DEVELOPMENT STATE: FUNCTIONAL */
+        /**
+         * @brief Main Motor Loop for this channel.
+         * 
+         * Updates PWM output based on current motion state, PID logic, and pressure sensors.
+         * Handles velocity control, distance accumulation, and pressure maintenance.
+         * 
+         * @param time_E Time elapsed in seconds.
+         */
         void Run(float time_E) {
             // Track distance for all movement types if needed, but critical for Klipper Move
             // speed_as5600 is in mm/s? AS5600_Update says: speedx = dist_E / time_E. dist_E is mm.
@@ -402,6 +493,11 @@ namespace ControlLogic {
         }
         
         /* DEVELOPMENT STATE: FUNCTIONAL */
+        /**
+         * @brief Update the Lane LED based on status.
+         * 
+         * Green/Red based on Pressure triggers, or User Color if idle+online.
+         */
         void UpdateLEDStatus() {
             if (MC_PULL_stu[CHx] == 1) { 
                 Hardware::LED_SetColor(CHx, 0, 255, 0, 0); 
@@ -421,6 +517,15 @@ namespace ControlLogic {
     static MotorChannel motors[4] = {0, 1, 2, 3};
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Initiate a Filament Load sequence for a specific tray.
+     * 
+     * Sets the state machine to `filament_loading`, initializes variables,
+     * and sets motor to send.
+     * 
+     * @param tray Tray index (0-3).
+     * @param length_mm Target length in mm (if > 0, stops at distance; otherwise uses pressure logic).
+     */
     void StartLoadFilament(int tray, int length_mm) {
         if (tray < 0 || tray >= 4) return;
         
@@ -460,6 +565,14 @@ namespace ControlLogic {
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Initiate a Filament Unload sequence for a specific tray.
+     * 
+     * Sets state to `filament_unloading`.
+     * 
+     * @param tray Tray index (0-3).
+     * @param length_mm Target distance to unload (or -1 to unload until sensor clear).
+     */
     void StartUnloadFilament(int tray, int length_mm) {
         if (tray < 0 || tray >= 4) return;
         
@@ -491,6 +604,15 @@ namespace ControlLogic {
     // --- Klipper Primitive Implementations ---
     
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Manually move an axis (Klipper Primitive).
+     * 
+     * Uses Velocity Control mode to move a specific distance at a specific speed.
+     * 
+     * @param axis Axis index (0-3).
+     * @param dist_mm Distance to move (positive).
+     * @param speed Speed in mm/s.
+     */
     void MoveAxis(int axis, float dist_mm, float speed) {
         if(axis < 0 || axis >= 4) return;
         
@@ -501,6 +623,9 @@ namespace ControlLogic {
     }
     
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Stop all motors.
+     */
     void StopAll() {
         for(int i=0; i<4; i++) {
              motors[i].SetMotion(filament_motion_enum::stop);
@@ -509,6 +634,12 @@ namespace ControlLogic {
     }
     
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Enable/Disable Auto-Feed (Pressure Control) for a lane.
+     * 
+     * @param lane Lane index.
+     * @param enable True to enable, False to stop.
+     */
     void SetAutoFeed(int lane, bool enable) {
         if(lane < 0 || lane >= 4) return;
         
@@ -523,6 +654,11 @@ namespace ControlLogic {
     }
     
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Get a bitmask of sensor states.
+     * 
+     * @return uint16_t Bitmask (Bit i = Filament Present Lane i).
+     */
     uint16_t GetSensorState() {
          // [0:3] = Filament Present (MC_ONLINE_key_stu)
          // [4:7] = Buffer/Online?
@@ -534,6 +670,12 @@ namespace ControlLogic {
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Get the current motion state of a lane.
+     * 
+     * @param lane Lane index.
+     * @return int Motion Enum integer value.
+     */
     int GetLaneMotion(int lane) {
         if(lane < 0 || lane >= 4) return 0;
         return (int)motors[lane].motion;
@@ -541,6 +683,14 @@ namespace ControlLogic {
 
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Update Odometer and Speed from AS5600 sensors.
+     * 
+     * Reads angles, calculates delta, computes speed and distance.
+     * Updates global odometer meters for the filament.
+     * 
+     * @param time_E Time elapsed.
+     */
     void AS5600_Update(float time_E) {
         MC_AS5600.updata_angle();
         for(int i=0; i<4; i++) {
@@ -564,12 +714,22 @@ namespace ControlLogic {
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Commit settings to Flash memory.
+     * 
+     * Writes the current `data_save` struct to flash.
+     */
     void SaveSettings() {
         Flash_saves(&data_save, sizeof(data_save), use_flash_addr);
         Bambubus_need_to_save = false;
     }
     
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Flag that settings need to be saved.
+     * 
+     * Sets a dirty flag and resets the save timer (debounce).
+     */
     void SetNeedToSave() {
         if (!Bambubus_need_to_save) {
              Bambubus_need_to_save = true;
@@ -578,6 +738,16 @@ namespace ControlLogic {
     }
     
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Check if pullback is required (Smart Pullback Logic).
+     * 
+     * If a lane is in `filament_pulling_back` state, this checks if it has reached
+     * the target distance (`OUT_filament_meters`). Stops it if so.
+     * 
+     * @param OUT_filament_meters Target distance.
+     * @return true If any lane is actively pulling back.
+     * @return false If no lanes are pulling back.
+     */
     bool Prepare_For_filament_Pull_Back(float_t OUT_filament_meters)
     {
         bool wait = false;
@@ -613,6 +783,12 @@ namespace ControlLogic {
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Main Control Loop.
+     * 
+     * Called repeatedly from main. Checks sensors, manages logic switching,
+     * updates motor control, handles LED updates, and manages Flash saving.
+     */
     void Run() {
         static uint64_t last_run = 0;
         uint64_t now = Hardware::GetTime();
@@ -663,6 +839,11 @@ namespace ControlLogic {
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Load settings from Flash memory.
+     * 
+     * If flash is invalid (CRC/Version mismatch), loads defaults.
+     */
     void LoadSettings() {
         flash_save_struct *ptr = (flash_save_struct *)(use_flash_addr);
         if ((ptr->check == 0x40614061) && (ptr->version == Bambubus_version)) {
@@ -681,6 +862,11 @@ namespace ControlLogic {
     }
     
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Initialize ControlLogic.
+     * 
+     * Initializes Hardware (ADC, PWM), Loads Settings, and Initializes AS5600.
+     */
     void Init() {
         Hardware::ADC_Init();
         Hardware::PWM_Init();
@@ -707,6 +893,14 @@ namespace ControlLogic {
     }
     
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Check Boot Mode (Button Press at Startup).
+     * 
+     * Reading ADC of sensor keys. If all are pressed (< 1.3V) at startup,
+     * toggle the boot mode (Klipper <-> BambuBus).
+     * 
+     * @return BootMode The active boot mode.
+     */
     BootMode InitBootCheck() {
         // Read Sensors (Already inited in Hardware::Init)
         MC_PULL_ONLINE_read(); 
@@ -734,11 +928,23 @@ namespace ControlLogic {
     }
     
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Get current Boot Mode.
+     * 
+     * @return BootMode
+     */
     BootMode GetBootMode() {
         return (BootMode)data_save.boot_mode;
     }
     
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Update connectivity status (Online/Offline).
+     * 
+     * Resets Heartbeat timer.
+     * 
+     * @param online Status.
+     */
     void UpdateConnectivity(bool online) {
         is_connected = online;
         if (online) last_heartbeat_time = Hardware::GetTime();
@@ -747,6 +953,12 @@ namespace ControlLogic {
 
     // --- Logic Implementation ---
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief State Machine for BambuBus Logic.
+     * 
+     * Manages transitions between filament states (Idle, Loading, Unloading, Using, Sending).
+     * Implements Load/Unload logic completion checks (Pressure/Distance).
+     */
     void motor_motion_switch() 
     {
         int num = data_save.BambuBus_now_filament_num; 
@@ -934,6 +1146,17 @@ namespace ControlLogic {
     
     // --- Decoupled Logic Methods ---
 
+    /**
+     * @brief Core logic for processing Short Motion packets.
+     * 
+     * Handles state transitions based on status flags received from the printer.
+     * Updates filament meter usage, pressure status, and responds with the current status.
+     * 
+     * @param ams_num AMS Unit ID (0-3).
+     * @param statu_flags Status bitmask.
+     * @param read_num Filament/Tray index interacting.
+     * @param fliment_motion_flag Motion control flags.
+     */
     void ProcessMotionShortLogic(uint8_t ams_num, uint8_t statu_flags, uint8_t read_num, uint8_t fliment_motion_flag) {
         // Core Logic from ProcessMotionShort
         
@@ -1054,6 +1277,11 @@ namespace ControlLogic {
     }
     
     // Wrapper
+    /**
+     * @brief Handler for Filament Motion Short packet (0x03).
+     * 
+     * Extracts arguments from the buffer and calls `ProcessMotionShortLogic`.
+     */
     void ProcessMotionShort(uint8_t* buffer, uint16_t length) {
         if (length < 9) return;
         // Parse Args
@@ -1066,10 +1294,20 @@ namespace ControlLogic {
         ProcessMotionShortLogic(ams_num, statu_flags, read_num, motion_flag);
     }
     
+    /**
+     * @brief Handler for Filament Motion Long packet (0x04).
+     * 
+     * @note Currently a placeholder.
+     */
     void ProcessMotionLong(uint8_t* buffer, uint16_t length) {
         // Just forward for now or implement logic if found
     }
     
+    /**
+     * @brief Handler for Online Detect (0x05).
+     * 
+     * Responds with the Online (0x05) packet to announce presence to the printer.
+     */
     void ProcessOnlineDetect(uint8_t* buffer, uint16_t length) {
          // Respond 0x05
          // uint8_t res[1]; // Unused
@@ -1092,6 +1330,11 @@ namespace ControlLogic {
          UpdateConnectivity(true);
     }
     
+    /**
+     * @brief Handler for REQx6 (0x06).
+     * 
+     * Responds with a simple ACK (0x06).
+     */
     void ProcessREQx6(uint8_t* buffer, uint16_t length) {
         // Just ACK with 0x06
         uint8_t packet[32];
@@ -1104,10 +1347,20 @@ namespace ControlLogic {
         CommandRouter::SendPacket(packet, len);
     }
     
+    /**
+     * @brief Handler for Heartbeat (0x20).
+     * 
+     * Updates connectivity timestamp.
+     */
     void ProcessHeartbeat(uint8_t* buffer, uint16_t length) {
         UpdateConnectivity(true);
     }
     
+    /**
+     * @brief Handler for Set Filament Info (0x08 - Short).
+     * 
+     * Decodes payload and calls `SetFilamentInfoAction`.
+     */
     void ProcessSetFilamentInfo(uint8_t* buffer, uint16_t length) {
         // Short Packet Set Filament Info (0x08)
         // Offset 5 is start of payload.
@@ -1135,6 +1388,16 @@ namespace ControlLogic {
         // ...
     }
     
+    /**
+     * @brief Action helper to update filament metadata.
+     * 
+     * Updates Color, Type, ID, Temps, etc. for a specific tray.
+     * Triggers a Flash Save.
+     * 
+     * @param id Tray ID.
+     * @param info Info structure.
+     * @param meters Odometer reading (optional, -1 to ignore).
+     */
     void SetFilamentInfoAction(int id, const FilamentInfo& info, float meters) {
         if (id < 0 || id >= 4) return;
         
@@ -1162,6 +1425,13 @@ namespace ControlLogic {
     }
     
     // Long Packet Logic
+    /**
+     * @brief Handler/Dispatcher for Long Packets.
+     * 
+     * Processes parsed long packets based on their type (0x211, 0x218, 0x103, etc.).
+     * 
+     * @param data Reference to parsed `long_packge_data`.
+     */
     void ProcessLongPacket(struct long_packge_data &data) {
         // switch data.type...
         // 0x211 Read Filament -> Send Response
@@ -1175,6 +1445,11 @@ namespace ControlLogic {
         // ...
     }
     
+    /**
+     * @brief Get the configured device type.
+     * 
+     * @return uint16_t Device Type ID (AMS / AMS Lite).
+     */
     uint16_t GetDeviceType() { return device_type_addr; }
 
 }

@@ -1,0 +1,10 @@
+<map id="CommandRouter::SendPacket" name="CommandRouter::SendPacket">
+<area shape="rect" id="Node000001" title="Send a raw data packet via UART." alt="" coords="5,5,205,32"/>
+<area shape="rect" id="Node000002" href="$namespace_hardware.html#ad3ec7cad074d6d73508844a06a7bea50" title="Send a buffer via UART1." alt="" coords="253,5,411,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,16,240,18,234,19,206,21"/>
+<area shape="rect" id="Node000003" href="$namespace_hardware.html#a0ada30189b8e1d1dbec145140849b778" title="Microsecond Delay." alt="" coords="692,5,831,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="411,16,679,18,674,19,412,21"/>
+<area shape="rect" id="Node000004" href="$namespace_hardware.html#aaaf02ef3df5811e2ba28dd009eadfaae" title="Send a single byte blocking." alt="" coords="459,31,644,57"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="412,25,446,32,441,31,411,30"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="644,30,675,29,680,29,645,35"/>
+</map>

@@ -1,0 +1,26 @@
+<map id="CommandRouter::Init" name="CommandRouter::Init">
+<area shape="rect" id="Node000001" title="Initialize the Command Router and CLI subsystems." alt="" coords="5,157,152,184"/>
+<area shape="rect" id="Node000002" href="$namespace_klipper_c_l_i.html#a94936a207238747445fb8f43cdd4a2f4" title="Feed a byte into the RX buffer." alt="" coords="236,5,382,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,155,130,100,162,68,198,42,223,32,219,36,201,46,165,72,134,103,91,158"/>
+<area shape="rect" id="Node000003" href="$class_bambu_bus_protocol.html#a8b2a47c616b38cef6c47c1d1b9c92411" title="Get the pointer to the Receive Buffer." alt="" coords="202,56,416,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="96,155,141,123,199,92,221,86,217,89,201,97,144,128,99,159"/>
+<area shape="rect" id="Node000004" href="$class_bambu_bus_protocol.html#ae7f742147d3316c118f4230a56a722bd" title="Get the length of the last received packet." alt="" coords="200,107,418,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="142,154,232,135,228,139,144,159"/>
+<area shape="rect" id="Node000005" href="$class_bambu_bus_protocol.html#a0f26cda5df5c3a8882b7d371d44f6a5e" title="Initialize the static CRC engines." alt="" coords="229,157,388,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="151,168,216,169,212,172,153,173"/>
+<area shape="rect" id="Node000006" href="$namespace_klipper_c_l_i.html#a5498861593ca8083d7be1d71c8373f29" title="Initialize Klipper CLI." alt="" coords="255,208,363,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="143,182,242,205,237,208,143,187"/>
+<area shape="rect" id="Node000010" href="$class_bambu_bus_protocol.html#af0a63f3d5cca52f48394c7129407e585" title="Parse a single incoming byte into a protocol packet." alt="" coords="208,259,410,285"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="98,182,144,214,201,244,222,254,216,254,199,249,141,218,97,187"/>
+<area shape="rect" id="Node000012" href="$namespace_hardware.html#a8eaf73ad39643f6bb1bbe74d9b5e8b86" title="Register a callback for UART1 RX." alt="" coords="201,309,417,336"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="90,182,134,238,165,269,201,295,214,304,209,303,198,300,162,273,130,242,88,187"/>
+<area shape="rect" id="Node000007" href="$namespace_hardware.html#ad3ec7cad074d6d73508844a06a7bea50" title="Send a buffer via UART1." alt="" coords="466,208,624,235"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="363,219,453,221,448,222,363,224"/>
+<area shape="rect" id="Node000008" href="$namespace_hardware.html#a0ada30189b8e1d1dbec145140849b778" title="Microsecond Delay." alt="" coords="906,208,1044,235"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="625,219,892,221,887,222,625,224"/>
+<area shape="rect" id="Node000009" href="$namespace_hardware.html#aaaf02ef3df5811e2ba28dd009eadfaae" title="Send a single byte blocking." alt="" coords="672,233,858,260"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="625,228,659,234,654,234,625,233"/>
+<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="857,233,888,232,893,231,858,238"/>
+<area shape="rect" id="Node000011" href="$_bambu_bus_protocol_8cpp.html#accdac0b68b69d84409a479fc284f0a1b" title=" " alt="" coords="490,259,600,285"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="410,269,478,272,472,272,411,275"/>
+</map>

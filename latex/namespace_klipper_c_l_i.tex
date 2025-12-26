@@ -1,0 +1,1160 @@
+\doxysection{Klipper\+CLI Namespace Reference}
+\hypertarget{namespace_klipper_c_l_i}{}\label{namespace_klipper_c_l_i}\index{KlipperCLI@{KlipperCLI}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a9ec392d53485800126189969c2c4981a}{Send\+Response}} (Json\+Document \&d)
+\begin{DoxyCompactList}\small\item\em Serialize and send a JSON response. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}{Send\+Error}} (int id, const char \texorpdfstring{$\ast$}{*}code, const char \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Helper to send an Error response. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a1d7d7986d99cb52ab4feb4826ffc4428}{Send\+Ok}} (int id, const char \texorpdfstring{$\ast$}{*}code=nullptr, const char \texorpdfstring{$\ast$}{*}msg=nullptr)
+\begin{DoxyCompactList}\small\item\em Helper to send a Success (OK) response. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a81f1646e6adb42482d4109a33b9bb9c5}{Handle\+Ping}} (int id, Json\+Object args)
+\begin{DoxyCompactList}\small\item\em Handler for PING command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a8f239072c1896e64e9f6075edaaea515}{Handle\+Status}} (int id, Json\+Object args)
+\begin{DoxyCompactList}\small\item\em Handler for STATUS command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_ae13dcd8cc2528c12d0a241046fcc304e}{Handle\+Get\+Sensors}} (int id, Json\+Object args)
+\begin{DoxyCompactList}\small\item\em Handler for GET\+\_\+\+SENSORS command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a12cef4b97fbfa7cfb7bdb1540e626ae9}{Handle\+Move}} (int id, Json\+Object args)
+\begin{DoxyCompactList}\small\item\em Handler for MOVE command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a5bc1dda1e0b24dccb6fdc1c475930c88}{Handle\+Stop}} (int id, Json\+Object args)
+\begin{DoxyCompactList}\small\item\em Handler for STOP command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a685b6d688593b458b5edafda4adfd4d4}{Handle\+Select\+Lane}} (int id, Json\+Object args)
+\begin{DoxyCompactList}\small\item\em Handler for SELECT\+\_\+\+LANE command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a31ef4dae129916b85fdd8d1612553c77}{Handle\+Set\+Auto\+Feed}} (int id, Json\+Object args)
+\begin{DoxyCompactList}\small\item\em Handler for SET\+\_\+\+AUTO\+\_\+\+FEED command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_afeb304003d4b85010afd5e183e1bbf16}{Handle\+Get\+Filament\+Info}} (int id, Json\+Object args)
+\begin{DoxyCompactList}\small\item\em Handler for GET\+\_\+\+FILAMENT\+\_\+\+INFO command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a76547f35e246989843f1870c760ea514}{Handle\+Set\+Filament\+Info}} (int id, Json\+Object args)
+\begin{DoxyCompactList}\small\item\em Handler for SET\+\_\+\+FILAMENT\+\_\+\+INFO command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a6089e6db2e7edddf19fdf095b9826c88}{Process\+Packet}} (char \texorpdfstring{$\ast$}{*}json\+\_\+str)
+\begin{DoxyCompactList}\small\item\em Parse and Dispatch a JSON Packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a5498861593ca8083d7be1d71c8373f29}{Init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize Klipper CLI. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_afe96c8a3898aa7a50f68ab6d726860c3}{Run}} ()
+\begin{DoxyCompactList}\small\item\em Main Execution Loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_klipper_c_l_i_a94936a207238747445fb8f43cdd4a2f4}{Feed\+Byte}} (uint8\+\_\+t b)
+\begin{DoxyCompactList}\small\item\em Feed a byte into the RX buffer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespace_klipper_c_l_i_a64e906ee320307e1634a6bad079e2657}{Is\+Connected}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static char \mbox{\hyperlink{namespace_klipper_c_l_i_a5340c0df3b2af2c3a791cc11f143bbf2}{rx\+\_\+buffer}} \mbox{[}1024\mbox{]}
+\item 
+static int \mbox{\hyperlink{namespace_klipper_c_l_i_a932aad58ea2cbdf8a45a6835825b21a2}{rx\+\_\+idx}} = 0
+\item 
+static Json\+Document \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}
+\item 
+static volatile bool \mbox{\hyperlink{namespace_klipper_c_l_i_ad3e5a754ec9f201484a7aacea2f41961}{packet\+\_\+ready}} = false
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespace_klipper_c_l_i_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespace_klipper_c_l_i_a94936a207238747445fb8f43cdd4a2f4}\index{KlipperCLI@{KlipperCLI}!FeedByte@{FeedByte}}
+\index{FeedByte@{FeedByte}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{FeedByte()}{FeedByte()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a94936a207238747445fb8f43cdd4a2f4} 
+void Klipper\+CLI\+::\+Feed\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Feed a byte into the RX buffer. 
+
+Accumlates bytes until a newline is found.
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Byte to append. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00467}{467}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prevent\ buffer\ overrun}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_klipper_c_l_i_ad3e5a754ec9f201484a7aacea2f41961}{packet\_ready}})\ \textcolor{keywordflow}{return};\ }
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (b\ ==\ \textcolor{charliteral}{'\(\backslash\)n'}\ ||\ b\ ==\ \textcolor{charliteral}{'\(\backslash\)r'})\ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_klipper_c_l_i_a932aad58ea2cbdf8a45a6835825b21a2}{rx\_idx}}\ >\ 0)\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a5340c0df3b2af2c3a791cc11f143bbf2}{rx\_buffer}}[\mbox{\hyperlink{namespace_klipper_c_l_i_a932aad58ea2cbdf8a45a6835825b21a2}{rx\_idx}}]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_ad3e5a754ec9f201484a7aacea2f41961}{packet\_ready}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignore\ empty\ lines\ (e.g.\ \(\backslash\)r\ then\ \(\backslash\)n)}}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_klipper_c_l_i_a932aad58ea2cbdf8a45a6835825b21a2}{rx\_idx}}\ <\ 1023)\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a5340c0df3b2af2c3a791cc11f143bbf2}{rx\_buffer}}[\mbox{\hyperlink{namespace_klipper_c_l_i_a932aad58ea2cbdf8a45a6835825b21a2}{rx\_idx}}++]\ =\ (char)b;}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a932aad58ea2cbdf8a45a6835825b21a2}{rx\_idx}}\ =\ 0;\ \textcolor{comment}{//\ Overflow\ reset}}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00484\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00431}{packet\+\_\+ready}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00019}{rx\+\_\+buffer}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00020}{rx\+\_\+idx}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00076}{Command\+Router\+::\+Init()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a94936a207238747445fb8f43cdd4a2f4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_afeb304003d4b85010afd5e183e1bbf16}\index{KlipperCLI@{KlipperCLI}!HandleGetFilamentInfo@{HandleGetFilamentInfo}}
+\index{HandleGetFilamentInfo@{HandleGetFilamentInfo}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{HandleGetFilamentInfo()}{HandleGetFilamentInfo()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_afeb304003d4b85010afd5e183e1bbf16} 
+void Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{Json\+Object}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Handler for GET\+\_\+\+FILAMENT\+\_\+\+INFO command. 
+
+Returns metadata for a specific lane. 
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{305}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!args[\textcolor{stringliteral}{"{}lane"{}}].is<int>())\ \{\ \mbox{\hyperlink{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}{SendError}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}BAD\_ARGS"{}},\ \textcolor{stringliteral}{"{}Missing\ lane"{}});\ \textcolor{keywordflow}{return};\ \}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ lane\ =\ args[\textcolor{stringliteral}{"{}lane"{}}];}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(lane\ <\ 0\ ||\ lane\ >=\ 4)\ \{\ \mbox{\hyperlink{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}{SendError}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}BAD\_ARGS"{}},\ \textcolor{stringliteral}{"{}Invalid\ lane"{}});\ \textcolor{keywordflow}{return};\ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ FilamentState\ \&f\ =\ \mbox{\hyperlink{class_unit_state_a221a5d98d4e870c593e5bd5ee6621c4c}{UnitState::GetFilament}}(lane);}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ output[1024];}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ offset\ =\ 0;}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safe\ Strings}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ safe\_id[9];\ memcpy(safe\_id,\ f.\mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}},\ 8);\ safe\_id[8]=0;}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ safe\_name[21];\ memcpy(safe\_name,\ f.\mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}},\ 20);\ safe\_name[20]=0;}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Color}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ r\ =\ f.\mbox{\hyperlink{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}{color\_R}};}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ g\ =\ f.\mbox{\hyperlink{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}{color\_G}};}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ b\ =\ f.\mbox{\hyperlink{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}{color\_B}};}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ a\ =\ f.\mbox{\hyperlink{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}{color\_A}};}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Manual\ Float}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ m\_int\ =\ (int)f.\mbox{\hyperlink{struct_filament_state_aabba44628ec691809d7b13b94b8a507e}{meters}};}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ m\_dec\ =\ (int)((f.meters\ -\/\ m\_int)\ *\ 100);}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_dec<0)\ m\_dec\ =\ -\/m\_dec;}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p\_int\ =\ f.pressure\ /\ 1000;}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p\_dec\ =\ f.pressure\ \%\ 1000;}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ offset\ +=\ snprintf(output\ +\ offset,\ \textcolor{keyword}{sizeof}(output)\ -\/\ offset,}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\{\(\backslash\)"{}id\(\backslash\)"{}:\%d,\(\backslash\)"{}cmd\(\backslash\)"{}:\(\backslash\)"{}GET\_FILAMENT\_INFO\(\backslash\)"{},\(\backslash\)"{}ok\(\backslash\)"{}:true,\(\backslash\)"{}info\(\backslash\)"{}:\{\(\backslash\)"{}lane\(\backslash\)"{}:\%d,\(\backslash\)"{}id\_str\(\backslash\)"{}:\(\backslash\)"{}\%s\(\backslash\)"{},\(\backslash\)"{}name\(\backslash\)"{}:\(\backslash\)"{}\%s\(\backslash\)"{},\(\backslash\)"{}temp\_min\(\backslash\)"{}:\%d,\(\backslash\)"{}temp\_max\(\backslash\)"{}:\%d,\(\backslash\)"{}meters\(\backslash\)"{}:\%d.\%02d,\(\backslash\)"{}pressure\(\backslash\)"{}:\%d.\%03d,\(\backslash\)"{}color\(\backslash\)"{}:[\%d,\%d,\%d,\%d]\}\}\(\backslash\)r\(\backslash\)n"{}},}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id},\ lane,\ safe\_id,\ safe\_name,\ f.temperature\_min,\ f.temperature\_max,\ m\_int,\ m\_dec,\ p\_int,\ p\_dec,\ r,g,b,a\ }
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_ad3ec7cad074d6d73508844a06a7bea50}{Hardware::UART\_Send}}((\textcolor{keyword}{const}\ uint8\_t*)output,\ offset);}
+\DoxyCodeLine{00339\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_unit_state_8h_source_l00017}{Filament\+Info\+::color\+\_\+A}}, \mbox{\hyperlink{_unit_state_8h_source_l00016}{Filament\+Info\+::color\+\_\+B}}, \mbox{\hyperlink{_unit_state_8h_source_l00015}{Filament\+Info\+::color\+\_\+G}}, \mbox{\hyperlink{_unit_state_8h_source_l00014}{Filament\+Info\+::color\+\_\+R}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00062}{Unit\+State\+::\+Get\+Filament()}}, \mbox{\hyperlink{_unit_state_8h_source_l00013}{Filament\+Info\+::\+ID}}, \mbox{\hyperlink{_unit_state_8h_source_l00047}{Filament\+State\+::meters}}, \mbox{\hyperlink{_unit_state_8h_source_l00020}{Filament\+Info\+::name}}, \mbox{\hyperlink{_unit_state_8h_source_l00051}{Filament\+State\+::pressure}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00056}{Send\+Error()}}, \mbox{\hyperlink{_unit_state_8h_source_l00019}{Filament\+Info\+::temperature\+\_\+max}}, \mbox{\hyperlink{_unit_state_8h_source_l00018}{Filament\+Info\+::temperature\+\_\+min}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00261}{Hardware\+::\+UART\+\_\+\+Send()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_afeb304003d4b85010afd5e183e1bbf16_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_afeb304003d4b85010afd5e183e1bbf16_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_ae13dcd8cc2528c12d0a241046fcc304e}\index{KlipperCLI@{KlipperCLI}!HandleGetSensors@{HandleGetSensors}}
+\index{HandleGetSensors@{HandleGetSensors}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{HandleGetSensors()}{HandleGetSensors()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_ae13dcd8cc2528c12d0a241046fcc304e} 
+void Klipper\+CLI\+::\+Handle\+Get\+Sensors (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{Json\+Object}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Handler for GET\+\_\+\+SENSORS command. 
+
+Returns a simple list of booleans indicating filament presence. 
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00185}{185}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}.clear();}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}id"{}}]\ =\ id;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}cmd"{}}]\ =\ \textcolor{stringliteral}{"{}GET\_SENSORS"{}};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ uint16\_t\ state\ =\ \mbox{\hyperlink{namespace_control_logic_a4428a845041ff986ccbf2555a62d0656}{ControlLogic::GetSensorState}}();}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ JsonArray\ lanes\ =\ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}lane"{}}].to<JsonArray>();}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<4;\ i++)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ lanes.add((state\ \&\ (1<<i))\ ?\ 1\ :\ 0);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a9ec392d53485800126189969c2c4981a}{SendResponse}}(\mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}});}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00024}{doc}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00662}{Control\+Logic\+::\+Get\+Sensor\+State()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00035}{Send\+Response()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_ae13dcd8cc2528c12d0a241046fcc304e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_ae13dcd8cc2528c12d0a241046fcc304e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a12cef4b97fbfa7cfb7bdb1540e626ae9}\index{KlipperCLI@{KlipperCLI}!HandleMove@{HandleMove}}
+\index{HandleMove@{HandleMove}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{HandleMove()}{HandleMove()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a12cef4b97fbfa7cfb7bdb1540e626ae9} 
+void Klipper\+CLI\+::\+Handle\+Move (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{Json\+Object}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Handler for MOVE command. 
+
+Initiates a velocity-\/controlled movement on a specific axis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & "{}\+FEED"{}, "{}\+SELECTOR"{}, or "{}0"{}-\/"{}3"{}. \\
+\hline
+{\em dist\+\_\+mm} & Distance to move (always positive). \\
+\hline
+{\em speed} & Velocity in mm/s (mapped to motor units). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00208}{208}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Args\ extracted\ before\ clearing\ doc}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ BUT\ wait,\ 'args'\ is\ a\ reference\ to\ 'doc'\ internals\ (if\ passed\ from\ ProcessPacket).}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ clear\ 'doc'\ inside\ HandleMove,\ 'args'\ becomes\ invalid!}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CRITICAL\ BUG:\ accessing\ 'args'\ after\ doc.clear()\ would\ crash.}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ MUST\ extract\ args\ BEFORE\ clearing\ doc.}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ However,\ we\ need\ to\ send\ OK/Error.}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Option\ 1:\ Copy\ args.}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Option\ 2:\ Use\ a\ SECOND\ static\ doc\ for\ Response?}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Or\ Option\ 3:\ Use\ 'SendOk/SendError'\ which\ clears\ doc,\ AFTER\ using\ args.}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!args[\textcolor{stringliteral}{"{}axis"{}}].is<const\ char*>()\ ||\ !args[\textcolor{stringliteral}{"{}dist\_mm"{}}].is<float>()\ ||\ !args[\textcolor{stringliteral}{"{}speed"{}}].is<float>())\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}{SendError}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}BAD\_ARGS"{}},\ \textcolor{stringliteral}{"{}Missing\ axis,\ dist,\ or\ speed"{}});\ \textcolor{comment}{//\ Clears\ doc}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ values\ to\ stack\ variables}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ axis[16];\ strncpy(axis,\ args[\textcolor{stringliteral}{"{}axis"{}}],\ 15);\ axis[15]=0;}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\ =\ args[\textcolor{stringliteral}{"{}dist\_mm"{}}];}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ args[\textcolor{stringliteral}{"{}speed"{}}];}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ safe\ to\ use\ logic\ that\ might\ call\ SendOk/SendError\ (clearing\ doc)}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ motor\_idx\ =\ -\/1;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(strcmp(axis,\ \textcolor{stringliteral}{"{}FEED"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ motor\_idx\ =\ \mbox{\hyperlink{class_unit_state_a4833e917e0069069c7f455a24e28a516}{UnitState::GetCurrentFilamentIndex}}();}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(strcmp(axis,\ \textcolor{stringliteral}{"{}SELECTOR"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strncmp(axis,\ \textcolor{stringliteral}{"{}SPOOL"{}},\ 5)\ ==\ 0)\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (isdigit(axis[0]))\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ motor\_idx\ =\ atoi(axis);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (motor\_idx\ >=\ 0\ \&\&\ motor\_idx\ <\ 4)\ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_a484eadc314267f8bc9aa0f025c1137d9}{ControlLogic::MoveAxis}}(motor\_idx,\ dist,\ speed);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a1d7d7986d99cb52ab4feb4826ffc4428}{SendOk}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}MOVING"{}},\ \textcolor{stringliteral}{"{}Motion\ started"{}});}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}{SendError}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}BAD\_AXIS"{}},\ \textcolor{stringliteral}{"{}Invalid\ or\ unknown\ axis"{}});}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00072}{Unit\+State\+::\+Get\+Current\+Filament\+Index()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00616}{Control\+Logic\+::\+Move\+Axis()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00056}{Send\+Error()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00073}{Send\+Ok()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a12cef4b97fbfa7cfb7bdb1540e626ae9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a12cef4b97fbfa7cfb7bdb1540e626ae9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a81f1646e6adb42482d4109a33b9bb9c5}\index{KlipperCLI@{KlipperCLI}!HandlePing@{HandlePing}}
+\index{HandlePing@{HandlePing}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{HandlePing()}{HandlePing()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a81f1646e6adb42482d4109a33b9bb9c5} 
+void Klipper\+CLI\+::\+Handle\+Ping (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{Json\+Object}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Handler for PING command. 
+
+Returns telemetry (version, uptime). 
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}.clear();}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}id"{}}]\ =\ id;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}cmd"{}}]\ =\ \textcolor{stringliteral}{"{}PING"{}};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}result"{}}]\ =\ \textcolor{stringliteral}{"{}ok"{}};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ JsonObject\ t\ =\ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}telemetry"{}}].to<JsonObject>();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ t[\textcolor{stringliteral}{"{}version"{}}]\ =\ \mbox{\hyperlink{class_unit_state_a745286b33e7a2805f9045e22fc0a49ac}{UnitState::GetVersion}}();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ t[\textcolor{stringliteral}{"{}uptime"{}}]\ =\ \mbox{\hyperlink{namespace_hardware_a8ea28b07408691bc126683a81aa220f3}{Hardware::GetTime}}();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a9ec392d53485800126189969c2c4981a}{SendResponse}}(\mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}});}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00024}{doc}}, \mbox{\hyperlink{_hardware_8cpp_source_l00115}{Hardware\+::\+Get\+Time()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00125}{Unit\+State\+::\+Get\+Version()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00035}{Send\+Response()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a81f1646e6adb42482d4109a33b9bb9c5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a81f1646e6adb42482d4109a33b9bb9c5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a685b6d688593b458b5edafda4adfd4d4}\index{KlipperCLI@{KlipperCLI}!HandleSelectLane@{HandleSelectLane}}
+\index{HandleSelectLane@{HandleSelectLane}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{HandleSelectLane()}{HandleSelectLane()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a685b6d688593b458b5edafda4adfd4d4} 
+void Klipper\+CLI\+::\+Handle\+Select\+Lane (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{Json\+Object}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Handler for SELECT\+\_\+\+LANE command. 
+
+Sets the active lane index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lane} & Lane index (0-\/3). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00268}{268}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!args[\textcolor{stringliteral}{"{}lane"{}}].is<int>())\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}{SendError}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}BAD\_ARGS"{}},\ \textcolor{stringliteral}{"{}Missing\ lane"{}});}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ lane\ =\ args[\textcolor{stringliteral}{"{}lane"{}}];}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(lane\ <\ 0\ ||\ lane\ >=\ 4)\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}{SendError}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}BAD\_LANE"{}},\ \textcolor{stringliteral}{"{}Lane\ must\ be\ 0-\/3"{}});}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_unit_state_a07223951eecac60709753ce07290477d}{UnitState::SetCurrentFilamentIndex}}(lane);}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a1d7d7986d99cb52ab4feb4826ffc4428}{SendOk}}(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00280\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00056}{Send\+Error()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00073}{Send\+Ok()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00081}{Unit\+State\+::\+Set\+Current\+Filament\+Index()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a685b6d688593b458b5edafda4adfd4d4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a685b6d688593b458b5edafda4adfd4d4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a31ef4dae129916b85fdd8d1612553c77}\index{KlipperCLI@{KlipperCLI}!HandleSetAutoFeed@{HandleSetAutoFeed}}
+\index{HandleSetAutoFeed@{HandleSetAutoFeed}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{HandleSetAutoFeed()}{HandleSetAutoFeed()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a31ef4dae129916b85fdd8d1612553c77} 
+void Klipper\+CLI\+::\+Handle\+Set\+Auto\+Feed (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{Json\+Object}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Handler for SET\+\_\+\+AUTO\+\_\+\+FEED command. 
+
+Enables automatic pressure control (feeding/holding) for a lane. 
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00288}{288}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!args[\textcolor{stringliteral}{"{}lane"{}}].is<int>()\ ||\ !args[\textcolor{stringliteral}{"{}enable"{}}].is<bool>())\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}{SendError}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}BAD\_ARGS"{}},\ \textcolor{stringliteral}{"{}Missing\ lane\ or\ enable"{}});}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ lane\ =\ args[\textcolor{stringliteral}{"{}lane"{}}];}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ enable\ =\ args[\textcolor{stringliteral}{"{}enable"{}}];}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_a9db355302a1c9d608e6dd5341151336e}{ControlLogic::SetAutoFeed}}(lane,\ enable);}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a1d7d7986d99cb52ab4feb4826ffc4428}{SendOk}}(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00297\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00056}{Send\+Error()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00073}{Send\+Ok()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00643}{Control\+Logic\+::\+Set\+Auto\+Feed()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a31ef4dae129916b85fdd8d1612553c77_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a31ef4dae129916b85fdd8d1612553c77_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a76547f35e246989843f1870c760ea514}\index{KlipperCLI@{KlipperCLI}!HandleSetFilamentInfo@{HandleSetFilamentInfo}}
+\index{HandleSetFilamentInfo@{HandleSetFilamentInfo}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{HandleSetFilamentInfo()}{HandleSetFilamentInfo()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a76547f35e246989843f1870c760ea514} 
+void Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{Json\+Object}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Handler for SET\+\_\+\+FILAMENT\+\_\+\+INFO command. 
+
+Updates metadata for a specific lane. Supports partial updates. 
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{347}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Need\ to\ extract\ ALL\ args\ to\ stack/struct\ before\ clearing\ doc}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ tricky\ for\ complex\ objects\ like\ Color\ array.}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Actually,\ do\ we\ assume\ ProcessPacket\ uses\ the\ SAME\ 'doc'?}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ YES.\ ProcessPacket\ uses\ 'doc'.\ 'args'\ points\ to\ inside\ 'doc'.}}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ we\ MUST\ NOT\ clear\ 'doc'\ until\ we\ are\ done\ reading\ 'args'.}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solution:\ Create\ a\ temporary\ FilamentInfo\ struct\ on\ stack}}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!args[\textcolor{stringliteral}{"{}lane"{}}].is<int>())\ \{\ \mbox{\hyperlink{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}{SendError}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}BAD\_ARGS"{}},\ \textcolor{stringliteral}{"{}Missing\ lane"{}});\ \textcolor{keywordflow}{return};\ \}}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ lane\ =\ args[\textcolor{stringliteral}{"{}lane"{}}];}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...\ (Logic\ to\ read\ args\ into\ stack\ vars)}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_info}{FilamentInfo}}\ info;}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_state}{FilamentState}}\ \&current\ =\ \mbox{\hyperlink{class_unit_state_a221a5d98d4e870c593e5bd5ee6621c4c}{UnitState::GetFilament}}(lane);}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ memcpy(info.\mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}},\ current.\mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}},\ \textcolor{keyword}{sizeof}(info.\mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}}));}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ memcpy(info.\mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}},\ current.\mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}},\ \textcolor{keyword}{sizeof}(info.\mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}}));}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}{color\_R}}\ =\ current.\mbox{\hyperlink{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}{color\_R}};}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}{color\_G}}\ =\ current.\mbox{\hyperlink{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}{color\_G}};}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}{color\_B}}\ =\ current.\mbox{\hyperlink{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}{color\_B}};}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}{color\_A}}\ =\ current.\mbox{\hyperlink{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}{color\_A}};}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{struct_filament_info_a5868192ee8a9087a32bc1b242024aa72}{temperature\_min}}\ =\ current.\mbox{\hyperlink{struct_filament_info_a5868192ee8a9087a32bc1b242024aa72}{temperature\_min}};}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{struct_filament_info_a45dff2f7e9e7b3794d9ff6469f50113f}{temperature\_max}}\ =\ current.\mbox{\hyperlink{struct_filament_info_a45dff2f7e9e7b3794d9ff6469f50113f}{temperature\_max}};}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(args[\textcolor{stringliteral}{"{}id\_str"{}}].is<const\ char*>())\ info.\mbox{\hyperlink{struct_filament_info_ac821cbe379c5f19ac753f91adef53851}{SetID}}(args[\textcolor{stringliteral}{"{}id\_str"{}}]);}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(args[\textcolor{stringliteral}{"{}name"{}}].is<const\ char*>())\ info.\mbox{\hyperlink{struct_filament_info_a6bb1d50ec33de9366132999b3a84ff3c}{SetName}}(args[\textcolor{stringliteral}{"{}name"{}}]);}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(args[\textcolor{stringliteral}{"{}temp\_min"{}}].is<int>())\ info.\mbox{\hyperlink{struct_filament_info_a5868192ee8a9087a32bc1b242024aa72}{temperature\_min}}\ =\ args[\textcolor{stringliteral}{"{}temp\_min"{}}];}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(args[\textcolor{stringliteral}{"{}temp\_max"{}}].is<int>())\ info.\mbox{\hyperlink{struct_filament_info_a45dff2f7e9e7b3794d9ff6469f50113f}{temperature\_max}}\ =\ args[\textcolor{stringliteral}{"{}temp\_max"{}}];}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(args[\textcolor{stringliteral}{"{}color"{}}].is<JsonArray>())\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ JsonArray\ c\ =\ args[\textcolor{stringliteral}{"{}color"{}}];}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(c.size()\ >=\ 3)\ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}{color\_R}}\ =\ c[0];\ info.\mbox{\hyperlink{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}{color\_G}}\ =\ c[1];\ info.\mbox{\hyperlink{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}{color\_B}}\ =\ c[2];}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(c.size()\ >\ 3)\ info.\mbox{\hyperlink{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}{color\_A}}\ =\ c[3];\ \textcolor{keywordflow}{else}\ info.\mbox{\hyperlink{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}{color\_A}}\ =\ 255;}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ meters\ =\ -\/1.0f;}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(args[\textcolor{stringliteral}{"{}meters"{}}].is<float>())\ meters\ =\ args[\textcolor{stringliteral}{"{}meters"{}}];}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ we\ are\ done\ with\ args.}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_a3aed4ef4cb26632467a000c0130b11b4}{ControlLogic::SetFilamentInfoAction}}(lane,\ info,\ meters);}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a1d7d7986d99cb52ab4feb4826ffc4428}{SendOk}}(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00390\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_unit_state_8h_source_l00017}{Filament\+Info\+::color\+\_\+A}}, \mbox{\hyperlink{_unit_state_8h_source_l00016}{Filament\+Info\+::color\+\_\+B}}, \mbox{\hyperlink{_unit_state_8h_source_l00015}{Filament\+Info\+::color\+\_\+G}}, \mbox{\hyperlink{_unit_state_8h_source_l00014}{Filament\+Info\+::color\+\_\+R}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00062}{Unit\+State\+::\+Get\+Filament()}}, \mbox{\hyperlink{_unit_state_8h_source_l00013}{Filament\+Info\+::\+ID}}, \mbox{\hyperlink{_unit_state_8h_source_l00020}{Filament\+Info\+::name}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00056}{Send\+Error()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00073}{Send\+Ok()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01401}{Control\+Logic\+::\+Set\+Filament\+Info\+Action()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00136}{Filament\+Info\+::\+Set\+ID()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00148}{Filament\+Info\+::\+Set\+Name()}}, \mbox{\hyperlink{_unit_state_8h_source_l00019}{Filament\+Info\+::temperature\+\_\+max}}, and \mbox{\hyperlink{_unit_state_8h_source_l00018}{Filament\+Info\+::temperature\+\_\+min}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a76547f35e246989843f1870c760ea514_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a76547f35e246989843f1870c760ea514_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a8f239072c1896e64e9f6075edaaea515}\index{KlipperCLI@{KlipperCLI}!HandleStatus@{HandleStatus}}
+\index{HandleStatus@{HandleStatus}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{HandleStatus()}{HandleStatus()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a8f239072c1896e64e9f6075edaaea515} 
+void Klipper\+CLI\+::\+Handle\+Status (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{Json\+Object}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Handler for STATUS command. 
+
+Returns a comprehensive state of all 4 lanes, including motion state, filament sensors, odometer meters, pressure, and filament metadata. Uses manual string construction to avoid heap memory issues with large JSON. 
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{111}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Manual\ JSON\ construction\ to\ avoid\ Heap\ Fragmentation/Overflow}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2048\ bytes\ static\ buffer\ for\ full\ status}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ output[2048];\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ offset\ =\ 0;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Header}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ offset\ +=\ snprintf(output\ +\ offset,\ \textcolor{keyword}{sizeof}(output)\ -\/\ offset,\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\{\(\backslash\)"{}id\(\backslash\)"{}:\%d,\(\backslash\)"{}cmd\(\backslash\)"{}:\(\backslash\)"{}STATUS\(\backslash\)"{},\(\backslash\)"{}ok\(\backslash\)"{}:true,\(\backslash\)"{}lanes\(\backslash\)"{}:["{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ uint16\_t\ sensors\ =\ \mbox{\hyperlink{namespace_control_logic_a4428a845041ff986ccbf2555a62d0656}{ControlLogic::GetSensorState}}();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<4;\ i++)\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Separator}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ >\ 0)\ offset\ +=\ snprintf(output\ +\ offset,\ \textcolor{keyword}{sizeof}(output)\ -\/\ offset,\ \textcolor{stringliteral}{"{},"{}});}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ m\_val\ =\ \mbox{\hyperlink{namespace_control_logic_a77da31cf0baa8e886a438b2a9e73a573}{ControlLogic::GetLaneMotion}}(i);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ m\_str\ =\ \textcolor{stringliteral}{"{}Idle"{}};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(m\_val)\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ m\_str\ =\ \textcolor{stringliteral}{"{}Idle"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ m\_str\ =\ \textcolor{stringliteral}{"{}Feed"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ m\_str\ =\ \textcolor{stringliteral}{"{}Retract"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ m\_str\ =\ \textcolor{stringliteral}{"{}SlowFeed"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ m\_str\ =\ \textcolor{stringliteral}{"{}AutoFeed"{}};\ \textcolor{keywordflow}{break};\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ m\_str\ =\ \textcolor{stringliteral}{"{}VelCtrl"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ m\_str\ =\ \textcolor{stringliteral}{"{}Idle"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_state}{FilamentState}}\ \&f\ =\ \mbox{\hyperlink{class_unit_state_a221a5d98d4e870c593e5bd5ee6621c4c}{UnitState::GetFilament}}(i);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safe\ Strings\ (Null-\/terminated)}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ safe\_id[9];\ memcpy(safe\_id,\ f.\mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}},\ 8);\ safe\_id[8]=0;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ safe\_name[21];\ memcpy(safe\_name,\ f.\mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}},\ 20);\ safe\_name[20]=0;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Manual\ Float\ formatting\ (printf\ \%f\ not\ supported)}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ m\_int\ =\ (int)f.\mbox{\hyperlink{struct_filament_state_aabba44628ec691809d7b13b94b8a507e}{meters}};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ m\_dec\ =\ (int)((f.meters\ -\/\ m\_int)\ *\ 100);\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_dec\ <\ 0)\ m\_dec\ =\ -\/m\_dec;\ \textcolor{comment}{//\ Handle\ negative\ decimal\ part\ if\ any}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p\_int\ =\ f.pressure\ /\ 1000;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ p\_dec\ =\ f.pressure\ \%\ 1000;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ offset\ +=\ snprintf(output\ +\ offset,\ \textcolor{keyword}{sizeof}(output)\ -\/\ offset,\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\{\(\backslash\)"{}id\(\backslash\)"{}:\%d,\(\backslash\)"{}present\(\backslash\)"{}:\%s,\(\backslash\)"{}motion\(\backslash\)"{}:\(\backslash\)"{}\%s\(\backslash\)"{},\(\backslash\)"{}meters\(\backslash\)"{}:\%d.\%02d,\(\backslash\)"{}pressure\(\backslash\)"{}:\%d.\%03d,\(\backslash\)"{}rfid\(\backslash\)"{}:\(\backslash\)"{}\%s\(\backslash\)"{},\(\backslash\)"{}name\(\backslash\)"{}:\(\backslash\)"{}\%s\(\backslash\)"{},\(\backslash\)"{}temp\_min\(\backslash\)"{}:\%d,\(\backslash\)"{}temp\_max\(\backslash\)"{}:\%d,\(\backslash\)"{}color\(\backslash\)"{}:[\%d,\%d,\%d,\%d]\}"{}},}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i,\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (sensors\ \&\ (1<<i))\ ?\ \textcolor{stringliteral}{"{}true"{}}\ :\ \textcolor{stringliteral}{"{}false"{}},}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_str,}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_int,\ m\_dec,}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_int,\ p\_dec,}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ safe\_id,}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ safe\_name,}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f.temperature\_min,}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f.temperature\_max,}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f.color\_R,\ f.color\_G,\ f.color\_B,\ f.color\_A}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safety\ break}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (offset\ >=\ (\textcolor{keywordtype}{int})\textcolor{keyword}{sizeof}(output)\ -\/\ 100)\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Footer}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ offset\ +=\ snprintf(output\ +\ offset,\ \textcolor{keyword}{sizeof}(output)\ -\/\ offset,\ \textcolor{stringliteral}{"{}]\}\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Send}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_ad3ec7cad074d6d73508844a06a7bea50}{Hardware::UART\_Send}}((\textcolor{keyword}{const}\ uint8\_t*)output,\ offset);}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_unit_state_8h_source_l00017}{Filament\+Info\+::color\+\_\+A}}, \mbox{\hyperlink{_unit_state_8h_source_l00016}{Filament\+Info\+::color\+\_\+B}}, \mbox{\hyperlink{_unit_state_8h_source_l00015}{Filament\+Info\+::color\+\_\+G}}, \mbox{\hyperlink{_unit_state_8h_source_l00014}{Filament\+Info\+::color\+\_\+R}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00062}{Unit\+State\+::\+Get\+Filament()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00679}{Control\+Logic\+::\+Get\+Lane\+Motion()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00662}{Control\+Logic\+::\+Get\+Sensor\+State()}}, \mbox{\hyperlink{_unit_state_8h_source_l00013}{Filament\+Info\+::\+ID}}, \mbox{\hyperlink{_unit_state_8h_source_l00047}{Filament\+State\+::meters}}, \mbox{\hyperlink{_unit_state_8h_source_l00020}{Filament\+Info\+::name}}, \mbox{\hyperlink{_unit_state_8h_source_l00051}{Filament\+State\+::pressure}}, \mbox{\hyperlink{_unit_state_8h_source_l00019}{Filament\+Info\+::temperature\+\_\+max}}, \mbox{\hyperlink{_unit_state_8h_source_l00018}{Filament\+Info\+::temperature\+\_\+min}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00261}{Hardware\+::\+UART\+\_\+\+Send()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a8f239072c1896e64e9f6075edaaea515_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a8f239072c1896e64e9f6075edaaea515_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a5bc1dda1e0b24dccb6fdc1c475930c88}\index{KlipperCLI@{KlipperCLI}!HandleStop@{HandleStop}}
+\index{HandleStop@{HandleStop}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{HandleStop()}{HandleStop()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a5bc1dda1e0b24dccb6fdc1c475930c88} 
+void Klipper\+CLI\+::\+Handle\+Stop (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{Json\+Object}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Handler for STOP command. 
+
+Cancels all motion immediately. 
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00255}{255}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_af084200798d6b89c1b448bf41b105d62}{ControlLogic::StopAll}}();}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a1d7d7986d99cb52ab4feb4826ffc4428}{SendOk}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}STOPPED"{}},\ \textcolor{stringliteral}{"{}All\ motion\ stopped"{}});}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00073}{Send\+Ok()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00629}{Control\+Logic\+::\+Stop\+All()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a5bc1dda1e0b24dccb6fdc1c475930c88_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a5bc1dda1e0b24dccb6fdc1c475930c88_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a5498861593ca8083d7be1d71c8373f29}\index{KlipperCLI@{KlipperCLI}!Init@{Init}}
+\index{Init@{Init}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a5498861593ca8083d7be1d71c8373f29} 
+void Klipper\+CLI\+::\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize Klipper CLI. 
+
+Sends a startup message. 
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00439}{439}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_ad3ec7cad074d6d73508844a06a7bea50}{Hardware::UART\_Send}}((\textcolor{keyword}{const}\ uint8\_t*)\textcolor{stringliteral}{"{}\{\(\backslash\)"{}event\(\backslash\)"{}:\(\backslash\)"{}STARTUP\(\backslash\)"{},\(\backslash\)"{}msg\(\backslash\)"{}:\(\backslash\)"{}KlipperCLI\ Ready\(\backslash\)"{}\}\(\backslash\)r\(\backslash\)n"{}},\ 52);}
+\DoxyCodeLine{00441\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00261}{Hardware\+::\+UART\+\_\+\+Send()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00076}{Command\+Router\+::\+Init()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a5498861593ca8083d7be1d71c8373f29_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a5498861593ca8083d7be1d71c8373f29_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a64e906ee320307e1634a6bad079e2657}\index{KlipperCLI@{KlipperCLI}!IsConnected@{IsConnected}}
+\index{IsConnected@{IsConnected}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{IsConnected()}{IsConnected()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a64e906ee320307e1634a6bad079e2657} 
+bool Klipper\+CLI\+::\+Is\+Connected (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespace_klipper_c_l_i_a6089e6db2e7edddf19fdf095b9826c88}\index{KlipperCLI@{KlipperCLI}!ProcessPacket@{ProcessPacket}}
+\index{ProcessPacket@{ProcessPacket}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{ProcessPacket()}{ProcessPacket()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a6089e6db2e7edddf19fdf095b9826c88} 
+void Klipper\+CLI\+::\+Process\+Packet (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{json\+\_\+str}{}\end{DoxyParamCaption})}
+
+
+
+Parse and Dispatch a JSON Packet. 
+
+Deserializes the buffer and routes to the appropriate handler based on "{}cmd"{}. 
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{400}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}.clear();}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ DeserializationError\ error\ =\ deserializeJson(\mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}},\ json\_str);}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error)\ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Malformed\ JSON,\ maybe\ echo\ back\ error\ if\ possible,\ or\ ignore}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ err\_msg\ =\ \textcolor{stringliteral}{"{}\{\(\backslash\)"{}ok\(\backslash\)"{}:false,\(\backslash\)"{}msg\(\backslash\)"{}:\(\backslash\)"{}JSON\ Parse\ Error\(\backslash\)"{}\}\(\backslash\)n"{}};}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_ad3ec7cad074d6d73508844a06a7bea50}{Hardware::UART\_Send}}((\textcolor{keyword}{const}\ uint8\_t*)err\_msg,\ strlen(err\_msg));}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}id"{}}]\ |\ 0;}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ cmd\ =\ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}cmd"{}}];}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ JsonObject\ args\ =\ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}args"{}}];}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!cmd)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(cmd,\ \textcolor{stringliteral}{"{}PING"{}})\ ==\ 0)\ \mbox{\hyperlink{namespace_klipper_c_l_i_a81f1646e6adb42482d4109a33b9bb9c5}{HandlePing}}(\textcolor{keywordtype}{id},\ args);}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(cmd,\ \textcolor{stringliteral}{"{}STATUS"{}})\ ==\ 0)\ \mbox{\hyperlink{namespace_klipper_c_l_i_a8f239072c1896e64e9f6075edaaea515}{HandleStatus}}(\textcolor{keywordtype}{id},\ args);}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(cmd,\ \textcolor{stringliteral}{"{}GET\_SENSORS"{}})\ ==\ 0)\ \mbox{\hyperlink{namespace_klipper_c_l_i_ae13dcd8cc2528c12d0a241046fcc304e}{HandleGetSensors}}(\textcolor{keywordtype}{id},\ args);}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(cmd,\ \textcolor{stringliteral}{"{}MOVE"{}})\ ==\ 0)\ \mbox{\hyperlink{namespace_klipper_c_l_i_a12cef4b97fbfa7cfb7bdb1540e626ae9}{HandleMove}}(\textcolor{keywordtype}{id},\ args);}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(cmd,\ \textcolor{stringliteral}{"{}STOP"{}})\ ==\ 0)\ \mbox{\hyperlink{namespace_klipper_c_l_i_a5bc1dda1e0b24dccb6fdc1c475930c88}{HandleStop}}(\textcolor{keywordtype}{id},\ args);}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(cmd,\ \textcolor{stringliteral}{"{}SELECT\_LANE"{}})\ ==\ 0)\ \mbox{\hyperlink{namespace_klipper_c_l_i_a685b6d688593b458b5edafda4adfd4d4}{HandleSelectLane}}(\textcolor{keywordtype}{id},\ args);}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(cmd,\ \textcolor{stringliteral}{"{}SET\_AUTO\_FEED"{}})\ ==\ 0)\ \mbox{\hyperlink{namespace_klipper_c_l_i_a31ef4dae129916b85fdd8d1612553c77}{HandleSetAutoFeed}}(\textcolor{keywordtype}{id},\ args);}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(cmd,\ \textcolor{stringliteral}{"{}GET\_FILAMENT\_INFO"{}})\ ==\ 0)\ \mbox{\hyperlink{namespace_klipper_c_l_i_afeb304003d4b85010afd5e183e1bbf16}{HandleGetFilamentInfo}}(\textcolor{keywordtype}{id},\ args);}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(cmd,\ \textcolor{stringliteral}{"{}SET\_FILAMENT\_INFO"{}})\ ==\ 0)\ \mbox{\hyperlink{namespace_klipper_c_l_i_a76547f35e246989843f1870c760ea514}{HandleSetFilamentInfo}}(\textcolor{keywordtype}{id},\ args);}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}{SendError}}(\textcolor{keywordtype}{id},\ \textcolor{stringliteral}{"{}UNKNOWN\_CMD"{}},\ cmd);}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00429\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00024}{doc}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00185}{Handle\+Get\+Sensors()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00208}{Handle\+Move()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00090}{Handle\+Ping()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00268}{Handle\+Select\+Lane()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00288}{Handle\+Set\+Auto\+Feed()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Handle\+Set\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Handle\+Status()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00255}{Handle\+Stop()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00056}{Send\+Error()}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00261}{Hardware\+::\+UART\+\_\+\+Send()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00449}{Run()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a6089e6db2e7edddf19fdf095b9826c88_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a6089e6db2e7edddf19fdf095b9826c88_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_afe96c8a3898aa7a50f68ab6d726860c3}\index{KlipperCLI@{KlipperCLI}!Run@{Run}}
+\index{Run@{Run}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{Run()}{Run()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_afe96c8a3898aa7a50f68ab6d726860c3} 
+void Klipper\+CLI\+::\+Run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Main Execution Loop. 
+
+Checks if a full line is received, processes it, and resets the buffer. 
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00449}{449}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_klipper_c_l_i_ad3e5a754ec9f201484a7aacea2f41961}{packet\_ready}})\ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a6089e6db2e7edddf19fdf095b9826c88}{ProcessPacket}}(\mbox{\hyperlink{namespace_klipper_c_l_i_a5340c0df3b2af2c3a791cc11f143bbf2}{rx\_buffer}});}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ buffer}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a932aad58ea2cbdf8a45a6835825b21a2}{rx\_idx}}\ =\ 0;}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_ad3e5a754ec9f201484a7aacea2f41961}{packet\_ready}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00456\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00431}{packet\+\_\+ready}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00019}{rx\+\_\+buffer}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00020}{rx\+\_\+idx}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00180}{Command\+Router\+::\+Run()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_afe96c8a3898aa7a50f68ab6d726860c3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_afe96c8a3898aa7a50f68ab6d726860c3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c}\index{KlipperCLI@{KlipperCLI}!SendError@{SendError}}
+\index{SendError@{SendError}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{SendError()}{SendError()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c} 
+void Klipper\+CLI\+::\+Send\+Error (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{code}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Helper to send an Error response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Request ID. \\
+\hline
+{\em code} & Error Code String. \\
+\hline
+{\em msg} & Descriptive Message. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}.clear();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}id"{}}]\ =\ id;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}ok"{}}]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}code"{}}]\ =\ code;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}msg"{}}]\ =\ msg;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a9ec392d53485800126189969c2c4981a}{SendResponse}}(\mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}});}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00024}{doc}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00035}{Send\+Response()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00208}{Handle\+Move()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00268}{Handle\+Select\+Lane()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00288}{Handle\+Set\+Auto\+Feed()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Handle\+Set\+Filament\+Info()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_ad0e99d2fdcfd1c0690f850816ac1f67c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a1d7d7986d99cb52ab4feb4826ffc4428}\index{KlipperCLI@{KlipperCLI}!SendOk@{SendOk}}
+\index{SendOk@{SendOk}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{SendOk()}{SendOk()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a1d7d7986d99cb52ab4feb4826ffc4428} 
+void Klipper\+CLI\+::\+Send\+Ok (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{code}{ = {\ttfamily nullptr}, }\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Helper to send a Success (OK) response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Request ID. \\
+\hline
+{\em code} & Optional code. \\
+\hline
+{\em msg} & Optional message. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}.clear();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}id"{}}]\ =\ id;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}ok"{}}]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(code)\ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}code"{}}]\ =\ code;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(msg)\ \mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}}[\textcolor{stringliteral}{"{}msg"{}}]\ =\ msg;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_klipper_c_l_i_a9ec392d53485800126189969c2c4981a}{SendResponse}}(\mbox{\hyperlink{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}{doc}});}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00024}{doc}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00035}{Send\+Response()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00208}{Handle\+Move()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00268}{Handle\+Select\+Lane()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00288}{Handle\+Set\+Auto\+Feed()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Handle\+Set\+Filament\+Info()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00255}{Handle\+Stop()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a1d7d7986d99cb52ab4feb4826ffc4428_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a1d7d7986d99cb52ab4feb4826ffc4428_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespace_klipper_c_l_i_a9ec392d53485800126189969c2c4981a}\index{KlipperCLI@{KlipperCLI}!SendResponse@{SendResponse}}
+\index{SendResponse@{SendResponse}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{SendResponse()}{SendResponse()}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a9ec392d53485800126189969c2c4981a} 
+void Klipper\+CLI\+::\+Send\+Response (\begin{DoxyParamCaption}\item[{Json\+Document \&}]{d}{}\end{DoxyParamCaption})}
+
+
+
+Serialize and send a JSON response. 
+
+Serializes the document to a buffer, appends CR/\+LF, and sends via UART.
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & The JSON Document to serialize. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Serialize\ to\ buffer}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ output[1200];\ \textcolor{comment}{//\ Increased\ buffer\ slightly}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ serializeJson(d,\ output,\ \textcolor{keyword}{sizeof}(output)\ -\/\ 2);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Append\ Newline}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ output[len++]\ =\ \textcolor{charliteral}{'\(\backslash\)r'};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ output[len++]\ =\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Send\ via\ Hardware\ UART}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_ad3ec7cad074d6d73508844a06a7bea50}{Hardware::UART\_Send}}((\textcolor{keyword}{const}\ uint8\_t*)output,\ len);}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_hardware_8cpp_source_l00261}{Hardware\+::\+UART\+\_\+\+Send()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00185}{Handle\+Get\+Sensors()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00090}{Handle\+Ping()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00056}{Send\+Error()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00073}{Send\+Ok()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a9ec392d53485800126189969c2c4981a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_klipper_c_l_i_a9ec392d53485800126189969c2c4981a_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{namespace_klipper_c_l_i_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707}\index{KlipperCLI@{KlipperCLI}!doc@{doc}}
+\index{doc@{doc}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{doc}{doc}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_adf80752c24e066ed02f3864069ff9707} 
+Json\+Document Klipper\+CLI\+::doc\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00185}{Handle\+Get\+Sensors()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00090}{Handle\+Ping()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00400}{Process\+Packet()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00056}{Send\+Error()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00073}{Send\+Ok()}}.
+
+\Hypertarget{namespace_klipper_c_l_i_ad3e5a754ec9f201484a7aacea2f41961}\index{KlipperCLI@{KlipperCLI}!packet\_ready@{packet\_ready}}
+\index{packet\_ready@{packet\_ready}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{packet\_ready}{packet\_ready}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_ad3e5a754ec9f201484a7aacea2f41961} 
+volatile bool Klipper\+CLI\+::packet\+\_\+ready = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00431}{431}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00467}{Feed\+Byte()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00449}{Run()}}.
+
+\Hypertarget{namespace_klipper_c_l_i_a5340c0df3b2af2c3a791cc11f143bbf2}\index{KlipperCLI@{KlipperCLI}!rx\_buffer@{rx\_buffer}}
+\index{rx\_buffer@{rx\_buffer}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{rx\_buffer}{rx\_buffer}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a5340c0df3b2af2c3a791cc11f143bbf2} 
+char Klipper\+CLI\+::rx\+\_\+buffer\mbox{[}1024\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00467}{Feed\+Byte()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00449}{Run()}}.
+
+\Hypertarget{namespace_klipper_c_l_i_a932aad58ea2cbdf8a45a6835825b21a2}\index{KlipperCLI@{KlipperCLI}!rx\_idx@{rx\_idx}}
+\index{rx\_idx@{rx\_idx}!KlipperCLI@{KlipperCLI}}
+\doxysubsubsection{\texorpdfstring{rx\_idx}{rx\_idx}}
+{\footnotesize\ttfamily \label{namespace_klipper_c_l_i_a932aad58ea2cbdf8a45a6835825b21a2} 
+int Klipper\+CLI\+::rx\+\_\+idx = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{_klipper_c_l_i_8cpp_source}{Klipper\+CLI.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00467}{Feed\+Byte()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00449}{Run()}}.
+

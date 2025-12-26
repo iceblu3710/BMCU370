@@ -1,0 +1,5 @@
+<map id="ControlLogic::SaveSettings" name="ControlLogic::SaveSettings">
+<area shape="rect" id="Node000001" title="Commit settings to Flash memory." alt="" coords="5,5,186,32"/>
+<area shape="rect" id="Node000002" href="$_flash__saves_8cpp.html#ae5951341b70b0da0d768d418bfcb76ce" title="Save a buffer to Flash Memory." alt="" coords="234,5,329,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,16,221,19,215,19,186,21"/>
+</map>

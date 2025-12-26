@@ -1,0 +1,12 @@
+<map id="KlipperCLI::SendOk" name="KlipperCLI::SendOk">
+<area shape="rect" id="Node000001" title="Helper to send a Success (OK) response." alt="" coords="5,5,143,32"/>
+<area shape="rect" id="Node000002" href="$namespace_klipper_c_l_i.html#a9ec392d53485800126189969c2c4981a" title="Serialize and send a JSON response." alt="" coords="191,5,370,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,16,178,18,172,19,143,21"/>
+<area shape="rect" id="Node000003" href="$namespace_hardware.html#ad3ec7cad074d6d73508844a06a7bea50" title="Send a buffer via UART1." alt="" coords="418,5,576,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="371,16,405,19,400,19,371,21"/>
+<area shape="rect" id="Node000004" href="$namespace_hardware.html#a0ada30189b8e1d1dbec145140849b778" title="Microsecond Delay." alt="" coords="858,5,996,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="577,16,845,18,839,19,577,21"/>
+<area shape="rect" id="Node000005" href="$namespace_hardware.html#aaaf02ef3df5811e2ba28dd009eadfaae" title="Send a single byte blocking." alt="" coords="624,31,810,57"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="577,25,611,32,606,31,577,30"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="810,30,840,29,845,29,810,35"/>
+</map>

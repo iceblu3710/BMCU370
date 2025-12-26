@@ -1,0 +1,85 @@
+<map id="KlipperCLI::Run" name="KlipperCLI::Run">
+<area shape="rect" id="Node000001" title="Main Execution Loop." alt="" coords="5,517,120,544"/>
+<area shape="rect" id="Node000002" href="$namespace_klipper_c_l_i.html#a6089e6db2e7edddf19fdf095b9826c88" title="Parse and Dispatch a JSON Packet." alt="" coords="168,517,347,544"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,528,154,529,150,532,121,533"/>
+<area shape="rect" id="Node000003" href="$namespace_klipper_c_l_i.html#afeb304003d4b85010afd5e183e1bbf16" title="Handler for GET_FILAMENT_INFO command." alt="" coords="395,295,619,321"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="268,515,321,457,393,386,474,328,470,332,397,390,324,461,272,519"/>
+<area shape="rect" id="Node000005" href="$namespace_klipper_c_l_i.html#ad0e99d2fdcfd1c0690f850816ac1f67c" title="Helper to send an Error response." alt="" coords="692,459,841,485"/>
+<area shape="poly" id="edge50_Node000002_Node000005" title=" " alt="" coords="326,514,395,503,543,486,679,476,674,479,544,491,395,508,328,519"/>
+<area shape="rect" id="Node000007" href="$namespace_hardware.html#ad3ec7cad074d6d73508844a06a7bea50" title="Send a buffer via UART1." alt="" coords="1159,349,1317,376"/>
+<area shape="poly" id="edge51_Node000002_Node000007" title=" " alt="" coords="270,542,322,600,358,633,397,663,518,745,572,776,625,800,678,814,734,816,796,805,865,780,932,743,993,695,1048,640,1097,583,1139,525,1174,471,1221,392,1226,388,1179,474,1144,528,1101,586,1052,644,996,699,934,747,867,785,797,811,735,821,677,819,623,805,569,781,515,749,393,667,354,637,319,603,269,547"/>
+<area shape="rect" id="Node000010" href="$namespace_klipper_c_l_i.html#ae13dcd8cc2528c12d0a241046fcc304e" title="Handler for GET_SENSORS command." alt="" coords="407,139,607,165"/>
+<area shape="poly" id="edge11_Node000002_Node000010" title=" " alt="" coords="263,516,312,416,350,348,393,281,438,223,484,175,481,179,442,226,397,284,355,351,317,419,267,518"/>
+<area shape="rect" id="Node000012" href="$namespace_klipper_c_l_i.html#a12cef4b97fbfa7cfb7bdb1540e626ae9" title="Handler for MOVE command." alt="" coords="426,627,589,653"/>
+<area shape="poly" id="edge14_Node000002_Node000012" title=" " alt="" coords="278,542,331,575,396,608,429,621,424,622,394,613,328,580,278,547"/>
+<area shape="rect" id="Node000016" href="$namespace_klipper_c_l_i.html#a81f1646e6adb42482d4109a33b9bb9c5" title="Handler for PING command." alt="" coords="688,896,845,923"/>
+<area shape="poly" id="edge20_Node000002_Node000016" title=" " alt="" coords="260,542,268,608,287,702,304,752,327,801,358,845,397,882,430,902,467,916,505,926,545,931,622,931,688,926,693,926,622,937,544,936,504,931,465,922,428,907,393,886,354,849,323,804,299,754,282,703,262,609,258,547"/>
+<area shape="rect" id="Node000020" href="$namespace_klipper_c_l_i.html#a685b6d688593b458b5edafda4adfd4d4" title="Handler for SELECT_LANE command." alt="" coords="409,517,605,544"/>
+<area shape="poly" id="edge25_Node000002_Node000020" title=" " alt="" coords="347,528,396,529,391,532,349,533"/>
+<area shape="rect" id="Node000022" href="$namespace_klipper_c_l_i.html#a31ef4dae129916b85fdd8d1612553c77" title="Handler for SET_AUTO_FEED command." alt="" coords="404,572,611,599"/>
+<area shape="poly" id="edge29_Node000002_Node000022" title=" " alt="" coords="321,542,431,567,426,569,322,547"/>
+<area shape="rect" id="Node000024" href="$namespace_klipper_c_l_i.html#a76547f35e246989843f1870c760ea514" title="Handler for SET_FILAMENT_INFO command." alt="" coords="396,400,619,427"/>
+<area shape="poly" id="edge33_Node000002_Node000024" title=" " alt="" coords="281,515,394,455,455,431,451,434,396,460,284,519"/>
+<area shape="rect" id="Node000029" href="$namespace_klipper_c_l_i.html#a8f239072c1896e64e9f6075edaaea515" title="Handler for STATUS command." alt="" coords="422,88,592,115"/>
+<area shape="poly" id="edge42_Node000002_Node000029" title=" " alt="" coords="256,516,261,447,268,397,279,341,296,283,320,225,352,171,393,125,410,115,406,119,397,129,356,174,325,227,301,284,284,342,273,398,266,448,261,518"/>
+<area shape="rect" id="Node000031" href="$namespace_klipper_c_l_i.html#a5bc1dda1e0b24dccb6fdc1c475930c88" title="Handler for STOP command." alt="" coords="428,845,586,872"/>
+<area shape="poly" id="edge47_Node000002_Node000031" title=" " alt="" coords="262,542,275,597,299,673,317,714,338,754,365,792,397,825,417,840,411,839,393,829,361,795,334,757,312,716,294,674,270,598,260,547"/>
+<area shape="rect" id="Node000004" href="$class_unit_state.html#a221a5d98d4e870c593e5bd5ee6621c4c" title="Get the configuration specific to a filament index." alt="" coords="689,189,844,216"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="535,292,666,232,707,220,702,223,668,237,538,296"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="531,319,575,348,621,386,635,403,644,418,653,431,669,444,681,452,675,453,666,449,649,435,640,421,631,406,617,390,572,353,531,324"/>
+<area shape="poly" id="edge10_Node000003_Node000007" title=" " alt="" coords="568,292,667,276,767,269,866,276,951,289,1036,306,1178,344,1173,345,1034,311,950,294,865,281,767,275,668,281,571,296"/>
+<area shape="rect" id="Node000006" href="$namespace_klipper_c_l_i.html#a9ec392d53485800126189969c2c4981a" title="Serialize and send a JSON response." alt="" coords="923,459,1102,485"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="840,469,910,471,904,473,841,475"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1068,456,1110,440,1161,412,1204,387,1209,384,1164,417,1112,445,1070,461"/>
+<area shape="rect" id="Node000008" href="$namespace_hardware.html#a0ada30189b8e1d1dbec145140849b778" title="Microsecond Delay." alt="" coords="1599,349,1737,376"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1317,360,1585,362,1580,363,1318,365"/>
+<area shape="rect" id="Node000009" href="$namespace_hardware.html#aaaf02ef3df5811e2ba28dd009eadfaae" title="Send a single byte blocking." alt="" coords="1365,324,1551,351"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="1317,351,1352,349,1347,351,1319,356"/>
+<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="1551,346,1586,352,1581,353,1551,351"/>
+<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="607,143,682,142,758,145,823,155,849,164,867,175,892,207,902,240,902,273,896,307,890,341,888,375,895,408,916,441,925,451,919,450,912,444,890,410,882,375,884,340,891,306,896,273,897,240,888,209,864,179,847,169,822,161,757,151,682,147,609,148"/>
+<area shape="rect" id="Node000011" href="$namespace_control_logic.html#a4428a845041ff986ccbf2555a62d0656" title="Get a bitmask of sensor states." alt="" coords="669,88,864,115"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="578,136,682,117,678,120,581,140"/>
+<area shape="poly" id="edge17_Node000012_Node000005" title=" " alt="" coords="588,626,618,609,629,595,636,582,641,554,646,524,653,509,666,495,676,491,680,488,669,499,657,512,651,526,646,554,641,584,634,598,621,613,590,630"/>
+<area shape="rect" id="Node000013" href="$class_unit_state.html#a4833e917e0069069c7f455a24e28a516" title="Get the currently active filament index." alt="" coords="667,728,866,771"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="535,651,668,714,686,722,680,722,666,718,535,657"/>
+<area shape="rect" id="Node000014" href="$namespace_control_logic.html#a484eadc314267f8bc9aa0f025c1137d9" title="Manually move an axis (Klipper Primitive)." alt="" coords="686,677,847,704"/>
+<area shape="poly" id="edge16_Node000012_Node000014" title=" " alt="" coords="579,651,683,673,677,674,579,657"/>
+<area shape="rect" id="Node000015" href="$namespace_klipper_c_l_i.html#a1d7d7986d99cb52ab4feb4826ffc4428" title="Helper to send a Success (OK) response." alt="" coords="698,627,835,653"/>
+<area shape="poly" id="edge18_Node000012_Node000015" title=" " alt="" coords="589,637,685,639,679,641,590,643"/>
+<area shape="poly" id="edge19_Node000015_Node000006" title=" " alt="" coords="834,625,864,612,903,586,937,555,990,499,994,496,941,559,906,590,867,617,836,630"/>
+<area shape="poly" id="edge24_Node000016_Node000006" title=" " alt="" coords="845,894,864,882,903,839,934,789,958,735,976,680,999,577,1008,503,1011,499,1004,578,982,682,963,737,938,791,907,842,867,886,847,899"/>
+<area shape="rect" id="Node000017" href="$namespace_hardware.html#a8ea28b07408691bc126683a81aa220f3" title="Get System Time in Milliseconds." alt="" coords="1170,593,1306,620"/>
+<area shape="poly" id="edge21_Node000016_Node000017" title=" " alt="" coords="838,893,1001,857,1072,839,1110,824,1132,804,1153,781,1187,729,1211,677,1227,637,1231,634,1216,679,1191,732,1157,784,1136,808,1112,829,1073,844,1003,863,839,898"/>
+<area shape="rect" id="Node000019" href="$class_unit_state.html#a745286b33e7a2805f9045e22fc0a49ac" title=" " alt="" coords="938,896,1086,923"/>
+<area shape="poly" id="edge23_Node000016_Node000019" title=" " alt="" coords="846,907,925,909,920,909,846,912"/>
+<area shape="rect" id="Node000018" href="$time64_8cpp.html#a146d483f58902ba0184ce16f728edfb0" title="Get 64&#45;bit System Time in Milliseconds." alt="" coords="1415,593,1501,620"/>
+<area shape="poly" id="edge22_Node000017_Node000018" title=" " alt="" coords="1306,604,1402,606,1397,607,1307,609"/>
+<area shape="poly" id="edge26_Node000020_Node000005" title=" " alt="" coords="568,514,692,488,687,491,570,519"/>
+<area shape="poly" id="edge27_Node000020_Node000015" title=" " alt="" coords="585,542,621,558,637,572,646,586,654,600,669,612,686,623,681,623,666,617,650,603,641,589,633,575,618,562,585,547"/>
+<area shape="rect" id="Node000021" href="$class_unit_state.html#a07223951eecac60709753ce07290477d" title="Set the currently active filament index." alt="" coords="668,509,865,552"/>
+<area shape="poly" id="edge28_Node000020_Node000021" title=" " alt="" coords="605,528,655,530,650,531,607,533"/>
+<area shape="poly" id="edge30_Node000022_Node000005" title=" " alt="" coords="585,569,618,554,633,540,641,525,650,510,666,495,680,490,676,493,669,499,654,513,646,528,637,543,621,558,588,574"/>
+<area shape="poly" id="edge31_Node000022_Node000015" title=" " alt="" coords="574,597,688,622,682,624,574,602"/>
+<area shape="rect" id="Node000023" href="$namespace_control_logic.html#a9db355302a1c9d608e6dd5341151336e" title="Enable/Disable Auto&#45;Feed (Pressure Control) for a lane." alt="" coords="677,576,856,603"/>
+<area shape="poly" id="edge32_Node000022_Node000023" title=" " alt="" coords="611,584,664,587,659,588,612,590"/>
+<area shape="poly" id="edge34_Node000024_Node000004" title=" " alt="" coords="529,397,572,368,617,331,641,304,665,277,735,223,731,227,669,281,645,308,621,335,575,373,533,401"/>
+<area shape="poly" id="edge35_Node000024_Node000005" title=" " alt="" coords="569,425,692,454,687,456,570,430"/>
+<area shape="poly" id="edge36_Node000024_Node000015" title=" " alt="" coords="531,424,577,458,600,480,622,504,637,535,643,562,650,588,669,613,686,625,681,625,666,617,645,590,638,564,632,536,617,507,596,483,573,462,531,430"/>
+<area shape="rect" id="Node000025" href="$namespace_control_logic.html#a3aed4ef4cb26632467a000c0130b11b4" title="Action helper to update filament metadata." alt="" coords="680,392,853,435"/>
+<area shape="poly" id="edge37_Node000024_Node000025" title=" " alt="" coords="618,411,667,412,662,414,620,416"/>
+<area shape="rect" id="Node000027" href="$struct_filament_info.html#ac821cbe379c5f19ac753f91adef53851" title="Set the RFID/ID of the filament." alt="" coords="699,341,834,368"/>
+<area shape="poly" id="edge40_Node000024_Node000027" title=" " alt="" coords="568,397,692,371,687,373,570,402"/>
+<area shape="rect" id="Node000028" href="$struct_filament_info.html#a6bb1d50ec33de9366132999b3a84ff3c" title="Set the Name of the filament." alt="" coords="688,291,845,317"/>
+<area shape="poly" id="edge41_Node000024_Node000028" title=" " alt="" coords="529,397,590,363,666,327,690,321,686,324,668,332,593,367,532,402"/>
+<area shape="rect" id="Node000026" href="$namespace_control_logic.html#afe90d7f284c20f90f74787274f01c51b" title="Flag that settings need to be saved." alt="" coords="914,404,1111,431"/>
+<area shape="poly" id="edge38_Node000025_Node000026" title=" " alt="" coords="853,412,901,415,896,416,854,417"/>
+<area shape="poly" id="edge39_Node000026_Node000017" title=" " alt="" coords="1080,428,1112,444,1149,475,1181,511,1225,580,1220,579,1176,515,1145,479,1110,449,1079,434"/>
+<area shape="poly" id="edge43_Node000029_Node000004" title=" " alt="" coords="581,113,620,124,680,151,732,180,727,181,677,155,618,129,582,118"/>
+<area shape="poly" id="edge46_Node000029_Node000007" title=" " alt="" coords="528,86,588,52,627,35,667,23,723,10,768,3,813,7,867,23,928,52,986,90,1040,133,1089,178,1170,267,1222,337,1217,336,1165,271,1086,182,1037,137,983,94,926,57,865,28,812,12,768,9,724,15,668,28,629,40,591,56,531,89"/>
+<area shape="poly" id="edge45_Node000029_Node000011" title=" " alt="" coords="591,99,656,100,651,103,593,104"/>
+<area shape="rect" id="Node000030" href="$namespace_control_logic.html#a77da31cf0baa8e886a438b2a9e73a573" title="Get the current motion state of a lane." alt="" coords="671,37,862,64"/>
+<area shape="poly" id="edge44_Node000029_Node000030" title=" " alt="" coords="578,85,682,66,678,69,581,90"/>
+<area shape="poly" id="edge48_Node000031_Node000015" title=" " alt="" coords="514,843,535,807,568,758,613,707,638,683,666,663,681,658,686,656,669,668,642,687,616,711,573,761,539,810,517,847"/>
+<area shape="rect" id="Node000032" href="$namespace_control_logic.html#af084200798d6b89c1b448bf41b105d62" title="Stop all motors." alt="" coords="694,845,839,872"/>
+<area shape="poly" id="edge49_Node000031_Node000032" title=" " alt="" coords="587,856,681,858,676,859,587,861"/>
+</map>

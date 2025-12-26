@@ -1,0 +1,18 @@
+<map id="ControlLogic::UpdateConnectivity" name="ControlLogic::UpdateConnectivity">
+<area shape="rect" id="Node000001" title="Update connectivity status (Online/Offline)." alt="" coords="950,93,1167,120"/>
+<area shape="rect" id="Node000002" href="$namespace_control_logic.html#a0c4206af909c8128bc68eb6a1bcfa16e" title="Handler for Heartbeat (0x20)." alt="" coords="695,5,902,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1011,87,901,47,862,35,862,30,903,41,1016,87"/>
+<area shape="rect" id="Node000003" href="$namespace_control_logic.html#a412a7a597ff3c04c0ea1480094600ef4" title="Handler for Online Detect (0x05)." alt="" coords="705,56,892,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="932,93,892,91,892,85,937,93"/>
+<area shape="rect" id="Node000004" href="$namespace_command_router.html#a329f0a7e2f53debf5c7cb5f47579151b" title="Route an incoming command to its specific handler." alt="" coords="717,123,880,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="937,120,881,129,880,124,932,121"/>
+<area shape="rect" id="Node000005" href="$namespace_command_router.html#a96ff3718682e9322a64815a3d41d001b" title="Main execution loop for the Router." alt="" coords="494,148,647,175"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="1016,126,962,149,902,164,835,172,767,175,647,171,647,166,767,170,835,167,902,159,960,144,1011,127"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="704,147,647,156,647,150,699,147"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Arduino Main Loop." alt="" coords="401,148,446,175"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="476,161,447,164,447,159,481,161"/>
+<area shape="rect" id="Node000007" href="$class_adafruit___neo_pixel.html#a4bcda7a15591065570d3598cbf970be7" title="将RAM中的像素数据传输到NeoPixels。" alt="" coords="188,148,353,175"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="383,161,353,164,353,159,388,161"/>
+<area shape="rect" id="Node000008" href="$class_adafruit___neo_pixel.html#a61b1bd003a291520a367ab1712d6265c" title="释放Adafruit_NeoPixel对象，将数据引脚恢复为输入模式。" alt="" coords="5,140,140,183"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="170,162,140,164,140,159,175,161"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Hardware::UART_SendByte" name="Hardware::UART_SendByte">
+<area shape="rect" id="Node000001" title="Send a single byte blocking." alt="" coords="5,5,191,32"/>
+<area shape="rect" id="Node000002" href="$namespace_hardware.html#a0ada30189b8e1d1dbec145140849b778" title="Microsecond Delay." alt="" coords="239,5,377,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,16,226,19,221,19,191,21"/>
+</map>

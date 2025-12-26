@@ -49,6 +49,15 @@ namespace CommandRouter {
     // --- Long Packet Handlers Wrapper ---
     // Since ControlLogic::ProcessLongPacket expects parsed struct, we need a wrapper if we route raw buffer.
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief wrapper to handle Long Packets by parsing and dispatching.
+     * 
+     * Parses the raw buffer into a `long_packge_data` struct and passes it
+     * to `ControlLogic::ProcessLongPacket`.
+     * 
+     * @param buffer Raw packet buffer.
+     * @param length Length of the packet.
+     */
     void HandleLongPacket(uint8_t* buffer, uint16_t length) {
          long_packge_data data;
          BambuBusProtocol::ParseLongPacket(buffer, length, &data);
@@ -56,6 +65,14 @@ namespace CommandRouter {
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Initialize the Command Router and CLI subsystems.
+     * 
+     * Sets up the UART Rx callbacks based on the boot mode (Klipper vs Bus).
+     * Initializes the appropriate CLI or Protocol handler.
+     * 
+     * @param isKlipper True if booting into Klipper mode, False for BambuBus mode.
+     */
     void Init(bool isKlipper) {
         // Always Init BambuBus as it might be switched to? 
         // Or if not standard serial
@@ -102,6 +119,17 @@ namespace CommandRouter {
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Route an incoming command to its specific handler.
+     * 
+     * Updates connectivity status and dispatches the command based on `type`.
+     * Uses a table lookup for common commands and a switch case for special
+     * Long Packet handling.
+     * 
+     * @param type The Unified Command Type.
+     * @param buffer Pointer to the command data.
+     * @param length Length of the command data.
+     */
     void Route(UnifiedCommandType type, uint8_t* buffer, uint16_t length) {
         // Generic Connectivity Update
         if (type != UnifiedCommandType::None && type != UnifiedCommandType::Error) {
@@ -142,6 +170,13 @@ namespace CommandRouter {
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Main execution loop for the Router.
+     * 
+     * Checks for new packets from the underlying protocol (SerialCLI, KlipperCLI, or BambuBus).
+     * If a packet is ready, it identifies the type (if Bus mode) and calls `Route`.
+     * Also manages the "Offline" timeout logic (3 seconds).
+     */
     void Run() {
         if (ControlLogic::GetBootMode() == ControlLogic::BootMode::Klipper) {
             #ifdef STANDARD_SERIAL
@@ -190,6 +225,12 @@ namespace CommandRouter {
     
     // Helper to send packet (Abstraction for Hardware)
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Send a raw data packet via UART.
+     * 
+     * @param data Pointer to data to send.
+     * @param length Length of data.
+     */
     void SendPacket(uint8_t *data, uint16_t length) {
 #ifdef STANDARD_SERIAL
         // In StandardSerial, we might want to print Debug Hex IF configured, 

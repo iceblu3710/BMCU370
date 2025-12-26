@@ -1,0 +1,539 @@
+\doxysection{Control\+Logic\+::Motor\+Channel Class Reference}
+\hypertarget{class_control_logic_1_1_motor_channel}{}\label{class_control_logic_1_1_motor_channel}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+
+
+Collaboration diagram for Control\+Logic\+::Motor\+Channel\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{class_control_logic_1_1_motor_channel__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a6845d4b9e3a7853a7637136d9446dcc0}{Motor\+Channel}} (int ch)
+\item 
+void \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a0b8ed284da431b3325320e709433a454}{Set\+Motion}} (\mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cf}{filament\+\_\+motion\+\_\+enum}} m)
+\begin{DoxyCompactList}\small\item\em Set the motion mode for this channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a46d9a26810e6e733b62e6ad01fcc95e8}{Get\+XBy\+Pressure}} (float pressure\+\_\+voltage, float control\+\_\+voltage, float time\+\_\+E, \mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbd}{pressure\+\_\+control\+\_\+enum}} control\+\_\+type, float sign)
+\begin{DoxyCompactList}\small\item\em Calculate motor output based on Pressure Control logic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ae060b9a23578fd44423bca5006418033}{Run}} (float time\+\_\+E)
+\begin{DoxyCompactList}\small\item\em Main Motor Loop for this channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ad27c212152e484b6090e53cc1da6928a}{Update\+LEDStatus}} ()
+\begin{DoxyCompactList}\small\item\em Update the Lane LED based on status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}
+\item 
+\mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cf}{filament\+\_\+motion\+\_\+enum}} \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}} = \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfaef399b2d446bb37b7c32ad2cc1b6045b}{filament\+\_\+motion\+\_\+enum\+::stop}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a36b2c242740ee38ec462aeb731ed5e98}{motor\+\_\+stop\+\_\+time}} = 0
+\item 
+\mbox{\hyperlink{class_control_logic_1_1_m_o_t_o_r___p_i_d}{MOTOR\+\_\+\+PID}} \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a4e9c82e24b90768e6fb7ad06a94e38eb}{PID\+\_\+speed}} = \mbox{\hyperlink{class_control_logic_1_1_m_o_t_o_r___p_i_d}{MOTOR\+\_\+\+PID}}(2, 20, 0)
+\item 
+\mbox{\hyperlink{class_control_logic_1_1_m_o_t_o_r___p_i_d}{MOTOR\+\_\+\+PID}} \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ab37cdca92a4d46f1448f078dc02e407d}{PID\+\_\+pressure}} = \mbox{\hyperlink{class_control_logic_1_1_m_o_t_o_r___p_i_d}{MOTOR\+\_\+\+PID}}(1500, 0, 0)
+\item 
+float \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a978b1d90e72495163fbf8049b8fbc80e}{pwm\+\_\+zero}} = 500
+\item 
+float \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a853fbfcbd6b5a174c09a1df99de87770}{dir}} = 0
+\item 
+float \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a68780866ac810927265da67b8335f6e2}{target\+\_\+velocity}} = 0
+\item 
+float \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ae5e41a5819037bf340bb7071a6dd22f7}{target\+\_\+distance}} = 0
+\item 
+float \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a3ba57af78ab582474ef5054a1342c99b}{accumulated\+\_\+distance}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00324}{324}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_control_logic_1_1_motor_channel_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_control_logic_1_1_motor_channel_a6845d4b9e3a7853a7637136d9446dcc0}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!MotorChannel@{MotorChannel}}
+\index{MotorChannel@{MotorChannel}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{MotorChannel()}{MotorChannel()}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_a6845d4b9e3a7853a7637136d9446dcc0} 
+Control\+Logic\+::\+Motor\+Channel\+::\+Motor\+Channel (\begin{DoxyParamCaption}\item[{int}]{ch}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00337}{337}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00337\ :\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}(ch)\ \{\}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00326}{CHx}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_control_logic_1_1_motor_channel_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_control_logic_1_1_motor_channel_a46d9a26810e6e733b62e6ad01fcc95e8}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!GetXByPressure@{GetXByPressure}}
+\index{GetXByPressure@{GetXByPressure}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{GetXByPressure()}{GetXByPressure()}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_a46d9a26810e6e733b62e6ad01fcc95e8} 
+float Control\+Logic\+::\+Motor\+Channel\+::\+Get\+XBy\+Pressure (\begin{DoxyParamCaption}\item[{float}]{pressure\+\_\+voltage}{, }\item[{float}]{control\+\_\+voltage}{, }\item[{float}]{time\+\_\+E}{, }\item[{\mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbd}{pressure\+\_\+control\+\_\+enum}}}]{control\+\_\+type}{, }\item[{float}]{sign}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate motor output based on Pressure Control logic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pressure\+\_\+voltage} & Current pressure ADC voltage. \\
+\hline
+{\em control\+\_\+voltage} & Target/\+Limit voltage. \\
+\hline
+{\em time\+\_\+E} & Time step. \\
+\hline
+{\em control\+\_\+type} & Mode\+: All (PID always), Less (Only if \texorpdfstring{$<$}{<} limit), Over (Only if \texorpdfstring{$>$}{>} limit). \\
+\hline
+{\em sign} & Direction sign. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Motor PWM contribution. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00366}{366}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x=0;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (control\_type)\ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbdaa181a603769c1f98ad927e7367c7aa51}{pressure\_control\_enum::all}}:}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ sign\ *\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ab37cdca92a4d46f1448f078dc02e407d}{PID\_pressure}}.Calculate(\mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{MC\_PULL\_stu\_raw}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ -\/\ control\_voltage,\ time\_E);}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbda5da09bef03bc5cf7a199c7cf66763f4c}{pressure\_control\_enum::less\_pressure}}:}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pressure\_voltage\ <\ control\_voltage)}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ sign\ *\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ab37cdca92a4d46f1448f078dc02e407d}{PID\_pressure}}.Calculate(\mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{MC\_PULL\_stu\_raw}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ -\/\ control\_voltage,\ time\_E);}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbda1366d1b3f33e8e3fb08ac3905b8c9510}{pressure\_control\_enum::over\_pressure}}:}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pressure\_voltage\ >\ control\_voltage)}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ sign\ *\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ab37cdca92a4d46f1448f078dc02e407d}{PID\_pressure}}.Calculate(\mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{MC\_PULL\_stu\_raw}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ -\/\ control\_voltage,\ time\_E);}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ >\ 0)\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ x\ *\ x\ /\ 250;}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ -\/x\ *\ x\ /\ 250;}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00322}{Control\+Logic\+::all}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00326}{CHx}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00322}{Control\+Logic\+::less\+\_\+pressure}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00205}{Control\+Logic\+::\+MC\+\_\+\+PULL\+\_\+stu\+\_\+raw}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00322}{Control\+Logic\+::over\+\_\+pressure}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00330}{PID\+\_\+pressure}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_control_logic_1_1_motor_channel_a46d9a26810e6e733b62e6ad01fcc95e8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_control_logic_1_1_motor_channel_ae060b9a23578fd44423bca5006418033}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!Run@{Run}}
+\index{Run@{Run}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{Run()}{Run()}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_ae060b9a23578fd44423bca5006418033} 
+void Control\+Logic\+::\+Motor\+Channel\+::\+Run (\begin{DoxyParamCaption}\item[{float}]{time\+\_\+E}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Main Motor Loop for this channel. 
+
+Updates PWM output based on current motion state, PID logic, and pressure sensors. Handles velocity control, distance accumulation, and pressure maintenance.
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+\_\+E} & Time elapsed in seconds. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{398}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Track\ distance\ for\ all\ movement\ types\ if\ needed,\ but\ critical\ for\ Klipper\ Move}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ speed\_as5600\ is\ in\ mm/s?\ AS5600\_Update\ says:\ speedx\ =\ dist\_E\ /\ time\_E.\ dist\_E\ is\ mm.}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ speed\_as5600\ is\ mm/s.}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\_step\ =\ fabs(\mbox{\hyperlink{namespace_control_logic_a5428672c2045ec91715338f32d8bb5f1}{speed\_as5600}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ *\ time\_E);}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_aef70a34b1f25019450171bfa5c07ab62}{is\_backing\_out}})\ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_control_logic_8cpp_a92f9b1daa685f9041b79423442d440e3}{last\_total\_distance}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ +=\ dist\_step;\ }
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ ==\ \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfa564e40f75901e1ab2eedc66858c1a6f3}{filament\_motion\_enum::velocity\_control}}\ \&\&\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ae5e41a5819037bf340bb7071a6dd22f7}{target\_distance}}\ >\ 0)\ \{}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a3ba57af78ab582474ef5054a1342c99b}{accumulated\_distance}}\ +=\ dist\_step;}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a3ba57af78ab582474ef5054a1342c99b}{accumulated\_distance}}\ >=\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ae5e41a5819037bf340bb7071a6dd22f7}{target\_distance}})\ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a0b8ed284da431b3325320e709433a454}{SetMotion}}(\mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfaef399b2d446bb37b7c32ad2cc1b6045b}{filament\_motion\_enum::stop}});}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Send\ async\ completion\ event?\ Or\ just\ stop.}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Klipper\ polls\ or\ waits?}}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ spec\ says\ MOVE\ returns\ when\ done?\ Or\ "{}TELEMETRY"{}.}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ open-\/loop,\ success\ is\ assumed.}}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ But\ effectively\ we\ are\ closed-\/loop\ on\ distance\ now.}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ speed\_set\ =\ 0;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ now\_speed\ =\ \mbox{\hyperlink{namespace_control_logic_a5428672c2045ec91715338f32d8bb5f1}{speed\_as5600}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}];}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ 0;}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ ==\ \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfac3cd02e6f65c947824c18d8cebbfd06c}{filament\_motion\_enum::pressure\_ctrl\_idle}})\ \{\ \textcolor{comment}{//\ Idle}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ pid\_invert\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}})\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ pid\_invert\ =\ \mbox{\hyperlink{_hardware_8h_a707a07e10eb54ec0be1b523c9fdf6a95}{MOTOR\_PID\_INVERT\_CH1}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ pid\_invert\ =\ \mbox{\hyperlink{_hardware_8h_a649b2ad6aac3d40446dbff1b2a229063}{MOTOR\_PID\_INVERT\_CH2}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ pid\_invert\ =\ \mbox{\hyperlink{_hardware_8h_a7c8771b2e4cdce12388defd879855ce4}{MOTOR\_PID\_INVERT\_CH3}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ pid\_invert\ =\ \mbox{\hyperlink{_hardware_8h_a80604ae10f825addfa26cbfcfa73e864}{MOTOR\_PID\_INVERT\_CH4}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ pid\_sign\ =\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a853fbfcbd6b5a174c09a1df99de87770}{dir}}\ *\ (pid\_invert\ ?\ -\/1.0f\ :\ 1.0f);}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a503041f38fbec420305ae1bb79aa4002}{MC\_ONLINE\_key\_stu}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ ==\ 0)\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_a280d12e7265d1830d4859cc38dd5497e}{Assist\_send\_filament}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a280d12e7265d1830d4859cc38dd5497e}{Assist\_send\_filament}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ \&\&\ \mbox{\hyperlink{namespace_control_logic_a8abb9a7c0790b08a5e5f31c8874bb15f}{is\_two}})\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a503041f38fbec420305ae1bb79aa4002}{MC\_ONLINE\_key\_stu}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ ==\ 2)\ x\ =\ -\/\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a853fbfcbd6b5a174c09a1df99de87770}{dir}}\ *\ 666;\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a503041f38fbec420305ae1bb79aa4002}{MC\_ONLINE\_key\_stu}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ ==\ 1)\ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Timer\ logic...}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a503041f38fbec420305ae1bb79aa4002}{MC\_ONLINE\_key\_stu}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ !=\ 0\ \&\&\ \mbox{\hyperlink{namespace_control_logic_a87d54195660d73ebcd372cad0fd74915}{MC\_PULL\_stu}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ !=\ 0)\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ pid\_sign\ *\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ab37cdca92a4d46f1448f078dc02e407d}{PID\_pressure}}.Calculate(\mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{MC\_PULL\_stu\_raw}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ -\/\ 1.65,\ time\_E);}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 0;\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ab37cdca92a4d46f1448f078dc02e407d}{PID\_pressure}}.Clear();}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a503041f38fbec420305ae1bb79aa4002}{MC\_ONLINE\_key\_stu}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ !=\ 0\ ||\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ ==\ \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfa564e40f75901e1ab2eedc66858c1a6f3}{filament\_motion\_enum::velocity\_control}})\ \{\ \textcolor{comment}{//\ Allow\ vel\ control\ without\ sensor}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ pid\_invert\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}})\ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ pid\_invert\ =\ \mbox{\hyperlink{_hardware_8h_a707a07e10eb54ec0be1b523c9fdf6a95}{MOTOR\_PID\_INVERT\_CH1}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ pid\_invert\ =\ \mbox{\hyperlink{_hardware_8h_a649b2ad6aac3d40446dbff1b2a229063}{MOTOR\_PID\_INVERT\_CH2}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ pid\_invert\ =\ \mbox{\hyperlink{_hardware_8h_a7c8771b2e4cdce12388defd879855ce4}{MOTOR\_PID\_INVERT\_CH3}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ pid\_invert\ =\ \mbox{\hyperlink{_hardware_8h_a80604ae10f825addfa26cbfcfa73e864}{MOTOR\_PID\_INVERT\_CH4}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ pid\_sign\ =\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a853fbfcbd6b5a174c09a1df99de87770}{dir}}\ *\ (pid\_invert\ ?\ -\/1.0f\ :\ 1.0f);}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ ==\ \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfafe27fd8ed473c89e5c1f989ff314fc75}{filament\_motion\_enum::pressure\_ctrl\_in\_use}})\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a33f7ccbf87b78ae7394f88ffe1a4a75e}{pull\_state\_old}})\ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{MC\_PULL\_stu\_raw}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ <\ 1.55)\ \mbox{\hyperlink{namespace_control_logic_a33f7ccbf87b78ae7394f88ffe1a4a75e}{pull\_state\_old}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{MC\_PULL\_stu\_raw}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ <\ 1.65)\ x\ =\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a46d9a26810e6e733b62e6ad01fcc95e8}{GetXByPressure}}(\mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{MC\_PULL\_stu\_raw}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}],\ 1.65,\ time\_E,\ \mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbda5da09bef03bc5cf7a199c7cf66763f4c}{pressure\_control\_enum::less\_pressure}},\ pid\_sign);}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{MC\_PULL\_stu\_raw}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ >\ 1.7)\ x\ =\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a46d9a26810e6e733b62e6ad01fcc95e8}{GetXByPressure}}(\mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{MC\_PULL\_stu\_raw}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}],\ 1.7,\ time\_E,\ \mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbda1366d1b3f33e8e3fb08ac3905b8c9510}{pressure\_control\_enum::over\_pressure}},\ pid\_sign);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ ==\ \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfaef399b2d446bb37b7c32ad2cc1b6045b}{filament\_motion\_enum::stop}})\ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a4e9c82e24b90768e6fb7ad06a94e38eb}{PID\_speed}}.Clear();\ \mbox{\hyperlink{namespace_hardware_af8a83d19b30aeb46530bd36c63b3fab7}{Hardware::PWM\_Set}}(\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}},\ 0);\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ ==\ \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfa2541d938b0a58946090d7abdde0d3890}{filament\_motion\_enum::send}})\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_control_logic_8cpp_a52925c91da70ade3c48b8eb3fe99caf6}{device\_type\_addr}}\ ==\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a955491d79368cb27f0ba2ab28aba5701a8a4e12e61e7479dc0cc80b06558faac3}{BambuBus\_AMS\_lite}})\ \{}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{MC\_PULL\_stu\_raw}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ <\ \mbox{\hyperlink{_control_logic_8cpp_a7467db9e95e737c89c7a7d6177e60008}{PULL\_VOLTAGE\_SEND\_MAX}})\ speed\_set\ =\ \mbox{\hyperlink{_hardware_8h_a2bf9f3052c85c95cd9ca443f2d205214}{MOTOR\_SPEED\_AMS\_LITE\_SEND}};\ \textcolor{keywordflow}{else}\ speed\_set\ =\ 0;}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ speed\_set\ =\ \mbox{\hyperlink{_hardware_8h_a8374452691f03f4fc525aa4b323e66dd}{MOTOR\_SPEED\_SEND}};\ }
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ ==\ \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfa1957e2ed8ffcb49c6bdfdb7a2c0a93a8}{filament\_motion\_enum::slow\_send}})\ speed\_set\ =\ \mbox{\hyperlink{_hardware_8h_ae45a615568ad2b0eb65d4a79e6e31f3a}{MOTOR\_SPEED\_SLOW\_SEND}};}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ ==\ \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfaf43dff9a0dc54f0643d0c6d7971635f0}{filament\_motion\_enum::pull}})\ speed\_set\ =\ -\/\mbox{\hyperlink{_hardware_8h_a0f8ac35721a591b9dfe5dd39b4f85544}{MOTOR\_SPEED\_PULL}};}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ ==\ \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfa564e40f75901e1ab2eedc66858c1a6f3}{filament\_motion\_enum::velocity\_control}})\ speed\_set\ =\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a68780866ac810927265da67b8335f6e2}{target\_velocity}};\ \textcolor{comment}{//\ Use\ Override}}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a853fbfcbd6b5a174c09a1df99de87770}{dir}}\ *\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a4e9c82e24b90768e6fb7ad06a94e38eb}{PID\_speed}}.Calculate(now\_speed\ -\/\ speed\_set,\ time\_E);}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 0;\ }
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ >\ 10)\ x\ +=\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a978b1d90e72495163fbf8049b8fbc80e}{pwm\_zero}};}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (x\ <\ -\/10)\ x\ -\/=\ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a978b1d90e72495163fbf8049b8fbc80e}{pwm\_zero}};}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ x\ =\ 0;}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ >\ 1000)\ x\ =\ 1000;}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ <\ -\/1000)\ x\ =\ -\/1000;}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_af8a83d19b30aeb46530bd36c63b3fab7}{Hardware::PWM\_Set}}(\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}},\ (\textcolor{keywordtype}{int})x);}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_ad27c212152e484b6090e53cc1da6928a}{UpdateLEDStatus}}();}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00335}{accumulated\+\_\+distance}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00209}{Control\+Logic\+::\+Assist\+\_\+send\+\_\+filament}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00048}{Bambu\+Bus\+\_\+\+AMS\+\_\+lite}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00326}{CHx}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00038}{device\+\_\+type\+\_\+addr}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00332}{dir}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00366}{Get\+XBy\+Pressure()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00211}{Control\+Logic\+::is\+\_\+backing\+\_\+out}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00212}{Control\+Logic\+::is\+\_\+two}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00035}{last\+\_\+total\+\_\+distance}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00322}{Control\+Logic\+::less\+\_\+pressure}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00208}{Control\+Logic\+::\+MC\+\_\+\+ONLINE\+\_\+key\+\_\+stu}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00206}{Control\+Logic\+::\+MC\+\_\+\+PULL\+\_\+stu}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00205}{Control\+Logic\+::\+MC\+\_\+\+PULL\+\_\+stu\+\_\+raw}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00327}{motion}}, \mbox{\hyperlink{_hardware_8h_source_l00021}{MOTOR\+\_\+\+PID\+\_\+\+INVERT\+\_\+\+CH1}}, \mbox{\hyperlink{_hardware_8h_source_l00022}{MOTOR\+\_\+\+PID\+\_\+\+INVERT\+\_\+\+CH2}}, \mbox{\hyperlink{_hardware_8h_source_l00023}{MOTOR\+\_\+\+PID\+\_\+\+INVERT\+\_\+\+CH3}}, \mbox{\hyperlink{_hardware_8h_source_l00024}{MOTOR\+\_\+\+PID\+\_\+\+INVERT\+\_\+\+CH4}}, \mbox{\hyperlink{_hardware_8h_source_l00016}{MOTOR\+\_\+\+SPEED\+\_\+\+AMS\+\_\+\+LITE\+\_\+\+SEND}}, \mbox{\hyperlink{_hardware_8h_source_l00018}{MOTOR\+\_\+\+SPEED\+\_\+\+PULL}}, \mbox{\hyperlink{_hardware_8h_source_l00015}{MOTOR\+\_\+\+SPEED\+\_\+\+SEND}}, \mbox{\hyperlink{_hardware_8h_source_l00017}{MOTOR\+\_\+\+SPEED\+\_\+\+SLOW\+\_\+\+SEND}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00322}{Control\+Logic\+::over\+\_\+pressure}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00330}{PID\+\_\+pressure}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00329}{PID\+\_\+speed}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00187}{Control\+Logic\+::pressure\+\_\+ctrl\+\_\+idle}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00188}{Control\+Logic\+::pressure\+\_\+ctrl\+\_\+in\+\_\+use}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00185}{Control\+Logic\+::pull}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00210}{Control\+Logic\+::pull\+\_\+state\+\_\+old}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00198}{PULL\+\_\+\+VOLTAGE\+\_\+\+SEND\+\_\+\+MAX}}, \mbox{\hyperlink{_hardware_8cpp_source_l00478}{Hardware\+::\+PWM\+\_\+\+Set()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00331}{pwm\+\_\+zero}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00184}{Control\+Logic\+::send}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00347}{Set\+Motion()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00186}{Control\+Logic\+::slow\+\_\+send}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00204}{Control\+Logic\+::speed\+\_\+as5600}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00183}{Control\+Logic\+::stop}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00334}{target\+\_\+distance}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00333}{target\+\_\+velocity}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00501}{Update\+LEDStatus()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00190}{Control\+Logic\+::velocity\+\_\+control}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_control_logic_1_1_motor_channel_ae060b9a23578fd44423bca5006418033_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_control_logic_1_1_motor_channel_a0b8ed284da431b3325320e709433a454}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!SetMotion@{SetMotion}}
+\index{SetMotion@{SetMotion}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{SetMotion()}{SetMotion()}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_a0b8ed284da431b3325320e709433a454} 
+void Control\+Logic\+::\+Motor\+Channel\+::\+Set\+Motion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cf}{filament\+\_\+motion\+\_\+enum}}}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the motion mode for this channel. 
+
+Resets PID and counters if mode changes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & New Motion Enum. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00347}{347}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ !=\ m)\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}{motion}}\ =\ m;}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a4e9c82e24b90768e6fb7ad06a94e38eb}{PID\_speed}}.Clear();}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_control_logic_1_1_motor_channel_a3ba57af78ab582474ef5054a1342c99b}{accumulated\_distance}}\ =\ 0;\ \textcolor{comment}{//\ Reset\ on\ mode\ change}}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00335}{accumulated\+\_\+distance}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00327}{motion}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00329}{PID\+\_\+speed}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_control_logic_1_1_motor_channel_a0b8ed284da431b3325320e709433a454_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_control_logic_1_1_motor_channel_ad27c212152e484b6090e53cc1da6928a}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!UpdateLEDStatus@{UpdateLEDStatus}}
+\index{UpdateLEDStatus@{UpdateLEDStatus}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{UpdateLEDStatus()}{UpdateLEDStatus()}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_ad27c212152e484b6090e53cc1da6928a} 
+void Control\+Logic\+::\+Motor\+Channel\+::\+Update\+LEDStatus (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Update the Lane LED based on status. 
+
+Green/\+Red based on Pressure triggers, or User Color if idle+online. 
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00501}{501}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a87d54195660d73ebcd372cad0fd74915}{MC\_PULL\_stu}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ ==\ 1)\ \{\ }
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4}{Hardware::LED\_SetColor}}(\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}},\ 0,\ 255,\ 0,\ 0);\ }
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a87d54195660d73ebcd372cad0fd74915}{MC\_PULL\_stu}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ ==\ -\/1)\ \{\ }
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4}{Hardware::LED\_SetColor}}(\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}},\ 0,\ 0,\ 0,\ 255);\ }
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a87d54195660d73ebcd372cad0fd74915}{MC\_PULL\_stu}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ ==\ 0)\ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_control_logic_a503041f38fbec420305ae1bb79aa4002}{MC\_ONLINE\_key\_stu}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}]\ ==\ 1)\ \{\ }
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FilamentState\ \&f\ =\ \mbox{\hyperlink{_control_logic_8cpp_a07df3d8e92f2b4de565d574c7950555a}{data\_save}}.\mbox{\hyperlink{structflash__save__struct_af6b0be8daad68d06efd980f1fb68ef72}{filament}}[\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}}];}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4}{Hardware::LED\_SetColor}}(\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}},\ 0,\ f.\mbox{\hyperlink{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}{color\_R}},\ f.\mbox{\hyperlink{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}{color\_G}},\ f.\mbox{\hyperlink{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}{color\_B}});}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ }
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a44347f62b4ee1789ecfed67b195572e4}{Hardware::LED\_SetColor}}(\mbox{\hyperlink{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}{CHx}},\ 0,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00326}{CHx}}, \mbox{\hyperlink{_unit_state_8h_source_l00016}{Filament\+Info\+::color\+\_\+B}}, \mbox{\hyperlink{_unit_state_8h_source_l00015}{Filament\+Info\+::color\+\_\+G}}, \mbox{\hyperlink{_unit_state_8h_source_l00014}{Filament\+Info\+::color\+\_\+R}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00031}{data\+\_\+save}}, \mbox{\hyperlink{_hardware_8cpp_source_l00530}{Hardware\+::\+LED\+\_\+\+Set\+Color()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00208}{Control\+Logic\+::\+MC\+\_\+\+ONLINE\+\_\+key\+\_\+stu}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00206}{Control\+Logic\+::\+MC\+\_\+\+PULL\+\_\+stu}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_control_logic_1_1_motor_channel_ad27c212152e484b6090e53cc1da6928a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_control_logic_1_1_motor_channel_ad27c212152e484b6090e53cc1da6928a_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_control_logic_1_1_motor_channel_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_control_logic_1_1_motor_channel_a3ba57af78ab582474ef5054a1342c99b}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!accumulated\_distance@{accumulated\_distance}}
+\index{accumulated\_distance@{accumulated\_distance}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{accumulated\_distance}{accumulated\_distance}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_a3ba57af78ab582474ef5054a1342c99b} 
+float Control\+Logic\+::\+Motor\+Channel\+::accumulated\+\_\+distance = 0}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00335}{335}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00347}{Set\+Motion()}}.
+
+\Hypertarget{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!CHx@{CHx}}
+\index{CHx@{CHx}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{CHx}{CHx}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_ac7e8589170a2d7e57837d16f3cf4db69} 
+int Control\+Logic\+::\+Motor\+Channel\+::\+CHx}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00326}{326}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00366}{Get\+XBy\+Pressure()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00337}{Motor\+Channel()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00501}{Update\+LEDStatus()}}.
+
+\Hypertarget{class_control_logic_1_1_motor_channel_a853fbfcbd6b5a174c09a1df99de87770}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!dir@{dir}}
+\index{dir@{dir}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{dir}{dir}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_a853fbfcbd6b5a174c09a1df99de87770} 
+float Control\+Logic\+::\+Motor\+Channel\+::dir = 0}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00332}{332}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}.
+
+\Hypertarget{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!motion@{motion}}
+\index{motion@{motion}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{motion}{motion}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_a687a054bdc40b9a4c15d52fe72bc139d} 
+\mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cf}{filament\+\_\+motion\+\_\+enum}} Control\+Logic\+::\+Motor\+Channel\+::motion = \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfaef399b2d446bb37b7c32ad2cc1b6045b}{filament\+\_\+motion\+\_\+enum\+::stop}}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00327}{327}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00347}{Set\+Motion()}}.
+
+\Hypertarget{class_control_logic_1_1_motor_channel_a36b2c242740ee38ec462aeb731ed5e98}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!motor\_stop\_time@{motor\_stop\_time}}
+\index{motor\_stop\_time@{motor\_stop\_time}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{motor\_stop\_time}{motor\_stop\_time}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_a36b2c242740ee38ec462aeb731ed5e98} 
+uint64\+\_\+t Control\+Logic\+::\+Motor\+Channel\+::motor\+\_\+stop\+\_\+time = 0}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00328}{328}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+\Hypertarget{class_control_logic_1_1_motor_channel_ab37cdca92a4d46f1448f078dc02e407d}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!PID\_pressure@{PID\_pressure}}
+\index{PID\_pressure@{PID\_pressure}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{PID\_pressure}{PID\_pressure}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_ab37cdca92a4d46f1448f078dc02e407d} 
+\mbox{\hyperlink{class_control_logic_1_1_m_o_t_o_r___p_i_d}{MOTOR\+\_\+\+PID}} Control\+Logic\+::\+Motor\+Channel\+::\+PID\+\_\+pressure = \mbox{\hyperlink{class_control_logic_1_1_m_o_t_o_r___p_i_d}{MOTOR\+\_\+\+PID}}(1500, 0, 0)}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00330}{330}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00366}{Get\+XBy\+Pressure()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}.
+
+\Hypertarget{class_control_logic_1_1_motor_channel_a4e9c82e24b90768e6fb7ad06a94e38eb}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!PID\_speed@{PID\_speed}}
+\index{PID\_speed@{PID\_speed}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{PID\_speed}{PID\_speed}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_a4e9c82e24b90768e6fb7ad06a94e38eb} 
+\mbox{\hyperlink{class_control_logic_1_1_m_o_t_o_r___p_i_d}{MOTOR\+\_\+\+PID}} Control\+Logic\+::\+Motor\+Channel\+::\+PID\+\_\+speed = \mbox{\hyperlink{class_control_logic_1_1_m_o_t_o_r___p_i_d}{MOTOR\+\_\+\+PID}}(2, 20, 0)}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00329}{329}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00347}{Set\+Motion()}}.
+
+\Hypertarget{class_control_logic_1_1_motor_channel_a978b1d90e72495163fbf8049b8fbc80e}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!pwm\_zero@{pwm\_zero}}
+\index{pwm\_zero@{pwm\_zero}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{pwm\_zero}{pwm\_zero}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_a978b1d90e72495163fbf8049b8fbc80e} 
+float Control\+Logic\+::\+Motor\+Channel\+::pwm\+\_\+zero = 500}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00331}{331}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}.
+
+\Hypertarget{class_control_logic_1_1_motor_channel_ae5e41a5819037bf340bb7071a6dd22f7}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!target\_distance@{target\_distance}}
+\index{target\_distance@{target\_distance}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{target\_distance}{target\_distance}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_ae5e41a5819037bf340bb7071a6dd22f7} 
+float Control\+Logic\+::\+Motor\+Channel\+::target\+\_\+distance = 0}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00334}{334}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}.
+
+\Hypertarget{class_control_logic_1_1_motor_channel_a68780866ac810927265da67b8335f6e2}\index{ControlLogic::MotorChannel@{ControlLogic::MotorChannel}!target\_velocity@{target\_velocity}}
+\index{target\_velocity@{target\_velocity}!ControlLogic::MotorChannel@{ControlLogic::MotorChannel}}
+\doxysubsubsection{\texorpdfstring{target\_velocity}{target\_velocity}}
+{\footnotesize\ttfamily \label{class_control_logic_1_1_motor_channel_a68780866ac810927265da67b8335f6e2} 
+float Control\+Logic\+::\+Motor\+Channel\+::target\+\_\+velocity = 0}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00333}{333}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Run()}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_control_logic_8cpp}{Control\+Logic.\+cpp}}\end{DoxyCompactItemize}

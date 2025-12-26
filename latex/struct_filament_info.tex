@@ -1,0 +1,315 @@
+\doxysection{Filament\+Info Struct Reference}
+\hypertarget{struct_filament_info}{}\label{struct_filament_info}\index{FilamentInfo@{FilamentInfo}}
+
+
+{\ttfamily \#include $<$Unit\+State.\+h$>$}
+
+
+
+Inheritance diagram for Filament\+Info\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{struct_filament_info__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_filament_info_af189025196797c33b9508d350820373b}{Filament\+Info}} ()
+\item 
+void \mbox{\hyperlink{struct_filament_info_ac821cbe379c5f19ac753f91adef53851}{Set\+ID}} (const char \texorpdfstring{$\ast$}{*}new\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Set the RFID/\+ID of the filament. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_filament_info_a6bb1d50ec33de9366132999b3a84ff3c}{Set\+Name}} (const char \texorpdfstring{$\ast$}{*}new\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Set the Name of the filament. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}} \mbox{[}8\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}{color\+\_\+R}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}{color\+\_\+G}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}{color\+\_\+B}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}{color\+\_\+A}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{struct_filament_info_a5868192ee8a9087a32bc1b242024aa72}{temperature\+\_\+min}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{struct_filament_info_a45dff2f7e9e7b3794d9ff6469f50113f}{temperature\+\_\+max}}
+\item 
+char \mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}} \mbox{[}20\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00012}{12}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{struct_filament_info_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_filament_info_af189025196797c33b9508d350820373b}\index{FilamentInfo@{FilamentInfo}!FilamentInfo@{FilamentInfo}}
+\index{FilamentInfo@{FilamentInfo}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{FilamentInfo()}{FilamentInfo()}}
+{\footnotesize\ttfamily \label{struct_filament_info_af189025196797c33b9508d350820373b} 
+Filament\+Info\+::\+Filament\+Info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00023}{23}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}{color\_R}}(0xFF),\ \mbox{\hyperlink{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}{color\_G}}(0xFF),\ \mbox{\hyperlink{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}{color\_B}}(0xFF),\ \mbox{\hyperlink{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}{color\_A}}(0xFF),}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_filament_info_a5868192ee8a9087a32bc1b242024aa72}{temperature\_min}}(220),\ \mbox{\hyperlink{struct_filament_info_a45dff2f7e9e7b3794d9ff6469f50113f}{temperature\_max}}(240) }
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Manual\ string\ init}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ def\_id\ =\ \textcolor{stringliteral}{"{}GFG00"{}};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<8;i++)\ \mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}}[i]\ =\ (i\ <\ 5)\ ?\ def\_id[i]\ :\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ def\_name\ =\ \textcolor{stringliteral}{"{}PETG"{}};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<20;i++)\ \mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}}[i]\ =\ (i\ <\ 4)\ ?\ def\_name[i]\ :\ 0;}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_unit_state_8h_source_l00017}{color\+\_\+A}}, \mbox{\hyperlink{_unit_state_8h_source_l00016}{color\+\_\+B}}, \mbox{\hyperlink{_unit_state_8h_source_l00015}{color\+\_\+G}}, \mbox{\hyperlink{_unit_state_8h_source_l00014}{color\+\_\+R}}, \mbox{\hyperlink{_unit_state_8h_source_l00013}{ID}}, \mbox{\hyperlink{_unit_state_8h_source_l00020}{name}}, \mbox{\hyperlink{_unit_state_8h_source_l00019}{temperature\+\_\+max}}, and \mbox{\hyperlink{_unit_state_8h_source_l00018}{temperature\+\_\+min}}.
+
+
+
+Referenced by \mbox{\hyperlink{_unit_state_8h_source_l00054}{Filament\+State\+::\+Filament\+State()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_filament_info_af189025196797c33b9508d350820373b_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{struct_filament_info_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_filament_info_ac821cbe379c5f19ac753f91adef53851}\index{FilamentInfo@{FilamentInfo}!SetID@{SetID}}
+\index{SetID@{SetID}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{SetID()}{SetID()}}
+{\footnotesize\ttfamily \label{struct_filament_info_ac821cbe379c5f19ac753f91adef53851} 
+void Filament\+Info\+::\+Set\+ID (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{new\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Set the RFID/\+ID of the filament. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+id} & Pointer to 8-\/byte ID string. Safely copies up to 8 chars. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00136}{136}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<8;\ i++)\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(new\_id\ \&\&\ *new\_id)\ \mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}}[i]\ =\ *new\_id++;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \mbox{\hyperlink{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}{ID}}[i]\ =\ 0;}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_unit_state_8h_source_l00013}{ID}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_filament_info_ac821cbe379c5f19ac753f91adef53851_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{struct_filament_info_a6bb1d50ec33de9366132999b3a84ff3c}\index{FilamentInfo@{FilamentInfo}!SetName@{SetName}}
+\index{SetName@{SetName}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{SetName()}{SetName()}}
+{\footnotesize\ttfamily \label{struct_filament_info_a6bb1d50ec33de9366132999b3a84ff3c} 
+void Filament\+Info\+::\+Set\+Name (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{new\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Set the Name of the filament. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+name} & Pointer to name string. Copies up to 20 chars. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00148}{148}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<20;\ i++)\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(new\_name\ \&\&\ *new\_name)\ \mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}}[i]\ =\ *new\_name++;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \mbox{\hyperlink{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}{name}}[i]\ =\ 0;}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_unit_state_8h_source_l00020}{name}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_filament_info_a6bb1d50ec33de9366132999b3a84ff3c_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_filament_info_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac}\index{FilamentInfo@{FilamentInfo}!color\_A@{color\_A}}
+\index{color\_A@{color\_A}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{color\_A}{color\_A}}
+{\footnotesize\ttfamily \label{struct_filament_info_a72997ce70a6852951aac4a8c907e24ac} 
+uint8\+\_\+t Filament\+Info\+::color\+\_\+A}
+
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00017}{17}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_unit_state_8h_source_l00023}{Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Klipper\+CLI\+::\+Handle\+Status()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l01401}{Control\+Logic\+::\+Set\+Filament\+Info\+Action()}}.
+
+\Hypertarget{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714}\index{FilamentInfo@{FilamentInfo}!color\_B@{color\_B}}
+\index{color\_B@{color\_B}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{color\_B}{color\_B}}
+{\footnotesize\ttfamily \label{struct_filament_info_ab1c9dff383b15c09a2fad0cf6d7e8714} 
+uint8\+\_\+t Filament\+Info\+::color\+\_\+B}
+
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00016}{16}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_unit_state_8h_source_l00023}{Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Klipper\+CLI\+::\+Handle\+Status()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01401}{Control\+Logic\+::\+Set\+Filament\+Info\+Action()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00501}{Control\+Logic\+::\+Motor\+Channel\+::\+Update\+LEDStatus()}}.
+
+\Hypertarget{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd}\index{FilamentInfo@{FilamentInfo}!color\_G@{color\_G}}
+\index{color\_G@{color\_G}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{color\_G}{color\_G}}
+{\footnotesize\ttfamily \label{struct_filament_info_a401880702bfbb50388082ccfc4da0ddd} 
+uint8\+\_\+t Filament\+Info\+::color\+\_\+G}
+
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00015}{15}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_unit_state_8h_source_l00023}{Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Klipper\+CLI\+::\+Handle\+Status()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01401}{Control\+Logic\+::\+Set\+Filament\+Info\+Action()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00501}{Control\+Logic\+::\+Motor\+Channel\+::\+Update\+LEDStatus()}}.
+
+\Hypertarget{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45}\index{FilamentInfo@{FilamentInfo}!color\_R@{color\_R}}
+\index{color\_R@{color\_R}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{color\_R}{color\_R}}
+{\footnotesize\ttfamily \label{struct_filament_info_a49b75d4f9105d90760ca96138c8fcf45} 
+uint8\+\_\+t Filament\+Info\+::color\+\_\+R}
+
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00014}{14}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_unit_state_8h_source_l00023}{Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Klipper\+CLI\+::\+Handle\+Status()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01401}{Control\+Logic\+::\+Set\+Filament\+Info\+Action()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00501}{Control\+Logic\+::\+Motor\+Channel\+::\+Update\+LEDStatus()}}.
+
+\Hypertarget{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087}\index{FilamentInfo@{FilamentInfo}!ID@{ID}}
+\index{ID@{ID}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily \label{struct_filament_info_a26e0e6218d4a40974be5086c2ac89087} 
+char Filament\+Info\+::\+ID\mbox{[}8\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00013}{13}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_unit_state_8h_source_l00023}{Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Klipper\+CLI\+::\+Handle\+Status()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01401}{Control\+Logic\+::\+Set\+Filament\+Info\+Action()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00136}{Set\+ID()}}.
+
+\Hypertarget{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672}\index{FilamentInfo@{FilamentInfo}!name@{name}}
+\index{name@{name}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{struct_filament_info_a5bf1b8820cfc338a0e489064670e6672} 
+char Filament\+Info\+::name\mbox{[}20\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00020}{20}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_unit_state_8h_source_l00023}{Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Klipper\+CLI\+::\+Handle\+Status()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01401}{Control\+Logic\+::\+Set\+Filament\+Info\+Action()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00148}{Set\+Name()}}.
+
+\Hypertarget{struct_filament_info_a45dff2f7e9e7b3794d9ff6469f50113f}\index{FilamentInfo@{FilamentInfo}!temperature\_max@{temperature\_max}}
+\index{temperature\_max@{temperature\_max}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{temperature\_max}{temperature\_max}}
+{\footnotesize\ttfamily \label{struct_filament_info_a45dff2f7e9e7b3794d9ff6469f50113f} 
+int16\+\_\+t Filament\+Info\+::temperature\+\_\+max}
+
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00019}{19}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_unit_state_8h_source_l00023}{Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Klipper\+CLI\+::\+Handle\+Status()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l01401}{Control\+Logic\+::\+Set\+Filament\+Info\+Action()}}.
+
+\Hypertarget{struct_filament_info_a5868192ee8a9087a32bc1b242024aa72}\index{FilamentInfo@{FilamentInfo}!temperature\_min@{temperature\_min}}
+\index{temperature\_min@{temperature\_min}!FilamentInfo@{FilamentInfo}}
+\doxysubsubsection{\texorpdfstring{temperature\_min}{temperature\_min}}
+{\footnotesize\ttfamily \label{struct_filament_info_a5868192ee8a9087a32bc1b242024aa72} 
+int16\+\_\+t Filament\+Info\+::temperature\+\_\+min}
+
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00018}{18}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_unit_state_8h_source_l00023}{Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Klipper\+CLI\+::\+Handle\+Status()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l01401}{Control\+Logic\+::\+Set\+Filament\+Info\+Action()}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_unit_state_8h}{Unit\+State.\+h}}\item 
+src/\mbox{\hyperlink{_control_logic_8cpp}{Control\+Logic.\+cpp}}\end{DoxyCompactItemize}

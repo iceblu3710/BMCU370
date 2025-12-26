@@ -1,0 +1,307 @@
+\doxysection{Adafruit\+\_\+\+Neo\+Pixel.\+h}
+\hypertarget{_adafruit___neo_pixel_8h_source}{}\label{_adafruit___neo_pixel_8h_source}\index{src/Adafruit\_NeoPixel.h@{src/Adafruit\_NeoPixel.h}}
+\mbox{\hyperlink{_adafruit___neo_pixel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00036}00036\ \textcolor{preprocessor}{\#ifndef\ ADAFRUIT\_NEOPIXEL\_H}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00037}00037\ \textcolor{preprocessor}{\#define\ ADAFRUIT\_NEOPIXEL\_H}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00039}00039\ \textcolor{preprocessor}{\#ifdef\ ARDUINO}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00040}00040\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00042}00042\ \textcolor{preprocessor}{\#ifdef\ USE\_TINYUSB\ }\textcolor{comment}{//\ For\ Serial\ when\ selecting\ TinyUSB}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00043}00043\ \textcolor{preprocessor}{\#include\ <Adafruit\_TinyUSB.h>}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00044}00044\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00046}00046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00048}00048\ \textcolor{preprocessor}{\#ifdef\ TARGET\_LPC1768}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00049}00049\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00050}00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00052}00052\ \textcolor{preprocessor}{\#if\ defined(TARGET\_GIGA)\ ||\ defined(TARGET\_M4)}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00053}00053\ \textcolor{preprocessor}{\#include\ "{}mbed.h"{}}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00054}00054\ \textcolor{preprocessor}{\#include\ "{}pinDefinitions.h"{}}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00055}00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00057}00057\ \textcolor{preprocessor}{\#if\ defined(ARDUINO\_ARCH\_RP2040)}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00058}00058\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00059}00059\ \textcolor{preprocessor}{\#include\ "{}hardware/pio.h"{}}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00060}00060\ \textcolor{preprocessor}{\#include\ "{}hardware/clocks.h"{}}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00061}00061\ \textcolor{preprocessor}{\#include\ "{}rp2040\_pio.h"{}}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00062}00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00064}00064\ \textcolor{comment}{//\ The\ order\ of\ primary\ colors\ in\ the\ NeoPixel\ data\ stream\ can\ vary\ among}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00065}00065\ \textcolor{comment}{//\ device\ types,\ manufacturers\ and\ even\ different\ revisions\ of\ the\ same}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00066}00066\ \textcolor{comment}{//\ item.\ \ The\ third\ parameter\ to\ the\ Adafruit\_NeoPixel\ constructor\ encodes}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00067}00067\ \textcolor{comment}{//\ the\ per-\/pixel\ byte\ offsets\ of\ the\ red,\ green\ and\ blue\ primaries\ (plus}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00068}00068\ \textcolor{comment}{//\ white,\ if\ present)\ in\ the\ data\ stream\ -\/-\/\ the\ following\ \#defines\ provide}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00069}00069\ \textcolor{comment}{//\ an\ easier-\/to-\/use\ named\ version\ for\ each\ permutation.\ e.g.\ NEO\_GRB}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00070}00070\ \textcolor{comment}{//\ indicates\ a\ NeoPixel-\/compatible\ device\ expecting\ three\ bytes\ per\ pixel,}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00071}00071\ \textcolor{comment}{//\ with\ the\ first\ byte\ transmitted\ containing\ the\ green\ value,\ second}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00072}00072\ \textcolor{comment}{//\ containing\ red\ and\ third\ containing\ blue.\ The\ in-\/memory\ representation}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00073}00073\ \textcolor{comment}{//\ of\ a\ chain\ of\ NeoPixels\ is\ the\ same\ as\ the\ data-\/stream\ order;\ no}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00074}00074\ \textcolor{comment}{//\ re-\/ordering\ of\ bytes\ is\ required\ when\ issuing\ data\ to\ the\ chain.}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00075}00075\ \textcolor{comment}{//\ Most\ of\ these\ values\ won't\ exist\ in\ real-\/world\ devices,\ but\ it's\ done}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00076}00076\ \textcolor{comment}{//\ this\ way\ so\ we're\ ready\ for\ it\ (also,\ if\ using\ the\ WS2811\ driver\ IC,}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00077}00077\ \textcolor{comment}{//\ one\ might\ have\ their\ pixels\ set\ up\ in\ any\ weird\ permutation).}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00079}00079\ \textcolor{comment}{//\ Bits\ 5,4\ of\ this\ value\ are\ the\ offset\ (0-\/3)\ from\ the\ first\ byte\ of\ a}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00080}00080\ \textcolor{comment}{//\ pixel\ to\ the\ location\ of\ the\ red\ color\ byte.\ \ Bits\ 3,2\ are\ the\ green}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00081}00081\ \textcolor{comment}{//\ offset\ and\ 1,0\ are\ the\ blue\ offset.\ \ If\ it\ is\ an\ RGBW-\/type\ device}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00082}00082\ \textcolor{comment}{//\ (supporting\ a\ white\ primary\ in\ addition\ to\ R,G,B),\ bits\ 7,6\ are\ the}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00083}00083\ \textcolor{comment}{//\ offset\ to\ the\ white\ byte...otherwise,\ bits\ 7,6\ are\ set\ to\ the\ same\ value}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00084}00084\ \textcolor{comment}{//\ as\ 5,4\ (red)\ to\ indicate\ an\ RGB\ (not\ RGBW)\ device.}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00085}00085\ \textcolor{comment}{//\ i.e.\ binary\ representation:}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00086}00086\ \textcolor{comment}{//\ 0bWWRRGGBB\ for\ RGBW\ devices}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00087}00087\ \textcolor{comment}{//\ 0bRRRRGGBB\ for\ RGB}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00089}00089\ \textcolor{comment}{//\ RGB\ NeoPixel\ permutations;\ white\ and\ red\ offsets\ are\ always\ same}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00090}00090\ \textcolor{comment}{//\ Offset:\ \ \ \ \ \ \ \ W\ \ \ \ \ \ \ \ \ \ R\ \ \ \ \ \ \ \ \ \ G\ \ \ \ \ \ \ \ \ \ B}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00091}\mbox{\hyperlink{_adafruit___neo_pixel_8h_aa4f80df5ab240d93359f40956462f758}{00091}}\ \textcolor{preprocessor}{\#define\ NEO\_RGB\ ((0\ <<\ 6)\ |\ (0\ <<\ 4)\ |\ (1\ <<\ 2)\ |\ (2))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00092}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a7d6aaa56c8e2603312cba8dbdf9c5661}{00092}}\ \textcolor{preprocessor}{\#define\ NEO\_RBG\ ((0\ <<\ 6)\ |\ (0\ <<\ 4)\ |\ (2\ <<\ 2)\ |\ (1))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00093}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a95d0d6b0a1f52bc72d9dcea2b3a48e3f}{00093}}\ \textcolor{preprocessor}{\#define\ NEO\_GRB\ ((1\ <<\ 6)\ |\ (1\ <<\ 4)\ |\ (0\ <<\ 2)\ |\ (2))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00094}\mbox{\hyperlink{_adafruit___neo_pixel_8h_abca04ce54125372080f2fbf2afdcf027}{00094}}\ \textcolor{preprocessor}{\#define\ NEO\_GBR\ ((2\ <<\ 6)\ |\ (2\ <<\ 4)\ |\ (0\ <<\ 2)\ |\ (1))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00095}\mbox{\hyperlink{_adafruit___neo_pixel_8h_afde6ec00a4ec8fad0267ae1a6689379e}{00095}}\ \textcolor{preprocessor}{\#define\ NEO\_BRG\ ((1\ <<\ 6)\ |\ (1\ <<\ 4)\ |\ (2\ <<\ 2)\ |\ (0))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00096}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a9129664a08911b56227dd641116f105f}{00096}}\ \textcolor{preprocessor}{\#define\ NEO\_BGR\ ((2\ <<\ 6)\ |\ (2\ <<\ 4)\ |\ (1\ <<\ 2)\ |\ (0))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00098}00098\ \textcolor{comment}{//\ RGBW\ NeoPixel\ permutations;\ all\ 4\ offsets\ are\ distinct}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00099}00099\ \textcolor{comment}{//\ Offset:\ \ \ \ \ \ \ \ \ W\ \ \ \ \ \ \ \ \ \ R\ \ \ \ \ \ \ \ \ \ G\ \ \ \ \ \ \ \ \ \ B}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00100}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a4ee056fd3d7b09538908b35643a2508a}{00100}}\ \textcolor{preprocessor}{\#define\ NEO\_WRGB\ ((0\ <<\ 6)\ |\ (1\ <<\ 4)\ |\ (2\ <<\ 2)\ |\ (3))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00101}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a266a08af576ed4331db48b16bf572d29}{00101}}\ \textcolor{preprocessor}{\#define\ NEO\_WRBG\ ((0\ <<\ 6)\ |\ (1\ <<\ 4)\ |\ (3\ <<\ 2)\ |\ (2))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00102}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a59561d96a0f8a526ee3448e7b104d8b3}{00102}}\ \textcolor{preprocessor}{\#define\ NEO\_WGRB\ ((0\ <<\ 6)\ |\ (2\ <<\ 4)\ |\ (1\ <<\ 2)\ |\ (3))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00103}\mbox{\hyperlink{_adafruit___neo_pixel_8h_af722c80d41894df25c363b9ebf371b4e}{00103}}\ \textcolor{preprocessor}{\#define\ NEO\_WGBR\ ((0\ <<\ 6)\ |\ (3\ <<\ 4)\ |\ (1\ <<\ 2)\ |\ (2))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00104}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a3eed3aeba511a2478a1ee8c17516732b}{00104}}\ \textcolor{preprocessor}{\#define\ NEO\_WBRG\ ((0\ <<\ 6)\ |\ (2\ <<\ 4)\ |\ (3\ <<\ 2)\ |\ (1))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00105}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a015eeccbf1bd19907c34d7b39b63bb84}{00105}}\ \textcolor{preprocessor}{\#define\ NEO\_WBGR\ ((0\ <<\ 6)\ |\ (3\ <<\ 4)\ |\ (2\ <<\ 2)\ |\ (1))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00107}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a122c6bb3e44525d2f975dcd89b094267}{00107}}\ \textcolor{preprocessor}{\#define\ NEO\_RWGB\ ((1\ <<\ 6)\ |\ (0\ <<\ 4)\ |\ (2\ <<\ 2)\ |\ (3))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00108}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a9254ebc9367c071457d0321f64c9d5fa}{00108}}\ \textcolor{preprocessor}{\#define\ NEO\_RWBG\ ((1\ <<\ 6)\ |\ (0\ <<\ 4)\ |\ (3\ <<\ 2)\ |\ (2))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00109}\mbox{\hyperlink{_adafruit___neo_pixel_8h_abcce73b2eafdf1bb331a8f02fba95d10}{00109}}\ \textcolor{preprocessor}{\#define\ NEO\_RGWB\ ((2\ <<\ 6)\ |\ (0\ <<\ 4)\ |\ (1\ <<\ 2)\ |\ (3))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00110}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a71f7c6e45f4c63fceca6b5b73c7a7c9d}{00110}}\ \textcolor{preprocessor}{\#define\ NEO\_RGBW\ ((3\ <<\ 6)\ |\ (0\ <<\ 4)\ |\ (1\ <<\ 2)\ |\ (2))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00111}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a7b6b551a990b498bed36aadba4a498d5}{00111}}\ \textcolor{preprocessor}{\#define\ NEO\_RBWG\ ((2\ <<\ 6)\ |\ (0\ <<\ 4)\ |\ (3\ <<\ 2)\ |\ (1))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00112}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a198dc192119c166c544efc3e89fdd1cd}{00112}}\ \textcolor{preprocessor}{\#define\ NEO\_RBGW\ ((3\ <<\ 6)\ |\ (0\ <<\ 4)\ |\ (2\ <<\ 2)\ |\ (1))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00114}\mbox{\hyperlink{_adafruit___neo_pixel_8h_aa29b3544b4257e851de2e214894d1236}{00114}}\ \textcolor{preprocessor}{\#define\ NEO\_GWRB\ ((1\ <<\ 6)\ |\ (2\ <<\ 4)\ |\ (0\ <<\ 2)\ |\ (3))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00115}\mbox{\hyperlink{_adafruit___neo_pixel_8h_aaaaa406f36f1c596526579944ca7043d}{00115}}\ \textcolor{preprocessor}{\#define\ NEO\_GWBR\ ((1\ <<\ 6)\ |\ (3\ <<\ 4)\ |\ (0\ <<\ 2)\ |\ (2))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00116}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a35a185ff488486a74745e9094892558c}{00116}}\ \textcolor{preprocessor}{\#define\ NEO\_GRWB\ ((2\ <<\ 6)\ |\ (1\ <<\ 4)\ |\ (0\ <<\ 2)\ |\ (3))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00117}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a722066abc60b560235b3b22082c2e68e}{00117}}\ \textcolor{preprocessor}{\#define\ NEO\_GRBW\ ((3\ <<\ 6)\ |\ (1\ <<\ 4)\ |\ (0\ <<\ 2)\ |\ (2))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00118}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a20be9abdf372b9c71d9fdacc3e6a9d1a}{00118}}\ \textcolor{preprocessor}{\#define\ NEO\_GBWR\ ((2\ <<\ 6)\ |\ (3\ <<\ 4)\ |\ (0\ <<\ 2)\ |\ (1))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00119}\mbox{\hyperlink{_adafruit___neo_pixel_8h_af60d024b8f8954960e59056c57520080}{00119}}\ \textcolor{preprocessor}{\#define\ NEO\_GBRW\ ((3\ <<\ 6)\ |\ (2\ <<\ 4)\ |\ (0\ <<\ 2)\ |\ (1))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00121}\mbox{\hyperlink{_adafruit___neo_pixel_8h_aaf438f131d0fa8a0be6791a553145860}{00121}}\ \textcolor{preprocessor}{\#define\ NEO\_BWRG\ ((1\ <<\ 6)\ |\ (2\ <<\ 4)\ |\ (3\ <<\ 2)\ |\ (0))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00122}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a2595b8689ce5bd39634d017620ae57b8}{00122}}\ \textcolor{preprocessor}{\#define\ NEO\_BWGR\ ((1\ <<\ 6)\ |\ (3\ <<\ 4)\ |\ (2\ <<\ 2)\ |\ (0))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00123}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a4b4571bfc0a3ebfb4720ce4e5fbe9acf}{00123}}\ \textcolor{preprocessor}{\#define\ NEO\_BRWG\ ((2\ <<\ 6)\ |\ (1\ <<\ 4)\ |\ (3\ <<\ 2)\ |\ (0))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00124}\mbox{\hyperlink{_adafruit___neo_pixel_8h_aad617c46d4a64cd4ec8d0ed1a0f30073}{00124}}\ \textcolor{preprocessor}{\#define\ NEO\_BRGW\ ((3\ <<\ 6)\ |\ (1\ <<\ 4)\ |\ (2\ <<\ 2)\ |\ (0))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00125}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a143de1c7084e1f833beecbdae00b321c}{00125}}\ \textcolor{preprocessor}{\#define\ NEO\_BGWR\ ((2\ <<\ 6)\ |\ (3\ <<\ 4)\ |\ (1\ <<\ 2)\ |\ (0))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00126}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a5b49f89982b6e60d20f7aaab79030d54}{00126}}\ \textcolor{preprocessor}{\#define\ NEO\_BGRW\ ((3\ <<\ 6)\ |\ (2\ <<\ 4)\ |\ (1\ <<\ 2)\ |\ (0))\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00128}00128\ \textcolor{comment}{//\ 添加\ NEO\_KHZ400\ 到颜色顺序值以指示\ 400\ KHz\ 设备。}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00129}00129\ \textcolor{comment}{//\ 除了最早的\ v1\ NeoPixels，其他都需要\ 800\ KHz\ 数据流，}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00130}00130\ \textcolor{comment}{//\ 如果未指定，这是默认值。由于\ ATtiny\ 设备（如\ Trinket、Gemma）}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00131}00131\ \textcolor{comment}{//\ 的闪存空间非常有限，v1\ NeoPixels\ 默认不在这些芯片上支持，}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00132}00132\ \textcolor{comment}{//\ 但可以通过移除下面的\ ifndef/endif\ 来启用，}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00133}00133\ \textcolor{comment}{//\ 这样代码会变大。反之，在其他\ MCU\ 上可以禁用\ NEO\_KHZ400\ 这一行，}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00134}00134\ \textcolor{comment}{//\ 以移除\ v1\ 支持并节省一些空间。}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00136}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a475fef7028a743310aa4311a97899d5d}{00136}}\ \textcolor{preprocessor}{\#define\ NEO\_KHZ800\ 0x0000\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00137}00137\ \textcolor{preprocessor}{\#ifndef\ \_\_AVR\_ATtiny85\_\_}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00138}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a9c4067fd0cceb0432d1758fc07ede469}{00138}}\ \textcolor{preprocessor}{\#define\ NEO\_KHZ400\ 0x0100\ }}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00139}00139\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00141}00141\ \textcolor{comment}{//\ If\ 400\ KHz\ support\ is\ enabled,\ the\ third\ parameter\ to\ the\ constructor}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00142}00142\ \textcolor{comment}{//\ requires\ a\ 16-\/bit\ value\ (in\ order\ to\ select\ 400\ vs\ 800\ KHz\ speed).}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00143}00143\ \textcolor{comment}{//\ If\ only\ 800\ KHz\ is\ enabled\ (as\ is\ default\ on\ ATtiny),\ an\ 8-\/bit\ value}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00144}00144\ \textcolor{comment}{//\ is\ sufficient\ to\ encode\ pixel\ color\ order,\ saving\ some\ space.}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00146}00146\ \textcolor{preprocessor}{\#ifdef\ NEO\_KHZ400}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00147}\mbox{\hyperlink{_adafruit___neo_pixel_8h_ab88a50d51bb5488df4379ff49c81fd72}{00147}}\ \textcolor{keyword}{typedef}\ uint16\_t\ \mbox{\hyperlink{_adafruit___neo_pixel_8h_ab88a50d51bb5488df4379ff49c81fd72}{neoPixelType}};\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00148}00148\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00149}00149\ \textcolor{keyword}{typedef}\ uint8\_t\ \mbox{\hyperlink{_adafruit___neo_pixel_8h_ab88a50d51bb5488df4379ff49c81fd72}{neoPixelType}};\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00150}00150\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00152}00152\ \textcolor{comment}{//\ These\ two\ tables\ are\ declared\ outside\ the\ Adafruit\_NeoPixel\ class}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00153}00153\ \textcolor{comment}{//\ because\ some\ boards\ may\ require\ oldschool\ compilers\ that\ don't}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00154}00154\ \textcolor{comment}{//\ handle\ the\ C++11\ constexpr\ keyword.}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00156}00156\ \textcolor{comment}{/*\ A\ PROGMEM\ (flash\ mem)\ table\ containing\ 8-\/bit\ unsigned\ sine\ wave\ (0-\/255).}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00157}00157\ \textcolor{comment}{\ \ \ Copy\ \&\ paste\ this\ snippet\ into\ a\ Python\ REPL\ to\ regenerate:}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00158}00158\ \textcolor{comment}{import\ math}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00159}00159\ \textcolor{comment}{for\ x\ in\ range(256):}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00160}00160\ \textcolor{comment}{\ \ \ \ print("{}\{:3\},"{}.format(int((math.sin(x/128.0*math.pi)+1.0)*127.5+0.5))),}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00161}00161\ \textcolor{comment}{\ \ \ \ if\ x\&15\ ==\ 15:\ print}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00162}00162\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00163}\mbox{\hyperlink{_adafruit___neo_pixel_8h_ab277b1f27669e9f42a49587fe0063c96}{00163}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ PROGMEM\ \mbox{\hyperlink{_adafruit___neo_pixel_8h_ab277b1f27669e9f42a49587fe0063c96}{\_NeoPixelSineTable}}[256]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00164}00164\ \ \ \ \ 128,\ 131,\ 134,\ 137,\ 140,\ 143,\ 146,\ 149,\ 152,\ 155,\ 158,\ 162,\ 165,\ 167,\ 170,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00165}00165\ \ \ \ \ 173,\ 176,\ 179,\ 182,\ 185,\ 188,\ 190,\ 193,\ 196,\ 198,\ 201,\ 203,\ 206,\ 208,\ 211,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00166}00166\ \ \ \ \ 213,\ 215,\ 218,\ 220,\ 222,\ 224,\ 226,\ 228,\ 230,\ 232,\ 234,\ 235,\ 237,\ 238,\ 240,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00167}00167\ \ \ \ \ 241,\ 243,\ 244,\ 245,\ 246,\ 248,\ 249,\ 250,\ 250,\ 251,\ 252,\ 253,\ 253,\ 254,\ 254,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00168}00168\ \ \ \ \ 254,\ 255,\ 255,\ 255,\ 255,\ 255,\ 255,\ 255,\ 254,\ 254,\ 254,\ 253,\ 253,\ 252,\ 251,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00169}00169\ \ \ \ \ 250,\ 250,\ 249,\ 248,\ 246,\ 245,\ 244,\ 243,\ 241,\ 240,\ 238,\ 237,\ 235,\ 234,\ 232,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00170}00170\ \ \ \ \ 230,\ 228,\ 226,\ 224,\ 222,\ 220,\ 218,\ 215,\ 213,\ 211,\ 208,\ 206,\ 203,\ 201,\ 198,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00171}00171\ \ \ \ \ 196,\ 193,\ 190,\ 188,\ 185,\ 182,\ 179,\ 176,\ 173,\ 170,\ 167,\ 165,\ 162,\ 158,\ 155,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00172}00172\ \ \ \ \ 152,\ 149,\ 146,\ 143,\ 140,\ 137,\ 134,\ 131,\ 128,\ 124,\ 121,\ 118,\ 115,\ 112,\ 109,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00173}00173\ \ \ \ \ 106,\ 103,\ 100,\ 97,\ \ 93,\ \ 90,\ \ 88,\ \ 85,\ \ 82,\ \ 79,\ \ 76,\ \ 73,\ \ 70,\ \ 67,\ \ 65,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00174}00174\ \ \ \ \ 62,\ \ 59,\ \ 57,\ \ 54,\ \ 52,\ \ 49,\ \ 47,\ \ 44,\ \ 42,\ \ 40,\ \ 37,\ \ 35,\ \ 33,\ \ 31,\ \ 29,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00175}00175\ \ \ \ \ 27,\ \ 25,\ \ 23,\ \ 21,\ \ 20,\ \ 18,\ \ 17,\ \ 15,\ \ 14,\ \ 12,\ \ 11,\ \ 10,\ \ 9,\ \ \ 7,\ \ \ 6,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00176}00176\ \ \ \ \ 5,\ \ \ 5,\ \ \ 4,\ \ \ 3,\ \ \ 2,\ \ \ 2,\ \ \ 1,\ \ \ 1,\ \ \ 1,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00177}00177\ \ \ \ \ 0,\ \ \ 1,\ \ \ 1,\ \ \ 1,\ \ \ 2,\ \ \ 2,\ \ \ 3,\ \ \ 4,\ \ \ 5,\ \ \ 5,\ \ \ 6,\ \ \ 7,\ \ \ 9,\ \ \ 10,\ \ 11,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00178}00178\ \ \ \ \ 12,\ \ 14,\ \ 15,\ \ 17,\ \ 18,\ \ 20,\ \ 21,\ \ 23,\ \ 25,\ \ 27,\ \ 29,\ \ 31,\ \ 33,\ \ 35,\ \ 37,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00179}00179\ \ \ \ \ 40,\ \ 42,\ \ 44,\ \ 47,\ \ 49,\ \ 52,\ \ 54,\ \ 57,\ \ 59,\ \ 62,\ \ 65,\ \ 67,\ \ 70,\ \ 73,\ \ 76,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00180}00180\ \ \ \ \ 79,\ \ 82,\ \ 85,\ \ 88,\ \ 90,\ \ 93,\ \ 97,\ \ 100,\ 103,\ 106,\ 109,\ 112,\ 115,\ 118,\ 121,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00181}00181\ \ \ \ \ 124\};}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00183}00183\ \textcolor{comment}{/*\ Similar\ to\ above,\ but\ for\ an\ 8-\/bit\ gamma-\/correction\ table.}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00184}00184\ \textcolor{comment}{\ \ \ Copy\ \&\ paste\ this\ snippet\ into\ a\ Python\ REPL\ to\ regenerate:}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00185}00185\ \textcolor{comment}{import\ math}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00186}00186\ \textcolor{comment}{gamma=2.6}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00187}00187\ \textcolor{comment}{for\ x\ in\ range(256):}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00188}00188\ \textcolor{comment}{\ \ \ \ print("{}\{:3\},"{}.format(int(math.pow((x)/255.0,gamma)*255.0+0.5))),}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00189}00189\ \textcolor{comment}{\ \ \ \ if\ x\&15\ ==\ 15:\ print}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00190}00190\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00191}\mbox{\hyperlink{_adafruit___neo_pixel_8h_a37900cafdbce69fda2b8a112f3f1bbb9}{00191}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ PROGMEM\ \mbox{\hyperlink{_adafruit___neo_pixel_8h_a37900cafdbce69fda2b8a112f3f1bbb9}{\_NeoPixelGammaTable}}[256]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00192}00192\ \ \ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00193}00193\ \ \ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 0,\ \ \ 1,\ \ \ 1,\ \ \ 1,\ \ \ 1,\ \ \ 1,\ \ \ 1,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00194}00194\ \ \ \ \ 1,\ \ \ 1,\ \ \ 1,\ \ \ 1,\ \ \ 1,\ \ \ 1,\ \ \ 2,\ \ \ 2,\ \ \ 2,\ \ \ 2,\ \ \ 2,\ \ \ 2,\ \ \ 2,\ \ \ 2,\ \ \ 3,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00195}00195\ \ \ \ \ 3,\ \ \ 3,\ \ \ 3,\ \ \ 3,\ \ \ 3,\ \ \ 4,\ \ \ 4,\ \ \ 4,\ \ \ 4,\ \ \ 5,\ \ \ 5,\ \ \ 5,\ \ \ 5,\ \ \ 5,\ \ \ 6,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00196}00196\ \ \ \ \ 6,\ \ \ 6,\ \ \ 6,\ \ \ 7,\ \ \ 7,\ \ \ 7,\ \ \ 8,\ \ \ 8,\ \ \ 8,\ \ \ 9,\ \ \ 9,\ \ \ 9,\ \ \ 10,\ \ 10,\ \ 10,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00197}00197\ \ \ \ \ 11,\ \ 11,\ \ 11,\ \ 12,\ \ 12,\ \ 13,\ \ 13,\ \ 13,\ \ 14,\ \ 14,\ \ 15,\ \ 15,\ \ 16,\ \ 16,\ \ 17,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00198}00198\ \ \ \ \ 17,\ \ 18,\ \ 18,\ \ 19,\ \ 19,\ \ 20,\ \ 20,\ \ 21,\ \ 21,\ \ 22,\ \ 22,\ \ 23,\ \ 24,\ \ 24,\ \ 25,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00199}00199\ \ \ \ \ 25,\ \ 26,\ \ 27,\ \ 27,\ \ 28,\ \ 29,\ \ 29,\ \ 30,\ \ 31,\ \ 31,\ \ 32,\ \ 33,\ \ 34,\ \ 34,\ \ 35,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00200}00200\ \ \ \ \ 36,\ \ 37,\ \ 38,\ \ 38,\ \ 39,\ \ 40,\ \ 41,\ \ 42,\ \ 42,\ \ 43,\ \ 44,\ \ 45,\ \ 46,\ \ 47,\ \ 48,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00201}00201\ \ \ \ \ 49,\ \ 50,\ \ 51,\ \ 52,\ \ 53,\ \ 54,\ \ 55,\ \ 56,\ \ 57,\ \ 58,\ \ 59,\ \ 60,\ \ 61,\ \ 62,\ \ 63,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00202}00202\ \ \ \ \ 64,\ \ 65,\ \ 66,\ \ 68,\ \ 69,\ \ 70,\ \ 71,\ \ 72,\ \ 73,\ \ 75,\ \ 76,\ \ 77,\ \ 78,\ \ 80,\ \ 81,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00203}00203\ \ \ \ \ 82,\ \ 84,\ \ 85,\ \ 86,\ \ 88,\ \ 89,\ \ 90,\ \ 92,\ \ 93,\ \ 94,\ \ 96,\ \ 97,\ \ 99,\ \ 100,\ 102,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00204}00204\ \ \ \ \ 103,\ 105,\ 106,\ 108,\ 109,\ 111,\ 112,\ 114,\ 115,\ 117,\ 119,\ 120,\ 122,\ 124,\ 125,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00205}00205\ \ \ \ \ 127,\ 129,\ 130,\ 132,\ 134,\ 136,\ 137,\ 139,\ 141,\ 143,\ 145,\ 146,\ 148,\ 150,\ 152,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00206}00206\ \ \ \ \ 154,\ 156,\ 158,\ 160,\ 162,\ 164,\ 166,\ 168,\ 170,\ 172,\ 174,\ 176,\ 178,\ 180,\ 182,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00207}00207\ \ \ \ \ 184,\ 186,\ 188,\ 191,\ 193,\ 195,\ 197,\ 199,\ 202,\ 204,\ 206,\ 209,\ 211,\ 213,\ 215,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00208}00208\ \ \ \ \ 218,\ 220,\ 223,\ 225,\ 227,\ 230,\ 232,\ 235,\ 237,\ 240,\ 242,\ 245,\ 247,\ 250,\ 252,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00209}00209\ \ \ \ \ 255\};}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00211}00211\ \textcolor{comment}{/*\ Declare\ external\ methods\ required\ by\ the\ Adafruit\_NeoPixel\ implementation}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00212}00212\ \textcolor{comment}{\ \ \ \ for\ specific\ hardware/library\ versions}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00213}00213\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00214}00214\ \textcolor{preprocessor}{\#if\ defined(ESP32)}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00215}00215\ \textcolor{preprocessor}{\#if\ ESP\_IDF\_VERSION\ >=\ ESP\_IDF\_VERSION\_VAL(5,\ 0,\ 0)}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00216}00216\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \textcolor{keywordtype}{void}\ espInit();}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00217}00217\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00218}00218\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00224}\mbox{\hyperlink{class_adafruit___neo_pixel}{00224}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_adafruit___neo_pixel_aac61dab69181d4554be8cdde40e4bce6}{Adafruit\_NeoPixel}}\ \{}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00226}00226\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00227}00227\ \ \ \textcolor{comment}{//\ Constructor:\ number\ of\ LEDs,\ pin\ number,\ LED\ type}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00228}00228\ \ \ \mbox{\hyperlink{class_adafruit___neo_pixel_a2a7ab8a0cedee029cd5330b638146ccc}{Adafruit\_NeoPixel}}(uint16\_t\ n,\ int16\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_aaa3ce258bc1ded4228bff0277101cdb5}{pin}}\ =\ 6,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_adafruit___neo_pixel_8h_ab88a50d51bb5488df4379ff49c81fd72}{neoPixelType}}\ type\ =\ \mbox{\hyperlink{_adafruit___neo_pixel_8h_a95d0d6b0a1f52bc72d9dcea2b3a48e3f}{NEO\_GRB}}\ +\ \mbox{\hyperlink{_adafruit___neo_pixel_8h_a475fef7028a743310aa4311a97899d5d}{NEO\_KHZ800}});}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00230}00230\ \ \ \mbox{\hyperlink{class_adafruit___neo_pixel_a2a7ab8a0cedee029cd5330b638146ccc}{Adafruit\_NeoPixel}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00231}00231\ \ \ \mbox{\hyperlink{class_adafruit___neo_pixel_a61b1bd003a291520a367ab1712d6265c}{\string~Adafruit\_NeoPixel}}();}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00233}00233\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a8a44d3d56666547290d151ab4c44cf91}{begin}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00234}00234\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a4bcda7a15591065570d3598cbf970be7}{show}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00235}00235\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_aa1898f089b9a4e02841cec2e63b88c33}{setPin}}(int16\_t\ p);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00236}00236\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_ab8763ccc6f9a090df1f753905fd5561e}{setPixelColor}}(uint16\_t\ n,\ uint8\_t\ r,\ uint8\_t\ g,\ uint8\_t\ b);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00237}00237\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_ab8763ccc6f9a090df1f753905fd5561e}{setPixelColor}}(uint16\_t\ n,\ uint8\_t\ r,\ uint8\_t\ g,\ uint8\_t\ b,\ uint8\_t\ w);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00238}00238\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_ab8763ccc6f9a090df1f753905fd5561e}{setPixelColor}}(uint16\_t\ n,\ uint32\_t\ c);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00239}00239\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a310844b3e5580056edf52ce3268d8084}{fill}}(uint32\_t\ c\ =\ 0,\ uint16\_t\ first\ =\ 0,\ uint16\_t\ count\ =\ 0);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00240}00240\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_aa05f7d37828c43fef00e6242dcf75959}{setBrightness}}(uint8\_t);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00241}00241\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_ae259682b202be0acd258d6879f4c7121}{clear}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00242}00242\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a74e917093c2eb16848c4a09427680f79}{updateLength}}(uint16\_t\ n);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00243}00243\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a07b6949674125159484e9e02ef025f7d}{updateType}}(\mbox{\hyperlink{_adafruit___neo_pixel_8h_ab88a50d51bb5488df4379ff49c81fd72}{neoPixelType}}\ t);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00257}\mbox{\hyperlink{class_adafruit___neo_pixel_a9e900a60b0ac2b43b99309bb118b929e}{00257}}\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a9e900a60b0ac2b43b99309bb118b929e}{canShow}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00258}00258\ \ \ \ \ \textcolor{comment}{//\ It's\ normal\ and\ possible\ for\ endTime\ to\ exceed\ micros()\ if\ the}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00259}00259\ \ \ \ \ \textcolor{comment}{//\ 32-\/bit\ clock\ counter\ has\ rolled\ over\ (about\ every\ 70\ minutes).}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00260}00260\ \ \ \ \ \textcolor{comment}{//\ Since\ both\ are\ uint32\_t,\ a\ negative\ delta\ correctly\ maps\ back\ to}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00261}00261\ \ \ \ \ \textcolor{comment}{//\ positive\ space,\ and\ it\ would\ seem\ like\ the\ subtraction\ below\ would}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00262}00262\ \ \ \ \ \textcolor{comment}{//\ suffice.\ But\ a\ problem\ arises\ if\ code\ invokes\ show()\ very}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00263}00263\ \ \ \ \ \textcolor{comment}{//\ infrequently...the\ micros()\ counter\ may\ roll\ over\ MULTIPLE\ times\ in}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00264}00264\ \ \ \ \ \textcolor{comment}{//\ that\ interval,\ the\ delta\ calculation\ is\ no\ longer\ correct\ and\ the}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00265}00265\ \ \ \ \ \textcolor{comment}{//\ next\ update\ may\ stall\ for\ a\ very\ long\ time.\ The\ check\ below\ resets}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00266}00266\ \ \ \ \ \textcolor{comment}{//\ the\ latch\ counter\ if\ a\ rollover\ has\ occurred.\ This\ can\ cause\ an}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00267}00267\ \ \ \ \ \textcolor{comment}{//\ extra\ delay\ of\ up\ to\ 300\ microseconds\ in\ the\ rare\ case\ where\ a}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00268}00268\ \ \ \ \ \textcolor{comment}{//\ show()\ call\ happens\ precisely\ around\ the\ rollover,\ but\ that's}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00269}00269\ \ \ \ \ \textcolor{comment}{//\ neither\ likely\ nor\ especially\ harmful,\ vs.\ other\ code\ that\ might}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00270}00270\ \ \ \ \ \textcolor{comment}{//\ stall\ for\ 30+\ minutes,\ or\ having\ to\ document\ and\ frequently\ remind}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00271}00271\ \ \ \ \ \textcolor{comment}{//\ and/or\ provide\ tech\ support\ explaining\ an\ unintuitive\ need\ for}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00272}00272\ \ \ \ \ \textcolor{comment}{//\ show()\ calls\ at\ least\ once\ an\ hour.}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00273}00273\ \ \ \ \ uint32\_t\ now\ =\ micros();}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00274}00274\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_adafruit___neo_pixel_a1774fd792c71e961624594e0c29e4541}{endTime}}\ >\ now)\ \{}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00275}00275\ \ \ \ \ \ \ \mbox{\hyperlink{class_adafruit___neo_pixel_a1774fd792c71e961624594e0c29e4541}{endTime}}\ =\ now;}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00276}00276\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00277}00277\ \ \ \ \ \textcolor{keywordflow}{return}\ (now\ -\/\ \mbox{\hyperlink{class_adafruit___neo_pixel_a1774fd792c71e961624594e0c29e4541}{endTime}})\ >=\ 300L;}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00278}00278\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00293}\mbox{\hyperlink{class_adafruit___neo_pixel_ab484e9a9da6f1089091c2cda1a0841a7}{00293}}\ \ \ uint8\_t\ *\mbox{\hyperlink{class_adafruit___neo_pixel_ab484e9a9da6f1089091c2cda1a0841a7}{getPixels}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a0667c23748aa7b3dc04e7c59916308cd}{pixels}};\ \};}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00294}00294\ \ \ uint8\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_ab1b7af02712d6a1e228783a89ec12832}{getBrightness}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00299}\mbox{\hyperlink{class_adafruit___neo_pixel_ac2d69741bcce8ad0b61c66757952db8e}{00299}}\ \ \ int16\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_ac2d69741bcce8ad0b61c66757952db8e}{getPin}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_adafruit___neo_pixel_aaa3ce258bc1ded4228bff0277101cdb5}{pin}};\ \};}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00304}\mbox{\hyperlink{class_adafruit___neo_pixel_a515921e2c768750698f199c27613a143}{00304}}\ \ \ uint16\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_a515921e2c768750698f199c27613a143}{numPixels}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_adafruit___neo_pixel_ad8218520ee2ad574f805985ea2c2b0b6}{numLEDs}};\ \}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00305}00305\ \ \ uint32\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_abccaba27e35bfae27c856e76b46c7924}{getPixelColor}}(uint16\_t\ n)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00318}\mbox{\hyperlink{class_adafruit___neo_pixel_afb00024000da81bcb6378c7052f77be3}{00318}}\ \ \ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_afb00024000da81bcb6378c7052f77be3}{sine8}}(uint8\_t\ x)\ \{}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00319}00319\ \ \ \ \ \textcolor{keywordflow}{return}\ pgm\_read\_byte(\&\mbox{\hyperlink{_adafruit___neo_pixel_8h_ab277b1f27669e9f42a49587fe0063c96}{\_NeoPixelSineTable}}[x]);\ \textcolor{comment}{//\ 0-\/255\ in,\ 0-\/255\ out}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00320}00320\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00332}\mbox{\hyperlink{class_adafruit___neo_pixel_ab932cb619cd3420f9e3f269b7401710e}{00332}}\ \ \ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_ab932cb619cd3420f9e3f269b7401710e}{gamma8}}(uint8\_t\ x)\ \{}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00333}00333\ \ \ \ \ \textcolor{keywordflow}{return}\ pgm\_read\_byte(\&\mbox{\hyperlink{_adafruit___neo_pixel_8h_a37900cafdbce69fda2b8a112f3f1bbb9}{\_NeoPixelGammaTable}}[x]);\ \textcolor{comment}{//\ 0-\/255\ in,\ 0-\/255\ out}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00334}00334\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00346}\mbox{\hyperlink{class_adafruit___neo_pixel_ae7c444138dd0e6ac1008621d0a67048b}{00346}}\ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_ae7c444138dd0e6ac1008621d0a67048b}{Color}}(uint8\_t\ r,\ uint8\_t\ g,\ uint8\_t\ b)\ \{}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00347}00347\ \ \ \ \ \textcolor{keywordflow}{return}\ ((uint32\_t)r\ <<\ 16)\ |\ ((uint32\_t)g\ <<\ 8)\ |\ b;}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00348}00348\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00361}\mbox{\hyperlink{class_adafruit___neo_pixel_af0c47eb0d6d9f28a4f85b8039f78060c}{00361}}\ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_af0c47eb0d6d9f28a4f85b8039f78060c}{Color}}(uint8\_t\ r,\ uint8\_t\ g,\ uint8\_t\ b,\ uint8\_t\ w)\ \{}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00362}00362\ \ \ \ \ \textcolor{keywordflow}{return}\ ((uint32\_t)w\ <<\ 24)\ |\ ((uint32\_t)r\ <<\ 16)\ |\ ((uint32\_t)g\ <<\ 8)\ |\ b;}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00363}00363\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00364}00364\ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_a1f16aee5b96e16e62598f826e292b23b}{ColorHSV}}(uint16\_t\ hue,\ uint8\_t\ sat\ =\ 255,\ uint8\_t\ val\ =\ 255);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00377}00377\ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_a0151163f5aeaa42676bc31a978d6d666}{gamma32}}(uint32\_t\ x);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00379}00379\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a914f61b78e4d36a03c91372ceded2d46}{rainbow}}(uint16\_t\ first\_hue\ =\ 0,\ int8\_t\ reps\ =\ 1,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ saturation\ =\ 255,\ uint8\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_a983265c34a4008d2c7a9eeb12eebea84}{brightness}}\ =\ 255,}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ gammify\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00382}00382\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00383}00383\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_adafruit___neo_pixel_8h_ab88a50d51bb5488df4379ff49c81fd72}{neoPixelType}}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a5cec6fe17e75f8d607df305e2fa9db5c}{str2order}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *v);}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00384}00384\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00385}00385\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00386}00386\ \textcolor{preprocessor}{\#if\ defined(ARDUINO\_ARCH\_RP2040)}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00387}00387\ \ \ \textcolor{keywordtype}{bool}\ \ \ rp2040claimPIO(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00388}00388\ \ \ \textcolor{keywordtype}{void}\ \ \ rp2040releasePIO(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00389}00389\ \ \ \textcolor{keywordtype}{void}\ \ \ rp2040Show(uint8\_t\ *\mbox{\hyperlink{class_adafruit___neo_pixel_a0667c23748aa7b3dc04e7c59916308cd}{pixels}},\ uint32\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_a89a4a144941744dc01c6e0072ad0f05d}{numBytes}});}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00390}00390\ \ \ PIO\ \ \ \ pio\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00391}00391\ \ \ uint\ \ \ pio\_sm\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00392}00392\ \ \ uint\ \ \ pio\_program\_offset\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00393}00393\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00394}00394\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00395}00395\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00396}00396\ \textcolor{preprocessor}{\#ifdef\ NEO\_KHZ400\ }\textcolor{comment}{//\ If\ 400\ KHz\ NeoPixel\ support\ enabled...}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00397}\mbox{\hyperlink{class_adafruit___neo_pixel_a56919a5e954b1a87ef965c75c6cc68a1}{00397}}\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a56919a5e954b1a87ef965c75c6cc68a1}{is800KHz}};\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00398}00398\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00399}00399\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00400}\mbox{\hyperlink{class_adafruit___neo_pixel_a2215c42c8ed043dc43d28592c2c1d750}{00400}}\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_adafruit___neo_pixel_a2215c42c8ed043dc43d28592c2c1d750}{begun}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00401}\mbox{\hyperlink{class_adafruit___neo_pixel_ad8218520ee2ad574f805985ea2c2b0b6}{00401}}\ \ \ uint16\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_ad8218520ee2ad574f805985ea2c2b0b6}{numLEDs}};\ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00402}\mbox{\hyperlink{class_adafruit___neo_pixel_a89a4a144941744dc01c6e0072ad0f05d}{00402}}\ \ \ uint16\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_a89a4a144941744dc01c6e0072ad0f05d}{numBytes}};\ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00403}\mbox{\hyperlink{class_adafruit___neo_pixel_aaa3ce258bc1ded4228bff0277101cdb5}{00403}}\ \ \ int16\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_aaa3ce258bc1ded4228bff0277101cdb5}{pin}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00404}\mbox{\hyperlink{class_adafruit___neo_pixel_a983265c34a4008d2c7a9eeb12eebea84}{00404}}\ \ \ uint8\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_a983265c34a4008d2c7a9eeb12eebea84}{brightness}};\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00405}\mbox{\hyperlink{class_adafruit___neo_pixel_a0667c23748aa7b3dc04e7c59916308cd}{00405}}\ \ \ uint8\_t\ *\mbox{\hyperlink{class_adafruit___neo_pixel_a0667c23748aa7b3dc04e7c59916308cd}{pixels}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00406}\mbox{\hyperlink{class_adafruit___neo_pixel_a8275f74399aea225b25aed014d740c99}{00406}}\ \ \ uint8\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_a8275f74399aea225b25aed014d740c99}{rOffset}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00407}\mbox{\hyperlink{class_adafruit___neo_pixel_a3db2bc3b72073fd9a86438128186fc98}{00407}}\ \ \ uint8\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_a3db2bc3b72073fd9a86438128186fc98}{gOffset}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00408}\mbox{\hyperlink{class_adafruit___neo_pixel_aeb2fc94bc0568778b3a643977a8b6a95}{00408}}\ \ \ uint8\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_aeb2fc94bc0568778b3a643977a8b6a95}{bOffset}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00409}\mbox{\hyperlink{class_adafruit___neo_pixel_abb82afb6bb4c4e365561f18c6ff6b6a8}{00409}}\ \ \ uint8\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_abb82afb6bb4c4e365561f18c6ff6b6a8}{wOffset}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00410}\mbox{\hyperlink{class_adafruit___neo_pixel_a1774fd792c71e961624594e0c29e4541}{00410}}\ \ \ uint32\_t\ \mbox{\hyperlink{class_adafruit___neo_pixel_a1774fd792c71e961624594e0c29e4541}{endTime}};\ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00412}00412\ \textcolor{preprocessor}{\#ifdef\ \_\_AVR\_\_}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00413}00413\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ *port;\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00414}00414\ \ \ uint8\_t\ pinMask;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00415}00415\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00416}00416\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00417}00417\ \textcolor{preprocessor}{\#if\ defined(ARDUINO\_ARCH\_STM32)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00418}00418\ \textcolor{preprocessor}{\ \ \ \ defined(ARDUINO\_ARCH\_ARDUINO\_CORE\_STM32)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00419}00419\ \textcolor{preprocessor}{\ \ \ \ defined(ARDUINO\_ARCH\_CH32)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00420}00420\ \textcolor{preprocessor}{\ \ \ \ defined(\_PY32\_DEF\_)}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00421}00421\ \ \ GPIO\_TypeDef\ *gpioPort;\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00422}00422\ \ \ uint32\_t\ gpioPin;\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00423}00423\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00424}00424\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00425}00425\ \textcolor{preprocessor}{\#if\ defined(TARGET\_GIGA)\ ||\ defined(TARGET\_M4)}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00426}00426\ \ \ mbed::DigitalInOut\ *gpio;}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00427}00427\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00428}00428\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00429}00429\ \};}
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00430}00430\ }
+\DoxyCodeLine{\Hypertarget{_adafruit___neo_pixel_8h_source_l00431}00431\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ADAFRUIT\_NEOPIXEL\_H}}
+
+\end{DoxyCode}

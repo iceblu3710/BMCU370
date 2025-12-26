@@ -1,0 +1,25 @@
+<map id="Hardware::InitBase" name="Hardware::InitBase">
+<area shape="rect" id="Node000001" title="Initialize minimal Hardware Base." alt="" coords="5,207,139,233"/>
+<area shape="rect" id="Node000002" href="$namespace_hardware.html#a72bd28689a22ff9e3db6b911c020ecbb" title="Initialize the Analog&#45;to&#45;Digital Converter." alt="" coords="202,29,341,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,205,118,142,149,105,185,73,209,61,205,65,188,77,153,109,123,146,83,208"/>
+<area shape="rect" id="Node000003" href="$namespace_hardware.html#ad269fd29299dd87118b408e4551f4d2d" title="Millisecond Delay." alt="" coords="404,55,543,81"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="82,205,124,160,153,136,185,116,236,96,289,82,391,69,386,72,290,88,238,101,188,121,156,140,128,164,86,208"/>
+<area shape="rect" id="Node000004" href="$namespace_hardware.html#a87dd189117be2ce6e98135f024fd972c" title="Initialize NeoPixel LEDs." alt="" coords="203,131,340,157"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="100,204,186,167,208,161,204,164,188,172,103,208"/>
+<area shape="rect" id="Node000006" href="$namespace_hardware.html#a44347f62b4ee1789ecfed67b195572e4" title="Set Color of a specific LED." alt="" coords="187,181,356,208"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="138,209,173,206,169,209,140,214"/>
+<area shape="rect" id="Node000007" href="$namespace_hardware.html#a365d946e0cf0fe8cfc8dbcb25cfbdad9" title="Update LED Hardware." alt="" coords="196,232,347,259"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="138,226,183,232,178,235,140,231"/>
+<area shape="rect" id="Node000008" href="$namespace_hardware.html#a0745af097a6d21fc3fb1f1ebd9e141ff" title="Initialize PWM Timers for Motor Control." alt="" coords="200,283,343,309"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="102,231,188,268,209,277,203,278,186,273,102,237"/>
+<area shape="rect" id="Node000009" href="$namespace_hardware.html#a8ab0dbadec2826235277f8152a80155d" title="Configure System Clocks and Pin Remapping." alt="" coords="194,333,349,360"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="85,231,129,275,157,299,188,319,201,327,196,327,185,324,154,303,125,279,85,237"/>
+<area shape="rect" id="Node000010" href="$namespace_hardware.html#a90a0cffa2efcfb8d76bc12f9734ca623" title="Disable the Window Watchdog." alt="" coords="200,384,343,427"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="81,231,122,297,152,336,188,370,195,376,189,375,185,374,148,340,118,300,79,236"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="237,29,231,21,236,11,249,5,271,3,295,5,309,13,304,15,294,10,271,8,251,10,239,15,237,20,242,29"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="341,49,391,56,386,58,342,54"/>
+<area shape="rect" id="Node000005" href="$_hardware_8cpp.html#a766f13b53e03456789fd4fe8e009e157" title=" " alt="" coords="434,181,513,208"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="328,155,422,180,417,182,328,161"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="356,192,421,194,416,196,357,197"/>
+<area shape="poly" id="edge10_Node000007_Node000005" title=" " alt="" coords="327,229,422,207,417,209,329,234"/>
+</map>

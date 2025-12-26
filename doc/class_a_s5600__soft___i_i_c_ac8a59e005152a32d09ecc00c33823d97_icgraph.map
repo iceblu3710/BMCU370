@@ -1,0 +1,13 @@
+<map id="AS5600_soft_IIC::start_iic" name="AS5600_soft_IIC::start_iic">
+<area shape="rect" id="Node000001" title="Generate I2C Start Condition." alt="" coords="675,43,851,69"/>
+<area shape="rect" id="Node000002" href="$class_a_s5600__soft___i_i_c.html#a2dd4402cc6cf6076b30971d5079118f6" title="Read a 16&#45;bit register from the AS5600." alt="" coords="457,5,611,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="657,43,612,39,612,34,663,43"/>
+<area shape="rect" id="Node000004" href="$class_a_s5600__soft___i_i_c.html#ab7dad932cf3065c3aa1c745974b4ada5" title="Read an 8&#45;bit register from the AS5600." alt="" coords="441,72,627,99"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="663,69,628,76,627,71,657,69"/>
+<area shape="rect" id="Node000003" href="$class_a_s5600__soft___i_i_c.html#a29d2784ba12928a292fa9e253ffe3b7f" title="Read the raw angle from all sensors." alt="" coords="212,5,380,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="439,27,381,29,381,24,444,26"/>
+<area shape="rect" id="Node000005" href="$class_a_s5600__soft___i_i_c.html#a7173c0a8a0b94f67c4b7d741ebbcb3b1" title="Update the status of all sensors." alt="" coords="200,72,393,99"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="423,85,394,88,394,83,428,85"/>
+<area shape="rect" id="Node000006" href="$class_a_s5600__soft___i_i_c.html#a52c0eebc0a9f05612b68fcf0d53eac83" title="Initialize the Soft I2C instance for multiple AS5600 sensors." alt="" coords="5,72,152,99"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="182,85,152,88,152,83,187,85"/>
+</map>

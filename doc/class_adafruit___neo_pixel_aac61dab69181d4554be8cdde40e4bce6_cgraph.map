@@ -1,0 +1,10 @@
+<map id="Adafruit_NeoPixel::Adafruit_NeoPixel" name="Adafruit_NeoPixel::Adafruit_NeoPixel">
+<area shape="rect" id="Node000001" title="当长度、引脚和像素类型在编译时已知时的NeoPixel构造函数" alt="" coords="5,64,140,107"/>
+<area shape="rect" id="Node000002" href="$class_adafruit___neo_pixel.html#aa1898f089b9a4e02841cec2e63b88c33" title="Set/change the NeoPixel output pin number. Previous pin, if any, is set to INPUT and the new pin is s..." alt="" coords="188,5,322,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,61,175,52,171,54,141,66"/>
+<area shape="rect" id="Node000003" href="$class_adafruit___neo_pixel.html#a74e917093c2eb16848c4a09427680f79" title="更改已声明的Adafruit_NeoPixel灯带对象的长度。旧数据会被释放，新数据会被清空。 引脚号和像素格式不变。" alt="" coords="370,93,504,136"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="140,88,356,106,354,110,140,93"/>
+<area shape="rect" id="Node000004" href="$class_adafruit___neo_pixel.html#a07b6949674125159484e9e02ef025f7d" title="更改之前声明的像素格式 Adafruit_NeoPixel灯带对象。如果格式从一个变为另一个 将RGB变体转换为RGBW变体（或将RGBW转换为RGB），旧的 数据将被释放，新数据将被清空。否则， 旧数..." alt="" coords="188,123,322,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="140,104,176,117,170,118,140,110"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="322,131,352,128,357,128,323,136"/>
+</map>

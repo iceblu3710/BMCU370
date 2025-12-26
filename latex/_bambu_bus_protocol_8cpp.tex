@@ -1,0 +1,81 @@
+\doxysection{src/\+Bambu\+Bus\+Protocol.cpp File Reference}
+\hypertarget{_bambu_bus_protocol_8cpp}{}\label{_bambu_bus_protocol_8cpp}\index{src/BambuBusProtocol.cpp@{src/BambuBusProtocol.cpp}}
+{\ttfamily \#include "{}Bambu\+Bus\+Protocol.\+h"{}}\newline
+{\ttfamily \#include "{}CRC16.\+h"{}}\newline
+{\ttfamily \#include "{}CRC8.\+h"{}}\newline
+Include dependency graph for Bambu\+Bus\+Protocol.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{_bambu_bus_protocol_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static CRC8 \mbox{\hyperlink{_bambu_bus_protocol_8cpp_accdac0b68b69d84409a479fc284f0a1b}{\+\_\+\+RX\+\_\+\+IRQ\+\_\+crcx}} (0x39, 0x66, 0x00, false, false)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static CRC16 \mbox{\hyperlink{_bambu_bus_protocol_8cpp_a9e55b5c4cdf6fa62f8dfb9d6604655a6}{crc\+\_\+16}}
+\item 
+static CRC8 \mbox{\hyperlink{_bambu_bus_protocol_8cpp_aa25bc6787f31c22990b295d61a409df8}{crc\+\_\+8}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{_bambu_bus_protocol_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_bambu_bus_protocol_8cpp_accdac0b68b69d84409a479fc284f0a1b}\index{BambuBusProtocol.cpp@{BambuBusProtocol.cpp}!\_RX\_IRQ\_crcx@{\_RX\_IRQ\_crcx}}
+\index{\_RX\_IRQ\_crcx@{\_RX\_IRQ\_crcx}!BambuBusProtocol.cpp@{BambuBusProtocol.cpp}}
+\doxysubsubsection{\texorpdfstring{\_RX\_IRQ\_crcx()}{\_RX\_IRQ\_crcx()}}
+{\footnotesize\ttfamily \label{_bambu_bus_protocol_8cpp_accdac0b68b69d84409a479fc284f0a1b} 
+CRC8 \+\_\+\+RX\+\_\+\+IRQ\+\_\+crcx (\begin{DoxyParamCaption}\item[{0x39}]{}{, }\item[{0x66}]{}{, }\item[{0x00}]{}{, }\item[{false}]{}{, }\item[{false}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Referenced by \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00041}{Bambu\+Bus\+Protocol\+::\+Parse\+Byte()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_bambu_bus_protocol_8cpp_accdac0b68b69d84409a479fc284f0a1b_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{_bambu_bus_protocol_8cpp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_bambu_bus_protocol_8cpp_a9e55b5c4cdf6fa62f8dfb9d6604655a6}\index{BambuBusProtocol.cpp@{BambuBusProtocol.cpp}!crc\_16@{crc\_16}}
+\index{crc\_16@{crc\_16}!BambuBusProtocol.cpp@{BambuBusProtocol.cpp}}
+\doxysubsubsection{\texorpdfstring{crc\_16}{crc\_16}}
+{\footnotesize\ttfamily \label{_bambu_bus_protocol_8cpp_a9e55b5c4cdf6fa62f8dfb9d6604655a6} 
+CRC16 crc\+\_\+16\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00231}{Bambu\+Bus\+Protocol\+::\+Build\+Packet\+With\+CRC()}}, \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00142}{Bambu\+Bus\+Protocol\+::\+Check\+CRC16()}}, and \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00024}{Bambu\+Bus\+Protocol\+::\+Init()}}.
+
+\Hypertarget{_bambu_bus_protocol_8cpp_aa25bc6787f31c22990b295d61a409df8}\index{BambuBusProtocol.cpp@{BambuBusProtocol.cpp}!crc\_8@{crc\_8}}
+\index{crc\_8@{crc\_8}!BambuBusProtocol.cpp@{BambuBusProtocol.cpp}}
+\doxysubsubsection{\texorpdfstring{crc\_8}{crc\_8}}
+{\footnotesize\ttfamily \label{_bambu_bus_protocol_8cpp_aa25bc6787f31c22990b295d61a409df8} 
+CRC8 crc\+\_\+8\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00231}{Bambu\+Bus\+Protocol\+::\+Build\+Packet\+With\+CRC()}}, and \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00024}{Bambu\+Bus\+Protocol\+::\+Init()}}.
+

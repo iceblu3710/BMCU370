@@ -1,0 +1,17 @@
+<map id="ControlLogic::get_time64" name="ControlLogic::get_time64">
+<area shape="rect" id="Node000001" title=" " alt="" coords="969,47,1135,73"/>
+<area shape="rect" id="Node000002" href="$namespace_control_logic.html#ac2d890c891494072159ebc2b30490197" title="State Machine for BambuBus Logic." alt="" coords="759,5,894,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="951,45,894,39,895,34,956,45"/>
+<area shape="rect" id="Node000007" href="$namespace_control_logic.html#a8880b393facb6828519b8dac8e96393c" title="Core logic for processing Short Motion packets." alt="" coords="732,72,921,115"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="956,74,922,82,921,77,951,75"/>
+<area shape="rect" id="Node000003" href="$namespace_control_logic.html#adc8c269923e0c76c6d104a005833a7f9" title="Main Control Loop." alt="" coords="526,13,652,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="741,27,653,29,653,24,746,26"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Arduino Main Loop." alt="" coords="401,13,446,40"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="507,27,447,29,447,24,513,26"/>
+<area shape="rect" id="Node000005" href="$class_adafruit___neo_pixel.html#a4bcda7a15591065570d3598cbf970be7" title="将RAM中的像素数据传输到NeoPixels。" alt="" coords="188,13,353,40"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="383,27,354,29,353,24,388,26"/>
+<area shape="rect" id="Node000006" href="$class_adafruit___neo_pixel.html#a61b1bd003a291520a367ab1712d6265c" title="释放Adafruit_NeoPixel对象，将数据引脚恢复为输入模式。" alt="" coords="5,5,140,48"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="170,28,140,29,139,24,175,26"/>
+<area shape="rect" id="Node000008" href="$namespace_control_logic.html#a5f85db884abd1a66d8b120729ec0d99e" title="Handler for Filament Motion Short packet (0x03)." alt="" coords="494,72,684,115"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="713,93,684,96,684,91,719,93"/>
+</map>

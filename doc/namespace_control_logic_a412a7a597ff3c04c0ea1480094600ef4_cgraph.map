@@ -1,0 +1,20 @@
+<map id="ControlLogic::ProcessOnlineDetect" name="ControlLogic::ProcessOnlineDetect">
+<area shape="rect" id="Node000001" title="Handler for Online Detect (0x05)." alt="" coords="5,64,193,107"/>
+<area shape="rect" id="Node000002" href="$class_bambu_bus_protocol.html#af9d11bc755538718e6ba8fbc5c8e9187" title="Finalize a packet for transmission by calculating and appending CRCs." alt="" coords="244,5,455,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,61,243,51,238,53,194,66"/>
+<area shape="rect" id="Node000003" href="$namespace_command_router.html#a1cf14aabb538f71f140e6b1aa7ef965d" title="Send a raw data packet via UART." alt="" coords="250,72,449,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="193,83,237,85,231,86,194,88"/>
+<area shape="rect" id="Node000007" href="$namespace_control_logic.html#a9716be5fe9da72481bee41a80681d8e5" title="Update connectivity status (Online/Offline)." alt="" coords="241,123,458,149"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="193,102,268,119,262,119,193,107"/>
+<area shape="rect" id="Node000004" href="$namespace_hardware.html#ad3ec7cad074d6d73508844a06a7bea50" title="Send a buffer via UART1." alt="" coords="506,72,664,99"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="449,83,493,85,488,86,450,88"/>
+<area shape="rect" id="Node000005" href="$namespace_hardware.html#a0ada30189b8e1d1dbec145140849b778" title="Microsecond Delay." alt="" coords="946,47,1084,73"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="643,69,712,57,826,52,933,55,927,56,826,57,713,63,644,74"/>
+<area shape="rect" id="Node000006" href="$namespace_hardware.html#aaaf02ef3df5811e2ba28dd009eadfaae" title="Send a single byte blocking." alt="" coords="712,72,898,99"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="665,83,699,85,694,85,665,88"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="898,71,928,70,933,70,898,77"/>
+<area shape="rect" id="Node000008" href="$namespace_hardware.html#a8ea28b07408691bc126683a81aa220f3" title="Get System Time in Milliseconds." alt="" coords="518,123,653,149"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="458,133,505,136,499,136,458,139"/>
+<area shape="rect" id="Node000009" href="$time64_8cpp.html#a146d483f58902ba0184ce16f728edfb0" title="Get 64&#45;bit System Time in Milliseconds." alt="" coords="762,123,848,149"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="653,133,749,136,744,136,653,139"/>
+</map>

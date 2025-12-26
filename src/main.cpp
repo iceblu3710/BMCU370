@@ -4,6 +4,12 @@
 #include "CommandRouter.h"
 
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Arduino Setup Function.
+ * 
+ * Initializes Hardware, ControlLogic, detects Boot Mode (Klipper vs Bus),
+ * and sets up Communication Routing.
+ */
 void setup()
 {
     // Initialize Base Hardware (GPIO, ADC, LED, Timers) - No UART yet
@@ -26,6 +32,11 @@ void setup()
 }
 
 /* DEVELOPMENT STATE: FUNCTIONAL */
+/**
+ * @brief Arduino Main Loop.
+ * 
+ * Continuously runs Command Routing and Control Logic.
+ */
 void loop()
 {
     while (1)

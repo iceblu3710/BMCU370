@@ -1,0 +1,35 @@
+\doxysection{src/\+Command\+Router.h File Reference}
+\hypertarget{_command_router_8h}{}\label{_command_router_8h}\index{src/CommandRouter.h@{src/CommandRouter.h}}
+{\ttfamily \#include "{}Command\+Types.\+h"{}}\newline
+Include dependency graph for Command\+Router.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{_command_router_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_command_router_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_command_router}{Command\+Router}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespace_command_router_a652cfc164ac7a2a2c016da37f341c42e}{Command\+Router\+::\+Init}} (bool is\+Klipper)
+\begin{DoxyCompactList}\small\item\em Initialize the Command Router and CLI subsystems. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_command_router_a96ff3718682e9322a64815a3d41d001b}{Command\+Router\+::\+Run}} ()
+\begin{DoxyCompactList}\small\item\em Main execution loop for the Router. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_command_router_a329f0a7e2f53debf5c7cb5f47579151b}{Command\+Router\+::\+Route}} (\mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9c}{Unified\+Command\+Type}} type, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Route an incoming command to its specific handler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_command_router_a1cf14aabb538f71f140e6b1aa7ef965d}{Command\+Router\+::\+Send\+Packet}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Send a raw data packet via UART. \end{DoxyCompactList}\end{DoxyCompactItemize}

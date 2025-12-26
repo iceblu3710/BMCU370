@@ -1,0 +1,10 @@
+<map id="src/BambuBusProtocol.h" name="src/BambuBusProtocol.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,172,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="82,155,146,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,35,51,67,44,86,47,106,61,126,81,145,76,146,57,130,42,108,39,86,46,64,76,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="56,80,121,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,30,91,65,86,64,87,35"/>
+<area shape="rect" id="Node000004" href="$_command_types_8h.html" title=" " alt="" coords="145,80,272,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="110,30,177,71,172,73,109,35"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="195,106,144,147,141,143,189,108"/>
+</map>

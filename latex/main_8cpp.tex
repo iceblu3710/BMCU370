@@ -1,0 +1,127 @@
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Hardware.\+h"{}}\newline
+{\ttfamily \#include "{}Control\+Logic.\+h"{}}\newline
+{\ttfamily \#include "{}Command\+Router.\+h"{}}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Arduino Setup Function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Arduino Main Loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{main.cpp@{main.cpp}!loop@{loop}}
+\index{loop@{loop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arduino Main Loop. 
+
+Continuously runs Command Routing and Control Logic. 
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{while}\ (1)}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ Communications}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_command_router_a96ff3718682e9322a64815a3d41d001b}{CommandRouter::Run}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Run\ Control\ Logic\ (Motors,\ State\ Machine)}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_adc8c269923e0c76c6d104a005833a7f9}{ControlLogic::Run}}();}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_command_router_8cpp_source_l00180}{Command\+Router\+::\+Run()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00792}{Control\+Logic\+::\+Run()}}.
+
+
+
+Referenced by \mbox{\hyperlink{_adafruit___neo_pixel_8cpp_source_l00390}{Adafruit\+\_\+\+Neo\+Pixel\+::show()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_afe461d27b9c48d5921c00d521181f12f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{main.cpp@{main.cpp}!setup@{setup}}
+\index{setup@{setup}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arduino Setup Function. 
+
+Initializes \doxylink{namespace_hardware}{Hardware}, \doxylink{namespace_control_logic}{Control\+Logic}, detects Boot Mode (Klipper vs Bus), and sets up Communication Routing. 
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ Initialize\ Base\ Hardware\ (GPIO,\ ADC,\ LED,\ Timers)\ -\/\ No\ UART\ yet}}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a25837768e4f1568435bc6d889be37ba5}{Hardware::InitBase}}();}
+\DoxyCodeLine{00017\ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ Initialize\ Business\ Logic\ (Loads\ settings)}}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_a1da226a05b7a8c46e16a840900265c03}{ControlLogic::Init}}();}
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ Boot\ Mode\ Switch\ (Pressure\ Sensors)}}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070}{ControlLogic::BootMode}}\ mode\ =\ \mbox{\hyperlink{namespace_control_logic_a0c732b28cf691fb77359c80a0c000665}{ControlLogic::InitBootCheck}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ isKlipper\ =\ (mode\ ==\ \mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070a6de97d301a2cd910140aca79b2b50a55}{ControlLogic::BootMode::Klipper}});}
+\DoxyCodeLine{00024\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Initialize\ Communications\ with\ specific\ mode}}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a29ba54eb55c1b296fa35c18043ce9cb5}{Hardware::InitUART}}(isKlipper);}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{namespace_command_router_a652cfc164ac7a2a2c016da37f341c42e}{CommandRouter::Init}}(isKlipper);}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Initial\ LED\ State}}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{namespace_hardware_aca1ef8aa807fb9291ad5d727697f427a}{Hardware::LED\_SetBrightness}}(35);\ \textcolor{comment}{//\ Default\ brightness}}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{namespace_hardware_a365d946e0cf0fe8cfc8dbcb25cfbdad9}{Hardware::LED\_Show}}();}
+\DoxyCodeLine{00032\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_command_router_8cpp_source_l00076}{Command\+Router\+::\+Init()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00870}{Control\+Logic\+::\+Init()}}, \mbox{\hyperlink{_hardware_8cpp_source_l00052}{Hardware\+::\+Init\+Base()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00904}{Control\+Logic\+::\+Init\+Boot\+Check()}}, \mbox{\hyperlink{_hardware_8cpp_source_l00140}{Hardware\+::\+Init\+UART()}}, \mbox{\hyperlink{_control_logic_8h_source_l00016}{Control\+Logic\+::\+Klipper}}, \mbox{\hyperlink{_hardware_8cpp_source_l00555}{Hardware\+::\+LED\+\_\+\+Set\+Brightness()}}, and \mbox{\hyperlink{_hardware_8cpp_source_l00544}{Hardware\+::\+LED\+\_\+\+Show()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph}
+\end{center}
+\end{figure}

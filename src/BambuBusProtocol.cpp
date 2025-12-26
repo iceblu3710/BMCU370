@@ -16,6 +16,11 @@ static CRC8 crc_8;
 static CRC8 _RX_IRQ_crcx(0x39, 0x66, 0x00, false, false);
 
 /* DEVELOPMENT STATE: EXPERIMENTAL */
+/**
+ * @brief Initialize the static CRC engines.
+ * 
+ * Resets CRC8 and CRC16 instances to their initial states.
+ */
 void BambuBusProtocol::Init() {
     crc_8.reset(0x39, 0x66, 0, false, false);
     crc_16.reset(0x1021, 0x913D, 0, false, false);
@@ -23,6 +28,16 @@ void BambuBusProtocol::Init() {
 
 // Re-implementation of RX_IRQ logic
 /* DEVELOPMENT STATE: EXPERIMENTAL */
+/**
+ * @brief Parse a single incoming byte into a protocol packet.
+ * 
+ * This is a state machine that accumulates bytes into `rx_buf`.
+ * It handles framing (0x3D start byte), length extraction, and CRC8 validation for the header.
+ * 
+ * @param byte The incoming byte from the bus.
+ * @return true If a full, valid packet has been received (CRC8 checked, length met). Note: CRC16 of body is not checked here.
+ * @return false If packet is incomplete or invalid.
+ */
 bool BambuBusProtocol::ParseByte(uint8_t byte) {
     static int _index = 0;
     static int length = 999;
@@ -93,16 +108,37 @@ bool BambuBusProtocol::ParseByte(uint8_t byte) {
 }
 
 /* DEVELOPMENT STATE: EXPERIMENTAL */
+/**
+ * @brief Get the pointer to the Receive Buffer.
+ * 
+ * @return uint8_t* Pointer to `rx_buf`.
+ */
 uint8_t* BambuBusProtocol::GetRxBuffer() {
     return rx_buf;
 }
 
 /* DEVELOPMENT STATE: EXPERIMENTAL */
+/**
+ * @brief Get the length of the last received packet.
+ * 
+ * @return uint16_t Length of valid data in `rx_buf`.
+ */
 uint16_t BambuBusProtocol::GetRxLength() {
     return rx_len;
 }
 
 /* DEVELOPMENT STATE: EXPERIMENTAL */
+/**
+ * @brief Verify the CRC16 for a complete packet.
+ * 
+ * Calculates CRC16 over the payload (excluding the last 2 bytes) and compares
+ * it with the last 2 bytes of the packet.
+ * 
+ * @param data Pointer to the packet buffer.
+ * @param data_length Total length of the packet.
+ * @return true CRC matches.
+ * @return false CRC mismatch.
+ */
 bool BambuBusProtocol::CheckCRC16(uint8_t *data, int data_length)
 {
     crc_16.restart();
@@ -118,6 +154,16 @@ bool BambuBusProtocol::CheckCRC16(uint8_t *data, int data_length)
 }
 
 /* DEVELOPMENT STATE: EXPERIMENTAL */
+/**
+ * @brief Identify the type of BambuBus packet.
+ * 
+ * First validates the CRC16 using `CheckCRC16`. If valid, inspects the
+ * packet headers (short 0xC5 vs long 0x05) to determine the specific message type.
+ * 
+ * @param buf Pointer to the packet data.
+ * @param length Total length of the packet.
+ * @return BambuBus_package_type Enum identifying the packet type.
+ */
 BambuBus_package_type BambuBusProtocol::IdentifyPacket(uint8_t* buf, uint16_t length) {
     if (CheckCRC16(buf, length) == false)
     {
@@ -156,6 +202,15 @@ BambuBus_package_type BambuBusProtocol::IdentifyPacket(uint8_t* buf, uint16_t le
 }
 
 /* DEVELOPMENT STATE: EXPERIMENTAL */
+/**
+ * @brief Extract data from a "Long Packet" (0x05 type).
+ * 
+ * Parses the struct header from a long packet.
+ * 
+ * @param buf Pointer to the raw packet buffer.
+ * @param data_length Total length of the raw packet.
+ * @param data Pointer to a `long_packge_data` struct to populate.
+ */
 void BambuBusProtocol::ParseLongPacket(uint8_t *buf, uint16_t data_length, long_packge_data *data)
 {
     memcpy(data, buf + 2, 11);
@@ -164,6 +219,15 @@ void BambuBusProtocol::ParseLongPacket(uint8_t *buf, uint16_t data_length, long_
 }
 
 /* DEVELOPMENT STATE: EXPERIMENTAL */
+/**
+ * @brief Finalize a packet for transmission by calculating and appending CRCs.
+ * 
+ * Calculates CRC8 for the header (index 3 for short, index 6 for long) and
+ * CRC16 for the entire packet, appending it at the end.
+ * 
+ * @param data Pointer to the packet buffer constructing the message.
+ * @param data_length Total length of the packet including CRC bytes placeholder.
+ */
 void BambuBusProtocol::BuildPacketWithCRC(uint8_t *data, uint16_t &data_length)
 {
     crc_8.restart();
@@ -203,6 +267,16 @@ void BambuBusProtocol::BuildPacketWithCRC(uint8_t *data, uint16_t &data_length)
 }
 
 /* DEVELOPMENT STATE: EXPERIMENTAL */
+/**
+ * @brief Construct a "Long Packet" from a data structure.
+ * 
+ * Serializes the `long_packge_data` struct into `out_buffer`, adds the `3D 05`
+ * preamble, and calls `BuildPacketWithCRC`.
+ * 
+ * @param data Pointer to the source `long_packge_data`.
+ * @param out_buffer Pointer to the destination buffer.
+ * @param out_length Output reference for the total generated length.
+ */
 void BambuBusProtocol::BuildLongPacket(long_packge_data *data, uint8_t *out_buffer, uint16_t &out_length)
 {
     out_buffer[0] = 0x3D;
@@ -222,6 +296,12 @@ void BambuBusProtocol::BuildLongPacket(long_packge_data *data, uint8_t *out_buff
 }
 
 /* DEVELOPMENT STATE: EXPERIMENTAL */
+/**
+ * @brief Map internal BambuBus package types to a unified command type.
+ * 
+ * @param type The raw `BambuBus_package_type`.
+ * @return UnifiedCommandType The simplified enum for logic handling.
+ */
 UnifiedCommandType BambuBusProtocol::GetUnifiedType(BambuBus_package_type type) {
     switch (type) {
         case BambuBus_package_type::filament_motion_short: return UnifiedCommandType::FilamentMotionShort;

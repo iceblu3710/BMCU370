@@ -1,0 +1,80 @@
+\doxysection{Control\+Logic.\+h}
+\hypertarget{_control_logic_8h_source}{}\label{_control_logic_8h_source}\index{src/ControlLogic.h@{src/ControlLogic.h}}
+\mbox{\hyperlink{_control_logic_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bambu_bus_protocol_8h}{BambuBusProtocol.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_unit_state_8h}{UnitState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00007}00007\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00008}00008\ \textcolor{comment}{*\ DEVELOPMENT\ STATE:\ FUNCTIONAL}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00009}00009\ \textcolor{comment}{*\ The\ entire\ Klipper\ functional\ system\ and\ all\ functions\ Klipper\ touches\ are\ PROVEN\ FUNCTIONAL.}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00010}00010\ \textcolor{comment}{*\ DO\ NOT\ MODIFY\ under\ any\ circumstances.}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00011}00011\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00012}00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_control_logic}{ControlLogic}}\ \{}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00014}\mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070}{00014}}\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070}{BootMode}}\ :\ uint32\_t\ \{}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00015}\mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070aa215a57b244f3b893020269133af794a}{00015}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070aa215a57b244f3b893020269133af794a}{BambuBus}}\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00016}\mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070a6de97d301a2cd910140aca79b2b50a55}{00016}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070a6de97d301a2cd910140aca79b2b50a55}{Klipper}}\ =\ 1}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00017}00017\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a1da226a05b7a8c46e16a840900265c03}{Init}}();}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070}{BootMode}}\ \mbox{\hyperlink{namespace_control_logic_a0c732b28cf691fb77359c80a0c000665}{InitBootCheck}}();\ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_adc8c269923e0c76c6d104a005833a7f9}{Run}}();}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00022}00022\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00023}00023\ \ \ \ \ \textcolor{comment}{//\ Connectivity}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00024}00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a9716be5fe9da72481bee41a80681d8e5}{UpdateConnectivity}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a9148fdd6f33c42faedeb9cc1a5520646a7f46165474d11ee5836777d85df2cdab}{online}});}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00025}00025\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Logic\ /\ Action\ Methods\ (High\ Level)\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00027}00027\ \ \ \ \ \textcolor{comment}{//\ These\ methods\ act\ on\ the\ Unit\ State\ or\ Hardware\ directly,\ independent\ of\ Protocol}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00028}00028\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ Corresponds\ to\ MotionShort\ (0x03)}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a8880b393facb6828519b8dac8e96393c}{ProcessMotionShortLogic}}(uint8\_t\ ams\_num,\ uint8\_t\ status\_flags,\ uint8\_t\ read\_num,\ uint8\_t\ motion\_flag);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00031}00031\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ Corresponds\ to\ MotionLong\ (0x04)\ -\/\ TODO:\ Break\ down\ further\ if\ payload\ is\ complex}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00033}\mbox{\hyperlink{namespace_control_logic_aa490d28f0823086ff5e1e97451425dc7}{00033}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_aa490d28f0823086ff5e1e97451425dc7}{ProcessMotionLongLogic}}(uint8\_t*\ payload,\ uint16\_t\ length);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00034}00034\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ Corresponds\ to\ SetFilamentInfo\ (0x08\ /\ 0x218)}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a3aed4ef4cb26632467a000c0130b11b4}{SetFilamentInfoAction}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_filament_info}{FilamentInfo}}\&\ info,\ \textcolor{keywordtype}{float}\ meters\ =\ -\/1.0f);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00037}00037\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00038}00038\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Protocol\ Wrappers\ (Parse\ buffers\ and\ call\ Logic)\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a5f85db884abd1a66d8b120729ec0d99e}{ProcessMotionShort}}(uint8\_t*\ buffer,\ uint16\_t\ length);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a2ab840bfd454a7709553b89529285b74}{ProcessMotionLong}}(uint8\_t*\ buffer,\ uint16\_t\ length);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a412a7a597ff3c04c0ea1480094600ef4}{ProcessOnlineDetect}}(uint8\_t*\ buffer,\ uint16\_t\ length);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00042}00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a82b9a1fb120cd91615d2ac478daafefd}{ProcessREQx6}}(uint8\_t*\ buffer,\ uint16\_t\ length);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00043}00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_ada1dd6f18fca06d8b26836f4788ab0ad}{ProcessSetFilamentInfo}}(uint8\_t*\ buffer,\ uint16\_t\ length);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00044}00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a0c4206af909c8128bc68eb6a1bcfa16e}{ProcessHeartbeat}}(uint8\_t*\ buffer,\ uint16\_t\ length);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00045}00045\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ Command\ Processing\ (Long)}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00047}00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a1ff0bcee8062346fb963e4dd845c8bdf}{ProcessLongPacket}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structlong__packge__data}{long\_packge\_data}}\ \&data);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ Manual\ Operations}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_adb4ce7f82b449d6d6d97e7399ce391f5}{StartLoadFilament}}(\textcolor{keywordtype}{int}\ tray,\ \textcolor{keywordtype}{int}\ length\_mm\ =\ -\/1);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00051}00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_abcc93276e326829eec4d37024c647745}{StartUnloadFilament}}(\textcolor{keywordtype}{int}\ tray,\ \textcolor{keywordtype}{int}\ length\_mm\ =\ -\/1);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00052}00052\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00053}00053\ \ \ \ \ \textcolor{comment}{//\ State\ Accessors}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00054}00054\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{namespace_control_logic_acca64947bdc9cfb88ea5091014c68b75}{GetDeviceType}}();}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00055}00055\ \ \ \ \ \mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070}{BootMode}}\ \mbox{\hyperlink{namespace_control_logic_a300e5b18ebf53c086955bf02dfe16faa}{GetBootMode}}();}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00056}00056\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Primitives\ for\ Klipper\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ Axis:\ 0-\/3\ for\ motors,\ -\/1\ handled\ elsewhere\ or\ mapped}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00059}00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a484eadc314267f8bc9aa0f025c1137d9}{MoveAxis}}(\textcolor{keywordtype}{int}\ axis,\ \textcolor{keywordtype}{float}\ dist\_mm,\ \textcolor{keywordtype}{float}\ speed);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_af084200798d6b89c1b448bf41b105d62}{StopAll}}();\ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00061}00061\ \ \ \ \ \textcolor{comment}{//\ Return\ packed\ sensor\ state:\ [0:3]\ =\ filament,\ [4:7]\ =\ buffer/online}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00062}00062\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{namespace_control_logic_a4428a845041ff986ccbf2555a62d0656}{GetSensorState}}();\ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00063}00063\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespace_control_logic_a77da31cf0baa8e886a438b2a9e73a573}{GetLaneMotion}}(\textcolor{keywordtype}{int}\ lane);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00064}00064\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00065}00065\ \ \ \ \ \textcolor{comment}{//\ Enable/Disable\ auto-\/feed\ (pressure\ control)\ for\ a\ lane}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00066}00066\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ Enable/Disable\ auto-\/feed\ (pressure\ control)\ for\ a\ lane}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00068}00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a9db355302a1c9d608e6dd5341151336e}{SetAutoFeed}}(\textcolor{keywordtype}{int}\ lane,\ \textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00070}00070\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Persistence\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00071}00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_a175e5057d122e1fee05a99bb0e40bbf3}{SaveSettings}}();}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00072}00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_control_logic_afe90d7f284c20f90f74787274f01c51b}{SetNeedToSave}}();}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00073}00073\ \}}
+\DoxyCodeLine{\Hypertarget{_control_logic_8h_source_l00074}00074\ }
+
+\end{DoxyCode}

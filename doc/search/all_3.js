@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['calculate_0',['Calculate',['../class_control_logic_1_1_m_o_t_o_r___p_i_d.html#a7e0dd5982cc13f2034baeafe2c2e3561',1,'ControlLogic::MOTOR_PID']]],
+  ['canshow_1',['canShow',['../class_adafruit___neo_pixel.html#a9e900a60b0ac2b43b99309bb118b929e',1,'Adafruit_NeoPixel']]],
+  ['check_2',['check',['../structflash__save__struct.html#a219489a81c5e22462fc6d57432c6ef21',1,'flash_save_struct::check'],['../struct_motion__control__save__struct.html#a9b40edb55eff01a8f6b9a32831435dd5',1,'Motion_control_save_struct::check']]],
+  ['checkcrc16_3',['CheckCRC16',['../class_bambu_bus_protocol.html#a8b674c03ab157fa7e70fc2f6e271d539',1,'BambuBusProtocol']]],
+  ['chx_4',['CHx',['../class_control_logic_1_1_motor_channel.html#ac7e8589170a2d7e57837d16f3cf4db69',1,'ControlLogic::MotorChannel']]],
+  ['clear_5',['Clear',['../class_control_logic_1_1_m_o_t_o_r___p_i_d.html#a98d91ad2a29303d77c86055456f876f4',1,'ControlLogic::MOTOR_PID']]],
+  ['clear_6',['clear',['../class_adafruit___neo_pixel.html#ae259682b202be0acd258d6879f4c7121',1,'Adafruit_NeoPixel']]],
+  ['clear_5fdatas_7',['clear_datas',['../class_a_s5600__soft___i_i_c.html#a580bb14abe0dbcf30f60ea32f2489e12',1,'AS5600_soft_IIC']]],
+  ['color_8',['Color',['../class_adafruit___neo_pixel.html#ae7c444138dd0e6ac1008621d0a67048b',1,'Adafruit_NeoPixel::Color(uint8_t r, uint8_t g, uint8_t b)'],['../class_adafruit___neo_pixel.html#af0c47eb0d6d9f28a4f85b8039f78060c',1,'Adafruit_NeoPixel::Color(uint8_t r, uint8_t g, uint8_t b, uint8_t w)']]],
+  ['color_5fa_9',['color_A',['../struct_filament_info.html#a72997ce70a6852951aac4a8c907e24ac',1,'FilamentInfo']]],
+  ['color_5fb_10',['color_B',['../struct_filament_info.html#ab1c9dff383b15c09a2fad0cf6d7e8714',1,'FilamentInfo']]],
+  ['color_5fg_11',['color_G',['../struct_filament_info.html#a401880702bfbb50388082ccfc4da0ddd',1,'FilamentInfo']]],
+  ['color_5fr_12',['color_R',['../struct_filament_info.html#a49b75d4f9105d90760ca96138c8fcf45',1,'FilamentInfo']]],
+  ['colorhsv_13',['ColorHSV',['../class_adafruit___neo_pixel.html#a1f16aee5b96e16e62598f826e292b23b',1,'Adafruit_NeoPixel']]],
+  ['commandrouter_14',['CommandRouter',['../namespace_command_router.html',1,'']]],
+  ['commandrouter_2ecpp_15',['CommandRouter.cpp',['../_command_router_8cpp.html',1,'']]],
+  ['commandrouter_2eh_16',['CommandRouter.h',['../_command_router_8h.html',1,'']]],
+  ['commandtypes_2eh_17',['CommandTypes.h',['../_command_types_8h.html',1,'']]],
+  ['controllogic_18',['ControlLogic',['../namespace_control_logic.html',1,'']]],
+  ['controllogic_2ecpp_19',['ControlLogic.cpp',['../_control_logic_8cpp.html',1,'']]],
+  ['controllogic_2eh_20',['ControlLogic.h',['../_control_logic_8h.html',1,'']]],
+  ['crc8_21',['crc8',['../structlong__packge__data.html#a1ccd76dabbec673e7a06848ee989599d',1,'long_packge_data']]],
+  ['crc_5f16_22',['crc_16',['../_bambu_bus_protocol_8cpp.html#a9e55b5c4cdf6fa62f8dfb9d6604655a6',1,'BambuBusProtocol.cpp']]],
+  ['crc_5f8_23',['crc_8',['../_bambu_bus_protocol_8cpp.html#aa25bc6787f31c22990b295d61a409df8',1,'BambuBusProtocol.cpp']]]
+];

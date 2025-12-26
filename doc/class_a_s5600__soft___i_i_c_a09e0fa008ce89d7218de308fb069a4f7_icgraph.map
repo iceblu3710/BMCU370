@@ -1,0 +1,5 @@
+<map id="AS5600_soft_IIC::init_iic" name="AS5600_soft_IIC::init_iic">
+<area shape="rect" id="Node000001" title="Initialize the low&#45;level I2C pins." alt="" coords="200,5,366,32"/>
+<area shape="rect" id="Node000002" href="$class_a_s5600__soft___i_i_c.html#a52c0eebc0a9f05612b68fcf0d53eac83" title="Initialize the Soft I2C instance for multiple AS5600 sensors." alt="" coords="5,5,152,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,19,152,21,152,16,187,19"/>
+</map>

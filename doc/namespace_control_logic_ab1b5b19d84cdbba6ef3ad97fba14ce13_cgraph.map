@@ -1,0 +1,5 @@
+<map id="ControlLogic::MC_PULL_ONLINE_read" name="ControlLogic::MC_PULL_ONLINE_read">
+<area shape="rect" id="Node000001" title="Read Analog Sensors and Update State." alt="" coords="5,5,169,48"/>
+<area shape="rect" id="Node000002" href="$namespace_hardware.html#aa54da804a3d4c6d89ba5d7a2931fc463" title="Get filtered ADC voltage values." alt="" coords="217,13,398,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,24,204,26,198,27,169,29"/>
+</map>

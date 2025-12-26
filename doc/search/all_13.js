@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['uart_5frx_5fcallback_0',['uart_rx_callback',['../namespace_hardware.html#a5d7ac173bff318607226970e0e864b1e',1,'Hardware']]],
+  ['uart_5fsend_1',['UART_Send',['../namespace_hardware.html#ad3ec7cad074d6d73508844a06a7bea50',1,'Hardware']]],
+  ['uart_5fsendbyte_2',['UART_SendByte',['../namespace_hardware.html#aaaf02ef3df5811e2ba28dd009eadfaae',1,'Hardware']]],
+  ['uart_5fsetrxcallback_3',['UART_SetRxCallback',['../namespace_hardware.html#a8eaf73ad39643f6bb1bbe74d9b5e8b86',1,'Hardware']]],
+  ['unifiedcommandtype_4',['UnifiedCommandType',['../_command_types_8h.html#a9fa149d3b881fd0f62738e1de747ea9c',1,'CommandTypes.h']]],
+  ['unit_5fmodel_5',['unit_model',['../_control_logic_8cpp.html#a428be3f4f7b6d8013ddc5864db8696d6',1,'ControlLogic.cpp']]],
+  ['unit_5fserial_6',['unit_serial',['../_control_logic_8cpp.html#ad650678872c72278de041bbad40cf620',1,'ControlLogic.cpp']]],
+  ['unit_5fversion_7',['unit_version',['../_control_logic_8cpp.html#a14a0b2269a711e843f0de7637cd80043',1,'ControlLogic.cpp']]],
+  ['unitstate_8',['UnitState',['../class_unit_state.html',1,'']]],
+  ['unitstate_2eh_9',['UnitState.h',['../_unit_state_8h.html',1,'']]],
+  ['unload_5fstart_5fmeters_10',['unload_start_meters',['../namespace_control_logic.html#a0efb555ba92cc1cedb47929db260e6c8',1,'ControlLogic']]],
+  ['unload_5ftarget_5fdist_11',['unload_target_dist',['../namespace_control_logic.html#a11bff287b64c24fe91500ba99c6f21c8',1,'ControlLogic']]],
+  ['updata_5fangle_12',['updata_angle',['../class_a_s5600__soft___i_i_c.html#a29d2784ba12928a292fa9e253ffe3b7f',1,'AS5600_soft_IIC']]],
+  ['updata_5fstu_13',['updata_stu',['../class_a_s5600__soft___i_i_c.html#a7173c0a8a0b94f67c4b7d741ebbcb3b1',1,'AS5600_soft_IIC']]],
+  ['updateconnectivity_14',['UpdateConnectivity',['../namespace_control_logic.html#a9716be5fe9da72481bee41a80681d8e5',1,'ControlLogic']]],
+  ['updateledstatus_15',['UpdateLEDStatus',['../class_control_logic_1_1_motor_channel.html#ad27c212152e484b6090e53cc1da6928a',1,'ControlLogic::MotorChannel']]],
+  ['updatelength_16',['updateLength',['../class_adafruit___neo_pixel.html#a74e917093c2eb16848c4a09427680f79',1,'Adafruit_NeoPixel']]],
+  ['updatetype_17',['updateType',['../class_adafruit___neo_pixel.html#a07b6949674125159484e9e02ef025f7d',1,'Adafruit_NeoPixel']]],
+  ['usart1_5firqhandler_18',['USART1_IRQHandler',['../namespace_hardware.html#afeb16bfe3e187a44a3c51c9738a933df',1,'Hardware']]],
+  ['usart3_5firqhandler_19',['USART3_IRQHandler',['../_debug__log_8cpp.html#a0d108a3468b2051548183ee5ca2158a0',1,'Debug_log.cpp']]],
+  ['use_5fflash_5faddr_20',['use_flash_addr',['../_control_logic_8cpp.html#a377d54c27966e6b7bcfb0810524885b1',1,'ControlLogic.cpp']]]
+];

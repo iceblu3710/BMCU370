@@ -1,0 +1,31 @@
+<map id="KlipperCLI::HandleSetFilamentInfo" name="KlipperCLI::HandleSetFilamentInfo">
+<area shape="rect" id="Node000001" title="Handler for SET_FILAMENT_INFO command." alt="" coords="5,136,229,163"/>
+<area shape="rect" id="Node000002" href="$class_unit_state.html#a221a5d98d4e870c593e5bd5ee6621c4c" title="Get the configuration specific to a filament index." alt="" coords="285,5,440,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,133,194,89,234,64,276,42,294,36,290,39,278,46,237,68,197,93,137,138"/>
+<area shape="rect" id="Node000003" href="$namespace_klipper_c_l_i.html#ad0e99d2fdcfd1c0690f850816ac1f67c" title="Helper to send an Error response." alt="" coords="289,56,437,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="156,133,276,92,301,86,297,89,277,97,158,138"/>
+<area shape="rect" id="Node000008" href="$namespace_klipper_c_l_i.html#a1d7d7986d99cb52ab4feb4826ffc4428" title="Helper to send a Success (OK) response." alt="" coords="294,107,432,133"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="228,133,281,129,276,131,230,138"/>
+<area shape="rect" id="Node000009" href="$namespace_control_logic.html#a3aed4ef4cb26632467a000c0130b11b4" title="Action helper to update filament metadata." alt="" coords="277,157,449,200"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="229,160,264,166,258,167,230,165"/>
+<area shape="rect" id="Node000013" href="$struct_filament_info.html#ac821cbe379c5f19ac753f91adef53851" title="Set the RFID/ID of the filament." alt="" coords="295,224,430,251"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="151,160,278,209,300,219,295,219,276,215,150,166"/>
+<area shape="rect" id="Node000014" href="$struct_filament_info.html#a6bb1d50ec33de9366132999b3a84ff3c" title="Set the Name of the filament." alt="" coords="285,275,441,301"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="135,161,196,209,235,236,278,260,294,269,288,269,275,265,233,241,192,213,133,166"/>
+<area shape="rect" id="Node000004" href="$namespace_klipper_c_l_i.html#a9ec392d53485800126189969c2c4981a" title="Serialize and send a JSON response." alt="" coords="506,84,685,111"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="437,76,493,84,488,85,438,81"/>
+<area shape="rect" id="Node000005" href="$namespace_hardware.html#ad3ec7cad074d6d73508844a06a7bea50" title="Send a buffer via UART1." alt="" coords="742,84,901,111"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="685,95,729,97,724,98,686,100"/>
+<area shape="rect" id="Node000006" href="$namespace_hardware.html#a0ada30189b8e1d1dbec145140849b778" title="Microsecond Delay." alt="" coords="1182,85,1320,112"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="901,95,1169,98,1164,99,901,100"/>
+<area shape="rect" id="Node000007" href="$namespace_hardware.html#aaaf02ef3df5811e2ba28dd009eadfaae" title="Send a single byte blocking." alt="" coords="949,111,1134,137"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="901,104,936,111,930,111,901,110"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="1134,110,1170,108,1164,109,1135,115"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="431,111,493,107,488,108,433,116"/>
+<area shape="rect" id="Node000010" href="$namespace_control_logic.html#afe90d7f284c20f90f74787274f01c51b" title="Flag that settings need to be saved." alt="" coords="497,165,694,192"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="449,176,484,178,479,179,450,181"/>
+<area shape="rect" id="Node000011" href="$namespace_hardware.html#a8ea28b07408691bc126683a81aa220f3" title="Get System Time in Milliseconds." alt="" coords="754,165,889,192"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="695,176,741,178,736,179,695,181"/>
+<area shape="rect" id="Node000012" href="$time64_8cpp.html#a146d483f58902ba0184ce16f728edfb0" title="Get 64&#45;bit System Time in Milliseconds." alt="" coords="999,165,1084,192"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="890,176,986,178,980,179,890,181"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="ControlLogic::MOTOR_PID::MOTOR_PID" name="ControlLogic::MOTOR_PID::MOTOR_PID">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,72,157,115"/>
+<area shape="rect" id="Node000002" href="$namespace_control_logic.html#a1da226a05b7a8c46e16a840900265c03" title="Initialize ControlLogic." alt="" coords="205,80,325,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,91,192,93,187,94,157,96"/>
+<area shape="rect" id="Node000003" href="$namespace_hardware.html#a72bd28689a22ff9e3db6b911c020ecbb" title="Initialize the Analog&#45;to&#45;Digital Converter." alt="" coords="392,29,532,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="319,77,390,61,395,60,321,82"/>
+<area shape="rect" id="Node000005" href="$namespace_control_logic.html#ae855e1aa5895afa9999a3b9e6874e1e2" title="Load settings from Flash memory." alt="" coords="373,80,551,107"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="325,91,360,93,354,94,326,96"/>
+<area shape="rect" id="Node000009" href="$namespace_hardware.html#a0745af097a6d21fc3fb1f1ebd9e141ff" title="Initialize PWM Timers for Motor Control." alt="" coords="390,131,534,157"/>
+<area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="320,105,395,126,390,126,320,110"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="428,28,423,21,427,11,440,5,462,3,486,5,500,14,494,14,484,10,462,8,442,10,430,15,428,20,433,30"/>
+<area shape="rect" id="Node000004" href="$namespace_hardware.html#ad269fd29299dd87118b408e4551f4d2d" title="Millisecond Delay." alt="" coords="628,29,768,56"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="532,40,615,42,610,43,532,45"/>
+<area shape="rect" id="Node000006" href="$namespace_control_logic.html#afe90d7f284c20f90f74787274f01c51b" title="Flag that settings need to be saved." alt="" coords="599,80,797,107"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="552,91,586,93,581,93,552,96"/>
+<area shape="rect" id="Node000007" href="$namespace_hardware.html#a8ea28b07408691bc126683a81aa220f3" title="Get System Time in Milliseconds." alt="" coords="845,80,980,107"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="797,91,832,93,827,93,797,96"/>
+<area shape="rect" id="Node000008" href="$time64_8cpp.html#a146d483f58902ba0184ce16f728edfb0" title="Get 64&#45;bit System Time in Milliseconds." alt="" coords="1028,80,1113,107"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="981,91,1015,93,1010,93,981,96"/>
+</map>

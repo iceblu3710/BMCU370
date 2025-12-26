@@ -1,0 +1,25 @@
+\doxysection{time64.\+cpp}
+\hypertarget{time64_8cpp_source}{}\label{time64_8cpp_source}\index{src/time64.cpp@{src/time64.cpp}}
+\mbox{\hyperlink{time64_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{time64_8h}{time64.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00003}\mbox{\hyperlink{time64_8cpp_a835e55cf06ad6373a5dc362d5640da33}{00003}}\ uint64\_t\ \mbox{\hyperlink{time64_8cpp_a835e55cf06ad6373a5dc362d5640da33}{\_time64\_time\_H}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00004}\mbox{\hyperlink{time64_8cpp_ad65dcffef922558683d14a454d6c03d4}{00004}}\ uint32\_t\ \mbox{\hyperlink{time64_8cpp_ad65dcffef922558683d14a454d6c03d4}{\_time64\_time\_L}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00006}00006\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00007}00007\ \textcolor{comment}{*\ DEVELOPMENT\ STATE:\ FUNCTIONAL}}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00008}00008\ \textcolor{comment}{*\ DO\ NOT\ MODIFY\ under\ any\ circumstances.}}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00009}00009\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00018}\mbox{\hyperlink{time64_8cpp_a146d483f58902ba0184ce16f728edfb0}{00018}}\ uint64\_t\ \mbox{\hyperlink{time64_8cpp_a146d483f58902ba0184ce16f728edfb0}{get\_time64}}()}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00020}00020\ \ \ \ \ uint32\_t\ T\ =\ millis();}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (T\ <\ \mbox{\hyperlink{time64_8cpp_ad65dcffef922558683d14a454d6c03d4}{\_time64\_time\_L}})}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00022}00022\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{time64_8cpp_a835e55cf06ad6373a5dc362d5640da33}{\_time64\_time\_H}}\ +=\ 0x100000000;}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00024}00024\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00025}00025\ \ \ \ \ \mbox{\hyperlink{time64_8cpp_ad65dcffef922558683d14a454d6c03d4}{\_time64\_time\_L}}\ =\ T;}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{time64_8cpp_a835e55cf06ad6373a5dc362d5640da33}{\_time64\_time\_H}}\ |\ \mbox{\hyperlink{time64_8cpp_ad65dcffef922558683d14a454d6c03d4}{\_time64\_time\_L}};}
+\DoxyCodeLine{\Hypertarget{time64_8cpp_source_l00027}00027\ \}}
+
+\end{DoxyCode}

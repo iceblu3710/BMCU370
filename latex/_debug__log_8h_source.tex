@@ -1,0 +1,43 @@
+\doxysection{Debug\+\_\+log.\+h}
+\hypertarget{_debug__log_8h_source}{}\label{_debug__log_8h_source}\index{src/Debug\_log.h@{src/Debug\_log.h}}
+\mbox{\hyperlink{_debug__log_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00004}\mbox{\hyperlink{_debug__log_8h_ac7290ff220b8591069e167015442d228}{00004}}\ \textcolor{preprocessor}{\#define\ Debug\_log\_on}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00005}\mbox{\hyperlink{_debug__log_8h_a9185aae582f81bf058006f1dc55fd4ba}{00005}}\ \textcolor{preprocessor}{\#define\ Debug\_log\_baudrate\ 115200}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00007}00007\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00008}00008\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00010}00010\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_debug__log_8h_a7a92276403fd993ad4d913f47c5998cf}{Debug\_log\_init}}();}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{extern}\ uint64\_t\ \mbox{\hyperlink{_debug__log_8h_a40abb8220d2bc10f65e461349fa855f8}{Debug\_log\_count64}}();}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_debug__log_8h_a8fec16f80089524e659fa1d0942ebe7d}{Debug\_log\_time}}();}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_debug__log_8h_abe437f2b5ead512cd88794fc3fc0088f}{Debug\_log\_write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data);}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_debug__log_8h_a40d01633152870024b16280c9a1496df}{Debug\_log\_write\_num}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ \textcolor{keywordtype}{int}\ num);}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00016}\mbox{\hyperlink{_debug__log_8h_a2b0254374cca39cf9bed2ac611360e76}{00016}}\ \textcolor{preprocessor}{\#define\ DEBUG\_time\_log()\ ;}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00017}00017\ \textcolor{preprocessor}{\#ifdef\ Debug\_log\_on}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00018}\mbox{\hyperlink{_debug__log_8h_a94a6fa8ca2f2a35632b1964867dbffde}{00018}}\ \textcolor{preprocessor}{\#define\ DEBUG\_init()\ Debug\_log\_init()}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00019}\mbox{\hyperlink{_debug__log_8h_a093aa33ca23966d3e9197dc65b1853d5}{00019}}\ \textcolor{preprocessor}{\#define\ DEBUG\_MY(logs)\ Debug\_log\_write(logs)}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00020}\mbox{\hyperlink{_debug__log_8h_aaa4f52e9edd07df9356057be2a337c6a}{00020}}\ \textcolor{preprocessor}{\#define\ DEBUG\_num(logs,\ num)\ Debug\_log\_write\_num(logs,\ num)}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00021}\mbox{\hyperlink{_debug__log_8h_a367da8d68ce40af4a53a36717c961041}{00021}}\ \textcolor{preprocessor}{\#define\ DEBUG\_time()\ Debug\_log\_time()}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00022}\mbox{\hyperlink{_debug__log_8h_a9c33ad5ac9df307fe10f5a89608301b0}{00022}}\ \textcolor{preprocessor}{\#define\ DEBUG\_get\_time()\ Debug\_log\_count64()}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00023}00023\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00024}00024\ \textcolor{preprocessor}{\#define\ DEBUG\_init()\ ;}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00025}00025\ \textcolor{preprocessor}{\#define\ DEBUG(logs)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00026}00026\ \textcolor{preprocessor}{\ \ \ \ ;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00027}00027\ \textcolor{preprocessor}{\ \ \ \ ;}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00028}00028\ \textcolor{preprocessor}{\#define\ DEBUG\_num(logs,\ num)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00029}00029\ \textcolor{preprocessor}{\ \ \ \ ;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00030}00030\ \textcolor{preprocessor}{\ \ \ \ ;}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00031}00031\ \textcolor{preprocessor}{\#define\ DEBUG\_time()\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00032}00032\ \textcolor{preprocessor}{\ \ \ \ ;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00033}00033\ \textcolor{preprocessor}{\ \ \ \ ;}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00034}00034\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00035}00035\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{_debug__log_8h_source_l00037}00037\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

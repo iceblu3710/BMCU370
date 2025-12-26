@@ -1,0 +1,7 @@
+<map id="Hardware::System_Init" name="Hardware::System_Init">
+<area shape="rect" id="Node000001" title="Configure System Clocks and Pin Remapping." alt="" coords="288,5,443,32"/>
+<area shape="rect" id="Node000002" href="$namespace_hardware.html#a25837768e4f1568435bc6d889be37ba5" title="Initialize minimal Hardware Base." alt="" coords="107,5,240,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="270,19,241,21,241,16,275,19"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino Setup Function." alt="" coords="5,5,59,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="88,19,59,21,59,16,94,18"/>
+</map>

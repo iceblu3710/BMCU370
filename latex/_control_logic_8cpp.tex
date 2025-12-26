@@ -1,0 +1,475 @@
+\doxysection{src/\+Control\+Logic.cpp File Reference}
+\hypertarget{_control_logic_8cpp}{}\label{_control_logic_8cpp}\index{src/ControlLogic.cpp@{src/ControlLogic.cpp}}
+{\ttfamily \#include "{}Control\+Logic.\+h"{}}\newline
+{\ttfamily \#include "{}Hardware.\+h"{}}\newline
+{\ttfamily \#include "{}Flash\+\_\+saves.\+h"{}}\newline
+{\ttfamily \#include "{}Command\+Router.\+h"{}}\newline
+{\ttfamily \#include "{}AS5600.\+h"{}}\newline
+{\ttfamily \#include "{}Unit\+State.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for Control\+Logic.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_control_logic_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structflash__save__struct}{flash\+\_\+save\+\_\+struct}}
+\item 
+struct \mbox{\hyperlink{struct_motion__control__save__struct}{Motion\+\_\+control\+\_\+save\+\_\+struct}}
+\item 
+class \mbox{\hyperlink{class_control_logic_1_1_m_o_t_o_r___p_i_d}{Control\+Logic\+::\+MOTOR\+\_\+\+PID}}
+\item 
+class \mbox{\hyperlink{class_control_logic_1_1_motor_channel}{Control\+Logic\+::\+Motor\+Channel}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_control_logic}{Control\+Logic}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_control_logic_8cpp_a5f43c83fd8dd8ac8414357ecd89dec8d}{Bambubus\+\_\+version}}~5
+\item 
+\#define \mbox{\hyperlink{_control_logic_8cpp_a377d54c27966e6b7bcfb0810524885b1}{use\+\_\+flash\+\_\+addr}}~((uint32\+\_\+t)0x0800\+F000)
+\item 
+\#define \mbox{\hyperlink{_control_logic_8cpp_a157a750331805d0201ca01160b072510}{Motion\+\_\+control\+\_\+save\+\_\+flash\+\_\+addr}}~((uint32\+\_\+t)0x0800\+E000)
+\item 
+\#define \mbox{\hyperlink{_control_logic_8cpp_a4e1c3fb8f754e84e8bc6c30bbba50272}{AS5600\+\_\+\+PI}}~3.\+1415926535897932384626433832795
+\item 
+\#define \mbox{\hyperlink{_control_logic_8cpp_a297af72cb6d4c1831e5758edace4fd3f}{speed\+\_\+filter\+\_\+k}}~100
+\item 
+\#define \mbox{\hyperlink{_control_logic_8cpp_a7467db9e95e737c89c7a7d6177e60008}{PULL\+\_\+\+VOLTAGE\+\_\+\+SEND\+\_\+\+MAX}}~1.\+7f
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76}{Control\+Logic\+::filament\+\_\+now\+\_\+position\+\_\+enum}} \{ \newline
+\mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76a3f3203b2544e7066baf775b37a8754c5}{Control\+Logic\+::filament\+\_\+idle}}
+, \mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76a2c4088b74a742f829f7d1ff682b0e19f}{Control\+Logic\+::filament\+\_\+sending\+\_\+out}}
+, \mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76ae1f30b011a381f9a04ab6eafdbced13f}{Control\+Logic\+::filament\+\_\+using}}
+, \mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76a84065cd61f9cbea85edc429058d9f049}{Control\+Logic\+::filament\+\_\+pulling\+\_\+back}}
+, \newline
+\mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76a0cc46749c7ec1ea4792e7459fe513bae}{Control\+Logic\+::filament\+\_\+redetect}}
+, \mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76a2e5ef7992e470eb0e80e1991bdaa4a22}{Control\+Logic\+::filament\+\_\+loading}}
+, \mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76a1a8deadce31cdab1bd84de4ed42e35d2}{Control\+Logic\+::filament\+\_\+unloading}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cf}{Control\+Logic\+::filament\+\_\+motion\+\_\+enum}} \{ \newline
+\mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfaef399b2d446bb37b7c32ad2cc1b6045b}{Control\+Logic\+::stop}}
+, \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfa2541d938b0a58946090d7abdde0d3890}{Control\+Logic\+::send}}
+, \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfaf43dff9a0dc54f0643d0c6d7971635f0}{Control\+Logic\+::pull}}
+, \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfa1957e2ed8ffcb49c6bdfdb7a2c0a93a8}{Control\+Logic\+::slow\+\_\+send}}
+, \newline
+\mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfac3cd02e6f65c947824c18d8cebbfd06c}{Control\+Logic\+::pressure\+\_\+ctrl\+\_\+idle}}
+, \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfafe27fd8ed473c89e5c1f989ff314fc75}{Control\+Logic\+::pressure\+\_\+ctrl\+\_\+in\+\_\+use}}
+, \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfa9b01b276e259d1d60ae1bea14f97731d}{Control\+Logic\+::pressure\+\_\+ctrl\+\_\+on\+\_\+use}}
+, \mbox{\hyperlink{namespace_control_logic_ad46bf74f4e0b4c4fda041bdba813e8cfa564e40f75901e1ab2eedc66858c1a6f3}{Control\+Logic\+::velocity\+\_\+control}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbd}{Control\+Logic\+::pressure\+\_\+control\+\_\+enum}} \{ \mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbda5da09bef03bc5cf7a199c7cf66763f4c}{Control\+Logic\+::less\+\_\+pressure}}
+, \mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbdaa181a603769c1f98ad927e7367c7aa51}{Control\+Logic\+::all}}
+, \mbox{\hyperlink{namespace_control_logic_aeb57036d717bcb2c083d524f4f493cbda1366d1b3f33e8e3fb08ac3905b8c9510}{Control\+Logic\+::over\+\_\+pressure}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{namespace_control_logic_a4ddc46100d9f991cb0d171e62707ee7c}{Control\+Logic\+::get\+\_\+time64}} ()
+\item 
+void \mbox{\hyperlink{namespace_control_logic_ac2d890c891494072159ebc2b30490197}{Control\+Logic\+::motor\+\_\+motion\+\_\+switch}} ()
+\begin{DoxyCompactList}\small\item\em State Machine for Bambu\+Bus Logic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_ab1b5b19d84cdbba6ef3ad97fba14ce13}{Control\+Logic\+::\+MC\+\_\+\+PULL\+\_\+\+ONLINE\+\_\+read}} ()
+\begin{DoxyCompactList}\small\item\em Read Analog Sensors and Update State. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_adb4ce7f82b449d6d6d97e7399ce391f5}{Control\+Logic\+::\+Start\+Load\+Filament}} (int tray, int length\+\_\+mm)
+\begin{DoxyCompactList}\small\item\em Initiate a Filament Load sequence for a specific tray. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_abcc93276e326829eec4d37024c647745}{Control\+Logic\+::\+Start\+Unload\+Filament}} (int tray, int length\+\_\+mm)
+\begin{DoxyCompactList}\small\item\em Initiate a Filament Unload sequence for a specific tray. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a484eadc314267f8bc9aa0f025c1137d9}{Control\+Logic\+::\+Move\+Axis}} (int axis, float dist\+\_\+mm, float speed)
+\begin{DoxyCompactList}\small\item\em Manually move an axis (Klipper Primitive). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_af084200798d6b89c1b448bf41b105d62}{Control\+Logic\+::\+Stop\+All}} ()
+\begin{DoxyCompactList}\small\item\em Stop all motors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a9db355302a1c9d608e6dd5341151336e}{Control\+Logic\+::\+Set\+Auto\+Feed}} (int lane, bool enable)
+\begin{DoxyCompactList}\small\item\em Enable/\+Disable Auto-\/\+Feed (Pressure Control) for a lane. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{namespace_control_logic_a4428a845041ff986ccbf2555a62d0656}{Control\+Logic\+::\+Get\+Sensor\+State}} ()
+\begin{DoxyCompactList}\small\item\em Get a bitmask of sensor states. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_control_logic_a77da31cf0baa8e886a438b2a9e73a573}{Control\+Logic\+::\+Get\+Lane\+Motion}} (int lane)
+\begin{DoxyCompactList}\small\item\em Get the current motion state of a lane. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_aa3d38299372c0822e90d6e649344e8ad}{Control\+Logic\+::\+AS5600\+\_\+\+Update}} (float time\+\_\+E)
+\begin{DoxyCompactList}\small\item\em Update Odometer and Speed from AS5600 sensors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a175e5057d122e1fee05a99bb0e40bbf3}{Control\+Logic\+::\+Save\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Commit settings to Flash memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_afe90d7f284c20f90f74787274f01c51b}{Control\+Logic\+::\+Set\+Need\+To\+Save}} ()
+\begin{DoxyCompactList}\small\item\em Flag that settings need to be saved. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespace_control_logic_acb78560c64e5ea050853ab319a03f14e}{Control\+Logic\+::\+Prepare\+\_\+\+For\+\_\+filament\+\_\+\+Pull\+\_\+\+Back}} (float\+\_\+t OUT\+\_\+filament\+\_\+meters)
+\begin{DoxyCompactList}\small\item\em Check if pullback is required (Smart Pullback Logic). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_adc8c269923e0c76c6d104a005833a7f9}{Control\+Logic\+::\+Run}} ()
+\begin{DoxyCompactList}\small\item\em Main Control Loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_ae855e1aa5895afa9999a3b9e6874e1e2}{Control\+Logic\+::\+Load\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Load settings from Flash memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a1da226a05b7a8c46e16a840900265c03}{Control\+Logic\+::\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize \doxylink{namespace_control_logic}{Control\+Logic}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070}{Boot\+Mode}} \mbox{\hyperlink{namespace_control_logic_a0c732b28cf691fb77359c80a0c000665}{Control\+Logic\+::\+Init\+Boot\+Check}} ()
+\begin{DoxyCompactList}\small\item\em Check Boot Mode (Button Press at Startup). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_control_logic_aa23e295fa5022b6569547cf94f091070}{Boot\+Mode}} \mbox{\hyperlink{namespace_control_logic_a300e5b18ebf53c086955bf02dfe16faa}{Control\+Logic\+::\+Get\+Boot\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Get current Boot Mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a9716be5fe9da72481bee41a80681d8e5}{Control\+Logic\+::\+Update\+Connectivity}} (bool online)
+\begin{DoxyCompactList}\small\item\em Update connectivity status (Online/\+Offline). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a8880b393facb6828519b8dac8e96393c}{Control\+Logic\+::\+Process\+Motion\+Short\+Logic}} (uint8\+\_\+t ams\+\_\+num, uint8\+\_\+t statu\+\_\+flags, uint8\+\_\+t read\+\_\+num, uint8\+\_\+t fliment\+\_\+motion\+\_\+flag)
+\begin{DoxyCompactList}\small\item\em Core logic for processing Short Motion packets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a5f85db884abd1a66d8b120729ec0d99e}{Control\+Logic\+::\+Process\+Motion\+Short}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Handler for Filament Motion Short packet (0x03). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a2ab840bfd454a7709553b89529285b74}{Control\+Logic\+::\+Process\+Motion\+Long}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Handler for Filament Motion Long packet (0x04). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a412a7a597ff3c04c0ea1480094600ef4}{Control\+Logic\+::\+Process\+Online\+Detect}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Handler for Online Detect (0x05). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a82b9a1fb120cd91615d2ac478daafefd}{Control\+Logic\+::\+Process\+REQx6}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Handler for REQx6 (0x06). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a0c4206af909c8128bc68eb6a1bcfa16e}{Control\+Logic\+::\+Process\+Heartbeat}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Handler for Heartbeat (0x20). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_ada1dd6f18fca06d8b26836f4788ab0ad}{Control\+Logic\+::\+Process\+Set\+Filament\+Info}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Handler for Set Filament Info (0x08 -\/ Short). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a3aed4ef4cb26632467a000c0130b11b4}{Control\+Logic\+::\+Set\+Filament\+Info\+Action}} (int id, const \mbox{\hyperlink{struct_filament_info}{Filament\+Info}} \&info, float meters)
+\begin{DoxyCompactList}\small\item\em Action helper to update filament metadata. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_control_logic_a1ff0bcee8062346fb963e4dd845c8bdf}{Control\+Logic\+::\+Process\+Long\+Packet}} (struct \mbox{\hyperlink{structlong__packge__data}{long\+\_\+packge\+\_\+data}} \&data)
+\begin{DoxyCompactList}\small\item\em Handler/\+Dispatcher for Long Packets. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{namespace_control_logic_acca64947bdc9cfb88ea5091014c68b75}{Control\+Logic\+::\+Get\+Device\+Type}} ()
+\begin{DoxyCompactList}\small\item\em Get the configured device type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structflash__save__struct}{flash\+\_\+save\+\_\+struct}} \mbox{\hyperlink{_control_logic_8cpp_a07df3d8e92f2b4de565d574c7950555a}{data\+\_\+save}}
+\item 
+static \mbox{\hyperlink{class_a_s5600__soft___i_i_c}{AS5600\+\_\+soft\+\_\+\+IIC}} \mbox{\hyperlink{_control_logic_8cpp_ab704ea0db8b260d9ddf7fd829cbe637f}{MC\+\_\+\+AS5600}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_control_logic_8cpp_a25196e4c5bd3fa01c30a213fc32477fb}{AS5600\+\_\+\+SCL}} \mbox{[}$\,$\mbox{]} = \{PB15, PB14, PB13, PB12\}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_control_logic_8cpp_a382950b12f65a33105a6b7c7cef4c219}{AS5600\+\_\+\+SDA}} \mbox{[}$\,$\mbox{]} = \{PD0, PC15, PC14, PC13\}
+\item 
+static float \mbox{\hyperlink{_control_logic_8cpp_a92f9b1daa685f9041b79423442d440e3}{last\+\_\+total\+\_\+distance}} \mbox{[}4\mbox{]}
+\item 
+static bool \mbox{\hyperlink{_control_logic_8cpp_a5995db87b2ef40e52a47d2fb1f13ae42}{is\+\_\+connected}} = false
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{_control_logic_8cpp_abeaf61fc41f3eae5245f0b7484a5fb5e}{last\+\_\+heartbeat\+\_\+time}} = 0
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{_control_logic_8cpp_a52925c91da70ade3c48b8eb3fe99caf6}{device\+\_\+type\+\_\+addr}} = \mbox{\hyperlink{_bambu_bus_protocol_8h_a955491d79368cb27f0ba2ab28aba5701a1468bae394016b2d3dd75dea179a6578}{Bambu\+Bus\+\_\+\+AMS}}
+\item 
+static \mbox{\hyperlink{struct_motion__control__save__struct}{Motion\+\_\+control\+\_\+save\+\_\+struct}} \mbox{\hyperlink{_control_logic_8cpp_a5b964c14654ffcb3120d1d8cb9779c86}{mc\+\_\+save}}
+\item 
+static char \mbox{\hyperlink{_control_logic_8cpp_a428be3f4f7b6d8013ddc5864db8696d6}{unit\+\_\+model}} \mbox{[}32\mbox{]} = \mbox{\hyperlink{_hardware_8h_a0df8ff26dcd0718c50c02ee073fa8745}{DEVICE\+\_\+\+MODEL}}
+\item 
+static char \mbox{\hyperlink{_control_logic_8cpp_a14a0b2269a711e843f0de7637cd80043}{unit\+\_\+version}} \mbox{[}32\mbox{]} = \mbox{\hyperlink{_hardware_8h_a5fd050e3996ac0e5f73791d8ba5158d1}{DEVICE\+\_\+\+VERSION}}
+\item 
+static char \mbox{\hyperlink{_control_logic_8cpp_ad650678872c72278de041bbad40cf620}{unit\+\_\+serial}} \mbox{[}32\mbox{]} = \mbox{\hyperlink{_hardware_8h_a65ad810698f00fa2ed95a400d95a79c8}{DEVICE\+\_\+\+SERIAL}}
+\item 
+float \mbox{\hyperlink{namespace_control_logic_a9a6c6bb73ae52885ddaa5ec56d8603f9}{Control\+Logic\+::\+PULL\+\_\+voltage\+\_\+up}} = 1.\+85f
+\item 
+float \mbox{\hyperlink{namespace_control_logic_a73b9466c4e3c236a186659863283f00e}{Control\+Logic\+::\+PULL\+\_\+voltage\+\_\+down}} = 1.\+45f
+\item 
+float\+\_\+t \mbox{\hyperlink{namespace_control_logic_a0dc914125ce5b958b6d1620c814a580d}{Control\+Logic\+::\+P1\+X\+\_\+\+OUT\+\_\+filament\+\_\+meters}} = 200.\+0f
+\item 
+static float \mbox{\hyperlink{namespace_control_logic_a5428672c2045ec91715338f32d8bb5f1}{Control\+Logic\+::speed\+\_\+as5600}} \mbox{[}4\mbox{]} = \{0, 0, 0, 0\}
+\item 
+static float \mbox{\hyperlink{namespace_control_logic_a14f470efe568bae229e028e1b1acd54f}{Control\+Logic\+::\+MC\+\_\+\+PULL\+\_\+stu\+\_\+raw}} \mbox{[}4\mbox{]} = \{0, 0, 0, 0\}
+\item 
+static int \mbox{\hyperlink{namespace_control_logic_a87d54195660d73ebcd372cad0fd74915}{Control\+Logic\+::\+MC\+\_\+\+PULL\+\_\+stu}} \mbox{[}4\mbox{]} = \{0, 0, 0, 0\}
+\item 
+static float \mbox{\hyperlink{namespace_control_logic_ae2535696ce7487f6ec12d1f2e174e598}{Control\+Logic\+::\+MC\+\_\+\+ONLINE\+\_\+key\+\_\+stu\+\_\+raw}} \mbox{[}4\mbox{]} = \{0, 0, 0, 0\}
+\item 
+static int \mbox{\hyperlink{namespace_control_logic_a503041f38fbec420305ae1bb79aa4002}{Control\+Logic\+::\+MC\+\_\+\+ONLINE\+\_\+key\+\_\+stu}} \mbox{[}4\mbox{]} = \{0, 0, 0, 0\}
+\item 
+static bool \mbox{\hyperlink{namespace_control_logic_a280d12e7265d1830d4859cc38dd5497e}{Control\+Logic\+::\+Assist\+\_\+send\+\_\+filament}} \mbox{[}4\mbox{]} = \{false\}
+\item 
+static bool \mbox{\hyperlink{namespace_control_logic_a33f7ccbf87b78ae7394f88ffe1a4a75e}{Control\+Logic\+::pull\+\_\+state\+\_\+old}} = false
+\item 
+static bool \mbox{\hyperlink{namespace_control_logic_aef70a34b1f25019450171bfa5c07ab62}{Control\+Logic\+::is\+\_\+backing\+\_\+out}} = false
+\item 
+static const bool \mbox{\hyperlink{namespace_control_logic_a8abb9a7c0790b08a5e5f31c8874bb15f}{Control\+Logic\+::is\+\_\+two}} = true
+\item 
+static int32\+\_\+t \mbox{\hyperlink{namespace_control_logic_ad161a11879586190d66f43141bb6578f}{Control\+Logic\+::as5600\+\_\+distance\+\_\+save}} \mbox{[}4\mbox{]} = \{0, 0, 0, 0\}
+\item 
+static int32\+\_\+t \mbox{\hyperlink{namespace_control_logic_a11bff287b64c24fe91500ba99c6f21c8}{Control\+Logic\+::unload\+\_\+target\+\_\+dist}} \mbox{[}4\mbox{]} = \{0, 0, 0, 0\}
+\item 
+static float \mbox{\hyperlink{namespace_control_logic_a0efb555ba92cc1cedb47929db260e6c8}{Control\+Logic\+::unload\+\_\+start\+\_\+meters}} \mbox{[}4\mbox{]} = \{0, 0, 0, 0\}
+\item 
+static \mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76}{filament\+\_\+now\+\_\+position\+\_\+enum}} \mbox{\hyperlink{namespace_control_logic_a3cb6555c20c1e3a386f34fa9f5e6b596}{Control\+Logic\+::filament\+\_\+now\+\_\+position}} \mbox{[}4\mbox{]} = \{\mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76a3f3203b2544e7066baf775b37a8754c5}{filament\+\_\+idle}}, \mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76a3f3203b2544e7066baf775b37a8754c5}{filament\+\_\+idle}}, \mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76a3f3203b2544e7066baf775b37a8754c5}{filament\+\_\+idle}}, \mbox{\hyperlink{namespace_control_logic_a3a47e5f4732fefd1ac3a3f8d33402a76a3f3203b2544e7066baf775b37a8754c5}{filament\+\_\+idle}}\}
+\item 
+static bool \mbox{\hyperlink{namespace_control_logic_a5cc135d9070e574d8b2fe9c9b328a148}{Control\+Logic\+::\+Bambubus\+\_\+need\+\_\+to\+\_\+save}} = false
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{namespace_control_logic_a17835f3a0e8384e40e9d647ce79d3d22}{Control\+Logic\+::save\+\_\+timer}} = 0
+\item 
+static \mbox{\hyperlink{class_control_logic_1_1_motor_channel}{Motor\+Channel}} \mbox{\hyperlink{namespace_control_logic_ac4fff77bfcf6d233d9c740ce7bc1a4da}{Control\+Logic\+::motors}} \mbox{[}4\mbox{]} = \{0, 1, 2, 3\}
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_control_logic_8cpp_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_control_logic_8cpp_a4e1c3fb8f754e84e8bc6c30bbba50272}\index{ControlLogic.cpp@{ControlLogic.cpp}!AS5600\_PI@{AS5600\_PI}}
+\index{AS5600\_PI@{AS5600\_PI}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{AS5600\_PI}{AS5600\_PI}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a4e1c3fb8f754e84e8bc6c30bbba50272} 
+\#define AS5600\+\_\+\+PI~3.\+1415926535897932384626433832795}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00193}{193}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00694}{Control\+Logic\+::\+AS5600\+\_\+\+Update()}}.
+
+\Hypertarget{_control_logic_8cpp_a5f43c83fd8dd8ac8414357ecd89dec8d}\index{ControlLogic.cpp@{ControlLogic.cpp}!Bambubus\_version@{Bambubus\_version}}
+\index{Bambubus\_version@{Bambubus\_version}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{Bambubus\_version}{Bambubus\_version}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a5f43c83fd8dd8ac8414357ecd89dec8d} 
+\#define Bambubus\+\_\+version~5}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00847}{Control\+Logic\+::\+Load\+Settings()}}.
+
+\Hypertarget{_control_logic_8cpp_a157a750331805d0201ca01160b072510}\index{ControlLogic.cpp@{ControlLogic.cpp}!Motion\_control\_save\_flash\_addr@{Motion\_control\_save\_flash\_addr}}
+\index{Motion\_control\_save\_flash\_addr@{Motion\_control\_save\_flash\_addr}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{Motion\_control\_save\_flash\_addr}{Motion\_control\_save\_flash\_addr}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a157a750331805d0201ca01160b072510} 
+\#define Motion\+\_\+control\+\_\+save\+\_\+flash\+\_\+addr~((uint32\+\_\+t)0x0800\+E000)}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00157}{157}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00847}{Control\+Logic\+::\+Load\+Settings()}}.
+
+\Hypertarget{_control_logic_8cpp_a7467db9e95e737c89c7a7d6177e60008}\index{ControlLogic.cpp@{ControlLogic.cpp}!PULL\_VOLTAGE\_SEND\_MAX@{PULL\_VOLTAGE\_SEND\_MAX}}
+\index{PULL\_VOLTAGE\_SEND\_MAX@{PULL\_VOLTAGE\_SEND\_MAX}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{PULL\_VOLTAGE\_SEND\_MAX}{PULL\_VOLTAGE\_SEND\_MAX}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a7467db9e95e737c89c7a7d6177e60008} 
+\#define PULL\+\_\+\+VOLTAGE\+\_\+\+SEND\+\_\+\+MAX~1.\+7f}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00198}{198}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Control\+Logic\+::\+Motor\+Channel\+::\+Run()}}.
+
+\Hypertarget{_control_logic_8cpp_a297af72cb6d4c1831e5758edace4fd3f}\index{ControlLogic.cpp@{ControlLogic.cpp}!speed\_filter\_k@{speed\_filter\_k}}
+\index{speed\_filter\_k@{speed\_filter\_k}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{speed\_filter\_k}{speed\_filter\_k}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a297af72cb6d4c1831e5758edace4fd3f} 
+\#define speed\+\_\+filter\+\_\+k~100}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00194}{194}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+\Hypertarget{_control_logic_8cpp_a377d54c27966e6b7bcfb0810524885b1}\index{ControlLogic.cpp@{ControlLogic.cpp}!use\_flash\_addr@{use\_flash\_addr}}
+\index{use\_flash\_addr@{use\_flash\_addr}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{use\_flash\_addr}{use\_flash\_addr}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a377d54c27966e6b7bcfb0810524885b1} 
+\#define use\+\_\+flash\+\_\+addr~((uint32\+\_\+t)0x0800\+F000)}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00847}{Control\+Logic\+::\+Load\+Settings()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00722}{Control\+Logic\+::\+Save\+Settings()}}.
+
+
+
+\label{doc-var-members}
+\Hypertarget{_control_logic_8cpp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_control_logic_8cpp_a25196e4c5bd3fa01c30a213fc32477fb}\index{ControlLogic.cpp@{ControlLogic.cpp}!AS5600\_SCL@{AS5600\_SCL}}
+\index{AS5600\_SCL@{AS5600\_SCL}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{AS5600\_SCL}{AS5600\_SCL}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a25196e4c5bd3fa01c30a213fc32477fb} 
+uint32\+\_\+t AS5600\+\_\+\+SCL\mbox{[}$\,$\mbox{]} = \{PB15, PB14, PB13, PB12\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \{PB15,\ PB14,\ PB13,\ PB12\};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00870}{Control\+Logic\+::\+Init()}}.
+
+\Hypertarget{_control_logic_8cpp_a382950b12f65a33105a6b7c7cef4c219}\index{ControlLogic.cpp@{ControlLogic.cpp}!AS5600\_SDA@{AS5600\_SDA}}
+\index{AS5600\_SDA@{AS5600\_SDA}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{AS5600\_SDA}{AS5600\_SDA}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a382950b12f65a33105a6b7c7cef4c219} 
+uint32\+\_\+t AS5600\+\_\+\+SDA\mbox{[}$\,$\mbox{]} = \{PD0, PC15, PC14, PC13\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \{PD0,\ PC15,\ PC14,\ PC13\};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00870}{Control\+Logic\+::\+Init()}}.
+
+\Hypertarget{_control_logic_8cpp_a07df3d8e92f2b4de565d574c7950555a}\index{ControlLogic.cpp@{ControlLogic.cpp}!data\_save@{data\_save}}
+\index{data\_save@{data\_save}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{data\_save}{data\_save}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a07df3d8e92f2b4de565d574c7950555a} 
+\mbox{\hyperlink{structflash__save__struct}{flash\+\_\+save\+\_\+struct}} data\+\_\+save\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00694}{Control\+Logic\+::\+AS5600\+\_\+\+Update()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00936}{Control\+Logic\+::\+Get\+Boot\+Mode()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00072}{Unit\+State\+::\+Get\+Current\+Filament\+Index()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00062}{Unit\+State\+::\+Get\+Filament()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00090}{Unit\+State\+::\+Get\+Filament\+Use\+Flag()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00870}{Control\+Logic\+::\+Init()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00904}{Control\+Logic\+::\+Init\+Boot\+Check()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00847}{Control\+Logic\+::\+Load\+Settings()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00240}{Control\+Logic\+::\+MC\+\_\+\+PULL\+\_\+\+ONLINE\+\_\+read()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00962}{Control\+Logic\+::motor\+\_\+motion\+\_\+switch()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00751}{Control\+Logic\+::\+Prepare\+\_\+\+For\+\_\+filament\+\_\+\+Pull\+\_\+\+Back()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01160}{Control\+Logic\+::\+Process\+Motion\+Short\+Logic()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00792}{Control\+Logic\+::\+Run()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00722}{Control\+Logic\+::\+Save\+Settings()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00081}{Unit\+State\+::\+Set\+Current\+Filament\+Index()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01401}{Control\+Logic\+::\+Set\+Filament\+Info\+Action()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00099}{Unit\+State\+::\+Set\+Filament\+Use\+Flag()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00529}{Control\+Logic\+::\+Start\+Load\+Filament()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00576}{Control\+Logic\+::\+Start\+Unload\+Filament()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00501}{Control\+Logic\+::\+Motor\+Channel\+::\+Update\+LEDStatus()}}.
+
+\Hypertarget{_control_logic_8cpp_a52925c91da70ade3c48b8eb3fe99caf6}\index{ControlLogic.cpp@{ControlLogic.cpp}!device\_type\_addr@{device\_type\_addr}}
+\index{device\_type\_addr@{device\_type\_addr}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{device\_type\_addr}{device\_type\_addr}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a52925c91da70ade3c48b8eb3fe99caf6} 
+uint16\+\_\+t device\+\_\+type\+\_\+addr = \mbox{\hyperlink{_bambu_bus_protocol_8h_a955491d79368cb27f0ba2ab28aba5701a1468bae394016b2d3dd75dea179a6578}{Bambu\+Bus\+\_\+\+AMS}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00118}{Unit\+State\+::\+Get\+Bus\+Address()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01453}{Control\+Logic\+::\+Get\+Device\+Type()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00962}{Control\+Logic\+::motor\+\_\+motion\+\_\+switch()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01160}{Control\+Logic\+::\+Process\+Motion\+Short\+Logic()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Control\+Logic\+::\+Motor\+Channel\+::\+Run()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00109}{Unit\+State\+::\+Set\+Bus\+Address()}}.
+
+\Hypertarget{_control_logic_8cpp_a5995db87b2ef40e52a47d2fb1f13ae42}\index{ControlLogic.cpp@{ControlLogic.cpp}!is\_connected@{is\_connected}}
+\index{is\_connected@{is\_connected}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{is\_connected}{is\_connected}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a5995db87b2ef40e52a47d2fb1f13ae42} 
+bool is\+\_\+connected = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00948}{Control\+Logic\+::\+Update\+Connectivity()}}.
+
+\Hypertarget{_control_logic_8cpp_abeaf61fc41f3eae5245f0b7484a5fb5e}\index{ControlLogic.cpp@{ControlLogic.cpp}!last\_heartbeat\_time@{last\_heartbeat\_time}}
+\index{last\_heartbeat\_time@{last\_heartbeat\_time}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{last\_heartbeat\_time}{last\_heartbeat\_time}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_abeaf61fc41f3eae5245f0b7484a5fb5e} 
+uint64\+\_\+t last\+\_\+heartbeat\+\_\+time = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00948}{Control\+Logic\+::\+Update\+Connectivity()}}.
+
+\Hypertarget{_control_logic_8cpp_a92f9b1daa685f9041b79423442d440e3}\index{ControlLogic.cpp@{ControlLogic.cpp}!last\_total\_distance@{last\_total\_distance}}
+\index{last\_total\_distance@{last\_total\_distance}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{last\_total\_distance}{last\_total\_distance}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a92f9b1daa685f9041b79423442d440e3} 
+float last\+\_\+total\+\_\+distance\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00870}{Control\+Logic\+::\+Init()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00962}{Control\+Logic\+::motor\+\_\+motion\+\_\+switch()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00751}{Control\+Logic\+::\+Prepare\+\_\+\+For\+\_\+filament\+\_\+\+Pull\+\_\+\+Back()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00398}{Control\+Logic\+::\+Motor\+Channel\+::\+Run()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l00529}{Control\+Logic\+::\+Start\+Load\+Filament()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00576}{Control\+Logic\+::\+Start\+Unload\+Filament()}}.
+
+\Hypertarget{_control_logic_8cpp_ab704ea0db8b260d9ddf7fd829cbe637f}\index{ControlLogic.cpp@{ControlLogic.cpp}!MC\_AS5600@{MC\_AS5600}}
+\index{MC\_AS5600@{MC\_AS5600}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{MC\_AS5600}{MC\_AS5600}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_ab704ea0db8b260d9ddf7fd829cbe637f} 
+\mbox{\hyperlink{class_a_s5600__soft___i_i_c}{AS5600\+\_\+soft\+\_\+\+IIC}} MC\+\_\+\+AS5600\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00694}{Control\+Logic\+::\+AS5600\+\_\+\+Update()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00870}{Control\+Logic\+::\+Init()}}.
+
+\Hypertarget{_control_logic_8cpp_a5b964c14654ffcb3120d1d8cb9779c86}\index{ControlLogic.cpp@{ControlLogic.cpp}!mc\_save@{mc\_save}}
+\index{mc\_save@{mc\_save}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{mc\_save}{mc\_save}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a5b964c14654ffcb3120d1d8cb9779c86} 
+\mbox{\hyperlink{struct_motion__control__save__struct}{Motion\+\_\+control\+\_\+save\+\_\+struct}} mc\+\_\+save\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00870}{Control\+Logic\+::\+Init()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l00847}{Control\+Logic\+::\+Load\+Settings()}}.
+
+\Hypertarget{_control_logic_8cpp_a428be3f4f7b6d8013ddc5864db8696d6}\index{ControlLogic.cpp@{ControlLogic.cpp}!unit\_model@{unit\_model}}
+\index{unit\_model@{unit\_model}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{unit\_model}{unit\_model}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a428be3f4f7b6d8013ddc5864db8696d6} 
+char unit\+\_\+model\mbox{[}32\mbox{]} = \mbox{\hyperlink{_hardware_8h_a0df8ff26dcd0718c50c02ee073fa8745}{DEVICE\+\_\+\+MODEL}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00123}{Unit\+State\+::\+Get\+Model()}}.
+
+\Hypertarget{_control_logic_8cpp_ad650678872c72278de041bbad40cf620}\index{ControlLogic.cpp@{ControlLogic.cpp}!unit\_serial@{unit\_serial}}
+\index{unit\_serial@{unit\_serial}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{unit\_serial}{unit\_serial}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_ad650678872c72278de041bbad40cf620} 
+char unit\+\_\+serial\mbox{[}32\mbox{]} = \mbox{\hyperlink{_hardware_8h_a65ad810698f00fa2ed95a400d95a79c8}{DEVICE\+\_\+\+SERIAL}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00052}{52}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00127}{Unit\+State\+::\+Get\+Serial\+Number()}}.
+
+\Hypertarget{_control_logic_8cpp_a14a0b2269a711e843f0de7637cd80043}\index{ControlLogic.cpp@{ControlLogic.cpp}!unit\_version@{unit\_version}}
+\index{unit\_version@{unit\_version}!ControlLogic.cpp@{ControlLogic.cpp}}
+\doxysubsubsection{\texorpdfstring{unit\_version}{unit\_version}}
+{\footnotesize\ttfamily \label{_control_logic_8cpp_a14a0b2269a711e843f0de7637cd80043} 
+char unit\+\_\+version\mbox{[}32\mbox{]} = \mbox{\hyperlink{_hardware_8h_a5fd050e3996ac0e5f73791d8ba5158d1}{DEVICE\+\_\+\+VERSION}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{_control_logic_8cpp_source_l00125}{Unit\+State\+::\+Get\+Version()}}.
+

@@ -1,0 +1,13 @@
+<map id="Hardware::ADC_Init" name="Hardware::ADC_Init">
+<area shape="rect" id="Node000001" title="Initialize the Analog&#45;to&#45;Digital Converter." alt="" coords="386,47,525,73"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="486,31,476,28,456,25,437,27,426,32,424,37,429,47,424,45,419,38,422,28,435,22,456,20,478,23,491,32"/>
+<area shape="rect" id="Node000002" href="$namespace_control_logic.html#a1da226a05b7a8c46e16a840900265c03" title="Initialize ControlLogic." alt="" coords="211,21,332,48"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="368,48,332,46,332,40,373,48"/>
+<area shape="rect" id="Node000005" href="$namespace_hardware.html#a25837768e4f1568435bc6d889be37ba5" title="Initialize minimal Hardware Base." alt="" coords="205,72,338,99"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="373,71,339,79,338,74,368,72"/>
+<area shape="rect" id="Node000003" href="$class_control_logic_1_1_m_o_t_o_r___p_i_d.html#a9edc970b22d74b15904b4929d862cc07" title=" " alt="" coords="5,5,157,48"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="193,32,157,33,157,27,198,31"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino Setup Function." alt="" coords="54,72,108,99"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="206,53,109,81,107,76,201,52"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="187,86,108,88,108,83,192,85"/>
+</map>

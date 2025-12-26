@@ -1,0 +1,7 @@
+<map id="ControlLogic::MotorChannel::UpdateLEDStatus" name="ControlLogic::MotorChannel::UpdateLEDStatus">
+<area shape="rect" id="Node000001" title="Update the Lane LED based on status." alt="" coords="5,5,189,48"/>
+<area shape="rect" id="Node000002" href="$namespace_hardware.html#a44347f62b4ee1789ecfed67b195572e4" title="Set Color of a specific LED." alt="" coords="237,13,406,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,24,223,26,218,27,189,29"/>
+<area shape="rect" id="Node000003" href="$_hardware_8cpp.html#a766f13b53e03456789fd4fe8e009e157" title=" " alt="" coords="454,13,533,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="406,24,441,27,436,27,407,29"/>
+</map>

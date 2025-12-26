@@ -1,0 +1,14 @@
+<map id="KlipperCLI::HandleGetSensors" name="KlipperCLI::HandleGetSensors">
+<area shape="rect" id="Node000001" title="Handler for GET_SENSORS command." alt="" coords="5,31,206,57"/>
+<area shape="rect" id="Node000002" href="$namespace_control_logic.html#a4428a845041ff986ccbf2555a62d0656" title="Get a bitmask of sensor states." alt="" coords="254,5,449,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,31,241,30,235,31,207,36"/>
+<area shape="rect" id="Node000003" href="$namespace_klipper_c_l_i.html#a9ec392d53485800126189969c2c4981a" title="Serialize and send a JSON response." alt="" coords="262,56,441,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="206,52,249,58,244,59,206,57"/>
+<area shape="rect" id="Node000004" href="$namespace_hardware.html#ad3ec7cad074d6d73508844a06a7bea50" title="Send a buffer via UART1." alt="" coords="497,56,655,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="441,67,484,69,478,69,441,72"/>
+<area shape="rect" id="Node000005" href="$namespace_hardware.html#a0ada30189b8e1d1dbec145140849b778" title="Microsecond Delay." alt="" coords="937,56,1075,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="656,67,924,69,918,69,656,72"/>
+<area shape="rect" id="Node000006" href="$namespace_hardware.html#aaaf02ef3df5811e2ba28dd009eadfaae" title="Send a single byte blocking." alt="" coords="703,81,889,108"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="656,76,690,82,685,82,656,81"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="889,81,919,80,924,79,889,86"/>
+</map>

@@ -1,0 +1,360 @@
+\doxysection{Unit\+State Class Reference}
+\hypertarget{class_unit_state}{}\label{class_unit_state}\index{UnitState@{UnitState}}
+
+
+{\ttfamily \#include $<$Unit\+State.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{struct_filament_state}{Filament\+State}} \& \mbox{\hyperlink{class_unit_state_a221a5d98d4e870c593e5bd5ee6621c4c}{Get\+Filament}} (int index)
+\begin{DoxyCompactList}\small\item\em Get the configuration specific to a filament index. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_unit_state_a4833e917e0069069c7f455a24e28a516}{Get\+Current\+Filament\+Index}} ()
+\begin{DoxyCompactList}\small\item\em Get the currently active filament index. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_unit_state_a07223951eecac60709753ce07290477d}{Set\+Current\+Filament\+Index}} (int index)
+\begin{DoxyCompactList}\small\item\em Set the currently active filament index. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{class_unit_state_a176d20bfd0f57839308be6c9d12a469c}{Get\+Filament\+Use\+Flag}} ()
+\begin{DoxyCompactList}\small\item\em Get the Filament Use Status Flag. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_unit_state_ad8b253bd7a666cebbab08f9b7c7499dc}{Set\+Filament\+Use\+Flag}} (uint8\+\_\+t flag)
+\begin{DoxyCompactList}\small\item\em Set the Filament Use Status Flag. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_unit_state_aeb3390385af0b8e75d0f3f57da9e2180}{Set\+Bus\+Address}} (uint16\+\_\+t addr)
+\begin{DoxyCompactList}\small\item\em Set the Bus Address used by this device (AMS vs AMS Lite). \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{class_unit_state_ae4b5deab89162bd550a473dae40b03b9}{Get\+Bus\+Address}} ()
+\begin{DoxyCompactList}\small\item\em Get the Bus Address. \end{DoxyCompactList}\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_unit_state_a4583c9e8d1e21c9be317ea3b3057721a}{Get\+Model}} ()
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_unit_state_a745286b33e7a2805f9045e22fc0a49ac}{Get\+Version}} ()
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_unit_state_a6cf2df0acd0abc748967395a0323c909}{Get\+Serial\+Number}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_unit_state_8h_source_l00069}{69}} of file \mbox{\hyperlink{_unit_state_8h_source}{Unit\+State.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_unit_state_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_unit_state_ae4b5deab89162bd550a473dae40b03b9}\index{UnitState@{UnitState}!GetBusAddress@{GetBusAddress}}
+\index{GetBusAddress@{GetBusAddress}!UnitState@{UnitState}}
+\doxysubsubsection{\texorpdfstring{GetBusAddress()}{GetBusAddress()}}
+{\footnotesize\ttfamily \label{class_unit_state_ae4b5deab89162bd550a473dae40b03b9} 
+uint16\+\_\+t Unit\+State\+::\+Get\+Bus\+Address (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the Bus Address. 
+
+\begin{DoxyReturn}{Returns}
+uint16\+\_\+t The configured address. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00118}{118}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_control_logic_8cpp_a52925c91da70ade3c48b8eb3fe99caf6}{device\_type\_addr}};}
+\DoxyCodeLine{00120\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00038}{device\+\_\+type\+\_\+addr}}.
+
+\Hypertarget{class_unit_state_a4833e917e0069069c7f455a24e28a516}\index{UnitState@{UnitState}!GetCurrentFilamentIndex@{GetCurrentFilamentIndex}}
+\index{GetCurrentFilamentIndex@{GetCurrentFilamentIndex}!UnitState@{UnitState}}
+\doxysubsubsection{\texorpdfstring{GetCurrentFilamentIndex()}{GetCurrentFilamentIndex()}}
+{\footnotesize\ttfamily \label{class_unit_state_a4833e917e0069069c7f455a24e28a516} 
+int Unit\+State\+::\+Get\+Current\+Filament\+Index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the currently active filament index. 
+
+\begin{DoxyReturn}{Returns}
+int Index (0-\/3) or 0x\+FF if none/unknown. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00072}{72}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_control_logic_8cpp_a07df3d8e92f2b4de565d574c7950555a}{data\_save}}.\mbox{\hyperlink{structflash__save__struct_ad0e64263f719a9fafab8cd0dc04f4a06}{BambuBus\_now\_filament\_num}};}
+\DoxyCodeLine{00074\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00031}{data\+\_\+save}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00208}{Klipper\+CLI\+::\+Handle\+Move()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_unit_state_a4833e917e0069069c7f455a24e28a516_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_unit_state_a221a5d98d4e870c593e5bd5ee6621c4c}\index{UnitState@{UnitState}!GetFilament@{GetFilament}}
+\index{GetFilament@{GetFilament}!UnitState@{UnitState}}
+\doxysubsubsection{\texorpdfstring{GetFilament()}{GetFilament()}}
+{\footnotesize\ttfamily \label{class_unit_state_a221a5d98d4e870c593e5bd5ee6621c4c} 
+\mbox{\hyperlink{struct_filament_state}{Filament\+State}} \& Unit\+State\+::\+Get\+Filament (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the configuration specific to a filament index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & 0-\/3 for specific lane. Bounded to 0-\/3. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_filament_state}{Filament\+State}\& Reference to the state object. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00062}{62}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{if}(index\ <\ 0\ ||\ index\ >=\ 4)\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_control_logic_8cpp_a07df3d8e92f2b4de565d574c7950555a}{data\_save}}.\mbox{\hyperlink{structflash__save__struct_af6b0be8daad68d06efd980f1fb68ef72}{filament}}[0];\ \textcolor{comment}{//\ Boundary\ safety}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_control_logic_8cpp_a07df3d8e92f2b4de565d574c7950555a}{data\_save}}.\mbox{\hyperlink{structflash__save__struct_af6b0be8daad68d06efd980f1fb68ef72}{filament}}[index];}
+\DoxyCodeLine{00065\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00031}{data\+\_\+save}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00305}{Klipper\+CLI\+::\+Handle\+Get\+Filament\+Info()}}, \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00347}{Klipper\+CLI\+::\+Handle\+Set\+Filament\+Info()}}, and \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00111}{Klipper\+CLI\+::\+Handle\+Status()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_unit_state_a221a5d98d4e870c593e5bd5ee6621c4c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_unit_state_a176d20bfd0f57839308be6c9d12a469c}\index{UnitState@{UnitState}!GetFilamentUseFlag@{GetFilamentUseFlag}}
+\index{GetFilamentUseFlag@{GetFilamentUseFlag}!UnitState@{UnitState}}
+\doxysubsubsection{\texorpdfstring{GetFilamentUseFlag()}{GetFilamentUseFlag()}}
+{\footnotesize\ttfamily \label{class_unit_state_a176d20bfd0f57839308be6c9d12a469c} 
+uint8\+\_\+t Unit\+State\+::\+Get\+Filament\+Use\+Flag (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the Filament Use Status Flag. 
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Flags indicating usage state (e.\+g. 0x02 busy, 0x04 in use). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_control_logic_8cpp_a07df3d8e92f2b4de565d574c7950555a}{data\_save}}.\mbox{\hyperlink{structflash__save__struct_a921a5777c50455edf8775c22430bcfa3}{filament\_use\_flag}};}
+\DoxyCodeLine{00092\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00031}{data\+\_\+save}}.
+
+\Hypertarget{class_unit_state_a4583c9e8d1e21c9be317ea3b3057721a}\index{UnitState@{UnitState}!GetModel@{GetModel}}
+\index{GetModel@{GetModel}!UnitState@{UnitState}}
+\doxysubsubsection{\texorpdfstring{GetModel()}{GetModel()}}
+{\footnotesize\ttfamily \label{class_unit_state_a4583c9e8d1e21c9be317ea3b3057721a} 
+const char \texorpdfstring{$\ast$}{*} Unit\+State\+::\+Get\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00123}{123}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00123\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_control_logic_8cpp_a428be3f4f7b6d8013ddc5864db8696d6}{unit\_model}};\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00050}{unit\+\_\+model}}.
+
+\Hypertarget{class_unit_state_a6cf2df0acd0abc748967395a0323c909}\index{UnitState@{UnitState}!GetSerialNumber@{GetSerialNumber}}
+\index{GetSerialNumber@{GetSerialNumber}!UnitState@{UnitState}}
+\doxysubsubsection{\texorpdfstring{GetSerialNumber()}{GetSerialNumber()}}
+{\footnotesize\ttfamily \label{class_unit_state_a6cf2df0acd0abc748967395a0323c909} 
+const char \texorpdfstring{$\ast$}{*} Unit\+State\+::\+Get\+Serial\+Number (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00127}{127}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00127\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_control_logic_8cpp_ad650678872c72278de041bbad40cf620}{unit\_serial}};\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00052}{unit\+\_\+serial}}.
+
+\Hypertarget{class_unit_state_a745286b33e7a2805f9045e22fc0a49ac}\index{UnitState@{UnitState}!GetVersion@{GetVersion}}
+\index{GetVersion@{GetVersion}!UnitState@{UnitState}}
+\doxysubsubsection{\texorpdfstring{GetVersion()}{GetVersion()}}
+{\footnotesize\ttfamily \label{class_unit_state_a745286b33e7a2805f9045e22fc0a49ac} 
+const char \texorpdfstring{$\ast$}{*} Unit\+State\+::\+Get\+Version (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00125}{125}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00125\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_control_logic_8cpp_a14a0b2269a711e843f0de7637cd80043}{unit\_version}};\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00051}{unit\+\_\+version}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00090}{Klipper\+CLI\+::\+Handle\+Ping()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_unit_state_a745286b33e7a2805f9045e22fc0a49ac_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_unit_state_aeb3390385af0b8e75d0f3f57da9e2180}\index{UnitState@{UnitState}!SetBusAddress@{SetBusAddress}}
+\index{SetBusAddress@{SetBusAddress}!UnitState@{UnitState}}
+\doxysubsubsection{\texorpdfstring{SetBusAddress()}{SetBusAddress()}}
+{\footnotesize\ttfamily \label{class_unit_state_aeb3390385af0b8e75d0f3f57da9e2180} 
+void Unit\+State\+::\+Set\+Bus\+Address (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set the Bus Address used by this device (AMS vs AMS Lite). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address/type identifier. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00109}{109}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{_control_logic_8cpp_a52925c91da70ade3c48b8eb3fe99caf6}{device\_type\_addr}}\ =\ addr;}
+\DoxyCodeLine{00111\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00038}{device\+\_\+type\+\_\+addr}}.
+
+\Hypertarget{class_unit_state_a07223951eecac60709753ce07290477d}\index{UnitState@{UnitState}!SetCurrentFilamentIndex@{SetCurrentFilamentIndex}}
+\index{SetCurrentFilamentIndex@{SetCurrentFilamentIndex}!UnitState@{UnitState}}
+\doxysubsubsection{\texorpdfstring{SetCurrentFilamentIndex()}{SetCurrentFilamentIndex()}}
+{\footnotesize\ttfamily \label{class_unit_state_a07223951eecac60709753ce07290477d} 
+void Unit\+State\+::\+Set\+Current\+Filament\+Index (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set the currently active filament index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index (0-\/3) or 0x\+FF. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00081}{81}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{_control_logic_8cpp_a07df3d8e92f2b4de565d574c7950555a}{data\_save}}.\mbox{\hyperlink{structflash__save__struct_ad0e64263f719a9fafab8cd0dc04f4a06}{BambuBus\_now\_filament\_num}}\ =\ index;}
+\DoxyCodeLine{00083\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00031}{data\+\_\+save}}.
+
+
+
+Referenced by \mbox{\hyperlink{_klipper_c_l_i_8cpp_source_l00268}{Klipper\+CLI\+::\+Handle\+Select\+Lane()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_unit_state_a07223951eecac60709753ce07290477d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_unit_state_ad8b253bd7a666cebbab08f9b7c7499dc}\index{UnitState@{UnitState}!SetFilamentUseFlag@{SetFilamentUseFlag}}
+\index{SetFilamentUseFlag@{SetFilamentUseFlag}!UnitState@{UnitState}}
+\doxysubsubsection{\texorpdfstring{SetFilamentUseFlag()}{SetFilamentUseFlag()}}
+{\footnotesize\ttfamily \label{class_unit_state_ad8b253bd7a666cebbab08f9b7c7499dc} 
+void Unit\+State\+::\+Set\+Filament\+Use\+Flag (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{flag}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set the Filament Use Status Flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & New flag status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_control_logic_8cpp_source_l00099}{99}} of file \mbox{\hyperlink{_control_logic_8cpp_source}{Control\+Logic.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{_control_logic_8cpp_a07df3d8e92f2b4de565d574c7950555a}{data\_save}}.\mbox{\hyperlink{structflash__save__struct_a921a5777c50455edf8775c22430bcfa3}{filament\_use\_flag}}\ =\ flag;}
+\DoxyCodeLine{00101\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_control_logic_8cpp_source_l00031}{data\+\_\+save}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_unit_state_8h}{Unit\+State.\+h}}\item 
+src/\mbox{\hyperlink{_control_logic_8cpp}{Control\+Logic.\+cpp}}\end{DoxyCompactItemize}

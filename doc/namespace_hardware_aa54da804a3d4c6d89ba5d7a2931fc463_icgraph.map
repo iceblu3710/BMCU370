@@ -1,0 +1,17 @@
+<map id="Hardware::ADC_GetValues" name="Hardware::ADC_GetValues">
+<area shape="rect" id="Node000001" title="Get filtered ADC voltage values." alt="" coords="947,31,1128,57"/>
+<area shape="rect" id="Node000002" href="$namespace_control_logic.html#ab1b5b19d84cdbba6ef3ad97fba14ce13" title="Read Analog Sensors and Update State." alt="" coords="736,23,899,65"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="929,44,900,47,899,41,934,44"/>
+<area shape="rect" id="Node000003" href="$namespace_control_logic.html#a0c732b28cf691fb77359c80a0c000665" title="Check Boot Mode (Button Press at Startup)." alt="" coords="502,5,688,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="718,33,688,32,688,27,723,33"/>
+<area shape="rect" id="Node000005" href="$namespace_control_logic.html#adc8c269923e0c76c6d104a005833a7f9" title="Main Control Loop." alt="" coords="532,56,658,83"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="723,55,659,65,658,59,718,55"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino Setup Function." alt="" coords="401,5,454,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="484,19,455,21,455,16,489,18"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Arduino Main Loop." alt="" coords="405,56,450,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="514,69,451,72,451,67,519,69"/>
+<area shape="rect" id="Node000007" href="$class_adafruit___neo_pixel.html#a4bcda7a15591065570d3598cbf970be7" title="将RAM中的像素数据传输到NeoPixels。" alt="" coords="188,56,353,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="387,69,353,72,353,67,392,69"/>
+<area shape="rect" id="Node000008" href="$class_adafruit___neo_pixel.html#a61b1bd003a291520a367ab1712d6265c" title="释放Adafruit_NeoPixel对象，将数据引脚恢复为输入模式。" alt="" coords="5,48,140,91"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="170,70,140,72,140,67,175,69"/>
+</map>

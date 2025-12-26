@@ -1,0 +1,7 @@
+<map id="ControlLogic::Init" name="ControlLogic::Init">
+<area shape="rect" id="Node000001" title="Initialize ControlLogic." alt="" coords="205,43,325,69"/>
+<area shape="rect" id="Node000002" href="$class_control_logic_1_1_m_o_t_o_r___p_i_d.html#a9edc970b22d74b15904b4929d862cc07" title=" " alt="" coords="5,5,157,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,44,157,41,157,36,192,44"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino Setup Function." alt="" coords="54,72,108,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,68,108,84,107,79,192,68"/>
+</map>

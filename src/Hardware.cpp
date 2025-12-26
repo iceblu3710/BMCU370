@@ -43,6 +43,12 @@ DMA_InitTypeDef Bambubus_DMA_InitStructure;
 namespace Hardware {
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Initialize minimal Hardware Base.
+     * 
+     * Disables Watchdog, Configures Clock/AFIO, Inits LEDs, ADC, PWM.
+     * Performs a boot LED sequence.
+     */
     void InitBase() {
         Watchdog_Disable(); // Disable WWDG first!
         System_Init();
@@ -59,28 +65,53 @@ namespace Hardware {
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Disable the Window Watchdog.
+     * 
+     * Essential for debugging or development where timing isn't strict yet.
+     */
     void Watchdog_Disable() {
         WWDG_DeInit();
         RCC_APB1PeriphClockCmd(RCC_APB1Periph_WWDG, DISABLE);
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Configure System Clocks and Pin Remapping.
+     * 
+     * Enables AFIO and sets PD0/PD1 remapping for HSE/LSE reuse if needed.
+     */
     void System_Init() {
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
         GPIO_PinRemapConfig(GPIO_Remap_PD01, ENABLE);
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Microsecond Delay.
+     * 
+     * @param time Microseconds to wait.
+     */
     void DelayUS(uint32_t time) {
         delayMicroseconds(time);
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Millisecond Delay.
+     * 
+     * @param time Milliseconds to wait.
+     */
     void DelayMS(uint32_t time) {
         delay(time);
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Get System Time in Milliseconds.
+     * 
+     * @return uint64_t Time since boot (approx) in ms.
+     */
     uint64_t GetTime() {
         return get_time64();
     }
@@ -89,11 +120,23 @@ namespace Hardware {
     static void (*uart_rx_callback)(uint8_t) = nullptr;
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Register a callback for UART1 RX.
+     * 
+     * @param callback Function pointer void(uint8_t byte).
+     */
     void UART_SetRxCallback(void (*callback)(uint8_t)) {
         uart_rx_callback = callback;
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Initialize UART1 for Bus/Serial communication.
+     * 
+     * Configures PA9(TX), PA10(RX), PA12(DE).
+     * 
+     * @param isKlipper True for 250k baud standard serial. False for 1.25M baud 9-bit bus.
+     */
     void InitUART(bool isKlipper) {
         GPIO_InitTypeDef GPIO_InitStructure = {0};
         USART_InitTypeDef USART_InitStructure = {0};
@@ -160,6 +203,12 @@ namespace Hardware {
     
     extern "C" void USART1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief UART1 Interrupt Service Routine.
+     * 
+     * Handles RXNE (Receive Data) and TC (Transmission Complete) logic.
+     * Manages RS485 DE pin (PA12).
+     */
     void USART1_IRQHandler(void)
     {
         volatile uint32_t sr = USART1->STATR; // Read Status Register
@@ -186,6 +235,11 @@ namespace Hardware {
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Send a single byte blocking.
+     * 
+     * @param data Byte to send.
+     */
     void UART_SendByte(uint8_t data) {
          uint32_t timeout = 10000;
          while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET && timeout--) {
@@ -195,6 +249,15 @@ namespace Hardware {
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Send a buffer via UART1.
+     * 
+     * @note If STANDARD_SERIAL is defined, uses blocking send. 
+     *       If not (BambuBus mode), uses DMA for high speed transfer.
+     * 
+     * @param data Pointer to data.
+     * @param length Length of data.
+     */
     void UART_Send(const uint8_t *data, uint16_t length) {
 #if defined(STANDARD_SERIAL)
         // Blocking mode for CLI interactivity (safe with ISR echo)
@@ -245,6 +308,12 @@ namespace Hardware {
 
     // --- ADC ---
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Initialize the Analog-to-Digital Converter.
+     * 
+     * Configures GPIO (PA0-PA7), DMA1 Channel 1 (Circular Buffer), and ADC1.
+     * Runs calibration and starts continuous conversion via DMA.
+     */
     void ADC_Init() {
         // GPIO
         {
@@ -307,6 +376,14 @@ namespace Hardware {
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Get filtered ADC voltage values.
+     * 
+     * Calculates the average of the DMA buffer for each channel, converts to Voltage,
+     * and returns the array.
+     * 
+     * @return float* Pointer to array of 8 float voltages (0.0 - 3.3V).
+     */
     float* ADC_GetValues() {
         for (int i = 0; i < 8; i++) {
             int data_sum = 0;
@@ -325,6 +402,12 @@ namespace Hardware {
 
     // --- PWM ---
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Initialize PWM Timers for Motor Control.
+     * 
+     * Configures TIM2, TIM3, TIM4 channels for motor driver control pins.
+     * Remaps pins as necessary.
+     */
     void PWM_Init() {
         GPIO_InitTypeDef GPIO_InitStructure;
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB, ENABLE);
@@ -386,6 +469,12 @@ namespace Hardware {
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Set PWM duty cycle for a Motor Channel.
+     * 
+     * @param channel Motor Channel (0-3).
+     * @param PWM Value (-1000 to 1000). Positive for one direction, negative for other.
+     */
     void PWM_Set(uint8_t channel, int PWM) {
         uint16_t set1 = 0, set2 = 0;
         if (PWM > 0) {
@@ -418,12 +507,26 @@ namespace Hardware {
 
     // --- LED ---
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Initialize NeoPixel LEDs.
+     * 
+     * Starts the Adafruit_NeoPixel instances for mainboard and channels.
+     */
     void LED_Init() {
         strip_PD1.begin();
         for(int i=0; i<4; i++) strip_channel[i].begin();
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Set Color of a specific LED.
+     * 
+     * @param channel Channel (0-3) or Mainboard (4).
+     * @param led_idx Index of LED in the strip (0-1 typically).
+     * @param r Red (0-255).
+     * @param g Green (0-255).
+     * @param b Blue (0-255).
+     */
     void LED_SetColor(uint8_t channel, int led_idx, uint8_t r, uint8_t g, uint8_t b) {
         if (channel < 4) {
              strip_channel[channel].setPixelColor(led_idx, strip_channel[channel].Color(r, g, b));
@@ -433,12 +536,22 @@ namespace Hardware {
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Update LED Hardware.
+     * 
+     * Pushes the memory buffer to the LED strips.
+     */
     void LED_Show() {
         strip_PD1.show();
         for(int i=0; i<4; i++) strip_channel[i].show();
     }
 
     /* DEVELOPMENT STATE: FUNCTIONAL */
+    /**
+     * @brief Set Global Brightness for LEDs.
+     * 
+     * @param brightness Brightness (0-255, 0 uses defaults).
+     */
     void LED_SetBrightness(uint8_t brightness) {
          // This is global brightness scaling, usually we set it once.
          // Original code had different brightness for PD1 (35) and channels (15).

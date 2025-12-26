@@ -1,0 +1,5 @@
+<map id="ControlLogic::MotorChannel" name="ControlLogic::MotorChannel">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,125,189,152"/>
+<area shape="rect" id="Node000002" href="$class_control_logic_1_1_m_o_t_o_r___p_i_d.html" title=" " alt="" coords="6,5,188,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,47,100,125,94,124,95,49"/>
+</map>

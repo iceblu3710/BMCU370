@@ -1,0 +1,15 @@
+<map id="CommandRouter::Route" name="CommandRouter::Route">
+<area shape="rect" id="Node000001" title="Route an incoming command to its specific handler." alt="" coords="5,109,169,136"/>
+<area shape="rect" id="Node000002" href="$namespace_command_router.html#a1d2e53549b25a63274ad073b375e5f21" title="wrapper to handle Long Packets by parsing and dispatching." alt="" coords="227,72,424,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,110,214,107,209,108,169,115"/>
+<area shape="rect" id="Node000005" href="$namespace_control_logic.html#a9716be5fe9da72481bee41a80681d8e5" title="Update connectivity status (Online/Offline)." alt="" coords="217,139,434,165"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="169,130,204,137,199,137,169,135"/>
+<area shape="rect" id="Node000003" href="$class_bambu_bus_protocol.html#ad0e11ad5c710644e9f1ee2fb4f15a3b9" title="Extract data from a &quot;Long Packet&quot; (0x05 type)." alt="" coords="482,5,685,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="410,69,481,53,486,52,411,74"/>
+<area shape="rect" id="Node000004" href="$namespace_control_logic.html#a1ff0bcee8062346fb963e4dd845c8bdf" title="Handler/Dispatcher for Long Packets." alt="" coords="494,72,673,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="424,91,482,93,476,94,425,96"/>
+<area shape="rect" id="Node000006" href="$namespace_hardware.html#a8ea28b07408691bc126683a81aa220f3" title="Get System Time in Milliseconds." alt="" coords="516,139,651,165"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="434,149,503,152,498,152,434,155"/>
+<area shape="rect" id="Node000007" href="$time64_8cpp.html#a146d483f58902ba0184ce16f728edfb0" title="Get 64&#45;bit System Time in Milliseconds." alt="" coords="733,139,819,165"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="652,149,721,152,715,152,652,155"/>
+</map>

@@ -25,6 +25,13 @@ namespace KlipperCLI {
 
     // Response Helper
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Serialize and send a JSON response.
+     * 
+     * Serializes the document to a buffer, appends CR/LF, and sends via UART.
+     * 
+     * @param d The JSON Document to serialize.
+     */
     void SendResponse(JsonDocument& d) {
         // Serialize to buffer
         static char output[1200]; // Increased buffer slightly
@@ -39,6 +46,13 @@ namespace KlipperCLI {
     }
     
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Helper to send an Error response.
+     * 
+     * @param id Request ID.
+     * @param code Error Code String.
+     * @param msg Descriptive Message.
+     */
     void SendError(int id, const char* code, const char* msg) {
         doc.clear();
         doc["id"] = id;
@@ -49,6 +63,13 @@ namespace KlipperCLI {
     }
     
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Helper to send a Success (OK) response.
+     * 
+     * @param id Request ID.
+     * @param code Optional code.
+     * @param msg Optional message.
+     */
     void SendOk(int id, const char* code = nullptr, const char* msg = nullptr) {
         doc.clear();
         doc["id"] = id;
@@ -61,6 +82,11 @@ namespace KlipperCLI {
     // --- Command Handlers ---
     
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Handler for PING command.
+     * 
+     * Returns telemetry (version, uptime).
+     */
     void HandlePing(int id, JsonObject args) {
         doc.clear();
         doc["id"] = id;
@@ -75,6 +101,13 @@ namespace KlipperCLI {
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Handler for STATUS command.
+     * 
+     * Returns a comprehensive state of all 4 lanes, including motion state,
+     * filament sensors, odometer meters, pressure, and filament metadata.
+     * Uses manual string construction to avoid heap memory issues with large JSON.
+     */
     void HandleStatus(int id, JsonObject args) {
          // Manual JSON construction to avoid Heap Fragmentation/Overflow
          // 2048 bytes static buffer for full status
@@ -144,6 +177,11 @@ namespace KlipperCLI {
     }
     
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Handler for GET_SENSORS command.
+     * 
+     * Returns a simple list of booleans indicating filament presence.
+     */
     void HandleGetSensors(int id, JsonObject args) {
          doc.clear();
          doc["id"] = id;
@@ -158,6 +196,15 @@ namespace KlipperCLI {
     }
     
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Handler for MOVE command.
+     * 
+     * Initiates a velocity-controlled movement on a specific axis.
+     * 
+     * @param axis "FEED", "SELECTOR", or "0"-"3".
+     * @param dist_mm Distance to move (always positive).
+     * @param speed Velocity in mm/s (mapped to motor units).
+     */
     void HandleMove(int id, JsonObject args) {
         // Args extracted before clearing doc
         // BUT wait, 'args' is a reference to 'doc' internals (if passed from ProcessPacket).
@@ -200,12 +247,24 @@ namespace KlipperCLI {
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Handler for STOP command.
+     * 
+     * Cancels all motion immediately.
+     */
     void HandleStop(int id, JsonObject args) {
         ControlLogic::StopAll();
         SendOk(id, "STOPPED", "All motion stopped");
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Handler for SELECT_LANE command.
+     * 
+     * Sets the active lane index.
+     * 
+     * @param lane Lane index (0-3).
+     */
     void HandleSelectLane(int id, JsonObject args) {
         if(!args["lane"].is<int>()) {
             SendError(id, "BAD_ARGS", "Missing lane");
@@ -221,6 +280,11 @@ namespace KlipperCLI {
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Handler for SET_AUTO_FEED command.
+     * 
+     * Enables automatic pressure control (feeding/holding) for a lane.
+     */
     void HandleSetAutoFeed(int id, JsonObject args) {
         if(!args["lane"].is<int>() || !args["enable"].is<bool>()) {
              SendError(id, "BAD_ARGS", "Missing lane or enable");
@@ -233,6 +297,11 @@ namespace KlipperCLI {
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Handler for GET_FILAMENT_INFO command.
+     * 
+     * Returns metadata for a specific lane.
+     */
     void HandleGetFilamentInfo(int id, JsonObject args) {
          if(!args["lane"].is<int>()) { SendError(id, "BAD_ARGS", "Missing lane"); return; }
          int lane = args["lane"];
@@ -270,6 +339,11 @@ namespace KlipperCLI {
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Handler for SET_FILAMENT_INFO command.
+     * 
+     * Updates metadata for a specific lane. Supports partial updates.
+     */
     void HandleSetFilamentInfo(int id, JsonObject args) {
          // Need to extract ALL args to stack/struct before clearing doc
          // This is tricky for complex objects like Color array.
@@ -318,6 +392,11 @@ namespace KlipperCLI {
 
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Parse and Dispatch a JSON Packet.
+     * 
+     * Deserializes the buffer and routes to the appropriate handler based on "cmd".
+     */
     void ProcessPacket(char* json_str) {
         doc.clear();
         DeserializationError error = deserializeJson(doc, json_str);
@@ -352,11 +431,21 @@ namespace KlipperCLI {
     static volatile bool packet_ready = false;
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Initialize Klipper CLI.
+     * 
+     * Sends a startup message.
+     */
     void Init() {
         Hardware::UART_Send((const uint8_t*)"{\"event\":\"STARTUP\",\"msg\":\"KlipperCLI Ready\"}\r\n", 52);
     }
 
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Main Execution Loop.
+     * 
+     * Checks if a full line is received, processes it, and resets the buffer.
+     */
     void Run() {
         if (packet_ready) {
              ProcessPacket(rx_buffer);
@@ -368,6 +457,13 @@ namespace KlipperCLI {
     
     // Helper to feed data (called from ISR)
     /* DEVELOPMENT STATE: TESTING */
+    /**
+     * @brief Feed a byte into the RX buffer.
+     * 
+     * Accumlates bytes until a newline is found.
+     * 
+     * @param b Byte to append.
+     */
     void FeedByte(uint8_t b) {
         // Prevent buffer overrun
         if (packet_ready) return; 

@@ -1,0 +1,19 @@
+<map id="KlipperCLI::HandleSetAutoFeed" name="KlipperCLI::HandleSetAutoFeed">
+<area shape="rect" id="Node000001" title="Handler for SET_AUTO_FEED command." alt="" coords="5,56,213,83"/>
+<area shape="rect" id="Node000002" href="$namespace_klipper_c_l_i.html#ad0e99d2fdcfd1c0690f850816ac1f67c" title="Helper to send an Error response." alt="" coords="276,5,424,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,53,271,35,266,37,177,58"/>
+<area shape="rect" id="Node000007" href="$namespace_klipper_c_l_i.html#a1d7d7986d99cb52ab4feb4826ffc4428" title="Helper to send a Success (OK) response." alt="" coords="281,56,418,83"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="213,67,268,69,263,70,213,72"/>
+<area shape="rect" id="Node000008" href="$namespace_control_logic.html#a9db355302a1c9d608e6dd5341151336e" title="Enable/Disable Auto&#45;Feed (Pressure Control) for a lane." alt="" coords="261,107,439,133"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="176,81,271,102,266,104,176,86"/>
+<area shape="rect" id="Node000003" href="$namespace_klipper_c_l_i.html#a9ec392d53485800126189969c2c4981a" title="Serialize and send a JSON response." alt="" coords="487,31,666,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="424,24,474,32,469,32,425,30"/>
+<area shape="rect" id="Node000004" href="$namespace_hardware.html#ad3ec7cad074d6d73508844a06a7bea50" title="Send a buffer via UART1." alt="" coords="714,31,873,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="667,41,701,44,696,44,667,47"/>
+<area shape="rect" id="Node000005" href="$namespace_hardware.html#a0ada30189b8e1d1dbec145140849b778" title="Microsecond Delay." alt="" coords="1154,31,1292,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="873,41,1141,44,1136,44,873,47"/>
+<area shape="rect" id="Node000006" href="$namespace_hardware.html#aaaf02ef3df5811e2ba28dd009eadfaae" title="Send a single byte blocking." alt="" coords="921,56,1106,83"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="873,50,908,57,902,57,873,56"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="1106,55,1136,54,1142,54,1106,61"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="419,59,474,55,469,56,419,64"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Hardware::LED_Init" name="Hardware::LED_Init">
+<area shape="rect" id="Node000001" title="Initialize NeoPixel LEDs." alt="" coords="5,5,142,32"/>
+<area shape="rect" id="Node000002" href="$_hardware_8cpp.html#a766f13b53e03456789fd4fe8e009e157" title=" " alt="" coords="190,5,269,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,16,177,18,171,19,142,21"/>
+</map>

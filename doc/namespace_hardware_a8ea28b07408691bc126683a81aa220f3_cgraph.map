@@ -1,0 +1,5 @@
+<map id="Hardware::GetTime" name="Hardware::GetTime">
+<area shape="rect" id="Node000001" title="Get System Time in Milliseconds." alt="" coords="5,5,141,32"/>
+<area shape="rect" id="Node000002" href="$time64_8cpp.html#a146d483f58902ba0184ce16f728edfb0" title="Get 64&#45;bit System Time in Milliseconds." alt="" coords="189,5,274,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,16,176,18,170,19,141,21"/>
+</map>

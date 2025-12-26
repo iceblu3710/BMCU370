@@ -1,0 +1,739 @@
+\doxysection{Bambu\+Bus\+Protocol Class Reference}
+\hypertarget{class_bambu_bus_protocol}{}\label{class_bambu_bus_protocol}\index{BambuBusProtocol@{BambuBusProtocol}}
+
+
+{\ttfamily \#include $<$Bambu\+Bus\+Protocol.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_bambu_bus_protocol_a0f26cda5df5c3a8882b7d371d44f6a5e}{Init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the static CRC engines. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_bambu_bus_protocol_af0a63f3d5cca52f48394c7129407e585}{Parse\+Byte}} (uint8\+\_\+t byte)
+\begin{DoxyCompactList}\small\item\em Parse a single incoming byte into a protocol packet. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_bambu_bus_protocol_a8b2a47c616b38cef6c47c1d1b9c92411}{Get\+Rx\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em Get the pointer to the Receive Buffer. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{class_bambu_bus_protocol_ae7f742147d3316c118f4230a56a722bd}{Get\+Rx\+Length}} ()
+\begin{DoxyCompactList}\small\item\em Get the length of the last received packet. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5}{Bambu\+Bus\+\_\+package\+\_\+type}} \mbox{\hyperlink{class_bambu_bus_protocol_a81deddd553eeb25fa96580079d7c9bd0}{Identify\+Packet}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Identify the type of Bambu\+Bus packet. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_bambu_bus_protocol_ad0e11ad5c710644e9f1ee2fb4f15a3b9}{Parse\+Long\+Packet}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint16\+\_\+t length, \mbox{\hyperlink{structlong__packge__data}{long\+\_\+packge\+\_\+data}} \texorpdfstring{$\ast$}{*}out\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Extract data from a "{}\+Long Packet"{} (0x05 type). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_bambu_bus_protocol_af9d11bc755538718e6ba8fbc5c8e9187}{Build\+Packet\+With\+CRC}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t \&length)
+\begin{DoxyCompactList}\small\item\em Finalize a packet for transmission by calculating and appending CRCs. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_bambu_bus_protocol_a30a401ab7075be8ffbe2343bf93ef0bd}{Build\+Long\+Packet}} (\mbox{\hyperlink{structlong__packge__data}{long\+\_\+packge\+\_\+data}} \texorpdfstring{$\ast$}{*}data, uint8\+\_\+t \texorpdfstring{$\ast$}{*}out\+\_\+buffer, uint16\+\_\+t \&out\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Construct a "{}\+Long Packet"{} from a data structure. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_bambu_bus_protocol_a8b674c03ab157fa7e70fc2f6e271d539}{Check\+CRC16}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, int length)
+\begin{DoxyCompactList}\small\item\em Verify the CRC16 for a complete packet. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9c}{Unified\+Command\+Type}} \mbox{\hyperlink{class_bambu_bus_protocol_addece07a1980f5f561e151fd4a09b9ea}{Get\+Unified\+Type}} (\mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5}{Bambu\+Bus\+\_\+package\+\_\+type}} type)
+\begin{DoxyCompactList}\small\item\em Map internal Bambu\+Bus package types to a unified command type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{class_bambu_bus_protocol_af321f9282a29cb90ff0c5e23e626d43f}{rx\+\_\+buf}} \mbox{[}1000\mbox{]}
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{class_bambu_bus_protocol_a4b80d5175b849292dd38278fcf5eabcc}{rx\+\_\+len}} = 0
+\item 
+static bool \mbox{\hyperlink{class_bambu_bus_protocol_a6d1e452b12e2a536fb393bf7242930e9}{packet\+\_\+ready}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00070}{70}} of file \mbox{\hyperlink{_bambu_bus_protocol_8h_source}{Bambu\+Bus\+Protocol.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_bambu_bus_protocol_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_bambu_bus_protocol_a30a401ab7075be8ffbe2343bf93ef0bd}\index{BambuBusProtocol@{BambuBusProtocol}!BuildLongPacket@{BuildLongPacket}}
+\index{BuildLongPacket@{BuildLongPacket}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{BuildLongPacket()}{BuildLongPacket()}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_a30a401ab7075be8ffbe2343bf93ef0bd} 
+void Bambu\+Bus\+Protocol\+::\+Build\+Long\+Packet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlong__packge__data}{long\+\_\+packge\+\_\+data}} \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{out\+\_\+buffer}{, }\item[{uint16\+\_\+t \&}]{out\+\_\+length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Construct a "{}\+Long Packet"{} from a data structure. 
+
+Serializes the {\ttfamily \doxylink{structlong__packge__data}{long\+\_\+packge\+\_\+data}} struct into {\ttfamily out\+\_\+buffer}, adds the {\ttfamily 3D 05} preamble, and calls {\ttfamily \doxylink{class_bambu_bus_protocol_af9d11bc755538718e6ba8fbc5c8e9187}{Build\+Packet\+With\+CRC}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to the source {\ttfamily \doxylink{structlong__packge__data}{long\+\_\+packge\+\_\+data}}. \\
+\hline
+{\em out\+\_\+buffer} & Pointer to the destination buffer. \\
+\hline
+{\em out\+\_\+length} & Output reference for the total generated length. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00280}{280}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00281\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ out\_buffer[0]\ =\ 0x3D;}
+\DoxyCodeLine{00283\ \ \ \ \ out\_buffer[1]\ =\ 0x05;}
+\DoxyCodeLine{00284\ \ \ \ \ data-\/>\mbox{\hyperlink{structlong__packge__data_a2e114594fa8edb0f94d3baa832dc7d77}{package\_length}}\ =\ data-\/>\mbox{\hyperlink{structlong__packge__data_a37cca48d85473aa686a58e3cc32eb177}{data\_length}}\ +\ 15;\ \textcolor{comment}{//\ 13\ header\ +\ 2\ crc16\ ?\ }}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{comment}{//\ Header\ is:\ 3D\ 00\ (2)\ +\ struct(11)\ =\ 13?}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{comment}{//\ struct\ is\ 11\ bytes:\ num(2)+len(2)+crc8(1)+target(2)+source(2)+type(2)\ =\ 11.}}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{comment}{//\ total\ header\ =\ 3D\ 00\ +\ 11\ =\ 13.}}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{comment}{//\ +\ data}}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{comment}{//\ +\ crc16\ (2)}}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{comment}{//\ =\ 15\ +\ data\_length.\ Correct.}}
+\DoxyCodeLine{00291\ \ \ \ \ }
+\DoxyCodeLine{00292\ \ \ \ \ memcpy(out\_buffer\ +\ 2,\ data,\ 11);}
+\DoxyCodeLine{00293\ \ \ \ \ memcpy(out\_buffer\ +\ 13,\ data-\/>\mbox{\hyperlink{structlong__packge__data_a80c463bfbe59e76ecacb35358cabecaa}{datas}},\ data-\/>\mbox{\hyperlink{structlong__packge__data_a37cca48d85473aa686a58e3cc32eb177}{data\_length}});}
+\DoxyCodeLine{00294\ \ \ \ \ out\_length\ =\ data-\/>\mbox{\hyperlink{structlong__packge__data_a37cca48d85473aa686a58e3cc32eb177}{data\_length}}\ +\ 15;}
+\DoxyCodeLine{00295\ \ \ \ \ \mbox{\hyperlink{class_bambu_bus_protocol_af9d11bc755538718e6ba8fbc5c8e9187}{BuildPacketWithCRC}}(out\_buffer,\ out\_length);}
+\DoxyCodeLine{00296\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00231}{Build\+Packet\+With\+CRC()}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00061}{long\+\_\+packge\+\_\+data\+::data\+\_\+length}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00060}{long\+\_\+packge\+\_\+data\+::datas}}, and \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00055}{long\+\_\+packge\+\_\+data\+::package\+\_\+length}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_a30a401ab7075be8ffbe2343bf93ef0bd_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bambu_bus_protocol_af9d11bc755538718e6ba8fbc5c8e9187}\index{BambuBusProtocol@{BambuBusProtocol}!BuildPacketWithCRC@{BuildPacketWithCRC}}
+\index{BuildPacketWithCRC@{BuildPacketWithCRC}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{BuildPacketWithCRC()}{BuildPacketWithCRC()}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_af9d11bc755538718e6ba8fbc5c8e9187} 
+void Bambu\+Bus\+Protocol\+::\+Build\+Packet\+With\+CRC (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint16\+\_\+t \&}]{data\+\_\+length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Finalize a packet for transmission by calculating and appending CRCs. 
+
+Calculates CRC8 for the header (index 3 for short, index 6 for long) and CRC16 for the entire packet, appending it at the end.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to the packet buffer constructing the message. \\
+\hline
+{\em data\+\_\+length} & Total length of the packet including CRC bytes placeholder. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00231}{231}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00232\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_aa25bc6787f31c22990b295d61a409df8}{crc\_8}}.restart();}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{if}\ (data[1]\ \&\ 0x80)}
+\DoxyCodeLine{00235\ \ \ \ \ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ 0;\ i\ <\ 3;\ i++)\ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_aa25bc6787f31c22990b295d61a409df8}{crc\_8}}.add(data[i]);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ data[3]\ =\ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_aa25bc6787f31c22990b295d61a409df8}{crc\_8}}.calc();}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00240\ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ 0;\ i\ <\ 6;\ i++)\ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_aa25bc6787f31c22990b295d61a409df8}{crc\_8}}.add(data[i]);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ data[6]\ =\ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_aa25bc6787f31c22990b295d61a409df8}{crc\_8}}.calc();}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_a9e55b5c4cdf6fa62f8dfb9d6604655a6}{crc\_16}}.restart();}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{comment}{//\ length\ calculation\ logic\ for\ CRC16}}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{comment}{//\ In\ original\ code,\ data\_length\ was\ passed\ IN\ as\ the\ target\ length\ including\ CRC16\ bytes\ placeholders?}}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{comment}{//\ "{}data\_length\ +=\ 2;"{}\ at\ the\ end\ of\ original\ function\ suggests\ the\ input\ length\ EXCLUDED\ the\ CRC16.}}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{comment}{//\ "{}data\_length\ -\/=\ 2;"{}\ in\ loop\ suggests\ it\ iterated\ up\ to\ CRC\ pos.}}
+\DoxyCodeLine{00249\ \ \ \ \ }
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{comment}{//\ Let's\ assume\ input\ data\_length\ is\ the\ length\ of\ payload\ +\ headers,\ WITHOUT\ CRC16.}}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{comment}{//\ Wait,\ original\ code:}}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{comment}{//\ package\_send\_with\_crc(uint8\_t\ *data,\ int\ data\_length)}}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{comment}{//\ \ \ data\_length\ -\/=\ 2;\ ...\ loop\ i\ <\ data\_length\ ...\ }}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{comment}{//\ \ \ data[data\_length]\ =\ ...}}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{comment}{//\ \ \ data\_length\ +=\ 2;}}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{comment}{//\ So\ the\ input\ data\_length\ INCLUDED\ the\ 2\ bytes\ valid\ space\ for\ CRC16.}}
+\DoxyCodeLine{00257\ \ \ \ \ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{int}\ loop\_len\ =\ data\_length\ -\/\ 2;}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ 0;\ i\ <\ loop\_len;\ i++)}
+\DoxyCodeLine{00260\ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_a9e55b5c4cdf6fa62f8dfb9d6604655a6}{crc\_16}}.add(data[i]);}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ uint16\_t\ num\ =\ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_a9e55b5c4cdf6fa62f8dfb9d6604655a6}{crc\_16}}.calc();}
+\DoxyCodeLine{00264\ \ \ \ \ data[loop\_len]\ =\ num\ \&\ 0xFF;}
+\DoxyCodeLine{00265\ \ \ \ \ data[loop\_len\ +\ 1]\ =\ num\ >>\ 8;}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{//\ Length\ is\ already\ correct\ (it\ was\ passed\ in\ including\ the\ 2\ bytes\ space)}}
+\DoxyCodeLine{00267\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00014}{crc\+\_\+16}}, and \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00015}{crc\+\_\+8}}.
+
+
+
+Referenced by \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00280}{Build\+Long\+Packet()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01160}{Control\+Logic\+::\+Process\+Motion\+Short\+Logic()}}, \mbox{\hyperlink{_control_logic_8cpp_source_l01311}{Control\+Logic\+::\+Process\+Online\+Detect()}}, and \mbox{\hyperlink{_control_logic_8cpp_source_l01338}{Control\+Logic\+::\+Process\+REQx6()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_af9d11bc755538718e6ba8fbc5c8e9187_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bambu_bus_protocol_a8b674c03ab157fa7e70fc2f6e271d539}\index{BambuBusProtocol@{BambuBusProtocol}!CheckCRC16@{CheckCRC16}}
+\index{CheckCRC16@{CheckCRC16}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{CheckCRC16()}{CheckCRC16()}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_a8b674c03ab157fa7e70fc2f6e271d539} 
+bool Bambu\+Bus\+Protocol\+::\+Check\+CRC16 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{int}]{data\+\_\+length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Verify the CRC16 for a complete packet. 
+
+Calculates CRC16 over the payload (excluding the last 2 bytes) and compares it with the last 2 bytes of the packet.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to the packet buffer. \\
+\hline
+{\em data\+\_\+length} & Total length of the packet. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true CRC matches. 
+
+false CRC mismatch. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00142}{142}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_a9e55b5c4cdf6fa62f8dfb9d6604655a6}{crc\_16}}.restart();}
+\DoxyCodeLine{00145\ \ \ \ \ data\_length\ -\/=\ 2;}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ 0;\ i\ <\ data\_length;\ i++)}
+\DoxyCodeLine{00147\ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_a9e55b5c4cdf6fa62f8dfb9d6604655a6}{crc\_16}}.add(data[i]);}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ uint16\_t\ num\ =\ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_a9e55b5c4cdf6fa62f8dfb9d6604655a6}{crc\_16}}.calc();}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{if}\ ((data[(data\_length)]\ ==\ (num\ \&\ 0xFF))\ \&\&\ (data[(data\_length\ +\ 1)]\ ==\ ((num\ >>\ 8)\ \&\ 0xFF)))}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00154\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00014}{crc\+\_\+16}}.
+
+
+
+Referenced by \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00167}{Identify\+Packet()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_a8b674c03ab157fa7e70fc2f6e271d539_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bambu_bus_protocol_a8b2a47c616b38cef6c47c1d1b9c92411}\index{BambuBusProtocol@{BambuBusProtocol}!GetRxBuffer@{GetRxBuffer}}
+\index{GetRxBuffer@{GetRxBuffer}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{GetRxBuffer()}{GetRxBuffer()}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_a8b2a47c616b38cef6c47c1d1b9c92411} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} Bambu\+Bus\+Protocol\+::\+Get\+Rx\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the pointer to the Receive Buffer. 
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} Pointer to {\ttfamily \doxylink{class_bambu_bus_protocol_af321f9282a29cb90ff0c5e23e626d43f}{rx\+\_\+buf}}. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00116}{116}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_bambu_bus_protocol_af321f9282a29cb90ff0c5e23e626d43f}{rx\_buf}};}
+\DoxyCodeLine{00118\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00097}{rx\+\_\+buf}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00076}{Command\+Router\+::\+Init()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_a8b2a47c616b38cef6c47c1d1b9c92411_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bambu_bus_protocol_ae7f742147d3316c118f4230a56a722bd}\index{BambuBusProtocol@{BambuBusProtocol}!GetRxLength@{GetRxLength}}
+\index{GetRxLength@{GetRxLength}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{GetRxLength()}{GetRxLength()}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_ae7f742147d3316c118f4230a56a722bd} 
+uint16\+\_\+t Bambu\+Bus\+Protocol\+::\+Get\+Rx\+Length (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the length of the last received packet. 
+
+\begin{DoxyReturn}{Returns}
+uint16\+\_\+t Length of valid data in {\ttfamily \doxylink{class_bambu_bus_protocol_af321f9282a29cb90ff0c5e23e626d43f}{rx\+\_\+buf}}. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00126}{126}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_bambu_bus_protocol_a4b80d5175b849292dd38278fcf5eabcc}{rx\_len}};}
+\DoxyCodeLine{00128\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00098}{rx\+\_\+len}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00076}{Command\+Router\+::\+Init()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_ae7f742147d3316c118f4230a56a722bd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bambu_bus_protocol_addece07a1980f5f561e151fd4a09b9ea}\index{BambuBusProtocol@{BambuBusProtocol}!GetUnifiedType@{GetUnifiedType}}
+\index{GetUnifiedType@{GetUnifiedType}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{GetUnifiedType()}{GetUnifiedType()}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_addece07a1980f5f561e151fd4a09b9ea} 
+\mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9c}{Unified\+Command\+Type}} Bambu\+Bus\+Protocol\+::\+Get\+Unified\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5}{Bambu\+Bus\+\_\+package\+\_\+type}}}]{type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Map internal Bambu\+Bus package types to a unified command type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The raw {\ttfamily \doxylink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5}{Bambu\+Bus\+\_\+package\+\_\+type}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9c}{Unified\+Command\+Type} The simplified enum for logic handling. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00305}{305}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5ad4d3385ad5d973a7b76f0e1e10a9a911}{BambuBus\_package\_type::filament\_motion\_short}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9caa2cb872d6738be05568903e3cc0a0c77}{UnifiedCommandType::FilamentMotionShort}};}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5acc8310f3d30aeac76f64a41602888847}{BambuBus\_package\_type::filament\_motion\_long}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9ca84ef06344d5159ac0d02201780d584be}{UnifiedCommandType::FilamentMotionLong}};}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5ac5942b864a1fc3982fbce8d02e891942}{BambuBus\_package\_type::online\_detect}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9cadb5148c679935c8821fac8fad759922f}{UnifiedCommandType::OnlineDetect}};}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a403d48ab34ede926334f42e9f1e118b2}{BambuBus\_package\_type::REQx6}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9ca403d48ab34ede926334f42e9f1e118b2}{UnifiedCommandType::REQx6}};}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a05a1cf045bfd606d4cc9ecb9018340cb}{BambuBus\_package\_type::NFC\_detect}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9cae1af9a3c9b9eb4eab1e151407af92c2a}{UnifiedCommandType::NFCDetect}};}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a151b70298322f2552b21cd732c34daca}{BambuBus\_package\_type::set\_filament\_info}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9cab72778b10468ded56d76c818eae14c76}{UnifiedCommandType::SetFilamentInfo}};}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a3a06e053a0726537b202ce4ace81dee7}{BambuBus\_package\_type::heartbeat}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9ca83622997d22f5f18b9b09bd364cb673e}{UnifiedCommandType::Heartbeat}};}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a210fd6ea841c46980bb97dcf450d6433}{BambuBus\_package\_type::MC\_online}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9cab243c306036d0eec5691b5629d15f024}{UnifiedCommandType::MCOnline}};}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a57b48f5ee45c9bae0dfa0a6641e043ca}{BambuBus\_package\_type::read\_filament\_info}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9ca2c0ccc43448d5e1e8576ab6bc582e2fb}{UnifiedCommandType::ReadFilamentInfo}};}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5ab3c10f101a42a8c68e7f1b8588bfb9b6}{BambuBus\_package\_type::set\_filament\_info\_type2}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9ca182645fd81a6683f911479f84a15e46d}{UnifiedCommandType::SetFilamentInfoType2}};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a2af72f100c356273d46284f6fd1dfc08}{BambuBus\_package\_type::version}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9ca34b6cd75171affba6957e308dcbd92be}{UnifiedCommandType::Version}};}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a87da425e91c92b2f5d360a2c60693425}{BambuBus\_package\_type::serial\_number}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9caa54372ef430f726c8343fc5550fade42}{UnifiedCommandType::SerialNumber}};}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5abb1ca97ec761fc37101737ba0aa2e7c5}{BambuBus\_package\_type::ERROR}}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9ca902b0d55fddef6f8d651fe1035b7d4bd}{UnifiedCommandType::Error}};}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_command_types_8h_a9fa149d3b881fd0f62738e1de747ea9ca6adf97f83acf6453d4a6a4b1070f3754}{UnifiedCommandType::None}};}
+\DoxyCodeLine{00321\ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00026}{ERROR}}, \mbox{\hyperlink{_command_types_8h_source_l00019}{Error}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00029}{filament\+\_\+motion\+\_\+long}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00028}{filament\+\_\+motion\+\_\+short}}, \mbox{\hyperlink{_command_types_8h_source_l00008}{Filament\+Motion\+Long}}, \mbox{\hyperlink{_command_types_8h_source_l00007}{Filament\+Motion\+Short}}, \mbox{\hyperlink{_command_types_8h_source_l00012}{Heartbeat}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00039}{heartbeat}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00034}{MC\+\_\+online}}, \mbox{\hyperlink{_command_types_8h_source_l00013}{MCOnline}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00032}{NFC\+\_\+detect}}, \mbox{\hyperlink{_command_types_8h_source_l00018}{NFCDetect}}, \mbox{\hyperlink{_command_types_8h_source_l00006}{None}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00030}{online\+\_\+detect}}, \mbox{\hyperlink{_command_types_8h_source_l00009}{Online\+Detect}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00035}{read\+\_\+filament\+\_\+info}}, \mbox{\hyperlink{_command_types_8h_source_l00014}{Read\+Filament\+Info}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00031}{REQx6}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00038}{serial\+\_\+number}}, \mbox{\hyperlink{_command_types_8h_source_l00017}{Serial\+Number}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00033}{set\+\_\+filament\+\_\+info}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00036}{set\+\_\+filament\+\_\+info\+\_\+type2}}, \mbox{\hyperlink{_command_types_8h_source_l00011}{Set\+Filament\+Info}}, \mbox{\hyperlink{_command_types_8h_source_l00015}{Set\+Filament\+Info\+Type2}}, \mbox{\hyperlink{_command_types_8h_source_l00016}{Version}}, and \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00037}{version}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00180}{Command\+Router\+::\+Run()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_addece07a1980f5f561e151fd4a09b9ea_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bambu_bus_protocol_a81deddd553eeb25fa96580079d7c9bd0}\index{BambuBusProtocol@{BambuBusProtocol}!IdentifyPacket@{IdentifyPacket}}
+\index{IdentifyPacket@{IdentifyPacket}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{IdentifyPacket()}{IdentifyPacket()}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_a81deddd553eeb25fa96580079d7c9bd0} 
+\mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5}{Bambu\+Bus\+\_\+package\+\_\+type}} Bambu\+Bus\+Protocol\+::\+Identify\+Packet (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint16\+\_\+t}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Identify the type of Bambu\+Bus packet. 
+
+First validates the CRC16 using {\ttfamily \doxylink{class_bambu_bus_protocol_a8b674c03ab157fa7e70fc2f6e271d539}{Check\+CRC16}}. If valid, inspects the packet headers (short 0x\+C5 vs long 0x05) to determine the specific message type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Pointer to the packet data. \\
+\hline
+{\em length} & Total length of the packet. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5}{Bambu\+Bus\+\_\+package\+\_\+type} Enum identifying the packet type. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00167}{167}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_bambu_bus_protocol_a8b674c03ab157fa7e70fc2f6e271d539}{CheckCRC16}}(\mbox{\hyperlink{_flash__saves_8cpp_a9364481806e5ccb7d6cb2113b1b7a2d5}{buf}},\ length)\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5ab50339a10e1de285ac99d4c3990b8693}{BambuBus\_package\_type::NONE}};}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_flash__saves_8cpp_a9364481806e5ccb7d6cb2113b1b7a2d5}{buf}}[1]\ ==\ 0xC5)}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{_flash__saves_8cpp_a9364481806e5ccb7d6cb2113b1b7a2d5}{buf}}[4])}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x03:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5ad4d3385ad5d973a7b76f0e1e10a9a911}{BambuBus\_package\_type::filament\_motion\_short}};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x04:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5acc8310f3d30aeac76f64a41602888847}{BambuBus\_package\_type::filament\_motion\_long}};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x05:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5ac5942b864a1fc3982fbce8d02e891942}{BambuBus\_package\_type::online\_detect}};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x06:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a403d48ab34ede926334f42e9f1e118b2}{BambuBus\_package\_type::REQx6}};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x07:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a05a1cf045bfd606d4cc9ecb9018340cb}{BambuBus\_package\_type::NFC\_detect}};}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x08:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a151b70298322f2552b21cd732c34daca}{BambuBus\_package\_type::set\_filament\_info}};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x20:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a3a06e053a0726537b202ce4ace81dee7}{BambuBus\_package\_type::heartbeat}};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a602bcb15b1e1b9719d1fae7b1b512431}{BambuBus\_package\_type::ETC}};}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_flash__saves_8cpp_a9364481806e5ccb7d6cb2113b1b7a2d5}{buf}}[1]\ ==\ 0x05)}
+\DoxyCodeLine{00187\ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ long\_packge\_data\ info;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_bambu_bus_protocol_ad0e11ad5c710644e9f1ee2fb4f15a3b9}{ParseLongPacket}}(\mbox{\hyperlink{_flash__saves_8cpp_a9364481806e5ccb7d6cb2113b1b7a2d5}{buf}},\ length,\ \&info);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (info.\mbox{\hyperlink{structlong__packge__data_ae05dfdfbbc7680846727184e688142d6}{type}})}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x21A:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a210fd6ea841c46980bb97dcf450d6433}{BambuBus\_package\_type::MC\_online}};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x211:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a57b48f5ee45c9bae0dfa0a6641e043ca}{BambuBus\_package\_type::read\_filament\_info}};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x218:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5ab3c10f101a42a8c68e7f1b8588bfb9b6}{BambuBus\_package\_type::set\_filament\_info\_type2}};}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x103:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a2af72f100c356273d46284f6fd1dfc08}{BambuBus\_package\_type::version}};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x402:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a87da425e91c92b2f5d360a2c60693425}{BambuBus\_package\_type::serial\_number}};}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5a602bcb15b1e1b9719d1fae7b1b512431}{BambuBus\_package\_type::ETC}};}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_bambu_bus_protocol_8h_a28b188362482dd49915e0f8c5cce1ac5ab50339a10e1de285ac99d4c3990b8693}{BambuBus\_package\_type::NONE}};}
+\DoxyCodeLine{00202\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_flash__saves_8cpp_source_l00029}{buf}}, \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00142}{Check\+CRC16()}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00040}{ETC}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00029}{filament\+\_\+motion\+\_\+long}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00028}{filament\+\_\+motion\+\_\+short}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00039}{heartbeat}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00034}{MC\+\_\+online}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00032}{NFC\+\_\+detect}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00027}{NONE}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00030}{online\+\_\+detect}}, \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00214}{Parse\+Long\+Packet()}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00035}{read\+\_\+filament\+\_\+info}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00031}{REQx6}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00038}{serial\+\_\+number}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00033}{set\+\_\+filament\+\_\+info}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00036}{set\+\_\+filament\+\_\+info\+\_\+type2}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00059}{long\+\_\+packge\+\_\+data\+::type}}, and \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00037}{version}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00180}{Command\+Router\+::\+Run()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_a81deddd553eeb25fa96580079d7c9bd0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_a81deddd553eeb25fa96580079d7c9bd0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bambu_bus_protocol_a0f26cda5df5c3a8882b7d371d44f6a5e}\index{BambuBusProtocol@{BambuBusProtocol}!Init@{Init}}
+\index{Init@{Init}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_a0f26cda5df5c3a8882b7d371d44f6a5e} 
+void Bambu\+Bus\+Protocol\+::\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialize the static CRC engines. 
+
+Resets CRC8 and CRC16 instances to their initial states. 
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_aa25bc6787f31c22990b295d61a409df8}{crc\_8}}.reset(0x39,\ 0x66,\ 0,\ \textcolor{keyword}{false},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_a9e55b5c4cdf6fa62f8dfb9d6604655a6}{crc\_16}}.reset(0x1021,\ 0x913D,\ 0,\ \textcolor{keyword}{false},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00027\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00014}{crc\+\_\+16}}, and \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00015}{crc\+\_\+8}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00076}{Command\+Router\+::\+Init()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_a0f26cda5df5c3a8882b7d371d44f6a5e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bambu_bus_protocol_af0a63f3d5cca52f48394c7129407e585}\index{BambuBusProtocol@{BambuBusProtocol}!ParseByte@{ParseByte}}
+\index{ParseByte@{ParseByte}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{ParseByte()}{ParseByte()}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_af0a63f3d5cca52f48394c7129407e585} 
+bool Bambu\+Bus\+Protocol\+::\+Parse\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{byte}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse a single incoming byte into a protocol packet. 
+
+This is a state machine that accumulates bytes into {\ttfamily \doxylink{class_bambu_bus_protocol_af321f9282a29cb90ff0c5e23e626d43f}{rx\+\_\+buf}}. It handles framing (0x3D start byte), length extraction, and CRC8 validation for the header.
+
+
+\begin{DoxyParams}{Parameters}
+{\em byte} & The incoming byte from the bus. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true If a full, valid packet has been received (CRC8 checked, length met). Note\+: CRC16 of body is not checked here. 
+
+false If packet is incomplete or invalid. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_index\ =\ 0;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ length\ =\ 999;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ data\_length\_index;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ data\_CRC8\_index;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_bambu_bus_protocol_a6d1e452b12e2a536fb393bf7242930e9}{packet\_ready}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_index\ ==\ 0)\ \textcolor{comment}{//\ waiting\ for\ first\ data}}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{byte}\ ==\ 0x3D)\ \textcolor{comment}{//\ 0x3D-\/start}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_bambu_bus_protocol_af321f9282a29cb90ff0c5e23e626d43f}{rx\_buf}}[0]\ =\ 0x3D;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_accdac0b68b69d84409a479fc284f0a1b}{\_RX\_IRQ\_crcx}}.restart();\ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_accdac0b68b69d84409a479fc284f0a1b}{\_RX\_IRQ\_crcx}}.add(0x3D);\ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ data\_length\_index\ =\ 4;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ length\ =\ data\_CRC8\_index\ =\ 6;\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \_index\ =\ 1;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ have\ 0x3D,\ normal\ data}}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_bambu_bus_protocol_af321f9282a29cb90ff0c5e23e626d43f}{rx\_buf}}[\_index]\ =\ byte;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_index\ ==\ 1)\ \textcolor{comment}{//\ package\ type\ byte}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{byte}\ \&\ 0x80)\ \textcolor{comment}{//\ short\ head\ package}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\_length\_index\ =\ 2;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\_CRC8\_index\ =\ 3;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ long\ head\ package}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\_length\_index\ =\ 4;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\_CRC8\_index\ =\ 6;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_index\ ==\ data\_length\_index)\ \textcolor{comment}{//\ the\ length\ byte}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ length\ =\ byte;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_index\ <\ data\_CRC8\_index)\ \textcolor{comment}{//\ before\ CRC8\ byte,\ add\ data}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_accdac0b68b69d84409a479fc284f0a1b}{\_RX\_IRQ\_crcx}}.add(\textcolor{keywordtype}{byte});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_index\ ==\ data\_CRC8\_index)\ \textcolor{comment}{//\ the\ CRC8\ byte,\ check}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{byte}\ !=\ \mbox{\hyperlink{_bambu_bus_protocol_8cpp_accdac0b68b69d84409a479fc284f0a1b}{\_RX\_IRQ\_crcx}}.calc())\ \textcolor{comment}{//\ check\ error,\ return\ to\ waiting\ 0x3D}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_index\ =\ 0;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ ++\_index;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_index\ >=\ length)\ \textcolor{comment}{//\ recv\ over}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \_index\ =\ 0;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_bambu_bus_protocol_a4b80d5175b849292dd38278fcf5eabcc}{rx\_len}}\ =\ length;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_bambu_bus_protocol_a6d1e452b12e2a536fb393bf7242930e9}{packet\_ready}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_index\ >=\ 999)\ \textcolor{comment}{//\ buffer\ overflow\ protection}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \_index\ =\ 0;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00108\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_bambu_bus_protocol_8cpp_accdac0b68b69d84409a479fc284f0a1b}{\+\_\+\+RX\+\_\+\+IRQ\+\_\+crcx()}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00099}{packet\+\_\+ready}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00097}{rx\+\_\+buf}}, and \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00098}{rx\+\_\+len}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00076}{Command\+Router\+::\+Init()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_af0a63f3d5cca52f48394c7129407e585_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_af0a63f3d5cca52f48394c7129407e585_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_bambu_bus_protocol_ad0e11ad5c710644e9f1ee2fb4f15a3b9}\index{BambuBusProtocol@{BambuBusProtocol}!ParseLongPacket@{ParseLongPacket}}
+\index{ParseLongPacket@{ParseLongPacket}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{ParseLongPacket()}{ParseLongPacket()}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_ad0e11ad5c710644e9f1ee2fb4f15a3b9} 
+void Bambu\+Bus\+Protocol\+::\+Parse\+Long\+Packet (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint16\+\_\+t}]{data\+\_\+length}{, }\item[{\mbox{\hyperlink{structlong__packge__data}{long\+\_\+packge\+\_\+data}} \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Extract data from a "{}\+Long Packet"{} (0x05 type). 
+
+Parses the struct header from a long packet.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Pointer to the raw packet buffer. \\
+\hline
+{\em data\+\_\+length} & Total length of the raw packet. \\
+\hline
+{\em data} & Pointer to a {\ttfamily \doxylink{structlong__packge__data}{long\+\_\+packge\+\_\+data}} struct to populate. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00214}{214}} of file \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source}{Bambu\+Bus\+Protocol.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00215\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ memcpy(data,\ \mbox{\hyperlink{_flash__saves_8cpp_a9364481806e5ccb7d6cb2113b1b7a2d5}{buf}}\ +\ 2,\ 11);}
+\DoxyCodeLine{00217\ \ \ \ \ data-\/>\mbox{\hyperlink{structlong__packge__data_a80c463bfbe59e76ecacb35358cabecaa}{datas}}\ =\ \mbox{\hyperlink{_flash__saves_8cpp_a9364481806e5ccb7d6cb2113b1b7a2d5}{buf}}\ +\ 13;}
+\DoxyCodeLine{00218\ \ \ \ \ data-\/>\mbox{\hyperlink{structlong__packge__data_a37cca48d85473aa686a58e3cc32eb177}{data\_length}}\ =\ data\_length\ -\/\ 15;\ \textcolor{comment}{//\ +2byte\ CRC16}}
+\DoxyCodeLine{00219\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{_flash__saves_8cpp_source_l00029}{buf}}, \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00061}{long\+\_\+packge\+\_\+data\+::data\+\_\+length}}, and \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00060}{long\+\_\+packge\+\_\+data\+::datas}}.
+
+
+
+Referenced by \mbox{\hyperlink{_command_router_8cpp_source_l00061}{Command\+Router\+::\+Handle\+Long\+Packet()}}, and \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00167}{Identify\+Packet()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bambu_bus_protocol_ad0e11ad5c710644e9f1ee2fb4f15a3b9_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_bambu_bus_protocol_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_bambu_bus_protocol_a6d1e452b12e2a536fb393bf7242930e9}\index{BambuBusProtocol@{BambuBusProtocol}!packet\_ready@{packet\_ready}}
+\index{packet\_ready@{packet\_ready}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{packet\_ready}{packet\_ready}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_a6d1e452b12e2a536fb393bf7242930e9} 
+bool Bambu\+Bus\+Protocol\+::packet\+\_\+ready = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00099}{99}} of file \mbox{\hyperlink{_bambu_bus_protocol_8h_source}{Bambu\+Bus\+Protocol.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00041}{Parse\+Byte()}}.
+
+\Hypertarget{class_bambu_bus_protocol_af321f9282a29cb90ff0c5e23e626d43f}\index{BambuBusProtocol@{BambuBusProtocol}!rx\_buf@{rx\_buf}}
+\index{rx\_buf@{rx\_buf}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{rx\_buf}{rx\_buf}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_af321f9282a29cb90ff0c5e23e626d43f} 
+uint8\+\_\+t Bambu\+Bus\+Protocol\+::rx\+\_\+buf\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00097}{97}} of file \mbox{\hyperlink{_bambu_bus_protocol_8h_source}{Bambu\+Bus\+Protocol.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00116}{Get\+Rx\+Buffer()}}, and \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00041}{Parse\+Byte()}}.
+
+\Hypertarget{class_bambu_bus_protocol_a4b80d5175b849292dd38278fcf5eabcc}\index{BambuBusProtocol@{BambuBusProtocol}!rx\_len@{rx\_len}}
+\index{rx\_len@{rx\_len}!BambuBusProtocol@{BambuBusProtocol}}
+\doxysubsubsection{\texorpdfstring{rx\_len}{rx\_len}}
+{\footnotesize\ttfamily \label{class_bambu_bus_protocol_a4b80d5175b849292dd38278fcf5eabcc} 
+uint16\+\_\+t Bambu\+Bus\+Protocol\+::rx\+\_\+len = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_bambu_bus_protocol_8h_source_l00098}{98}} of file \mbox{\hyperlink{_bambu_bus_protocol_8h_source}{Bambu\+Bus\+Protocol.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00126}{Get\+Rx\+Length()}}, and \mbox{\hyperlink{_bambu_bus_protocol_8cpp_source_l00041}{Parse\+Byte()}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_bambu_bus_protocol_8h}{Bambu\+Bus\+Protocol.\+h}}\item 
+src/\mbox{\hyperlink{_bambu_bus_protocol_8cpp}{Bambu\+Bus\+Protocol.\+cpp}}\end{DoxyCompactItemize}
