@@ -3,6 +3,7 @@
 #include "ControlLogic.h"
 #include "CommandRouter.h"
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void setup()
 {
     // Initialize Base Hardware (GPIO, ADC, LED, Timers) - No UART yet
@@ -24,6 +25,7 @@ void setup()
     Hardware::LED_Show();
 }
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void loop()
 {
     while (1)

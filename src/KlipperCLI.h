@@ -2,6 +2,10 @@
 
 #include <stdint.h>
 
+/*
+* DEVELOPMENT STATE: TESTING
+* This namespace handles the Klipper JSON protocol which is currently in a testing state.
+*/
 namespace KlipperCLI {
     
     // Initial greeting and setup

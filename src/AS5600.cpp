@@ -40,6 +40,7 @@ AS5600_soft_IIC::AS5600_soft_IIC()
 {
     numbers = 0;
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 AS5600_soft_IIC::~AS5600_soft_IIC()
 {
     if (numbers > 0)
@@ -58,6 +59,7 @@ AS5600_soft_IIC::~AS5600_soft_IIC()
     }
 }
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::init(uint32_t *GPIO_SCL, uint32_t *GPIO_SDA, int num)
 {
     numbers = num;
@@ -88,6 +90,7 @@ void AS5600_soft_IIC::init(uint32_t *GPIO_SCL, uint32_t *GPIO_SDA, int num)
     init_iic();
     updata_stu();
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::clear_datas()
 {
     for (int i = 0; i < numbers; i++)
@@ -96,6 +99,7 @@ void AS5600_soft_IIC::clear_datas()
         data[i] = 0;
     }
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::updata_stu()
 {
     read_reg8(AS5600_status);
@@ -120,6 +124,7 @@ void AS5600_soft_IIC::updata_stu()
         }
     }
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::updata_angle()
 {
     read_reg16(AS5600_raw_angle);
@@ -137,6 +142,7 @@ void AS5600_soft_IIC::updata_angle()
         }
     }
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::init_iic()
 {
     for (auto i = 0; i < numbers; i++)
@@ -148,6 +154,7 @@ void AS5600_soft_IIC::init_iic()
         error[i] = 0;
     }
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::start_iic(unsigned char ADR)
 {
     iic_delay();
@@ -160,6 +167,7 @@ void AS5600_soft_IIC::start_iic(unsigned char ADR)
     write_iic(ADR);
 }
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::stop_iic()
 {
     SET_L(port_SCL, pin_SCL);
@@ -171,6 +179,7 @@ void AS5600_soft_IIC::stop_iic()
     iic_delay();
 }
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::write_iic(uint8_t byte)
 {
     for (uint8_t i = 0x80; i; i >>= 1)
@@ -191,6 +200,7 @@ void AS5600_soft_IIC::write_iic(uint8_t byte)
     wait_ack_iic();
 }
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::read_iic(bool ack)
 {
     SET_H(port_SDA, pin_SDA);
@@ -227,6 +237,7 @@ void AS5600_soft_IIC::read_iic(bool ack)
     iic_delay();
 }
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::wait_ack_iic()
 {
     SET_H(port_SDA, pin_SDA);
@@ -244,6 +255,7 @@ void AS5600_soft_IIC::wait_ack_iic()
     return;
 }
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::read_reg8(uint8_t reg)
 {
     if (!numbers)
@@ -255,6 +267,7 @@ void AS5600_soft_IIC::read_reg8(uint8_t reg)
     read_iic(false);
 }
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void AS5600_soft_IIC::read_reg16(uint8_t reg)
 {
     if (!numbers)

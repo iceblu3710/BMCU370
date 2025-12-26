@@ -1,6 +1,11 @@
 #pragma once
 #include <Arduino.h>
 
+/*
+* DEVELOPMENT STATE: FUNCTIONAL
+* Hardware driver PROVEN FUNCTIONAL.
+* DO NOT MODIFY.
+*/
 class AS5600_soft_IIC
 {
 public:

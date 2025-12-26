@@ -5,6 +5,10 @@
 
 #pragma pack(push, 1)
 
+/*
+* DEVELOPMENT STATE: FUNCTIONAL
+* DO NOT MODIFY under any circumstances.
+*/
 struct FilamentInfo {
     char ID[8];
     uint8_t color_R;
@@ -33,6 +37,10 @@ struct FilamentInfo {
     void SetName(const char* new_name);
 };
 
+/*
+* DEVELOPMENT STATE: FUNCTIONAL
+* DO NOT MODIFY under any circumstances.
+*/
 struct FilamentState : public FilamentInfo {
     // Inherits ID, Color, Temp, Name from FilamentInfo
     
@@ -54,6 +62,10 @@ struct FilamentState : public FilamentInfo {
 };
 #pragma pack(pop)
 
+/*
+* DEVELOPMENT STATE: FUNCTIONAL
+* DO NOT MODIFY under any circumstances.
+*/
 class UnitState {
 public:
     static FilamentState& GetFilament(int index);

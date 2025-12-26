@@ -1,3 +1,7 @@
+/*
+* DEVELOPMENT STATE: EXPERIMENTAL
+* This file implements the BambuBus protocol which is currently in an experimental state.
+*/
 #include "BambuBusProtocol.h"
 #include "CRC16.h"
 #include "CRC8.h"
@@ -11,12 +15,14 @@ static CRC16 crc_16;
 static CRC8 crc_8;
 static CRC8 _RX_IRQ_crcx(0x39, 0x66, 0x00, false, false);
 
+/* DEVELOPMENT STATE: EXPERIMENTAL */
 void BambuBusProtocol::Init() {
     crc_8.reset(0x39, 0x66, 0, false, false);
     crc_16.reset(0x1021, 0x913D, 0, false, false);
 }
 
 // Re-implementation of RX_IRQ logic
+/* DEVELOPMENT STATE: EXPERIMENTAL */
 bool BambuBusProtocol::ParseByte(uint8_t byte) {
     static int _index = 0;
     static int length = 999;
@@ -86,14 +92,17 @@ bool BambuBusProtocol::ParseByte(uint8_t byte) {
     return false;
 }
 
+/* DEVELOPMENT STATE: EXPERIMENTAL */
 uint8_t* BambuBusProtocol::GetRxBuffer() {
     return rx_buf;
 }
 
+/* DEVELOPMENT STATE: EXPERIMENTAL */
 uint16_t BambuBusProtocol::GetRxLength() {
     return rx_len;
 }
 
+/* DEVELOPMENT STATE: EXPERIMENTAL */
 bool BambuBusProtocol::CheckCRC16(uint8_t *data, int data_length)
 {
     crc_16.restart();
@@ -108,6 +117,7 @@ bool BambuBusProtocol::CheckCRC16(uint8_t *data, int data_length)
     return false;
 }
 
+/* DEVELOPMENT STATE: EXPERIMENTAL */
 BambuBus_package_type BambuBusProtocol::IdentifyPacket(uint8_t* buf, uint16_t length) {
     if (CheckCRC16(buf, length) == false)
     {
@@ -145,6 +155,7 @@ BambuBus_package_type BambuBusProtocol::IdentifyPacket(uint8_t* buf, uint16_t le
     return BambuBus_package_type::NONE;
 }
 
+/* DEVELOPMENT STATE: EXPERIMENTAL */
 void BambuBusProtocol::ParseLongPacket(uint8_t *buf, uint16_t data_length, long_packge_data *data)
 {
     memcpy(data, buf + 2, 11);
@@ -152,6 +163,7 @@ void BambuBusProtocol::ParseLongPacket(uint8_t *buf, uint16_t data_length, long_
     data->data_length = data_length - 15; // +2byte CRC16
 }
 
+/* DEVELOPMENT STATE: EXPERIMENTAL */
 void BambuBusProtocol::BuildPacketWithCRC(uint8_t *data, uint16_t &data_length)
 {
     crc_8.restart();
@@ -190,6 +202,7 @@ void BambuBusProtocol::BuildPacketWithCRC(uint8_t *data, uint16_t &data_length)
     // Length is already correct (it was passed in including the 2 bytes space)
 }
 
+/* DEVELOPMENT STATE: EXPERIMENTAL */
 void BambuBusProtocol::BuildLongPacket(long_packge_data *data, uint8_t *out_buffer, uint16_t &out_length)
 {
     out_buffer[0] = 0x3D;
@@ -208,6 +221,7 @@ void BambuBusProtocol::BuildLongPacket(long_packge_data *data, uint8_t *out_buff
     BuildPacketWithCRC(out_buffer, out_length);
 }
 
+/* DEVELOPMENT STATE: EXPERIMENTAL */
 UnifiedCommandType BambuBusProtocol::GetUnifiedType(BambuBus_package_type type) {
     switch (type) {
         case BambuBus_package_type::filament_motion_short: return UnifiedCommandType::FilamentMotionShort;

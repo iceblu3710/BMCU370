@@ -62,9 +62,15 @@ struct long_packge_data
 };
 #pragma pack(pop)
 
+/*
+* DEVELOPMENT STATE: EXPERIMENTAL
+* This class implements the BambuBus protocol which is currently in an experimental state.
+* The protocol definition and handling logic are subject to change.
+*/
 class BambuBusProtocol
 {
 public:
+    /* DEVELOPMENT STATE: EXPERIMENTAL */
     static void Init();
     
     // Feed one byte into the parser. Returns true if a full packet was just received.

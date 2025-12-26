@@ -2,6 +2,10 @@
 
 #include "CommandTypes.h"
 
+/*
+* DEVELOPMENT STATE: TESTING
+* This namespace handles command routing which includes the testing JSON protocol.
+*/
 namespace CommandRouter {
     void Init(bool isKlipper);
     

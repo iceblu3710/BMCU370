@@ -1,3 +1,7 @@
+/*
+* DEVELOPMENT STATE: TESTING
+* This file implements the Klipper JSON protocol which is currently in a testing state.
+*/
 #include "KlipperCLI.h"
 #include "Hardware.h"
 #include "ControlLogic.h"
@@ -20,6 +24,7 @@ namespace KlipperCLI {
     static JsonDocument doc; // Elastic, but we clear it. ArduinoJson 7 manages its own heap.
 
     // Response Helper
+    /* DEVELOPMENT STATE: TESTING */
     void SendResponse(JsonDocument& d) {
         // Serialize to buffer
         static char output[1200]; // Increased buffer slightly
@@ -33,6 +38,7 @@ namespace KlipperCLI {
         Hardware::UART_Send((const uint8_t*)output, len);
     }
     
+    /* DEVELOPMENT STATE: TESTING */
     void SendError(int id, const char* code, const char* msg) {
         doc.clear();
         doc["id"] = id;
@@ -42,6 +48,7 @@ namespace KlipperCLI {
         SendResponse(doc);
     }
     
+    /* DEVELOPMENT STATE: TESTING */
     void SendOk(int id, const char* code = nullptr, const char* msg = nullptr) {
         doc.clear();
         doc["id"] = id;
@@ -53,6 +60,7 @@ namespace KlipperCLI {
 
     // --- Command Handlers ---
     
+    /* DEVELOPMENT STATE: TESTING */
     void HandlePing(int id, JsonObject args) {
         doc.clear();
         doc["id"] = id;
@@ -66,6 +74,7 @@ namespace KlipperCLI {
         SendResponse(doc);
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void HandleStatus(int id, JsonObject args) {
          // Manual JSON construction to avoid Heap Fragmentation/Overflow
          // 2048 bytes static buffer for full status
@@ -134,6 +143,7 @@ namespace KlipperCLI {
          Hardware::UART_Send((const uint8_t*)output, offset);
     }
     
+    /* DEVELOPMENT STATE: TESTING */
     void HandleGetSensors(int id, JsonObject args) {
          doc.clear();
          doc["id"] = id;
@@ -147,6 +157,7 @@ namespace KlipperCLI {
          SendResponse(doc);
     }
     
+    /* DEVELOPMENT STATE: TESTING */
     void HandleMove(int id, JsonObject args) {
         // Args extracted before clearing doc
         // BUT wait, 'args' is a reference to 'doc' internals (if passed from ProcessPacket).
@@ -188,11 +199,13 @@ namespace KlipperCLI {
         }
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void HandleStop(int id, JsonObject args) {
         ControlLogic::StopAll();
         SendOk(id, "STOPPED", "All motion stopped");
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void HandleSelectLane(int id, JsonObject args) {
         if(!args["lane"].is<int>()) {
             SendError(id, "BAD_ARGS", "Missing lane");
@@ -207,6 +220,7 @@ namespace KlipperCLI {
         SendOk(id);
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void HandleSetAutoFeed(int id, JsonObject args) {
         if(!args["lane"].is<int>() || !args["enable"].is<bool>()) {
              SendError(id, "BAD_ARGS", "Missing lane or enable");
@@ -218,6 +232,7 @@ namespace KlipperCLI {
         SendOk(id);
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void HandleGetFilamentInfo(int id, JsonObject args) {
          if(!args["lane"].is<int>()) { SendError(id, "BAD_ARGS", "Missing lane"); return; }
          int lane = args["lane"];
@@ -254,6 +269,7 @@ namespace KlipperCLI {
          Hardware::UART_Send((const uint8_t*)output, offset);
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void HandleSetFilamentInfo(int id, JsonObject args) {
          // Need to extract ALL args to stack/struct before clearing doc
          // This is tricky for complex objects like Color array.
@@ -301,6 +317,7 @@ namespace KlipperCLI {
 
 
 
+    /* DEVELOPMENT STATE: TESTING */
     void ProcessPacket(char* json_str) {
         doc.clear();
         DeserializationError error = deserializeJson(doc, json_str);
@@ -334,10 +351,12 @@ namespace KlipperCLI {
 
     static volatile bool packet_ready = false;
 
+    /* DEVELOPMENT STATE: TESTING */
     void Init() {
         Hardware::UART_Send((const uint8_t*)"{\"event\":\"STARTUP\",\"msg\":\"KlipperCLI Ready\"}\r\n", 52);
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void Run() {
         if (packet_ready) {
              ProcessPacket(rx_buffer);
@@ -348,6 +367,7 @@ namespace KlipperCLI {
     }
     
     // Helper to feed data (called from ISR)
+    /* DEVELOPMENT STATE: TESTING */
     void FeedByte(uint8_t b) {
         // Prevent buffer overrun
         if (packet_ready) return; 

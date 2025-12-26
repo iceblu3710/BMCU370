@@ -1,3 +1,7 @@
+/*
+* DEVELOPMENT STATE: FUNCTIONAL
+* PROVEN FUNCTIONAL - DO NOT MODIFY
+*/
 #include "Flash_saves.h"
 
 /* Global define */
@@ -31,6 +35,7 @@ u32 buf[Fsize];
  *
  * @return  none
  */
+/* DEVELOPMENT STATE: FUNCTIONAL */
 bool Flash_saves(void *buf, uint32_t length, uint32_t address)
 {
     uint32_t end_address = address + length;

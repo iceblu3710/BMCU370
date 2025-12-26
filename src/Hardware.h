@@ -36,9 +36,15 @@
 
 // Hardware Abstraction Layer
 
+/*
+* DEVELOPMENT STATE: FUNCTIONAL
+* The entire hardware layer (LEDs, motors, pressure, encoder, etc) is PROVEN FUNCTIONAL.
+* DO NOT MODIFY under any circumstances.
+*/
 namespace Hardware {
 
     void InitBase();
+    /* DEVELOPMENT STATE: TESTING */
     void InitUART(bool isKlipper);
 
     // Time
@@ -49,6 +55,7 @@ namespace Hardware {
     // UART
     // void UART_Init(); // Removed, use InitUART(bool)
     void UART_SetRxCallback(void (*callback)(uint8_t));
+    /* DEVELOPMENT STATE: TESTING */
     void UART_Send(const uint8_t *data, uint16_t length);
     void UART_SendByte(uint8_t data);
 

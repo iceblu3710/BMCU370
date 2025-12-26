@@ -1,8 +1,12 @@
+/*
+* DEVELOPMENT STATE: FUNCTIONAL
+* PROVEN FUNCTIONAL - DO NOT MODIFY
+*/
 #include "ControlLogic.h"
 #include "Hardware.h"
 #include "Flash_saves.h"
 #include "CommandRouter.h"
-#include "many_soft_AS5600.h"
+#include "AS5600.h"
 #include "UnitState.h"
 #include <string.h>
 
@@ -25,7 +29,7 @@ struct alignas(4) flash_save_struct
 
 // --- Defined Global/Static Variables ---
 static flash_save_struct data_save;
-static AS5600_soft_IIC_many MC_AS5600;
+static AS5600_soft_IIC MC_AS5600;
 static uint32_t AS5600_SCL[] = {PB15, PB14, PB13, PB12};
 static uint32_t AS5600_SDA[] = {PD0, PC15, PC14, PC13};
 static float last_total_distance[4];
@@ -48,41 +52,53 @@ static char unit_version[32] = DEVICE_VERSION;
 static char unit_serial[32] = DEVICE_SERIAL;
 
 // --- UnitState Implementation ---
+/* DEVELOPMENT STATE: FUNCTIONAL */
 FilamentState& UnitState::GetFilament(int index) {
     if(index < 0 || index >= 4) return data_save.filament[0]; // Boundary safety
     return data_save.filament[index];
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 int UnitState::GetCurrentFilamentIndex() {
     return data_save.BambuBus_now_filament_num;
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void UnitState::SetCurrentFilamentIndex(int index) {
     data_save.BambuBus_now_filament_num = index;
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 uint8_t UnitState::GetFilamentUseFlag() {
     return data_save.filament_use_flag;
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void UnitState::SetFilamentUseFlag(uint8_t flag) {
     data_save.filament_use_flag = flag;
 }
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void UnitState::SetBusAddress(uint16_t addr) {
     device_type_addr = addr;
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 uint16_t UnitState::GetBusAddress() {
     return device_type_addr;
 }
 
+/* DEVELOPMENT STATE: FUNCTIONAL */
 const char* UnitState::GetModel() { return unit_model; }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 const char* UnitState::GetVersion() { return unit_version; }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 const char* UnitState::GetSerialNumber() { return unit_serial; }
 
 // --- FilamentInfo Implementation ---
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void FilamentInfo::SetID(const char* new_id) {
     for(int i=0; i<8; i++) {
         if(new_id && *new_id) ID[i] = *new_id++;
         else ID[i] = 0;
     }
 }
+/* DEVELOPMENT STATE: FUNCTIONAL */
 void FilamentInfo::SetName(const char* new_name) {
     for(int i=0; i<20; i++) {
         if(new_name && *new_name) name[i] = *new_name++;
@@ -167,6 +183,7 @@ namespace ControlLogic {
     // --- Logic Implementation ---
 
     void motor_motion_switch(); // Forward declaration
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void MC_PULL_ONLINE_read() {
         float *data = Hardware::ADC_GetValues(); 
         if (!data) return;
@@ -215,8 +232,11 @@ namespace ControlLogic {
         float pid_MAX = 1000, pid_MIN = -1000, pid_range = 1000;
     public:
         MOTOR_PID(float P_set, float I_set, float D_set) { Init(P_set, I_set, D_set); }
+        /* DEVELOPMENT STATE: FUNCTIONAL */
         void Init(float P_set, float I_set, float D_set) { P = P_set; I = I_set; D = D_set; I_save = 0; E_last = 0; }
+        /* DEVELOPMENT STATE: FUNCTIONAL */
         void Clear() { I_save = 0; E_last = 0; }
+        /* DEVELOPMENT STATE: FUNCTIONAL */
         float Calculate(float E, float time_E) {
             I_save += I * E * time_E;
             if (I_save > pid_range) I_save = pid_range;
@@ -250,6 +270,7 @@ namespace ControlLogic {
         
         MotorChannel(int ch) : CHx(ch) {}
 
+        /* DEVELOPMENT STATE: FUNCTIONAL */
         void SetMotion(filament_motion_enum m) {
             if (motion != m) {
                 motion = m;
@@ -258,6 +279,7 @@ namespace ControlLogic {
             }
         }
         
+        /* DEVELOPMENT STATE: FUNCTIONAL */
         float GetXByPressure(float pressure_voltage, float control_voltage, float time_E, pressure_control_enum control_type, float sign) {
             float x=0;
             switch (control_type) {
@@ -281,6 +303,7 @@ namespace ControlLogic {
             return x;
         }
 
+        /* DEVELOPMENT STATE: FUNCTIONAL */
         void Run(float time_E) {
             // Track distance for all movement types if needed, but critical for Klipper Move
             // speed_as5600 is in mm/s? AS5600_Update says: speedx = dist_E / time_E. dist_E is mm.
@@ -378,6 +401,7 @@ namespace ControlLogic {
             UpdateLEDStatus();
         }
         
+        /* DEVELOPMENT STATE: FUNCTIONAL */
         void UpdateLEDStatus() {
             if (MC_PULL_stu[CHx] == 1) { 
                 Hardware::LED_SetColor(CHx, 0, 255, 0, 0); 
@@ -396,6 +420,7 @@ namespace ControlLogic {
     
     static MotorChannel motors[4] = {0, 1, 2, 3};
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void StartLoadFilament(int tray, int length_mm) {
         if (tray < 0 || tray >= 4) return;
         
@@ -434,6 +459,7 @@ namespace ControlLogic {
         }
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void StartUnloadFilament(int tray, int length_mm) {
         if (tray < 0 || tray >= 4) return;
         
@@ -464,6 +490,7 @@ namespace ControlLogic {
     
     // --- Klipper Primitive Implementations ---
     
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void MoveAxis(int axis, float dist_mm, float speed) {
         if(axis < 0 || axis >= 4) return;
         
@@ -473,6 +500,7 @@ namespace ControlLogic {
         motors[axis].SetMotion(filament_motion_enum::velocity_control);
     }
     
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void StopAll() {
         for(int i=0; i<4; i++) {
              motors[i].SetMotion(filament_motion_enum::stop);
@@ -480,6 +508,7 @@ namespace ControlLogic {
         }
     }
     
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void SetAutoFeed(int lane, bool enable) {
         if(lane < 0 || lane >= 4) return;
         
@@ -493,6 +522,7 @@ namespace ControlLogic {
         }
     }
     
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     uint16_t GetSensorState() {
          // [0:3] = Filament Present (MC_ONLINE_key_stu)
          // [4:7] = Buffer/Online?
@@ -503,12 +533,14 @@ namespace ControlLogic {
          return state;
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     int GetLaneMotion(int lane) {
         if(lane < 0 || lane >= 4) return 0;
         return (int)motors[lane].motion;
     }
 
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void AS5600_Update(float time_E) {
         MC_AS5600.updata_angle();
         for(int i=0; i<4; i++) {
@@ -531,11 +563,13 @@ namespace ControlLogic {
         }
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void SaveSettings() {
         Flash_saves(&data_save, sizeof(data_save), use_flash_addr);
         Bambubus_need_to_save = false;
     }
     
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void SetNeedToSave() {
         if (!Bambubus_need_to_save) {
              Bambubus_need_to_save = true;
@@ -543,6 +577,7 @@ namespace ControlLogic {
         }
     }
     
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     bool Prepare_For_filament_Pull_Back(float_t OUT_filament_meters)
     {
         bool wait = false;
@@ -577,6 +612,7 @@ namespace ControlLogic {
         return wait;
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void Run() {
         static uint64_t last_run = 0;
         uint64_t now = Hardware::GetTime();
@@ -626,6 +662,7 @@ namespace ControlLogic {
         }
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void LoadSettings() {
         flash_save_struct *ptr = (flash_save_struct *)(use_flash_addr);
         if ((ptr->check == 0x40614061) && (ptr->version == Bambubus_version)) {
@@ -643,6 +680,7 @@ namespace ControlLogic {
         }
     }
     
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void Init() {
         Hardware::ADC_Init();
         Hardware::PWM_Init();
@@ -668,6 +706,7 @@ namespace ControlLogic {
         }
     }
     
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     BootMode InitBootCheck() {
         // Read Sensors (Already inited in Hardware::Init)
         MC_PULL_ONLINE_read(); 
@@ -694,10 +733,12 @@ namespace ControlLogic {
         return (BootMode)data_save.boot_mode;
     }
     
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     BootMode GetBootMode() {
         return (BootMode)data_save.boot_mode;
     }
     
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void UpdateConnectivity(bool online) {
         is_connected = online;
         if (online) last_heartbeat_time = Hardware::GetTime();
@@ -705,6 +746,7 @@ namespace ControlLogic {
 
 
     // --- Logic Implementation ---
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void motor_motion_switch() 
     {
         int num = data_save.BambuBus_now_filament_num; 

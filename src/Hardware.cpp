@@ -39,8 +39,10 @@ float ADC_V[8];
 // DMA for UART
 DMA_InitTypeDef Bambubus_DMA_InitStructure;
 
+/* DEVELOPMENT STATE: FUNCTIONAL - DO NOT MODIFY */
 namespace Hardware {
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void InitBase() {
         Watchdog_Disable(); // Disable WWDG first!
         System_Init();
@@ -56,24 +58,29 @@ namespace Hardware {
         LED_SetColor(4, 0, 0, 0, 0);  LED_Show();
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void Watchdog_Disable() {
         WWDG_DeInit();
         RCC_APB1PeriphClockCmd(RCC_APB1Periph_WWDG, DISABLE);
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void System_Init() {
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
         GPIO_PinRemapConfig(GPIO_Remap_PD01, ENABLE);
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void DelayUS(uint32_t time) {
         delayMicroseconds(time);
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void DelayMS(uint32_t time) {
         delay(time);
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     uint64_t GetTime() {
         return get_time64();
     }
@@ -81,10 +88,12 @@ namespace Hardware {
     // --- UART ---
     static void (*uart_rx_callback)(uint8_t) = nullptr;
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void UART_SetRxCallback(void (*callback)(uint8_t)) {
         uart_rx_callback = callback;
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void InitUART(bool isKlipper) {
         GPIO_InitTypeDef GPIO_InitStructure = {0};
         USART_InitTypeDef USART_InitStructure = {0};
@@ -150,6 +159,7 @@ namespace Hardware {
     }
     
     extern "C" void USART1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void USART1_IRQHandler(void)
     {
         volatile uint32_t sr = USART1->STATR; // Read Status Register
@@ -175,6 +185,7 @@ namespace Hardware {
         }
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void UART_SendByte(uint8_t data) {
          uint32_t timeout = 10000;
          while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET && timeout--) {
@@ -183,6 +194,7 @@ namespace Hardware {
          if (timeout > 0) USART_SendData(USART1, data);
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void UART_Send(const uint8_t *data, uint16_t length) {
 #if defined(STANDARD_SERIAL)
         // Blocking mode for CLI interactivity (safe with ISR echo)
@@ -232,6 +244,7 @@ namespace Hardware {
     }
 
     // --- ADC ---
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void ADC_Init() {
         // GPIO
         {
@@ -293,6 +306,7 @@ namespace Hardware {
         DelayMS(256); // Wait for buffer fill (ADC_filter_n = 256)
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     float* ADC_GetValues() {
         for (int i = 0; i < 8; i++) {
             int data_sum = 0;
@@ -310,6 +324,7 @@ namespace Hardware {
     }
 
     // --- PWM ---
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void PWM_Init() {
         GPIO_InitTypeDef GPIO_InitStructure;
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB, ENABLE);
@@ -370,6 +385,7 @@ namespace Hardware {
         TIM_Cmd(TIM4, ENABLE);
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void PWM_Set(uint8_t channel, int PWM) {
         uint16_t set1 = 0, set2 = 0;
         if (PWM > 0) {
@@ -401,11 +417,13 @@ namespace Hardware {
     }
 
     // --- LED ---
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void LED_Init() {
         strip_PD1.begin();
         for(int i=0; i<4; i++) strip_channel[i].begin();
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void LED_SetColor(uint8_t channel, int led_idx, uint8_t r, uint8_t g, uint8_t b) {
         if (channel < 4) {
              strip_channel[channel].setPixelColor(led_idx, strip_channel[channel].Color(r, g, b));
@@ -414,11 +432,13 @@ namespace Hardware {
         }
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void LED_Show() {
         strip_PD1.show();
         for(int i=0; i<4; i++) strip_channel[i].show();
     }
 
+    /* DEVELOPMENT STATE: FUNCTIONAL */
     void LED_SetBrightness(uint8_t brightness) {
          // This is global brightness scaling, usually we set it once.
          // Original code had different brightness for PD1 (35) and channels (15).

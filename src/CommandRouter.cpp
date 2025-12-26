@@ -1,3 +1,7 @@
+/*
+* DEVELOPMENT STATE: TESTING
+* This file implements command routing including the testing JSON protocol.
+*/
 #include "CommandRouter.h"
 #include "BambuBusProtocol.h"
 #ifdef STANDARD_SERIAL
@@ -44,12 +48,14 @@ namespace CommandRouter {
 
     // --- Long Packet Handlers Wrapper ---
     // Since ControlLogic::ProcessLongPacket expects parsed struct, we need a wrapper if we route raw buffer.
+    /* DEVELOPMENT STATE: TESTING */
     void HandleLongPacket(uint8_t* buffer, uint16_t length) {
          long_packge_data data;
          BambuBusProtocol::ParseLongPacket(buffer, length, &data);
          ControlLogic::ProcessLongPacket(data);
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void Init(bool isKlipper) {
         // Always Init BambuBus as it might be switched to? 
         // Or if not standard serial
@@ -95,6 +101,7 @@ namespace CommandRouter {
         }
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void Route(UnifiedCommandType type, uint8_t* buffer, uint16_t length) {
         // Generic Connectivity Update
         if (type != UnifiedCommandType::None && type != UnifiedCommandType::Error) {
@@ -134,6 +141,7 @@ namespace CommandRouter {
         }
     }
 
+    /* DEVELOPMENT STATE: TESTING */
     void Run() {
         if (ControlLogic::GetBootMode() == ControlLogic::BootMode::Klipper) {
             #ifdef STANDARD_SERIAL
@@ -181,6 +189,7 @@ namespace CommandRouter {
     }
     
     // Helper to send packet (Abstraction for Hardware)
+    /* DEVELOPMENT STATE: TESTING */
     void SendPacket(uint8_t *data, uint16_t length) {
 #ifdef STANDARD_SERIAL
         // In StandardSerial, we might want to print Debug Hex IF configured, 

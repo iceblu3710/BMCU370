@@ -4,6 +4,11 @@
 #include "BambuBusProtocol.h"
 #include "UnitState.h"
 
+/*
+* DEVELOPMENT STATE: FUNCTIONAL
+* The entire Klipper functional system and all functions Klipper touches are PROVEN FUNCTIONAL.
+* DO NOT MODIFY under any circumstances.
+*/
 namespace ControlLogic {
 
     enum class BootMode : uint32_t {
