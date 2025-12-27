@@ -22,6 +22,7 @@ namespace KlipperCLI {
     static bool last_was_cr = false;
     static JsonDocument doc;
     static char global_json_buf[1024]; // Shared buffer for all responses
+    static uint64_t last_activity_time = 0; // Track last serial activity for smart save timing
 
     // Response Helper
     void WaitTX() {
@@ -442,6 +443,7 @@ namespace KlipperCLI {
                 last_was_cr = (b == '\r');
                 
                 rx_buffer[rx_idx] = '\0';
+                last_activity_time = millis(); // Update activity timestamp for smart save timing
                 ProcessPacket(rx_buffer);
                 rx_idx = 0;
             } else {
@@ -459,4 +461,14 @@ namespace KlipperCLI {
     bool IsConnected() {
         return _transport && _transport->IsConnected();
     }
+    
+    // Returns true if no serial activity for the specified duration (ms)
+    bool IsSerialIdle(uint32_t idle_ms) {
+        return (millis() - last_activity_time) > idle_ms;
+    }
+}
+
+// Global wrapper for cross-module access (used by MMU_Logic for smart save timing)
+bool KlipperCLI_IsSerialIdle(uint32_t idle_ms) {
+    return KlipperCLI::IsSerialIdle(idle_ms);
 }

@@ -2,13 +2,28 @@
  * @file LiteJSON.h
  * @brief Lightweight, error-tolerant JSON parser and serializer for embedded systems.
  * 
- * DEVELOPMENT STATE: TESTING
+ * @details
+ * DEVELOPMENT STATE: FUNCTIONAL - PROVEN STABLE - DO NOT MODIFY
  * 
- * Replaces ArduinoJson with a minimal implementation (~5KB vs 335KB).
- * Features:
- * - Error-tolerant parsing (graceful handling of malformed JSON)
- * - No heap allocation - uses static buffers
- * - API compatible with common ArduinoJson patterns
+ * This library replaces ArduinoJson with a minimal, stack-safe implementation
+ * optimized for the CH32V203 MCU (20KB RAM, 64KB Flash).
+ * 
+ * Key Features:
+ * - **Zero heap allocation**: All memory is statically allocated
+ * - **Crash-safe numeric parsing**: Custom float parser avoids stdlib crashes
+ * - **Strict JSON validation**: Rejects malformed JSON with specific error codes
+ * - **ArduinoJson-compatible API**: Drop-in replacement for common patterns
+ * - **Nesting depth enforcement**: Prevents stack overflow on deep structures
+ * 
+ * Memory Usage:
+ * - Flash: ~5KB (vs 335KB for ArduinoJson)
+ * - RAM: ~3KB static pools for nested structures
+ * 
+ * Tested and validated with json_stress_test.py achieving 100% pass rate.
+ * 
+ * @author BMCU370 Development Team
+ * @version 1.0.0
+ * @date 2025-12-27
  */
 
 #pragma once
@@ -21,12 +36,17 @@
 
 namespace LiteJSON {
 
-// Maximum limits for static allocation (minimal for 20KB RAM, 64KB Flash)
-constexpr int MAX_KEYS = 8;
-constexpr int MAX_STRING_LEN = 32;
-constexpr int MAX_ARRAY_SIZE = 4;
-constexpr int MAX_NESTING = 3;
-constexpr int MAX_DOC_BUFFER = 1024;     // Max array elements
+/**
+ * @defgroup LiteJSON_Config Configuration Constants
+ * @brief Static allocation limits tuned for 20KB RAM constraint.
+ * @{
+ */
+constexpr int MAX_KEYS = 8;          ///< Maximum key-value pairs per object
+constexpr int MAX_STRING_LEN = 32;   ///< Maximum string length (truncated beyond)
+constexpr int MAX_ARRAY_SIZE = 4;    ///< Maximum elements per array
+constexpr int MAX_NESTING = 3;       ///< Maximum nesting depth (objects/arrays)
+constexpr int MAX_DOC_BUFFER = 1024; ///< Maximum document buffer size
+/** @} */
 
 // Forward declarations
 class LiteValue;

@@ -500,9 +500,14 @@ void MMU_Logic::Run() {
     AS5600_Update(time_E);
     
     if (Bambubus_need_to_save) {
-        // 5000ms debounce to prevent Flash writes during rapid serial communication
-        // Flash operations block interrupts and can cause serial timeouts
-        if (now - save_timer > 5000) { 
+        // Smart save timing: wait for serial silence to avoid blocking during communication
+        // Option 1: Save after 500ms of serial idle (fast response during dead time)
+        // Option 2: Force save after 5000ms absolute (safety fallback)
+        extern bool KlipperCLI_IsSerialIdle(uint32_t); // Forward declaration
+        bool serial_idle = KlipperCLI_IsSerialIdle(500); // 500ms of silence
+        bool timeout_hit = (now - save_timer > 5000);    // 5s absolute max
+        
+        if (serial_idle || timeout_hit) { 
             SaveSettings(); 
         }
     }

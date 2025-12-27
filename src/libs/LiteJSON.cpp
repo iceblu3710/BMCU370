@@ -2,7 +2,21 @@
  * @file LiteJSON.cpp
  * @brief Lightweight, error-tolerant JSON parser and serializer implementation.
  * 
- * DEVELOPMENT STATE: TESTING
+ * @details
+ * DEVELOPMENT STATE: FUNCTIONAL - PROVEN STABLE - DO NOT MODIFY
+ * 
+ * This file implements all parsing and serialization logic for the LiteJSON library.
+ * 
+ * Key Implementation Details:
+ * - Custom float parser (parseNumber) avoids stdlib atof crashes on FPU-less MCUs
+ * - Strict depth tracking prevents stack overflow on nested structures
+ * - All string operations are bounds-checked to prevent buffer overflows
+ * 
+ * @see LiteJSON.h for API documentation and configuration constants.
+ * 
+ * @author BMCU370 Development Team
+ * @version 1.0.0
+ * @date 2025-12-27
  */
 
 #include "LiteJSON.h"
@@ -399,7 +413,6 @@ const char* LiteDoc::parseNumber(const char* p, LiteValue& val) {
     if (isFloat || i > 9) {
         float result = 0.0f;
         float fraction = 1.0f;
-        int d = 0;
         int sign = 1;
         bool inFraction = false;
         

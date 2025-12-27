@@ -22,4 +22,7 @@ namespace KlipperCLI {
 
     // Check if connected
     bool IsConnected();
+    
+    // Check if serial has been idle for the specified duration
+    bool IsSerialIdle(uint32_t idle_ms);
 }
