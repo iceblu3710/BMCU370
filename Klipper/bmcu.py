@@ -39,7 +39,7 @@ class BMCU:
         # Config
         # -----------------------------
         self.serial_port = config.get('serial')
-        self.baud = config.getint('baud', 250000)
+        self.baud = config.getint('baud', 115200)  # Reduced from 250000
         self.timeout = config.getfloat('timeout', 0.1)
 
         # Gentler defaults

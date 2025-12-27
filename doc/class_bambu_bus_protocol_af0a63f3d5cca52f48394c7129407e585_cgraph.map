@@ -1,5 +1,0 @@
-<map id="BambuBusProtocol::ParseByte" name="BambuBusProtocol::ParseByte">
-<area shape="rect" id="Node000001" title="Parse a single incoming byte into a protocol packet." alt="" coords="5,5,208,32"/>
-<area shape="rect" id="Node000002" href="$_bambu_bus_protocol_8cpp.html#accdac0b68b69d84409a479fc284f0a1b" title=" " alt="" coords="256,5,366,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,16,243,19,237,19,208,21"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="Adafruit_NeoPixel::updateType" name="Adafruit_NeoPixel::updateType">
-<area shape="rect" id="Node000001" title="更改之前声明的像素格式 Adafruit_NeoPixel灯带对象。如果格式从一个变为另一个 将RGB变体转换为RGBW变体（或将RGBW转换为RGB），旧的 数据将被释放，新数据将被清空。否则， 旧数..." alt="" coords="188,5,322,48"/>
-<area shape="rect" id="Node000002" href="$class_adafruit___neo_pixel.html#aac61dab69181d4554be8cdde40e4bce6" title="当长度、引脚和像素类型在编译时已知时的NeoPixel构造函数" alt="" coords="5,5,140,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,27,140,29,140,24,175,26"/>
-</map>

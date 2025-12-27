@@ -1,7 +1,0 @@
-<map id="Adafruit_NeoPixel::setPixelColor" name="Adafruit_NeoPixel::setPixelColor">
-<area shape="rect" id="Node000001" title="Set a pixel&#39;s color using separate red, green and blue components. If using RGBW pixels,..." alt="" coords="201,27,335,69"/>
-<area shape="rect" id="Node000002" href="$class_adafruit___neo_pixel.html#a310844b3e5580056edf52ce3268d8084" title="Fill all or part of the NeoPixel strip with a color." alt="" coords="5,5,153,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,36,153,33,153,27,188,35"/>
-<area shape="rect" id="Node000003" href="$class_adafruit___neo_pixel.html#a914f61b78e4d36a03c91372ceded2d46" title="用一个或多个色调循环填充NeoPixel灯带。 大家都非常喜欢彩虹漩涡，现在它可是经典了！" alt="" coords="12,56,146,99"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,61,147,70,146,64,188,60"/>
-</map>

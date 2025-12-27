@@ -1,5 +1,0 @@
-<map id="Adafruit_NeoPixel::fill" name="Adafruit_NeoPixel::fill">
-<area shape="rect" id="Node000001" title="Fill all or part of the NeoPixel strip with a color." alt="" coords="5,13,153,40"/>
-<area shape="rect" id="Node000002" href="$class_adafruit___neo_pixel.html#ab8763ccc6f9a090df1f753905fd5561e" title="Set a pixel&#39;s color using separate red, green and blue components. If using RGBW pixels,..." alt="" coords="201,5,335,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,24,188,26,183,27,153,29"/>
-</map>

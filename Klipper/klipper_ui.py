@@ -168,7 +168,7 @@ class BMCUKlipperUI:
         port = self.port_var.get()
         if not port: return
         try:
-            self.serial_port = serial.Serial(port, 250000, timeout=0.1)
+            self.serial_port = serial.Serial(port, 115200, timeout=0.5)  # Reduced from 250000
             # DTR reset for nice reboot
             self.serial_port.dtr = False
             time.sleep(0.1)
@@ -199,12 +199,15 @@ class BMCUKlipperUI:
         try:
             with self.packet_lock:
                 msg = json.dumps(pkt) + "\n"
+                print(f"TX: {msg.strip()}")  # DEBUG: See what we're sending
                 self.serial_port.write(msg.encode())
+                self.serial_port.flush()  # Ensure all bytes are sent
                 
                 if wait_response:
-                    # Simple blocking read for response (POC)
-                    # In production, use async reader.
-                    # For now, quick hack to read line
+                    # Give firmware time to process and respond
+                    time.sleep(0.05)  # 50ms delay to prevent UART overflow
+                    
+                    # Read response with extended timeout
                     resp_line = self.serial_port.readline()
                     if resp_line:
                         try:
@@ -287,8 +290,8 @@ class BMCUKlipperUI:
                     print(f"Poll Error: {e}")
 
                         
-                # 1 Hz Poll
-            time.sleep(1)
+                # 0.5 Hz Poll (2 second interval to prevent UART overflow)
+            time.sleep(2)
 
     def edit_filament(self, lane):
         if not self.is_connected: return

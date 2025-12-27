@@ -1,6 +1,0 @@
-<map id="Hardware::ADC_Init" name="Hardware::ADC_Init">
-<area shape="rect" id="Node000001" title="Initialize the Analog&#45;to&#45;Digital Converter." alt="" coords="5,29,145,56"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="43,29,37,21,41,11,54,5,75,3,97,5,111,14,105,14,96,10,75,8,56,10,45,15,43,20,48,29"/>
-<area shape="rect" id="Node000002" href="$namespace_hardware.html#ad269fd29299dd87118b408e4551f4d2d" title="Millisecond Delay." alt="" coords="193,29,332,56"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="145,40,180,43,175,43,145,45"/>
-</map>

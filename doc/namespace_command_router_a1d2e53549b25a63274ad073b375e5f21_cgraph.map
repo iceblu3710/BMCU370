@@ -1,7 +1,0 @@
-<map id="CommandRouter::HandleLongPacket" name="CommandRouter::HandleLongPacket">
-<area shape="rect" id="Node000001" title="wrapper to handle Long Packets by parsing and dispatching." alt="" coords="5,39,203,81"/>
-<area shape="rect" id="Node000002" href="$class_bambu_bus_protocol.html#ad0e11ad5c710644e9f1ee2fb4f15a3b9" title="Extract data from a &quot;Long Packet&quot; (0x05 type)." alt="" coords="251,5,454,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,44,238,42,233,43,204,49"/>
-<area shape="rect" id="Node000003" href="$namespace_control_logic.html#a1ff0bcee8062346fb963e4dd845c8bdf" title="Handler/Dispatcher for Long Packets." alt="" coords="263,72,442,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,71,250,79,245,80,203,76"/>
-</map>

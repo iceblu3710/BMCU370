@@ -1,7 +1,0 @@
-<map id="BambuBusProtocol::IdentifyPacket" name="BambuBusProtocol::IdentifyPacket">
-<area shape="rect" id="Node000001" title="Identify the type of BambuBus packet." alt="" coords="5,27,190,69"/>
-<area shape="rect" id="Node000002" href="$class_bambu_bus_protocol.html#a8b674c03ab157fa7e70fc2f6e271d539" title="Verify the CRC16 for a complete packet." alt="" coords="238,5,461,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,35,225,33,219,34,191,40"/>
-<area shape="rect" id="Node000003" href="$class_bambu_bus_protocol.html#ad0e11ad5c710644e9f1ee2fb4f15a3b9" title="Extract data from a &quot;Long Packet&quot; (0x05 type)." alt="" coords="248,56,451,99"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="190,56,235,63,230,64,190,61"/>
-</map>

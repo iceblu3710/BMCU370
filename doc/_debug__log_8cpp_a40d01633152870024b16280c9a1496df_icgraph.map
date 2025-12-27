@@ -1,5 +1,0 @@
-<map id="Debug_log_write_num" name="Debug_log_write_num">
-<area shape="rect" id="Node000001" title="Write a buffer to the Debug Port using DMA." alt="" coords="172,5,322,32"/>
-<area shape="rect" id="Node000002" href="$_debug__log_8cpp.html#abe437f2b5ead512cd88794fc3fc0088f" title="Write a string to the Debug Port." alt="" coords="5,5,124,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,19,124,21,124,16,159,18"/>
-</map>

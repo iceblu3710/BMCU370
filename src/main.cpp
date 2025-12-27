@@ -1,50 +1,37 @@
 #include <Arduino.h>
-#include "Hardware.h"
-#include "ControlLogic.h"
+#include "BMCU_Hardware.h"
+#include "UART_Transport.h"
+#include "MMU_Logic.h"
 #include "CommandRouter.h"
 
-/* DEVELOPMENT STATE: FUNCTIONAL */
-/**
- * @brief Arduino Setup Function.
- * 
- * Initializes Hardware, ControlLogic, detects Boot Mode (Klipper vs Bus),
- * and sets up Communication Routing.
- */
-void setup()
-{
-    // Initialize Base Hardware (GPIO, ADC, LED, Timers) - No UART yet
-    Hardware::InitBase();
+
+// Instance Management (Global scope to persist)
+static BMCU_Hardware* hal = nullptr;
+static UART_Transport* transport = nullptr;
+static MMU_Logic* logic = nullptr;
+static CommandRouter* api = nullptr;
+
+void setup() {
+    // 1. Create HAL
+    hal = new BMCU_Hardware();
     
-    // Initialize Business Logic (Loads settings)
-    ControlLogic::Init();
+    // 2. Create Transport
+    transport = new UART_Transport();
+    transport->Init();
     
-    // Check for Boot Mode Switch (Pressure Sensors)
-    ControlLogic::BootMode mode = ControlLogic::InitBootCheck();
-    bool isKlipper = (mode == ControlLogic::BootMode::Klipper);
+    // 3. Create Logic
+    logic = new MMU_Logic(hal);
+    logic->Init(); // Initializes HAL and Logic
     
-    // Initialize Communications with specific mode
-    Hardware::InitUART(isKlipper);
-    CommandRouter::Init(isKlipper);
-    
-    // Initial LED State
-    Hardware::LED_SetBrightness(35); // Default brightness
-    Hardware::LED_Show();
+    // 4. Init API/Router with transport
+    api = new CommandRouter();
+    api->Init(logic, transport);
 }
 
-/* DEVELOPMENT STATE: FUNCTIONAL */
-/**
- * @brief Arduino Main Loop.
- * 
- * Continuously runs Command Routing and Control Logic.
- */
-void loop()
-{
-    while (1)
-    {
-        // Process Communications
-        CommandRouter::Run();
-        
-        // Run Control Logic (Motors, State Machine)
-        ControlLogic::Run();
-    }
+void loop() {
+    // Run Logic
+    if (logic) logic->Run();
+    
+    // Run API
+    if (api) api->Run();
 }

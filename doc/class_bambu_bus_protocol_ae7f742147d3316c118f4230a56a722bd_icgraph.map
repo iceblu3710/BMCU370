@@ -1,7 +1,0 @@
-<map id="BambuBusProtocol::GetRxLength" name="BambuBusProtocol::GetRxLength">
-<area shape="rect" id="Node000001" title="Get the length of the last received packet." alt="" coords="301,5,519,32"/>
-<area shape="rect" id="Node000002" href="$namespace_command_router.html#a652cfc164ac7a2a2c016da37f341c42e" title="Initialize the Command Router and CLI subsystems." alt="" coords="107,5,253,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="283,19,253,21,253,16,288,19"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino Setup Function." alt="" coords="5,5,59,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,19,59,21,59,16,94,18"/>
-</map>

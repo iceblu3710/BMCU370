@@ -1,5 +1,0 @@
-<map id="AS5600_soft_IIC::write_iic" name="AS5600_soft_IIC::write_iic">
-<area shape="rect" id="Node000001" title="Write a single byte to the I2C bus." alt="" coords="5,13,183,40"/>
-<area shape="rect" id="Node000002" href="$class_a_s5600__soft___i_i_c.html#a583ae40d0d2c03b41df964cd3b86ffb3" title="Wait for ACK from the slave." alt="" coords="231,5,384,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,24,218,26,213,27,183,29"/>
-</map>

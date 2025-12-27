@@ -1,7 +1,0 @@
-<map id="ControlLogic::Prepare_For_filament_Pull_Back" name="ControlLogic::Prepare_For_filament_Pull_Back">
-<area shape="rect" id="Node000001" title="Check if pullback is required (Smart Pullback Logic)." alt="" coords="5,5,172,48"/>
-<area shape="rect" id="Node000002" href="$namespace_hardware.html#a44347f62b4ee1789ecfed67b195572e4" title="Set Color of a specific LED." alt="" coords="220,13,389,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,24,206,26,201,27,172,29"/>
-<area shape="rect" id="Node000003" href="$_hardware_8cpp.html#a766f13b53e03456789fd4fe8e009e157" title=" " alt="" coords="437,13,516,40"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="389,24,424,27,419,27,390,29"/>
-</map>

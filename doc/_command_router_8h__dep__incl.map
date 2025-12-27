@@ -1,9 +1,0 @@
-<map id="src/CommandRouter.h" name="src/CommandRouter.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="191,5,344,32"/>
-<area shape="rect" id="Node000002" href="$_command_router_8cpp.html" title=" " alt="" coords="5,80,173,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,39,121,82,119,77,220,38"/>
-<area shape="rect" id="Node000003" href="$_control_logic_8cpp.html" title=" " alt="" coords="197,80,338,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="270,46,270,81,265,78,266,50"/>
-<area shape="rect" id="Node000004" href="$main_8cpp.html" title=" " alt="" coords="362,80,458,107"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="307,37,388,79,383,79,305,42"/>
-</map>
