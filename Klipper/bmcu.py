@@ -6,7 +6,7 @@
 #
 #   [bmcu]
 #   serial: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
-#   baud: 250000
+#   baud: 115200
 #
 # Optional tuning keys:
 #   timeout, poll_interval, read_interval, debug,
@@ -18,9 +18,15 @@
 #   default_lane_feed_mm, default_lane_retract_mm,
 #   supported_cmds
 #
-# Firmware surface (per KlipperCLI.cpp):
+# Firmware surface (per KlipperCLI.cpp with LiteJSON):
 #   PING, STATUS, GET_SENSORS, MOVE, STOP, SELECT_LANE,
 #   SET_AUTO_FEED, GET_FILAMENT_INFO, SET_FILAMENT_INFO
+#
+# LiteJSON Firmware Limits:
+#   - MAX_KEYS = 8 (max key-value pairs per JSON object)
+#   - MAX_STRING_LEN = 32 (strings truncated beyond this)
+#   - MAX_ARRAY_SIZE = 4 (max elements per array)
+#   - MAX_NESTING = 3 (max nesting depth)
 
 import logging
 import json
@@ -585,7 +591,8 @@ class BMCU:
         args = {"lane": lane}
 
         if name is not None:
-            args["name"] = name
+            # LiteJSON MAX_STRING_LEN = 32, but firmware name field is 20 chars
+            args["name"] = str(name)[:20]
 
         if tmin_raw is not None:
             args["temp_min"] = int(float(tmin_raw))
@@ -594,9 +601,9 @@ class BMCU:
             args["temp_max"] = int(float(tmax_raw))
 
         if rfid:
+            # Firmware expects id_str, max 8 chars for RFID
             s = str(rfid)[:8]
-            args["rfid"] = s
-            args["id_str"] = s   # keep both, firmware-safe
+            args["id_str"] = s
 
         if meters_raw is not None:
             meters_val = float(meters_raw)
@@ -680,9 +687,10 @@ class BMCU:
         lane = gcmd.get_int("LANE", 0)
         mm = gcmd.get_float("MM", self.default_lane_retract_mm)
         speed = gcmd.get_float("SPEED", self.default_speed)
+        # Retract uses negative distance with positive speed (per firmware convention)
         ok, _ = self._send_pkt(
             "MOVE",
-            {"axis": str(lane), "dist_mm": float(-mm), "speed": float(speed)}, note="lane_retract")
+            {"axis": str(lane), "dist_mm": float(-mm), "speed": float(abs(speed))}, note="lane_retract")
         gcmd.respond_info(f"Lane {lane} RETRACT {mm}mm")
 
 
